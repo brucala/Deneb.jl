@@ -145,18 +145,21 @@ PropertiesSpec(T::Type{<:PropertiesSpec}; spec...) = T((Spec(spec, f) for f in f
 function ViewableSpec(; spec...)
     common = PropertiesSpec(CommonProperties; spec...)
     layout = PropertiesSpec(LayoutProperties; spec...)
-    T = haskey(spec, :layer) ? LayerSpec :
+    T = _viewtype(spec)
+    if T <: LayoutSpec
+        T(common, layout, (Spec(spec, f) for f in fieldnames(T) if f ∉ (:common, :layout))...)
+    end
+    T(common, (Spec(spec, f) for f in fieldnames(T) if f != :common)...)
+end
+
+function _viewtype(spec)
+    return haskey(spec, :layer) ? LayerSpec :
         haskey(spec, :facet) ? FacetSpec :
         haskey(spec, :repeat) ? RepeatSpec :
         haskey(spec, :concat) ? ConcatSpec :
         haskey(spec, :hconcat) ? HConcatSpec :
         haskey(spec, :vconcat) ? VConcatSpec :
         SingleSpec
-
-    if T <: LayoutSpec
-        T(common, layout, (Spec(spec, f) for f in fieldnames(T) if f ∉ (:common, :layout))...)
-    end
-    T(common, (Spec(spec, f) for f in fieldnames(T) if f != :common)...)
 end
 
 Base.propertynames(s::T) where T<:AbstractSpec = collect(Iterators.flatten(
