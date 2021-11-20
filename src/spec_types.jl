@@ -2,11 +2,20 @@ abstract type AbstractSpec end
 struct Spec{T} <: AbstractSpec
     spec::T
 end
-Spec(spec::Symbol) = Spec(string(spec))
-Spec(spec::NamedTuple) = Spec{NamedTuple}(NamedTuple((k=>Spec(v) for (k,v) in pairs(spec))))
-Spec(spec::Vector) = Spec{Vector{Spec}}([Spec(i) for i in spec])
-Spec(spec::Spec) = Spec(spec.spec)
-Spec(spec, field) = Spec(get(spec, field, nothing))
+Spec(s::Symbol) = Spec(string(s))
+Spec(s::NamedTuple) = Spec{NamedTuple}(NamedTuple((k=>Spec(v) for (k,v) in pairs(s))))
+Spec(s::Vector) = Spec{Vector{Spec}}([Spec(i) for i in s])
+Spec(s::Spec) = Spec(s.spec)
+Spec(s, field) = Spec(get(s, field, nothing))
+
+function Spec(s::AbstractSpec)
+    Spec(
+        NamedTuple(
+            property => Spec(getproperty(s, property))
+            for property in propertynames(s)
+        )
+    )
+end
 
 Base.:(==)(s1::Spec, s2::Spec) = s1.spec == s2.spec
 
