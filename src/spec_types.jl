@@ -13,6 +13,9 @@ Base.:(==)(s1::Spec, s2::Spec) = s1.spec == s2.spec
 Base.propertynames(s::Spec) = s.spec isa NamedTuple ? propertynames(s.spec) : tuple()
 Base.getproperty(s::Spec, i::Symbol) = i in fieldnames(Spec) ? getfield(s, i) : s.spec[i]
 
+value(s::Spec) = s.spec
+value(s::Spec{NamedTuple}) = NamedTuple((k=>value(v) for (k,v) in pairs(s.spec)))
+value(s::Spec{Vector{Spec}}) = [value(v) for v in s.spec]
 
 abstract type PropertiesSpec <: AbstractSpec end
 abstract type ViewableSpec <: AbstractSpec end
