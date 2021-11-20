@@ -7,8 +7,8 @@ using Test
     @test spec(:a).spec == "a"
 end
 
+nt = (a=1, b=(c="x",))
 @testset "NamedTuple Spec" begin
-    nt = (a=1, b=(c="x",))
     s = spec(nt)
     @test s.spec isa NamedTuple
     @test eltype(s.spec) === Deneb.Spec

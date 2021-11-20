@@ -1,18 +1,18 @@
 abstract type AbstractSpec end
-struct Spec <: AbstractSpec
-    spec
-    Spec(spec::NamedTuple) = new(NamedTuple((k=>Spec(v) for (k,v) in pairs(spec))))
-    Spec(spec::Vector) = new([Spec(i) for i in spec])
-    Spec(spec::Spec) = new(spec.spec)
-    Spec(spec) = new(spec)
+struct Spec{T} <: AbstractSpec
+    spec::T
 end
 Spec(spec::Symbol) = Spec(string(spec))
+Spec(spec::NamedTuple) = Spec{NamedTuple}(NamedTuple((k=>Spec(v) for (k,v) in pairs(spec))))
+Spec(spec::Vector) = Spec{Vector{Spec}}([Spec(i) for i in spec])
+Spec(spec::Spec) = Spec(spec.spec)
 Spec(spec, field) = Spec(get(spec, field, nothing))
 
 Base.:(==)(s1::Spec, s2::Spec) = s1.spec == s2.spec
 
 Base.propertynames(s::Spec) = s.spec isa NamedTuple ? propertynames(s.spec) : tuple()
 Base.getproperty(s::Spec, i::Symbol) = i in fieldnames(Spec) ? getfield(s, i) : s.spec[i]
+
 
 abstract type PropertiesSpec <: AbstractSpec end
 abstract type ViewableSpec <: AbstractSpec end
