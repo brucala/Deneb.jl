@@ -1,6 +1,12 @@
 JSON.json(s::AbstractSpec) = json(value(spec(s)))
 JSON.json(s::AbstractSpec, indent) = json(value(spec(s)), indent)
 
+function JSON.json(s::DataSpec)
+    t = value(s.data)
+    Tables.istable(t) && return json((values=Tables.rowtable(t), ))
+    json(s.data)
+end
+
 Base.show(io::IO, s::AbstractSpec) = print(io, json(s, 2))
 
 Base.show(io::IO, ::MIME"text/plain", s::AbstractSpec) = print(io, "$(typeof(s)): \n", s)
