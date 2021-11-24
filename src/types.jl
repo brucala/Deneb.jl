@@ -75,16 +75,19 @@ struct DataSpec <: AbstractSpec
     DataSpec(t) = new(Spec(t))
 end
 Base.convert(::Type{DataSpec}, x::Spec) = DataSpec(x)
+value(s::DataSpec) = value(s.data)
 
 struct MarkSpec <: AbstractSpec
     mark::Spec
 end
 Base.convert(::Type{MarkSpec}, x::Spec) = MarkSpec(x)
+value(s::MarkSpec) = value(s.mark)
 
 struct EncodingSpec <: AbstractSpec
     encoding::Spec
 end
 Base.convert(::Type{EncodingSpec}, x::Spec) = EncodingSpec(x)
+value(s::EncodingSpec) = value(s.encoding)
 
 struct SingleSpec <: ViewableSpec
     common:: CommonProperties
@@ -171,7 +174,7 @@ function ViewableSpec(; spec...)
     if T <: LayoutSpec
         T(common, layout, (Spec(spec, f) for f in fieldnames(T) if f ∉ (:common, :layout))...)
     end
-    T(common, (Spec(spec, f) for f in fieldnames(T) if f != :common)...)
+    T(common, (Spec(spec, f) for f in fieldnames(T) if f !== :common)...)
 end
 
 function _viewtype(spec)
@@ -184,14 +187,18 @@ function _viewtype(spec)
         SingleSpec
 end
 
-Base.propertynames(s::T) where T<:AbstractSpec = collect(Iterators.flatten(
-    t === Spec ? (f,) : propertynames(getfield(s, f))
-    for (f, t) in zip(fieldnames(T), fieldtypes(T))
-    if t !== Spec || !isnothing(getfield(s, f).spec)
-))
+function Base.propertynames(s::T) where T<:AbstractSpec
+    collect(
+        Iterators.flatten(
+            t === Spec ? (f,) : propertynames(getfield(s, f))
+            for (f, t) in zip(fieldnames(T), fieldtypes(T))
+            if t !== Spec || !isnothing(getfield(s, f).spec)
+        )
+    )
+end
 
 function Base.getproperty(s::T, f::Symbol) where T<:AbstractSpec
-    f in fieldnames(T) && fieldtype(T, f) === Spec && return getfield(s, f)
+    f in fieldnames(T) && return getfield(s, f)
     for field in fieldnames(T)
         child = getfield(s, field)
         f in propertynames(child) && return getproperty(child, f)
