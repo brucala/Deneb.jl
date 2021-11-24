@@ -1,6 +1,7 @@
 module Deneb
 
-using JSON
+using JSON, Tables
+using MultilineStrings: indent
 
 include("spec_types.jl")
 include("spec_api.jl")
