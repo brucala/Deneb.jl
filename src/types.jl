@@ -1,4 +1,9 @@
 abstract type AbstractSpec end
+
+###
+### Spec: arbitrary spec
+###
+
 struct Spec{T} <: AbstractSpec
     spec::T
 end
@@ -25,6 +30,10 @@ Base.getproperty(s::Spec, i::Symbol) = i in fieldnames(Spec) ? getfield(s, i) : 
 value(s::Spec) = s.spec
 value(s::Spec{NamedTuple}) = NamedTuple((k=>value(v) for (k,v) in pairs(s.spec)))
 value(s::Spec{Vector{Spec}}) = [value(v) for v in s.spec]
+
+###
+### Constrained specs
+###
 
 abstract type PropertiesSpec <: AbstractSpec end
 abstract type ViewableSpec <: AbstractSpec end
@@ -63,6 +72,7 @@ end
 
 struct DataSpec <: AbstractSpec
     data::Spec
+    DataSpec(t) = new(Spec(t))
 end
 Base.convert(::Type{DataSpec}, x::Spec) = DataSpec(x)
 
