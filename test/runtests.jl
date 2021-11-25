@@ -51,9 +51,9 @@ nt = (name="chart", data=3, mark=:bar, encoding=(x=:x, y=(field=:y, type=:quanti
 end
 
 @testset "TopLevelSpec properties" begin
-    s = vlspec(spec_nt)
-    @test s == vlspec(; spec_nt...)
-    @test s == vlspec(spec(spec_nt))
+    s = vlspec(nt)
+    @test s == vlspec(; nt...)
+    @test s == vlspec(spec(nt))
     @test value(s.name) == "chart"
     @test value(s.data) == 3
     @test value(s.mark) == "bar"

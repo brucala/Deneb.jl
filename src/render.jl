@@ -1,11 +1,13 @@
-JSON.json(s::AbstractSpec) = json(value(spec(s)))
-JSON.json(s::AbstractSpec, indent) = json(value(spec(s)), indent)
+JSON.json(s::AbstractSpec) = json(value(s))
+JSON.json(s::AbstractSpec, indent) = json(value(s), indent)
 
-function JSON.json(s::DataSpec)
-    t = value(s.data)
-    Tables.istable(t) && return json((values=Tables.rowtable(t), ))
-    json(s.data)
-end
+#JSON.json(s::DataSpec) = json(_data_json(s))
+#JSON.json(s::DataSpec, indent) = json(_data_json(s), indent)
+#function _data_json(s::DataSpec)
+#    t = value(s)
+#    Tables.istable(t) && return (values=Tables.rowtable(t), )
+#    return s.data
+#end
 
 Base.show(io::IO, s::AbstractSpec) = print(io, json(s, 2))
 

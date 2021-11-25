@@ -35,4 +35,4 @@ Mark(type::Union{Symbol, String}; kw...) = Mark(spec(;type=type, kw...))
 const Encoding = EncodingSpec
 Encoding(x::Union{Symbol, String}; kw...) = Encoding(spec(;x=(field=x, kw...)))
 Encoding(x::Union{Symbol, String}, y::Union{Symbol, String}) = Encoding(spec(;x=(field=x,), y=(field=y,)))
-Encoding(; s...) = Encoding(spec(;s...))
+#Encoding(; s...) = Encoding(spec(;s...))

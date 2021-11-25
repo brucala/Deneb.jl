@@ -35,11 +35,39 @@ value(s::Spec{Vector{Spec}}) = [value(v) for v in s.spec]
 ### Constrained specs
 ###
 
-abstract type PropertiesSpec <: AbstractSpec end
-abstract type ViewableSpec <: AbstractSpec end
+abstract type ConstrainedSpec <: AbstractSpec end
+abstract type PropertiesSpec <: ConstrainedSpec end
+abstract type ViewableSpec <: ConstrainedSpec end
 abstract type MultiViewSpec <: ViewableSpec end
 abstract type LayoutSpec <: MultiViewSpec end
 abstract type ConcatView <: LayoutSpec end
+
+function ConstrainedSpec(T::Type{<:ConstrainedSpec}; spec...)
+    spectuple = (
+        t === Spec ? Spec(spec, f) : t(; spec...)
+        for (f, t) in zip(fieldnames(T), fieldtypes(T))
+    )
+    T(spectuple...)
+end
+
+ViewableSpec(; spec...) = _viewtype(spec)(; spec...)
+function _viewtype(spec)
+    return haskey(spec, :layer) ? LayerSpec :
+        haskey(spec, :facet) ? FacetSpec :
+        haskey(spec, :repeat) ? RepeatSpec :
+        haskey(spec, :concat) ? ConcatSpec :
+        haskey(spec, :hconcat) ? HConcatSpec :
+        haskey(spec, :vconcat) ? VConcatSpec :
+        SingleSpec
+end
+
+function value(s::ConstrainedSpec)
+    NamedTuple(
+        p => value(getproperty(s, p))
+        for p in propertynames(s)
+    )
+end
+value(v::Vector{T}) where T<:ConstrainedSpec = [value(x) for x in v]
 
 struct TopLevelProperties <: PropertiesSpec
     schema::Spec
@@ -49,11 +77,13 @@ struct TopLevelProperties <: PropertiesSpec
     config::Spec
     usermeta::Spec
 end
+TopLevelProperties(; spec...) = ConstrainedSpec(TopLevelProperties; spec...)
 
-struct TopLevelSpec{T<:ViewableSpec} <: AbstractSpec
+struct TopLevelSpec{T<:ViewableSpec} <: ConstrainedSpec
     toplevel::TopLevelProperties
     spec::T
 end
+TopLevelSpec(; spec...) = ConstrainedSpec(TopLevelSpec; spec...)
 
 struct CommonProperties <: PropertiesSpec
     name::Spec
@@ -62,6 +92,7 @@ struct CommonProperties <: PropertiesSpec
     transform::Spec
     params::Spec
 end
+CommonProperties(; spec...) = ConstrainedSpec(CommonProperties; spec...)
 
 struct LayoutProperties <: PropertiesSpec
     align::Spec
@@ -69,24 +100,29 @@ struct LayoutProperties <: PropertiesSpec
     center::Spec
     spacing::Spec
 end
+LayoutProperties(; spec...) = ConstrainedSpec(LayoutProperties; spec...)
 
 struct DataSpec <: AbstractSpec
-    data::Spec
-    DataSpec(t) = new(Spec(t))
+    data  # store the original object, not a Spec
 end
-Base.convert(::Type{DataSpec}, x::Spec) = DataSpec(x)
-value(s::DataSpec) = value(s.data)
+DataSpec(s::Spec) = DataSpec(value(s))
+DataSpec(; data=nothing, kw...) = DataSpec(data)
+function value(s::DataSpec)
+    # special treatment for table types
+    Tables.istable(s.data) && return (values=Tables.rowtable(s.data), )
+    s.data
+end
 
 struct MarkSpec <: AbstractSpec
     mark::Spec
 end
-Base.convert(::Type{MarkSpec}, x::Spec) = MarkSpec(x)
+MarkSpec(; mark=Spec(nothing), kw...) = MarkSpec(Spec(mark))
 value(s::MarkSpec) = value(s.mark)
 
 struct EncodingSpec <: AbstractSpec
     encoding::Spec
 end
-Base.convert(::Type{EncodingSpec}, x::Spec) = EncodingSpec(x)
+EncodingSpec(; encoding=Spec(nothing), kw...) = EncodingSpec(Spec(encoding))
 value(s::EncodingSpec) = value(s.encoding)
 
 struct SingleSpec <: ViewableSpec
@@ -99,18 +135,30 @@ struct SingleSpec <: ViewableSpec
     view::Spec
     projection::Spec
 end
+SingleSpec(; spec...) = ConstrainedSpec(SingleSpec; spec...)
 
 struct LayerSpec <: MultiViewSpec
     common:: CommonProperties
     data::DataSpec
     encoding::EncodingSpec
-    layer::Union{SingleSpec, LayerSpec}
+    layer::Vector{Union{SingleSpec, LayerSpec}}
     width::Spec
     height::Spec
     view::Spec
     projection::Spec
     resolve::Spec
 end
+function LayerSpec(; layer, kw...)
+    spectuple = (
+        t === Spec ? Spec(kw, f) :
+        f !== :layer ? t(; kw...) :
+        layer isa Vector ? layer :
+        Union{SingleSpec, LayerSpec}[layer]
+        for (f, t) in zip(fieldnames(LayerSpec), fieldtypes(LayerSpec))
+    )
+    LayerSpec(spectuple...)
+end
+
 
 struct FacetSpec <: LayoutSpec
     common:: CommonProperties
@@ -157,40 +205,11 @@ struct VConcatSpec <: ConcatView
     resolve::Spec
 end
 
-
-function TopLevelSpec(; spec...)
-    TopLevelSpec(
-        PropertiesSpec(TopLevelProperties; spec...),
-        ViewableSpec(; spec...)
-    )
-end
-
-PropertiesSpec(T::Type{<:PropertiesSpec}; spec...) = T((Spec(spec, f) for f in fieldnames(T))...)
-
-function ViewableSpec(; spec...)
-    common = PropertiesSpec(CommonProperties; spec...)
-    layout = PropertiesSpec(LayoutProperties; spec...)
-    T = _viewtype(spec)
-    if T <: LayoutSpec
-        T(common, layout, (Spec(spec, f) for f in fieldnames(T) if f ∉ (:common, :layout))...)
-    end
-    T(common, (Spec(spec, f) for f in fieldnames(T) if f !== :common)...)
-end
-
-function _viewtype(spec)
-    return haskey(spec, :layer) ? LayerSpec :
-        haskey(spec, :facet) ? FacetSpec :
-        haskey(spec, :repeat) ? RepeatSpec :
-        haskey(spec, :concat) ? ConcatSpec :
-        haskey(spec, :hconcat) ? HConcatSpec :
-        haskey(spec, :vconcat) ? VConcatSpec :
-        SingleSpec
-end
-
+Base.propertynames(d::DataSpec) = isnothing(d.data) ? tuple() : (:data,)
 function Base.propertynames(s::T) where T<:AbstractSpec
     collect(
         Iterators.flatten(
-            t === Spec ? (f,) : propertynames(getfield(s, f))
+            t <: Union{Spec, Vector} ? (f,) : propertynames(getfield(s, f))
             for (f, t) in zip(fieldnames(T), fieldtypes(T))
             if t !== Spec || !isnothing(getfield(s, f).spec)
         )
