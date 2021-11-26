@@ -20,6 +20,8 @@ function Base.:*(a::Spec{NamedTuple}, b::Spec{NamedTuple})
     return Spec(new_spec)
 end
 
+Base.:*(a::T, b::T) where {T<:PropertiesSpec}  = T((getfield(a, f) * getfield(b, f) for f in fieldnames(T))...)
+
 ###
 ### Layering
 ###
