@@ -174,7 +174,7 @@ struct RepeatSpec <: LayoutSpec
     common:: CommonProperties
     layout::LayoutProperties
     data::DataSpec
-    spec::Union{SingleSpec, LayerSpec}  # or can it be any spec
+    spec::Union{SingleSpec, LayerSpec}  # or can it be any ViewableSpec?
     repeat::Spec
     columns::Spec
     resolve::Spec

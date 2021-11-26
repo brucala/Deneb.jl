@@ -13,11 +13,31 @@ end
 
 const SingleOrLayerSpec = Union{SingleSpec, LayerSpec}
 
-function _different_or_nothing(s1, s)
-    (s1 != s || isnothing(value(s1))) && return s1
-    typeof(s1) === Spec ? Spec(nothing) : typeof(s1)(Spec(nothing))
+function Base.:+(a::TopLevelSpec, b::TopLevelSpec)
+    if _incompatible_toplevels(a.toplevel, b.toplevel)
+        @warn "Attempting to layer two specs with incompatible toplevel properties. Will use the toplevel properties from spec `a`..."
+    end
+    toplevel = b.toplevel * a.toplevel
+    TopLevelSpec(toplevel, a.spec + b.spec)
 end
 
+function _incompatible_toplevels(a::TopLevelProperties, b::TopLevelProperties)
+    (isempty(propertynames(a)) || isempty(propertynames(b))) && return false
+    for p in propertynames(a)
+        p in propertynames(b) && getfield(a, p) != getfield(b, p) && return true
+    end
+    return false
+end
+
+Base.:+(a::AbstractSpec, b::AbstractSpec) = error("Layering not implemented for $(typeof(a)) + $(typeof(b))")
+
+# disallowed layering
+Base.:+(a::LayoutSpec, ::AbstractSpec) = _layout_layering_error(a)
+Base.:+(::AbstractSpec, b::LayoutSpec) = _layout_layering_error(b)
+Base.:+(a::LayoutSpec, ::LayoutSpec) = _layout_layering_error(a)
+_layout_layering_error(a) = error("Multiview layout spec $(typeof(a)) can not be layered")
+
+# allowed layering
 Base.:+(a::SingleSpec, b::SingleSpec) = LayerSpec(a) + LayerSpec(b)
 Base.:+(a::SingleSpec, b::LayerSpec) = LayerSpec(a) + b
 Base.:+(a::LayerSpec, b::SingleSpec) = a + LayerSpec(b)
@@ -50,4 +70,9 @@ function Base.:+(a::LayerSpec, b::LayerSpec)
         a.projection,
         a.resolve
     )
+end
+
+function _different_or_nothing(s1, s)
+    (s1 != s || isnothing(value(s1))) && return s1
+    typeof(s1) === Spec ? Spec(nothing) : typeof(s1)(Spec(nothing))
 end
