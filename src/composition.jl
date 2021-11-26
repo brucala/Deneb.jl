@@ -1,4 +1,26 @@
 ###
+### Composition
+###
+
+"""
+    spec1::Spec * spec2::Spec
+Multiplication of two `Spec` creates a new `Spec` as a composition of the two specifications.
+For instance, `spec(mark=:bar) * spec(width=300)` will be equivalent to `spec(mark=:bar, width=300)`.
+Properties defined in `spec2` have precedence over `spec1`, meaning that if a given property
+is specified in both then the result specification will use the property from `spec2`.
+"""
+Base.:*(a::Spec, b::Spec) = isnothing(value(b)) ? Spec(a) : Spec(b)
+function Base.:*(a::Spec{NamedTuple}, b::Spec{NamedTuple})
+    aspec, bspec = a.spec, b.spec
+    properties = propertynames(aspec) ∪ propertynames(bspec)
+    new_spec = NamedTuple(
+        k => get(aspec, k, Spec(nothing)) * get(bspec, k, Spec(nothing))
+        for k in properties
+    )
+    return Spec(new_spec)
+end
+
+###
 ### Layering
 ###
 
@@ -13,6 +35,16 @@ end
 
 const SingleOrLayerSpec = Union{SingleSpec, LayerSpec}
 
+"""
+    spec1::TopLevelSpec + spec2::TopLevelSpec
+The addition of two `TopLevelSpec` produces a new `TopLevelSpec` with both specs layered.
+The order matters as `spec1` will appear below `spec2`.
+If the specs contain common data, encoding or size properties, they will be promoted to the
+top level specification.
+Layering layered specification with shared data/encoding/sizes will append the layers ([s1, s2] + [s3, s4]
+-> [s1, s2, s3, s4]), otherwise creating a nested layer is created ([s1, s2, [s3, s4]]).
+Multi-view layout specs (facet, repeat, concat) cannot be layered.
+"""
 function Base.:+(a::TopLevelSpec, b::TopLevelSpec)
     if _incompatible_toplevels(a.toplevel, b.toplevel)
         @warn "Attempting to layer two specs with incompatible toplevel properties. Will use the toplevel properties from spec `a`..."
@@ -76,3 +108,9 @@ function _different_or_nothing(s1, s)
     (s1 != s || isnothing(value(s1))) && return s1
     typeof(s1) === Spec ? Spec(nothing) : typeof(s1)(Spec(nothing))
 end
+
+###
+### Concatenation
+###
+
+# TODO: to be implemented
