@@ -3,11 +3,12 @@
 ###
 
 """
-    spec1::Spec * spec2::Spec
-Multiplication of two `Spec` creates a new `Spec` as a composition of the two specifications.
-For instance, `spec(mark=:bar) * spec(width=300)` will be equivalent to `spec(mark=:bar, width=300)`.
+    spec1::AbstractSpec * spec2::AbstractSpec
+Multiplication of two `AbstractSpec` creates a new `AbstractSpec` as a composition of the
+two specifications. For instance, `vlspec(mark=:bar) * vlspec(title="chart")` will be
+equivalent to `vlspec(mark=:bar, title="chart")`.
 Properties defined in `spec2` have precedence over `spec1`, meaning that if a given property
-is specified in both then the result specification will use the property from `spec2`.
+is specified in both, then the result specification will use the property from `spec2`.
 """
 Base.:*(a::Spec, b::Spec) = isnothing(value(b)) ? Spec(a) : Spec(b)
 function Base.:*(a::Spec{NamedTuple}, b::Spec{NamedTuple})
@@ -20,7 +21,9 @@ function Base.:*(a::Spec{NamedTuple}, b::Spec{NamedTuple})
     return Spec(new_spec)
 end
 
-Base.:*(a::T, b::T) where {T<:PropertiesSpec}  = T((getfield(a, f) * getfield(b, f) for f in fieldnames(T))...)
+Base.:*(a::T, b::T) where {T<:ConstrainedSpec}  = T((getfield(a, f) * getfield(b, f) for f in fieldnames(T))...)
+Base.:*(a::DataSpec, b::DataSpec) = isnothing(value(b)) ? DataSpec(value(a)) : DataSpec(value(b))
+Base.:*(a::ConstrainedSpec, b::ConstrainedSpec) = vlspec(a) * vlspec(b)
 
 ###
 ### Layering

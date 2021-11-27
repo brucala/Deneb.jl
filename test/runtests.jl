@@ -61,7 +61,7 @@ end
     @test value(s.encoding.y.type) == "quantitative"
 end
 
-s = spec(
+s = (
     mark=(type=:bar, tooltip=true),
     encoding=(
         x=(field=:a, type=:nominal),

@@ -102,24 +102,24 @@ struct LayoutProperties <: PropertiesSpec
 end
 LayoutProperties(; spec...) = ConstrainedSpec(LayoutProperties; spec...)
 
-struct DataSpec <: AbstractSpec
+struct DataSpec <: ConstrainedSpec
     data  # store the original object, not a Spec
 end
 DataSpec(s::Spec) = DataSpec(value(s))
 DataSpec(; data=nothing, kw...) = DataSpec(data)
 function value(s::DataSpec)
-    # special treatment for table types
-    Tables.istable(s.data) && return (values=Tables.rowtable(s.data), )
+    if Tables.istable(s.data) && :values ∉ Tables.columnnames(s.data)
+        return (values=Tables.rowtable(s.data), )
+    end
     s.data
 end
-
-struct MarkSpec <: AbstractSpec
+struct MarkSpec <: ConstrainedSpec
     mark::Spec
 end
 MarkSpec(; mark=Spec(nothing), kw...) = MarkSpec(Spec(mark))
 value(s::MarkSpec) = value(s.mark)
 
-struct EncodingSpec <: AbstractSpec
+struct EncodingSpec <: ConstrainedSpec
     encoding::Spec
 end
 EncodingSpec(; encoding=Spec(nothing), kw...) = EncodingSpec(Spec(encoding))
@@ -158,7 +158,6 @@ function LayerSpec(; layer, kw...)
     )
     LayerSpec(spectuple...)
 end
-
 
 struct FacetSpec <: LayoutSpec
     common:: CommonProperties
