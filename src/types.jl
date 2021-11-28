@@ -24,9 +24,6 @@ end
 
 Base.:(==)(s1::Spec, s2::Spec) = s1.spec == s2.spec
 
-Base.propertynames(s::Spec) = s.spec isa NamedTuple ? propertynames(s.spec) : tuple()
-Base.getproperty(s::Spec, i::Symbol) = i in fieldnames(Spec) ? getfield(s, i) : s.spec[i]
-
 value(s::Spec) = s.spec
 value(s::Spec{NamedTuple}) = NamedTuple((k=>value(v) for (k,v) in pairs(s.spec)))
 value(s::Spec{Vector{Spec}}) = [value(v) for v in s.spec]
@@ -204,17 +201,31 @@ struct VConcatSpec <: ConcatView
     resolve::Spec
 end
 
-Base.propertynames(d::DataSpec) = isnothing(d.data) ? tuple() : (:data,)
+
+###
+### spec properties
+###
+
+"""
+    propertynames(::AbstractSpec)
+Return the parent properties of a specification.
+"""
+Base.propertynames(s::Spec) = s.spec isa NamedTuple ? propertynames(s.spec) : tuple()
+Base.propertynames(d::DataSpec) = isnothing(d.data) ? tuple() : propertynames(value(d))
+Base.propertynames(s::MarkSpec) = isnothing(s.mark) ? tuple() : propertynames(s.mark)
+Base.propertynames(s::EncodingSpec) = isnothing(s.encoding) ? tuple() : propertynames(s.encoding)
 function Base.propertynames(s::T) where T<:AbstractSpec
     collect(
         Iterators.flatten(
-            t <: Union{Spec, Vector} ? (f,) : propertynames(getfield(s, f))
+            t <: Union{Spec, Vector, DataSpec, MarkSpec, EncodingSpec} ? (f,) : propertynames(getfield(s, f))
             for (f, t) in zip(fieldnames(T), fieldtypes(T))
             if t !== Spec || !isnothing(getfield(s, f).spec)
         )
     )
 end
 
+Base.getproperty(s::Spec, i::Symbol) = i in fieldnames(Spec) ? getfield(s, i) : s.spec[i]
+Base.getproperty(s::DataSpec, i::Symbol) = i in fieldnames(DataSpec) ? getfield(s, i) : getfield(value(s), i)
 function Base.getproperty(s::T, f::Symbol) where T<:AbstractSpec
     f in fieldnames(T) && return getfield(s, f)
     for field in fieldnames(T)

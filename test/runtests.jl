@@ -1,64 +1,8 @@
 using Deneb
-using Deneb: value
 using Test
 
-@testset "Simple Spec" begin
-    @test value(spec(3)) == 3
-    @test value(spec("a")) == "a"
-    @test value(spec(:a)) == "a"
-end
-
-nt = (a=1, b=(c="x",))
-@testset "NamedTuple Spec" begin
-    s = spec(nt)
-    @test s.spec isa NamedTuple
-    @test eltype(s.spec) === Deneb.Spec
-    @test value(s) == nt
-    @test value(Deneb.Spec(nt, :a)) == 1
-    @test isnothing(value(Deneb.Spec(nt, :c)))
-end
-
-@testset "Vector Spec" begin
-    v = [1, nt]
-    s = spec(v)
-    @test s.spec isa Vector{Deneb.Spec}
-    @test value(s) == v
-    @test s.spec[1].spec == 1
-    @test s.spec[2] == Deneb.Spec(nt)
-end
-
-@testset "basic vlspec" begin
-    s = vlspec()
-    @test vlspec() isa Deneb.TopLevelSpec{Deneb.SingleSpec}
-    @test s.toplevel isa Deneb.TopLevelProperties
-    @test s.spec isa Deneb.SingleSpec
-    @test s.spec.common isa Deneb.CommonProperties
-    @test s.spec.data isa Deneb.DataSpec
-    @test s.spec.encoding isa Deneb.EncodingSpec
-end
-
-nt = (name="chart", data=3, mark=:bar, encoding=(x=:x, y=(field=:y, type=:quantitative)))
-
-@testset "Spec properties" begin
-    s = spec(nt)
-    @test s == spec(; nt...)
-    @test value(s.name) == "chart"
-    @test value(s.data) == 3
-    @test value(s.mark) == "bar"
-    @test value(s.encoding.x) == "x"
-    @test value(s.encoding.y.field) == "y"
-    @test value(s.encoding.y.type) == "quantitative"
-end
-
-@testset "TopLevelSpec properties" begin
-    s = vlspec(nt)
-    @test s == vlspec(; nt...)
-    @test s == vlspec(spec(nt))
-    @test value(s.name) == "chart"
-    @test value(s.data) == 3
-    @test value(s.mark) == "bar"
-    @test value(s.encoding.y.field) == "y"
-    @test value(s.encoding.y.type) == "quantitative"
+@testset "Deneb.jl tests" begin
+    include("test_types.jl")
 end
 
 s = (

@@ -27,7 +27,7 @@ Base.:*(a::TopLevelSpec, b::TopLevelSpec)  = TopLevelSpec((getfield(a, f) * getf
 Base.:*(a::DataSpec, b::DataSpec) = isnothing(value(b)) ? DataSpec(value(a)) : DataSpec(value(b))
 Base.:*(a::ConstrainedSpec, b::ConstrainedSpec) = vlspec(a) * vlspec(b)
 
-Base.:*(a::LayerSpec, b::LayerSpec) = error("Two layered specs can not be composed.")
+Base.:*(::LayerSpec, ::LayerSpec) = error("Two layered specs can not be composed.")
 function Base.:*(a::SingleSpec, b::LayerSpec)
     # if single spec on the left, compose its properties with the top level properties of layer
     s = SingleSpec(mark=value(a.mark))
