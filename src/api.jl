@@ -18,7 +18,7 @@ vlspec(s::ConstrainedSpec) = TopLevelSpec(value(s))
 vlspec(s::DataSpec) = TopLevelSpec(data = value(s))
 vlspec(s::MarkSpec) = TopLevelSpec(mark = value(s))
 vlspec(s::EncodingSpec) = TopLevelSpec(encoding = value(s))
-vlspec(s::TopLevelSpec) = s
+vlspec(s::TopLevelSpec) = TopLevelSpec(s.toplevel, s.spec)
 
 
 """

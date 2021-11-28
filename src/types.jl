@@ -206,20 +206,28 @@ end
 ### spec properties
 ###
 
+Base.isempty(::Spec) = false
+Base.isempty(::Spec{Nothing}) = true
+Base.isempty(s::Spec{T}) where T<:Union{NamedTuple, Vector} = isempty(s.spec) || all(isempty, values(s.spec))
+Base.isempty(s::DataSpec) = isnothing(value(s))
+Base.isempty(s::T) where T<:ConstrainedSpec = all(isempty, [getfield(s, f) for f in fieldnames(T)])
+
+
 """
     propertynames(::AbstractSpec)
 Return the parent properties of a specification.
 """
 Base.propertynames(s::Spec) = s.spec isa NamedTuple ? propertynames(s.spec) : tuple()
-Base.propertynames(d::DataSpec) = isnothing(d.data) ? tuple() : propertynames(value(d))
-Base.propertynames(s::MarkSpec) = isnothing(s.mark) ? tuple() : propertynames(s.mark)
-Base.propertynames(s::EncodingSpec) = isnothing(s.encoding) ? tuple() : propertynames(s.encoding)
+Base.propertynames(d::DataSpec) = isempty(d) ? tuple() : propertynames(value(d))
+Base.propertynames(s::MarkSpec) = isempty(s) ? tuple() : propertynames(s.mark)
+Base.propertynames(s::EncodingSpec) = isempty(s) ? tuple() : propertynames(s.encoding)
 function Base.propertynames(s::T) where T<:AbstractSpec
+    isempty(s) && return tuple()
     collect(
         Iterators.flatten(
             t <: Union{Spec, Vector, DataSpec, MarkSpec, EncodingSpec} ? (f,) : propertynames(getfield(s, f))
             for (f, t) in zip(fieldnames(T), fieldtypes(T))
-            if t !== Spec || !isnothing(getfield(s, f).spec)
+            if !isempty(getfield(s, f))
         )
     )
 end

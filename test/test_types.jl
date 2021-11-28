@@ -47,9 +47,21 @@ end
     @test d.values[2] == (a=2, b='b')
 end
 
+@testset "isempty" begin
+    @test isempty(spec(nothing))
+    @test !isempty(spec(1))
+    @test isempty(spec(;))
+    @test isempty(spec(a=nothing))
+    @test !isempty(spec(a=1))
+    @test isempty(spec([]))
+    @test isempty(spec([nothing]))
+    @test !isempty(spec([1]))
+end
+
 nt = (name="chart", data=3, mark=:bar, encoding=(x=:x, y=(field=:y, type=:quantitative)))
 
 @testset "Spec properties" begin
+    @test propertynames(spec()) == tuple()
     s = Spec(nt)
     @test issetequal(propertynames(s), (:name, :data, :mark, :encoding))
     @test value(s.name) == "chart"
@@ -63,6 +75,7 @@ nt = (name="chart", data=3, mark=:bar, encoding=(x=:x, y=(field=:y, type=:quanti
 end
 
 @testset "TopLevelSpec properties" begin
+    @test propertynames(vlspec()) == tuple()
     s = TopLevelSpec(; nt...)
     @test issetequal(propertynames(s), (:name, :data, :mark, :encoding))
     @test value(s.name) == "chart"

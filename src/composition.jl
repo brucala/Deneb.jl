@@ -29,17 +29,17 @@ Base.:*(a::ConstrainedSpec, b::ConstrainedSpec) = vlspec(a) * vlspec(b)
 
 Base.:*(::LayerSpec, ::LayerSpec) = error("Two layered specs can not be composed.")
 function Base.:*(a::SingleSpec, b::LayerSpec)
-    # if single spec on the left, compose its properties with the top level properties of layer
+    # if single spec on the left, compose its properties with the top level properties of layer giving precedence to single spec
     s = SingleSpec(mark=value(a.mark))
     LayerSpec(
-        a.common * b.common,
-        a.data * b.data,
-        a.encoding * b.encoding,
+        b.common * a.common,
+        b.data * a.data,
+        b.encoding * a.encoding,
         [s * l for l in b.layer],
-        a. width * b.width,
-        a.height * b.height,
-        a.view * b.view,
-        a.projection * b.projection,
+        b. width * a.width,
+        b.height * a.height,
+        b.view * a.view,
+        b.projection * a.projection,
         b.resolve
     )
 end
@@ -67,7 +67,7 @@ function LayerSpec(s::SingleSpec)
         getfield(s, f) for f in fieldnames(SingleSpec)
     )
     # Promote data, encoding, width and height specs as parent specs
-    layer = [SingleSpec(; common, mark=mark.mark, view, projection)]
+    layer = [SingleSpec(; value(common)..., mark=mark.mark, view, projection)]
     LayerSpec(;data=data.data, encoding=encoding.encoding, width, height, layer=layer)
 end
 
@@ -124,7 +124,7 @@ function Base.:+(a::LayerSpec, b::LayerSpec)
     width = _different_or_nothing(width, a.width)
     height = _different_or_nothing(height, a.height)
     alayer = deepcopy(a.layer)
-    blayer = LayerSpec(;common, data=data.data, encoding=encoding.encoding, layer, width, height, view, projection, resolve)
+    blayer = LayerSpec(;value(common)..., data=data.data, encoding=encoding.encoding, layer, width, height, view, projection, resolve)
     if isnothing(data.data) && isnothing(value(encoding.encoding)) && isnothing(value(width)) && isnothing(value(height))
         append!(alayer, blayer.layer)
     else
@@ -145,7 +145,7 @@ end
 
 function _different_or_nothing(s1, s)
     (s1 != s || isnothing(value(s1))) && return s1
-    typeof(s1) === Spec ? Spec(nothing) : typeof(s1)(Spec(nothing))
+    typeof(s1) <: Spec ? Spec(nothing) : typeof(s1)(Spec(nothing))
 end
 
 ###
