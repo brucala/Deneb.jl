@@ -86,4 +86,4 @@ spec(s)
 vlspec(s)
 
 data = (a=string.('A':'I'), b=rand(0:100, 9))
-Data(data) * Mark(:bar) * Encoding("a:n", "b:q")
+Data(data) * Mark(:bar, tooltip=true) * Encoding("a:n", "b:q")

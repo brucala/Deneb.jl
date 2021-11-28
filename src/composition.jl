@@ -9,6 +9,7 @@ two specifications. For instance, `vlspec(mark=:bar) * vlspec(title="chart")` wi
 equivalent to `vlspec(mark=:bar, title="chart")`.
 Properties defined in `spec2` have precedence over `spec1`, meaning that if a given property
 is specified in both, then the result specification will use the property from `spec2`.
+If the types of the two specs are different then the result spec will be a TopLevelSpec.
 """
 Base.:*(a::Spec, b::Spec) = isnothing(value(b)) ? Spec(a) : Spec(b)
 function Base.:*(a::Spec{NamedTuple}, b::Spec{NamedTuple})
@@ -41,13 +42,13 @@ end
 const SingleOrLayerSpec = Union{SingleSpec, LayerSpec}
 
 """
-    spec1::TopLevelSpec + spec2::TopLevelSpec
-The addition of two `TopLevelSpec` produces a new `TopLevelSpec` with both specs layered.
+    spec1::AbstractSpec + spec2::AbstractSpec
+The addition of two specs will produce a new spec with both specs layered.
 The order matters as `spec1` will appear below `spec2`.
 If the specs contain common data, encoding or size properties, they will be promoted to the
 top level specification.
 Layering layered specification with shared data/encoding/sizes will append the layers ([s1, s2] + [s3, s4]
--> [s1, s2, s3, s4]), otherwise creating a nested layer is created ([s1, s2, [s3, s4]]).
+-> [s1, s2, s3, s4]), otherwise a nested layer is created ([s1, s2, [s3, s4]]).
 Multi-view layout specs (facet, repeat, concat) cannot be layered.
 """
 function Base.:+(a::TopLevelSpec, b::TopLevelSpec)
@@ -67,6 +68,7 @@ function _incompatible_toplevels(a::TopLevelProperties, b::TopLevelProperties)
 end
 
 Base.:+(a::AbstractSpec, b::AbstractSpec) = error("Layering not implemented for $(typeof(a)) + $(typeof(b))")
+Base.:+(a::ConstrainedSpec, b::ConstrainedSpec) = vlspec(a) + vlspec(b)
 
 # disallowed layering
 Base.:+(a::LayoutSpec, ::AbstractSpec) = _layout_layering_error(a)
