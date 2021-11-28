@@ -1,22 +1,18 @@
 JSON.json(s::AbstractSpec) = json(value(s))
 JSON.json(s::AbstractSpec, indent) = json(value(s), indent)
 
-#JSON.json(s::DataSpec) = json(_data_json(s))
-#JSON.json(s::DataSpec, indent) = json(_data_json(s), indent)
-#function _data_json(s::DataSpec)
-#    t = value(s)
-#    Tables.istable(t) && return (values=Tables.rowtable(t), )
-#    return s.data
-#end
-
 Base.show(io::IO, s::AbstractSpec) = print(io, json(s, 2))
 
 Base.show(io::IO, ::MIME"text/plain", s::AbstractSpec) = print(io, "$(typeof(s)): \n", s)
 
 # VSCode and Jupyter lab display (and defaults to) this MIME type
 Base.Multimedia.istextmime(::MIME{Symbol("application/vnd.vegalite.v4+json")}) = true
-function Base.show(io::IO, ::MIME"application/vnd.vegalite.v4+json",  s::Union{TopLevelSpec, Spec})
+function Base.show(io::IO, ::MIME"application/vnd.vegalite.v4+json", s::Union{TopLevelSpec, Spec})
     print(io, json(s))
+end
+function Base.showable(::MIME"application/vnd.vegalite.v4+json", s::Union{TopLevelSpec, Spec})
+    properties = propertynames(s)
+    :data in properties && :mark in properties && :encoding in properties
 end
 
 # Pluto displays this MIME type
