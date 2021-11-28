@@ -10,7 +10,7 @@ Base.Multimedia.istextmime(::MIME{Symbol("application/vnd.vegalite.v4+json")}) =
 function Base.show(io::IO, ::MIME"application/vnd.vegalite.v4+json", s::Union{TopLevelSpec, Spec})
     print(io, json(s))
 end
-function Base.showable(::MIME"application/vnd.vegalite.v4+json", s::Union{TopLevelSpec, Spec})
+function Base.showable(::MIME"application/vnd.vegalite.v4+json", s::Spec)
     properties = propertynames(s)
     :data in properties && :mark in properties && :encoding in properties
 end

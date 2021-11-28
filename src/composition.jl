@@ -36,7 +36,7 @@ function Base.:*(a::SingleSpec, b::LayerSpec)
         b.data * a.data,
         b.encoding * a.encoding,
         [s * l for l in b.layer],
-        b. width * a.width,
+        b.width * a.width,
         b.height * a.height,
         b.view * a.view,
         b.projection * a.projection,
@@ -50,13 +50,51 @@ function Base.:*(a::LayerSpec, b::SingleSpec)
         a.data,
         a.encoding,
         [l * b for l in a.layer],
-        a. width,
+        a.width,
         a.height,
         a.view,
         a.projection,
         a.resolve
     )
 end
+
+Base.:*(::ConcatView, ::ConcatView) = error("Two concat specs can not be composed.")
+function Base.:*(a::SingleSpec, b::T) where T<:ConcatView
+    # if single spec on the left, compose its properties with the top level properties of layer giving precedence to single spec
+    s = SingleSpec(
+        mark=value(a.mark),
+        encoding=value(a.encoding),
+        width=value(a.width),
+        height=value(a.height),
+        view=value(a.view),
+        projection=value(a.projection),
+    )
+    columns = get(value(b), :columns, nothing)
+    T(
+        b.common * a.common,
+        b.layout,
+        b.data * a.data,
+        [s * l for l in getfield(b, _concat_key(T))],
+        #columns,  #FIXME: ConcatSpec
+        b.resolve
+    )
+end
+function Base.:*(a::T, b::SingleSpec) where T<:ConcatView
+    # if single spec on the right, compose directly with each layer
+    columns = get(value(a), :columns, nothing)
+    T(
+        a.common,
+        a.layout,
+        data=a.data,
+        [l * b for l in getfield(a, _concat_key(T))],
+        #columns,  #FIXME: ConcatSpec
+        a.resolve
+    )
+end
+_concat_key(::Type{ConcatSpec}) = :concat
+_concat_key(::Type{HConcatSpec}) = :hconcat
+_concat_key(::Type{VConcatSpec}) = :vconcat
+
 
 ###
 ### Layering
