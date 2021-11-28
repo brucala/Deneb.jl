@@ -23,8 +23,40 @@ function Base.:*(a::Spec{NamedTuple}, b::Spec{NamedTuple})
 end
 
 Base.:*(a::T, b::T) where {T<:ConstrainedSpec}  = T((getfield(a, f) * getfield(b, f) for f in fieldnames(T))...)
+Base.:*(a::TopLevelSpec, b::TopLevelSpec)  = TopLevelSpec((getfield(a, f) * getfield(b, f) for f in fieldnames(TopLevelSpec))...)
 Base.:*(a::DataSpec, b::DataSpec) = isnothing(value(b)) ? DataSpec(value(a)) : DataSpec(value(b))
 Base.:*(a::ConstrainedSpec, b::ConstrainedSpec) = vlspec(a) * vlspec(b)
+
+Base.:*(a::LayerSpec, b::LayerSpec) = error("Two layered specs can not be composed.")
+function Base.:*(a::SingleSpec, b::LayerSpec)
+    # if single spec on the left, compose its properties with the top level properties of layer
+    s = SingleSpec(mark=value(a.mark))
+    LayerSpec(
+        a.common * b.common,
+        a.data * b.data,
+        a.encoding * b.encoding,
+        [s * l for l in b.layer],
+        a. width * b.width,
+        a.height * b.height,
+        a.view * b.view,
+        a.projection * b.projection,
+        b.resolve
+    )
+end
+function Base.:*(a::LayerSpec, b::SingleSpec)
+    # if single spec on the right, compose directly with each layer
+    LayerSpec(
+        a.common,
+        a.data,
+        a.encoding,
+        [l * b for l in a.layer],
+        a. width,
+        a.height,
+        a.view,
+        a.projection,
+        a.resolve
+    )
+end
 
 ###
 ### Layering
