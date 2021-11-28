@@ -95,3 +95,25 @@ end
     end
 
 end
+
+@testset "test concatenation" begin
+    a, b, c, d = vlspec(mark=:bar), vlspec(mark=:line), vlspec(mark=:point), vlspec(mark=:rule)
+    s = [a b]
+    @test s isa Deneb.TopLevelSpec{Deneb.HConcatSpec}
+    @test length(s.hconcat) == 2
+    @test value(s.hconcat[1].mark) == "bar"
+    @test value(s.hconcat[2].mark) == "line"
+    s = [a; b]
+    @test s isa Deneb.TopLevelSpec{Deneb.VConcatSpec}
+    @test length(s.vconcat) == 2
+    @test value(s.vconcat[1].mark) == "bar"
+    @test value(s.vconcat[2].mark) == "line"
+    s = [a b; c d]
+    @test s isa Deneb.TopLevelSpec{Deneb.ConcatSpec}
+    @test length(s.concat) == 4
+    @test value(s.columns) == 2
+    @test value(s.concat[1].mark) == "bar"
+    @test value(s.concat[2].mark) == "line"
+    @test value(s.concat[3].mark) == "point"
+    @test value(s.concat[4].mark) == "rule"
+end

@@ -74,7 +74,7 @@ end
 const SingleOrLayerSpec = Union{SingleSpec, LayerSpec}
 
 """
-    spec1::AbstractSpec + spec2::AbstractSpec
+    spec1::ConstrainedSpec + spec2::ConstrainedSpec
 The addition of two specs will produce a new spec with both specs layered.
 The order matters as `spec1` will appear below `spec2`.
 If the specs contain common data, encoding or size properties, they will be promoted to the
@@ -152,4 +152,38 @@ end
 ### Concatenation
 ###
 
-# TODO: to be implemented
+"""
+    hcat(A::AbstractSpec...)
+    [spec1 spec2 spec3 ...]
+Horizontal concatenation of specs.
+"""
+Base.hcat(A::TopLevelSpec...) = TopLevelSpec(
+    *([i.toplevel for i in A]...),
+    hcat([i.spec for i in A]...)
+)
+Base.hcat(A::ConstrainedSpec...) = hcat(vlspec.(collect(A))...)
+Base.hcat(A::ViewableSpec...) = HConcatSpec(hconcat=collect(A))
+
+"""
+    vcat(A::AbstractSpec...)
+    [spec1; spec2; spec3 ...]
+Vertical concatenation of specs.
+"""
+Base.vcat(A::TopLevelSpec...) = TopLevelSpec(
+    *([i.toplevel for i in A]...),
+    vcat([i.spec for i in A]...)
+)
+Base.vcat(A::ConstrainedSpec...) = vcat(vlspec.(collect(A))...)
+Base.vcat(A::ViewableSpec...) = VConcatSpec(vconcat=collect(A))
+
+"""
+    hvcat(A::AbstractSpec...)
+    [spec1 spec2; spec3 spec4 ...]
+General (wrappable) concatenation of specs.
+"""
+Base.hvcat(rows::Tuple{Vararg{Int}}, A::TopLevelSpec...) = TopLevelSpec(
+    *([i.toplevel for i in A]...),
+    hvcat(rows, [i.spec for i in A]...)
+)
+Base.hvcat(rows::Tuple{Vararg{Int}}, A::ConstrainedSpec...) = hvcat(rows, vlspec.(collect(A))...)
+Base.hvcat(rows::Tuple{Vararg{Int}}, A::ViewableSpec...) = ConcatSpec(concat=collect(A), columns=first(rows))

@@ -184,6 +184,16 @@ struct ConcatSpec <: ConcatView
     columns::Spec
     resolve::Spec
 end
+function ConcatSpec(; concat, kw...)
+    spectuple = (
+        t === Spec ? Spec(kw, f) :
+        f !== :concat ? t(; kw...) :
+        concat isa Vector ? concat :
+        ViewableSpec[concat]
+        for (f, t) in zip(fieldnames(ConcatSpec), fieldtypes(ConcatSpec))
+    )
+    ConcatSpec(spectuple...)
+end
 
 struct HConcatSpec <: ConcatView
     common:: CommonProperties
@@ -192,6 +202,16 @@ struct HConcatSpec <: ConcatView
     hconcat::Vector{ViewableSpec}
     resolve::Spec
 end
+function HConcatSpec(; hconcat, kw...)
+    spectuple = (
+        t === Spec ? Spec(kw, f) :
+        f !== :hconcat ? t(; kw...) :
+        hconcat isa Vector ? hconcat :
+        ViewableSpec[hconcat]
+        for (f, t) in zip(fieldnames(HConcatSpec), fieldtypes(HConcatSpec))
+    )
+    HConcatSpec(spectuple...)
+end
 
 struct VConcatSpec <: ConcatView
     common:: CommonProperties
@@ -199,6 +219,16 @@ struct VConcatSpec <: ConcatView
     data::DataSpec
     vconcat::Vector{ViewableSpec}
     resolve::Spec
+end
+function VConcatSpec(; vconcat, kw...)
+    spectuple = (
+        t === Spec ? Spec(kw, f) :
+        f !== :vconcat ? t(; kw...) :
+        vconcat isa Vector ? vconcat :
+        ViewableSpec[vconcat]
+        for (f, t) in zip(fieldnames(VConcatSpec), fieldtypes(VConcatSpec))
+    )
+    VConcatSpec(spectuple...)
 end
 
 
