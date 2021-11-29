@@ -1,5 +1,6 @@
 module Deneb
 
+using UUIDs
 using JSON, Tables
 using MultilineStrings: indent
 

@@ -20,7 +20,7 @@ function Base.show(io::IO, ::MIME"text/html",  s::Union{TopLevelSpec, Spec})
     print(io, html(s))
 end
 
-html_div(spec, div="vis-"*string(hash(rand()), base=16)) = """
+html_div(spec, div="vis-"*string(uuid4())) = """
 <div id="$div"></div>
 
 <script type="text/javascript">
@@ -39,7 +39,7 @@ vegaEmbed('#$div', spec, embedOpt).catch(error => showError(el, error));
 </script>"""
 
 function html_full(spec;
-    div="vis-"*string(hash(rand()), base=16),
+    div="vis-"*string(uuid4()),
     vega_version=5,
     vegalite_version=5,
     vegaembed_version=6,
@@ -61,7 +61,7 @@ end
 
 html(spec;
     fullhtml=true,
-    div=string(hash(rand()), base=16),
+    div=string(uuid4()),
     vega_version=5,
     vegalite_version=5,
     vegaembed_version=6,

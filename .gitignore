@@ -1,3 +1,4 @@
 .vscode
+docs/build
 # remove .github to use workflows if repo becomes public
 .github
