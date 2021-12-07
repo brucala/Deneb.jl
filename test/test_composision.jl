@@ -26,13 +26,14 @@ end
         @test value(l.data) == 1
         @test value(l.width) == 2
         @test value(l.height) == 3
-        @test value(l.encoding) == "e"
+        @test isempty(l.encoding)
         @test isempty(l.common)
         @test isempty(l.view)
         @test isempty(l.projection)
         @test l.layer isa Vector
         @test length(l.layer) == 1
         @test value(l.layer[1].mark) == "bar"
+        @test value(l.layer[1].encoding) == "e"
         @test value(l.layer[1].name) == "n"
         @test value(l.layer[1].view) == "v"
         @test value(l.layer[1].projection) == "p"

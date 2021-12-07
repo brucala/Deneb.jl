@@ -104,9 +104,9 @@ function LayerSpec(s::SingleSpec)
     common, data, mark, encoding, width, height, view, projection = collect(
         getfield(s, f) for f in fieldnames(SingleSpec)
     )
-    # Promote data, encoding, width and height specs as parent specs
-    layer = [SingleSpec(; value(common)..., mark=mark.mark, view, projection)]
-    LayerSpec(;data=data.data, encoding=encoding.encoding, width, height, layer=layer)
+    # Promote data, width and height specs as parent specs
+    layer = [SingleSpec(; value(common)..., mark=mark.mark, encoding=encoding.encoding, view, projection)]
+    LayerSpec(;data=data.data, width, height, layer=layer)
 end
 
 const SingleOrLayerSpec = Union{SingleSpec, LayerSpec}
