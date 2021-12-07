@@ -2,5 +2,6 @@
     "theme": "grid",
     "properties":{
         "notebook": "false"
-    }
+    },
+    "order": ["single-view_plots", "layered_plots"]
 }
