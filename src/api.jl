@@ -57,13 +57,14 @@ function field(f::AbstractString; kw...)
     if endswith(f, ")")
         aggregate, f = split(f, "(")
         f = strip(f, ')')
-        fielddict[:aggregate] = aggregate
+        agg_property = aggregate in TIMEUNITS ? :timeUnit : :aggregate
+        fielddict[agg_property] = aggregate
     end
     f == "" || (fielddict[:field] = f)
     return (; fielddict..., kw...)
 end
 
-TYPEMAP = Dict(
+const TYPEMAP = Dict(
     "q" => "quantitative",
     "o" => "ordinal",
     "n" => "nominal",
@@ -73,3 +74,87 @@ function _type(t::AbstractString)
     t = lowercase(t)
     return get(TYPEMAP, t, t)
 end
+
+# timeUnits from vega-lite version 4.17.0
+const TIMEUNITS = [
+    "year",
+    "quarter",
+    "month",
+    "week",
+    "day",
+    "dayofyear",
+    "date",
+    "hours",
+    "minutes",
+    "seconds",
+    "milliseconds",
+    "yearquarter",
+    "yearquartermonth",
+    "yearmonth",
+    "yearmonthdate",
+    "yearmonthdatehours",
+    "yearmonthdatehoursminutes",
+    "yearmonthdatehoursminutesseconds",
+    "yearweek",
+    "yearweekday",
+    "yearweekdayhours",
+    "yearweekdayhoursminutes",
+    "yearweekdayhoursminutesseconds",
+    "yeardayofyear",
+    "quartermonth",
+    "monthdate",
+    "monthdatehours",
+    "monthdatehoursminutes",
+    "monthdatehoursminutesseconds",
+    "weekday",
+    "weeksdayhours",
+    "weekdayhoursminutes",
+    "weekdayhoursminutesseconds",
+    "dayhours",
+    "dayhoursminutes",
+    "dayhoursminutesseconds",
+    "hoursminutes",
+    "hoursminutesseconds",
+    "minutesseconds",
+    "secondsmilliseconds",
+    "utcyear",
+    "utcquarter",
+    "utcmonth",
+    "utcweek",
+    "utcday",
+    "utcdayofyear",
+    "utcdate",
+    "utchours",
+    "utcminutes",
+    "utcseconds",
+    "utcmilliseconds",
+    "utcyearquarter",
+    "utcyearquartermonth",
+    "utcyearmonth",
+    "utcyearmonthdate",
+    "utcyearmonthdatehours",
+    "utcyearmonthdatehoursminutes",
+    "utcyearmonthdatehoursminutesseconds",
+    "utcyearweek",
+    "utcyearweekday",
+    "utcyearweekdayhours",
+    "utcyearweekdayhoursminutes",
+    "utcyearweekdayhoursminutesseconds",
+    "utcyeardayofyear",
+    "utcquartermonth",
+    "utcmonthdate",
+    "utcmonthdatehours",
+    "utcmonthdatehoursminutes",
+    "utcmonthdatehoursminutesseconds",
+    "utcweekday",
+    "utcweeksdayhours",
+    "utcweekdayhoursminutes",
+    "utcweekdayhoursminutesseconds",
+    "utcdayhours",
+    "utcdayhoursminutes",
+    "utcdayhoursminutesseconds",
+    "utchoursminutes",
+    "utchoursminutesseconds",
+    "utcminutesseconds",
+    "utcsecondsmilliseconds",
+]
