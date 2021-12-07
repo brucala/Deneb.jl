@@ -41,3 +41,11 @@ end
         y=(field = "b", type = "ordinal")
     )
 end
+
+@testset "test Data" begin
+    @test Data(3) isa Deneb.DataSpec
+    @test Data(3).data == 3
+    @test value(Data(3)) == 3
+    @test Data(url="url") isa Deneb.DataSpec
+    @test Data(url="url").data == (;url="url")
+end

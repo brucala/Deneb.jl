@@ -24,7 +24,8 @@ vlspec(s::TopLevelSpec) = TopLevelSpec(s.toplevel, s.spec)
 """
     Data(table)
 """
-const Data = DataSpec
+Data(data) = DataSpec(data)
+Data(; url::String) = DataSpec((;url))
 
 """
     Mark(type; kw...)
