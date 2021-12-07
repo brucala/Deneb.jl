@@ -1,4 +1,4 @@
-using Documenter, Deneb, UUIDs, JSON
+using Documenter, DemoCards, Deneb, UUIDs, JSON
 
 # overload default
 function Base.show(io::IO, ::MIME"text/html", s::Deneb.TopLevelSpec)
@@ -9,4 +9,22 @@ function Base.show(io::IO, ::MIME"text/html", s::Deneb.TopLevelSpec)
     print(io, ",{mode:'vega-lite'}).catch(console.warn);})</script>")
 end
 
-makedocs(sitename="Deneb.jl")
+gallery, gallery_cb, gallery_assets = makedemos("examples")
+
+assets = []
+isnothing(gallery_assets) || push!(assets, gallery_assets)
+
+
+format = Documenter.HTML(;assets)
+
+makedocs(
+    modules=[Deneb],
+    sitename="Deneb.jl",
+    format=format,
+    pages=[
+        "Home" => "index.md",
+        "Gallery" => gallery,
+    ]
+)
+
+gallery_cb()

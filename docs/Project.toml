@@ -1,2 +1,4 @@
 [deps]
+DemoCards = "311a05b2-6137-4a5a-b473-18580a3d38b5"
+Deneb = "b5a61f88-a05b-4725-9526-4eca17cec623"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
