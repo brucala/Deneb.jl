@@ -39,18 +39,28 @@ Mark(; s...) = MarkSpec(spec(; s...))
     Encoding(x, y)
     Encoding(; spec...)
 """
-Encoding(x::Union{Symbol, AbstractString}; kw...) = Encoding(; kw...) * Encoding(x=_field(x))
-Encoding(x::Union{Symbol, AbstractString}, y::Union{Symbol, AbstractString}; kw...) = Encoding(; kw...) * Encoding(x=_field(x)) * Encoding(y=_field(y))
+Encoding(x::Union{Symbol, AbstractString}; kw...) = Encoding(; kw...) * Encoding(x=field(x))
+Encoding(x::Union{Symbol, AbstractString}, y::Union{Symbol, AbstractString}; kw...) = Encoding(; kw...) * Encoding(x=field(x)) * Encoding(y=field(y))
 Encoding(; s...) = EncodingSpec(spec(; s...))
 
-_field(f::Symbol) = (field=f, )
-function _field(f::AbstractString)
+"""
+    field(field; kw...)
+Shortcut to create an arbitrary encoding field.
+"""
+field(f::Symbol; kw...) = (field=f, kw...)
+function field(f::AbstractString; kw...)
+    fielddict = Dict{Symbol, AbstractString}()
     if occursin(":", f)
-        field, type = split(f, ":")
-        type = _type(type)
-        return (; field, type)
+        f, type = split(f, ":")
+        fielddict[:type] = _type(type)
     end
-    (field=f, )
+    if endswith(f, ")")
+        aggregate, f = split(f, "(")
+        f = strip(f, ')')
+        fielddict[:aggregate] = aggregate
+    end
+    f == "" || (fielddict[:field] = f)
+    return (; fielddict..., kw...)
 end
 
 TYPEMAP = Dict(

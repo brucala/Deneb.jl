@@ -5,11 +5,14 @@
 # ---
 
 using Deneb
-data = Data(url="https://vega.github.io/vega-datasets/data/cars.json")
-chart = data * Mark(:point, tooltip=true) * Encoding(
+chart = Data(
+    url="https://vega.github.io/vega-datasets/data/cars.json"
+) * Mark(
+    :point, tooltip=true
+) * Encoding(
     "Horsepower:q",
     "Miles_per_Gallon:q",
-    color=(;field=:Origin)
+    color=field(:Origin)
 )
 
 # save cover #src

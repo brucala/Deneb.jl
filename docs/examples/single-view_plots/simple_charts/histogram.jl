@@ -7,8 +7,8 @@
 using Deneb
 data = (;x=randn(200))
 chart = Data(data) * Mark(:bar, tooltip=true) * Encoding(
-    x=(field=:x, bin=true),
-    y=(;aggregate=:count)
+    x=field(:x, bin=true),
+    y=(; aggregate=:count)
 )
 
 # save cover #src

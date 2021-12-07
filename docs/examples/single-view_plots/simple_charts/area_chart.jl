@@ -9,7 +9,7 @@ data = Data(url="https://vega.github.io/vega-datasets/data/iowa-electricity.csv"
 chart = data * Mark(:area, tooltip=true) * Encoding(
     "year:t",
     "net_generation:q",
-    color=(field=:source, type=:nominal)
+    color=field("source:n")
 )
 
 # save cover #src

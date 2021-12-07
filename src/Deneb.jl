@@ -11,7 +11,7 @@ include("render.jl")
 include("composition.jl")
 
 export spec, vlspec,
-    Data, Mark, Encoding,
+    Data, Mark, Encoding, field,
     save
 
 end # module

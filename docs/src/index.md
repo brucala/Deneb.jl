@@ -4,8 +4,12 @@
 
 ## Quickstart
 
-```julia
-data = (a=string.('A':'I'), b=rand(0:100, 9))
-Data(data) * Mark(:bar) * Encoding("a:n", "b:q")
+```@example
+using Deneb
+carsurl = "https://vega.github.io/vega-datasets/data/cars.json"
+Data(url=carsurl) * Mark(:point, tooltip=true) * Encoding(
+    "Horsepower:q",
+    "Miles_per_Gallon:q",
+    color=field(:Origin)
+)
 ```
-![](examples/single-view_plots/simple_charts/assets/bar_chart.png)

@@ -40,6 +40,16 @@ end
         x = (aggregate = "mean", field = "a", type = "quantitative"),
         y=(field = "b", type = "ordinal")
     )
+    @test Encoding("count(a):q") isa Deneb.EncodingSpec
+    @test value(Encoding("mean(a):q")) == (;
+        x = (aggregate = "mean", field = "a", type = "quantitative")
+    )
+    @test value(Encoding("mean():q")) == (;
+        x = (aggregate = "mean", type = "quantitative")
+    )
+    @test value(Encoding(color=field("mean():q"))) == (;
+        color = (aggregate = "mean", type = "quantitative")
+    )
 end
 
 @testset "test Data" begin
