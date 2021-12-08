@@ -13,8 +13,8 @@ data = (
 chart = Data(data) * Mark(:bar, tooltip=true) * Encoding(
     :category,
     "value:q",
-    xOffset=(;field=:group),
-    color=(;field=:group)
+    xOffset=:group,
+    color=:group,
 )
 
 save("assets/grouped_bar_chart.png", chart)  #src
@@ -26,6 +26,6 @@ save("assets/grouped_bar_chart.png", chart)  #src
 Data(data) * Mark(:bar, tooltip=true) * Encoding(
     :group,
     "value:q",
-    color=(;field=:group),
-    column=(;field=:category),
+    color=:group,
+    column=:category,
 )

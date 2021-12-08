@@ -11,7 +11,7 @@ z = x.^2 .+ y.^2
 chart = Data((;x, y, z)) * Mark(:rect) * Encoding(
     "x:o",
     "y:o",
-    color=field("z:q")
+    color="z:q"
 )
 
 # save cover #src

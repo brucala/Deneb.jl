@@ -1,3 +1,3 @@
 {
-    "order": ["simple_charts", "bar_charts"]
+    "order": ["simple_charts", "bar_charts", "line_charts", "area_charts"]
 }

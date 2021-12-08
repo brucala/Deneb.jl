@@ -12,7 +12,7 @@ chart = Data(
 ) * Encoding(
     "Horsepower:q",
     "Miles_per_Gallon:q",
-    color=field(:Origin)
+    color=:Origin
 )
 
 # save cover #src

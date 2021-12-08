@@ -1,15 +1,14 @@
 # ---
 # cover: assets/area_chart.png
 # author: bruno
-# description: Simple Stacked Area Chart
+# description: Simple Area Chart
 # ---
 
 using Deneb
-data = Data(url="https://vega.github.io/vega-datasets/data/iowa-electricity.csv")
+data = Data(url="https://vega.github.io/vega-datasets/data/unemployment-across-industries.json")
 chart = data * Mark(:area, tooltip=true) * Encoding(
-    "year:t",
-    "net_generation:q",
-    color=field("source:n")
+    x=field("yearmonth(date)", axis=(;format="%Y")),
+    y=field("sum(count)", title=:count),
 )
 
 # save cover #src

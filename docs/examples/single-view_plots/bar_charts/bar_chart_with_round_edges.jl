@@ -15,7 +15,7 @@ chart = data * Mark(
 ) * Encoding(
     "month(date):O",
     "count():Q",
-    color=field("weather:N")
+    color="weather:N",
 )
 
 save("assets/bar_chart_with_round_edges.png", chart)  #src
