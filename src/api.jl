@@ -41,12 +41,13 @@ Mark(; s...) = MarkSpec(spec(; s...))
 """
 Encoding(x::Union{Symbol, AbstractString}; kw...) = Encoding(; kw...) * Encoding(x=field(x))
 Encoding(x::Union{Symbol, AbstractString}, y::Union{Symbol, AbstractString}; kw...) = Encoding(; kw...) * Encoding(x=field(x)) * Encoding(y=field(y))
-Encoding(; s...) = EncodingSpec(spec(; s...))
+Encoding(; s...) = EncodingSpec(spec(NamedTuple(k=>field(v) for (k,v) in pairs(s))))
 
 """
     field(field; kw...)
 Shortcut to create an arbitrary encoding field.
 """
+field(f) = f
 field(f::Symbol; kw...) = (field=f, kw...)
 function field(f::AbstractString; kw...)
     fielddict = Dict{Symbol, AbstractString}()
