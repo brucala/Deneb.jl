@@ -13,4 +13,4 @@ Data(url=carsurl) * Mark(:point) * Encoding(
     color=field(:Origin)
 )
 ```
-![](examples/single-view_plots/simple_charts/assets/scatter_plot.png)
+![](images/scatter_plot.png)
