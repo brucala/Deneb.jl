@@ -1,5 +1,5 @@
-JSON.json(s::AbstractSpec) = json(value(s))
-JSON.json(s::AbstractSpec, indent) = json(value(s), indent)
+JSON.json(s::AbstractSpec) = json(value(_THEME_CONFIG[] * s))
+JSON.json(s::AbstractSpec, indent) = json(value(_THEME_CONFIG[] * s), indent)
 
 Base.show(io::IO, s::AbstractSpec) = print(io, json(s, 2))
 

@@ -9,9 +9,11 @@ include("types.jl")
 include("api.jl")
 include("render.jl")
 include("composition.jl")
+include("themes.jl")
 
 export spec, vlspec,
     Data, Mark, Encoding, field,
-    save
+    save,
+    set_theme!, show_theme
 
 end # module
