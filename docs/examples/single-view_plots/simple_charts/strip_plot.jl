@@ -6,7 +6,7 @@
 
 using Deneb
 data = Data(url="https://vega.github.io/vega-datasets/data/cars.json")
-chart = data * Mark(:tick, tooltip=true) * Encoding(
+chart = data * Mark(:tick) * Encoding(
     "Horsepower:q",
     "Cylinders:o",
 )

@@ -9,7 +9,7 @@
 ```@example
 using Deneb
 cars = "https://vega.github.io/vega-datasets/data/cars.json"
-Data(url=cars) * Mark(:point, tooltip=true) * Encoding(
+Data(url=cars) * Mark(:point) * Encoding(
     "Horsepower:q",
     "Miles_per_Gallon:q",
     color=:Origin

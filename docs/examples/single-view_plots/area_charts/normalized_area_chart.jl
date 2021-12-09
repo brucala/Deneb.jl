@@ -6,7 +6,7 @@
 
 using Deneb
 data = Data(url="https://vega.github.io/vega-datasets/data/iowa-electricity.csv")
-chart = data * Mark(:area, tooltip=true) * Encoding(
+chart = data * Mark(:area) * Encoding(
     "year:t",
     y=field("net_generation:q", stack="normalize", axis=(;format="%")),
     color="source:n"

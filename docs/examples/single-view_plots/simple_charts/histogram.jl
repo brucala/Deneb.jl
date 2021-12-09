@@ -6,7 +6,7 @@
 
 using Deneb
 data = (;x=randn(200))
-chart = Data(data) * Mark(:bar, tooltip=true) * Encoding(
+chart = Data(data) * Mark(:bar) * Encoding(
     x=field(:x, bin=true),
     y="count()"
 )

@@ -10,7 +10,7 @@ data = (
     group=collect("xyzxyzxyz"),
     value=rand(9)
 )
-chart = Data(data) * Mark(:bar, tooltip=true) * Encoding(
+chart = Data(data) * Mark(:bar) * Encoding(
     :category,
     "value:q",
     xOffset=:group,

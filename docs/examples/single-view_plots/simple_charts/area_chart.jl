@@ -6,7 +6,7 @@
 
 using Deneb
 data = Data(url="https://vega.github.io/vega-datasets/data/unemployment-across-industries.json")
-chart = data * Mark(:area, tooltip=true) * Encoding(
+chart = data * Mark(:area) * Encoding(
     x=field("yearmonth(date)", axis=(;format="%Y")),
     y=field("sum(count)", title=:count),
 )
