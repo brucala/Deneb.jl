@@ -24,6 +24,7 @@ makedocs(
     pages=[
         "Home" => "index.md",
         "Gallery" => gallery,
+        "Themes" => "themes.md"
     ]
 )
 
