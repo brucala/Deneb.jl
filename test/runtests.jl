@@ -6,6 +6,7 @@ using Test
     include("test_api.jl")
     include("test_composision.jl")
     include("test_render.jl")
+    include("test_themes.jl")
 end
 
 s = (

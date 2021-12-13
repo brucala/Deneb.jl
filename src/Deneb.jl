@@ -14,6 +14,6 @@ include("themes.jl")
 export spec, vlspec,
     Data, Mark, Encoding, field,
     save,
-    set_theme!, show_theme
+    set_theme!, print_theme
 
 end # module
