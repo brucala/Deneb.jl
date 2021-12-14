@@ -21,6 +21,6 @@ s = "{\n  \"config\": {\n    \"view\": {\n      \"continuousWidth\": 300,\n     
 end
 
 @testset "Test json" begin
-    @test Deneb.json(spec(), 2) == s
+    @test Deneb.json(spec(), 2) == "{}\n"
     @test Deneb.json(vlspec(),2) == s
 end

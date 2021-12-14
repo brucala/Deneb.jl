@@ -1,6 +1,7 @@
 nt = (
     name="chart",
     data=3,
+    transform=(;filter="a"),
     mark=:bar,
     encoding=(
         x=:x,

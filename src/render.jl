@@ -1,10 +1,11 @@
-JSON.json(s::AbstractSpec) = json(value(themespec() * s))
-JSON.json(s::AbstractSpec, indent) = json(value(themespec() * s), indent)
+JSON.json(s::AbstractSpec) = json(value(s))
+JSON.json(s::AbstractSpec, indent) = json(value(s), indent)
+JSON.json(s::TopLevelSpec) = json(value(themespec() * s))
+JSON.json(s::TopLevelSpec, indent) = json(value(themespec() * s), indent)
 
 Base.show(io::IO, s::AbstractSpec) = print(io, json(s, 2))
 
 Base.show(io::IO, ::MIME"text/plain", s::AbstractSpec) = print(io, "$(typeof(s)): \n", s)
-
 
 Base.show(io::IO, ::MIME"application/json", s::AbstractSpec) = show(io, s)
 

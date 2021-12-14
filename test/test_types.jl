@@ -33,6 +33,7 @@ end
     @test s.spec.common isa Deneb.CommonProperties
     @test s.spec.data isa Deneb.DataSpec
     @test s.spec.encoding isa Deneb.EncodingSpec
+    @test s.spec.transform isa Deneb.TransformSpec
 end
 
 @testset "DataSpec" begin
@@ -47,6 +48,31 @@ end
     @test d.values[2] == (a=2, b='b')
 end
 
+@testset "TransformSpec" begin
+    t = Deneb.TransformSpec(transform=3)
+    @test t isa Deneb.TransformSpec
+    @test value(t) == [3]
+    t = Deneb.TransformSpec(transform=[1, 2])
+    @test t isa Deneb.TransformSpec
+    @test value(t) == [1, 2]
+    t = Deneb.TransformSpec(transform=Spec([1, 2]))
+    @test t isa Deneb.TransformSpec
+    @test value(t) == [1, 2]
+    t = Deneb.TransformSpec(transform=[Spec(1), Spec(2)])
+    @test t isa Deneb.TransformSpec
+    @test value(t) == [1, 2]
+    @test propertynames(t) == tuple()
+    t = Deneb.TransformSpec(transform=(;filter="a"))
+    @test t isa Deneb.TransformSpec
+    @test value(t) == [(;filter="a")]
+    t = Deneb.TransformSpec(transform=[(;filter="a")])
+    @test t isa Deneb.TransformSpec
+    @test value(t) == [(;filter="a")]
+    @test propertynames(t) == tuple()
+    t = Deneb.TransformSpec(transform=nothing)
+    @test value(t) == []
+end
+
 @testset "isempty" begin
     @test isempty(spec(nothing))
     @test !isempty(spec(1))
@@ -58,14 +84,15 @@ end
     @test !isempty(spec([1]))
 end
 
-nt = (name="chart", data=3, mark=:bar, encoding=(x=:x, y=(field=:y, type=:quantitative)))
+nt = (name="chart", data=3, transform=[(;filter="a")], mark=:bar, encoding=(x=:x, y=(field=:y, type=:quantitative)))
 
 @testset "Spec properties" begin
     @test propertynames(spec()) == tuple()
     s = Spec(nt)
-    @test issetequal(propertynames(s), (:name, :data, :mark, :encoding))
+    @test issetequal(propertynames(s), (:name, :data, :transform, :mark, :encoding))
     @test value(s.name) == "chart"
     @test value(s.data) == 3
+    @test value(s.transform) == [(;filter="a")]
     @test value(s.mark) == "bar"
     @test issetequal(propertynames(s.encoding), (:x, :y))
     @test value(s.encoding.x) == "x"
@@ -77,9 +104,10 @@ end
 @testset "TopLevelSpec properties" begin
     @test propertynames(vlspec()) == tuple()
     s = TopLevelSpec(; nt...)
-    @test issetequal(propertynames(s), (:name, :data, :mark, :encoding))
+    @test issetequal(propertynames(s), (:name, :data, :transform, :mark, :encoding))
     @test value(s.name) == "chart"
     @test value(s.data) == 3
+    @test value(s.transform) == [(;filter="a")]
     @test value(s.mark) == "bar"
     @test issetequal(propertynames(s.encoding), (:x, :y))
     @test value(s.encoding.x) == "x"

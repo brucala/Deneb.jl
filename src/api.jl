@@ -16,6 +16,7 @@ vlspec(s::NamedTuple) = TopLevelSpec(; s...)
 vlspec(; s...) = TopLevelSpec(; s...)
 vlspec(s::ConstrainedSpec) = TopLevelSpec(value(s))
 vlspec(s::DataSpec) = TopLevelSpec(data = value(s))
+vlspec(s::TransformSpec) = TopLevelSpec(transform = value(s))
 vlspec(s::MarkSpec) = TopLevelSpec(mark = value(s))
 vlspec(s::EncodingSpec) = TopLevelSpec(encoding = value(s))
 vlspec(s::TopLevelSpec) = TopLevelSpec(s.toplevel, s.spec)
@@ -26,6 +27,11 @@ vlspec(s::TopLevelSpec) = TopLevelSpec(s.toplevel, s.spec)
 """
 Data(data) = DataSpec(data)
 Data(; url::String) = DataSpec((;url))
+
+"""
+    Transform(; spec...)
+"""
+Transform(; s...) = TransformSpec(spec(; s...))
 
 """
     Mark(type; kw...)

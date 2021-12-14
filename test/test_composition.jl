@@ -15,6 +15,7 @@ end
             y = (; field = "b")
         )
     )
+    @test vlspec() * vlspec(transform=[1, 2]) * vlspec(transform=[2,3]) == vlspec(transform=[1,2,3])
 end
 
 @testset "test layering" begin

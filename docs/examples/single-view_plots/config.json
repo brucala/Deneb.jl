@@ -1,3 +1,11 @@
 {
-    "order": ["simple_charts", "line_charts", "bar_charts", "histograms", "scatter_plots", "area_charts", "circular_plots"]
+    "order": [
+        "simple_charts",
+        "line_charts",
+        "bar_charts",
+        "histograms",
+        "scatter_plots",
+        "area_charts",
+        "circular_plots"
+    ]
 }
