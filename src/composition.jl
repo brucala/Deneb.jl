@@ -27,14 +27,15 @@ end
 Base.:*(a::T, b::T) where {T<:ConstrainedSpec}  = T((getfield(a, f) * getfield(b, f) for f in fieldnames(T))...)
 Base.:*(a::TopLevelSpec, b::TopLevelSpec)  = TopLevelSpec((getfield(a, f) * getfield(b, f) for f in fieldnames(TopLevelSpec))...)
 Base.:*(a::DataSpec, b::DataSpec) = isnothing(value(b)) ? DataSpec(value(a)) : DataSpec(value(b))
-function Base.:*(a::TransformSpec, b::TransformSpec)
-    isempty(a) && TransformSpec(value(b))
-    isempty(b) && TransformSpec(value(a))
-    transform = copy(a.transform)
-    for i in b.transform
-        i in transform || push!(transform, i)
+function Base.:*(a::T, b::T) where T <: Union{TransformSpec, ParamsSpec}
+    isempty(a) && T(value(b))
+    isempty(b) && T(value(a))
+    fieldname = first(fieldnames(T))
+    field = copy(getfield(a, fieldname))
+    for i in getfield(b, fieldname)
+        i in field || push!(field, i)
     end
-    TransformSpec(transform)
+    T(field)
 end
 Base.:*(a::ConstrainedSpec, b::ConstrainedSpec) = vlspec(a) * vlspec(b)
 
@@ -45,6 +46,7 @@ function Base.:*(a::SingleSpec, b::LayerSpec)
     LayerSpec(
         b.common * a.common,
         b.transform * a.transform,
+        b.params * a.params,
         b.data * a.data,
         b.encoding * a.encoding,
         [s * l for l in b.layer],
@@ -60,6 +62,7 @@ function Base.:*(a::LayerSpec, b::SingleSpec)
     LayerSpec(
         a.common,
         a.transform,
+        a.params,
         a.data,
         a.encoding,
         [l * b for l in a.layer],
@@ -86,6 +89,7 @@ function Base.:*(a::SingleSpec, b::T) where T<:ConcatView
     T(
         b.common * a.common,
         b.transform * a.transform,
+        b.params * a.params,
         b.layout,
         b.data * a.data,
         [s * l for l in getfield(b, _concat_key(T))],
@@ -115,11 +119,11 @@ _concat_key(::Type{VConcatSpec}) = :vconcat
 ###
 
 function LayerSpec(s::SingleSpec)
-    common, transform, data, mark, encoding, width, height, view, projection = collect(
+    common, transform, params, data, mark, encoding, width, height, view, projection = collect(
         getfield(s, f) for f in fieldnames(SingleSpec)
     )
     # Promote data, width and height specs as parent specs
-    layer = [SingleSpec(; value(common)..., transform=transform.transform, mark=mark.mark, encoding=encoding.encoding, view, projection)]
+    layer = [SingleSpec(; value(common)..., transform=transform.transform , params=params.params, mark=mark.mark, encoding=encoding.encoding, view, projection)]
     LayerSpec(;data=data.data, width, height, layer=layer)
 end
 
@@ -165,7 +169,7 @@ Base.:+(a::SingleSpec, b::SingleSpec) = LayerSpec(a) + LayerSpec(b)
 Base.:+(a::SingleSpec, b::LayerSpec) = LayerSpec(a) + b
 Base.:+(a::LayerSpec, b::SingleSpec) = a + LayerSpec(b)
 function Base.:+(a::LayerSpec, b::LayerSpec)
-    common, transform, data, encoding, layer, width, height, view, projection, resolve = collect(
+    common, transform, params, data, encoding, layer, width, height, view, projection, resolve = collect(
         getfield(b, f) for f in fieldnames(LayerSpec)
     )
     # if parent data, encoding, width and height specs are shared across layers
@@ -176,7 +180,7 @@ function Base.:+(a::LayerSpec, b::LayerSpec)
     width = _different_or_nothing(width, a.width)
     height = _different_or_nothing(height, a.height)
     alayer = deepcopy(a.layer)
-    blayer = LayerSpec(;value(common)..., data=data.data, transform=transform.transform, encoding=encoding.encoding, layer, width, height, view, projection, resolve)
+    blayer = LayerSpec(;value(common)..., data=data.data, transform=transform.transform, params=params.params, encoding=encoding.encoding, layer, width, height, view, projection, resolve)
     if isnothing(data.data) && isnothing(value(encoding.encoding)) && isnothing(value(width)) && isnothing(value(height))
         append!(alayer, blayer.layer)
     else
@@ -185,6 +189,7 @@ function Base.:+(a::LayerSpec, b::LayerSpec)
     LayerSpec(
         a.common,
         a.transform,
+        a.params,
         a.data,
         a.encoding,
         alayer,

@@ -86,7 +86,6 @@ struct CommonProperties <: PropertiesSpec
     name::Spec
     description::Spec
     title::Spec
-    params::Spec
 end
 CommonProperties(; spec...) = ConstrainedSpec(CommonProperties; spec...)
 
@@ -130,9 +129,19 @@ TransformSpec(s) = TransformSpec([Spec(s)])
 TransformSpec(; transform=Spec[], kw...) = TransformSpec(transform)
 value(s::TransformSpec) = value.(s.transform)
 
+struct ParamsSpec <: ConstrainedSpec
+    params::Vector{Spec}
+    ParamsSpec(v::Vector) = new([Spec(i) for i in v if !isempty(Spec(i))])
+end
+ParamsSpec(s::Spec{Vector{Spec}}) = ParamsSpec(s.spec)
+ParamsSpec(s) = ParamsSpec([Spec(s)])
+ParamsSpec(; params=Spec[], kw...) = ParamsSpec(params)
+value(s::ParamsSpec) = value.(s.params)
+
 struct SingleSpec <: ViewableSpec
     common::CommonProperties
     transform::TransformSpec
+    params::ParamsSpec
     data::DataSpec
     mark::MarkSpec
     encoding::EncodingSpec
@@ -146,6 +155,7 @@ SingleSpec(; spec...) = ConstrainedSpec(SingleSpec; spec...)
 struct LayerSpec <: MultiViewSpec
     common:: CommonProperties
     transform::TransformSpec
+    params::ParamsSpec
     data::DataSpec
     encoding::EncodingSpec
     layer::Vector{Union{SingleSpec, LayerSpec}}
@@ -169,6 +179,7 @@ end
 struct FacetSpec <: LayoutSpec
     common:: CommonProperties
     transform::TransformSpec
+    params::ParamsSpec
     layout::LayoutProperties
     data::DataSpec
     spec::Union{SingleSpec, LayerSpec}
@@ -180,6 +191,7 @@ end
 struct RepeatSpec <: LayoutSpec
     common:: CommonProperties
     transform::TransformSpec
+    params::ParamsSpec
     layout::LayoutProperties
     data::DataSpec
     spec::Union{SingleSpec, LayerSpec}  # or can it be any ViewableSpec?
@@ -191,6 +203,7 @@ end
 struct ConcatSpec <: ConcatView
     common:: CommonProperties
     transform::TransformSpec
+    params::ParamsSpec
     layout::LayoutProperties
     data::DataSpec
     concat::Vector{ViewableSpec}
@@ -211,6 +224,7 @@ end
 struct HConcatSpec <: ConcatView
     common:: CommonProperties
     transform::TransformSpec
+    params::ParamsSpec
     layout::LayoutProperties
     data::DataSpec
     hconcat::Vector{ViewableSpec}
@@ -230,6 +244,7 @@ end
 struct VConcatSpec <: ConcatView
     common:: CommonProperties
     transform::TransformSpec
+    params::ParamsSpec
     layout::LayoutProperties
     data::DataSpec
     vconcat::Vector{ViewableSpec}
@@ -267,11 +282,12 @@ Base.propertynames(d::DataSpec) = isempty(d) ? tuple() : propertynames(value(d))
 Base.propertynames(s::MarkSpec) = isempty(s) ? tuple() : propertynames(s.mark)
 Base.propertynames(s::EncodingSpec) = isempty(s) ? tuple() : propertynames(s.encoding)
 Base.propertynames(::TransformSpec) = tuple()
+Base.propertynames(::ParamsSpec) = tuple()
 function Base.propertynames(s::T) where T<:AbstractSpec
     isempty(s) && return tuple()
     collect(
         Iterators.flatten(
-            t <: Union{Spec, Vector, DataSpec, MarkSpec, EncodingSpec, TransformSpec} ? (f,) : propertynames(getfield(s, f))
+            t <: Union{Spec, Vector, DataSpec, MarkSpec, EncodingSpec, TransformSpec, ParamsSpec} ? (f,) : propertynames(getfield(s, f))
             for (f, t) in zip(fieldnames(T), fieldtypes(T))
             if !isempty(getfield(s, f))
         )
