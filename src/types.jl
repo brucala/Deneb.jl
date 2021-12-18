@@ -78,7 +78,7 @@ TopLevelProperties(; spec...) = ConstrainedSpec(TopLevelProperties; spec...)
 
 struct TopLevelSpec{T<:ViewableSpec} <: ConstrainedSpec
     toplevel::TopLevelProperties
-    spec::T
+    viewspec::T
 end
 TopLevelSpec(; spec...) = ConstrainedSpec(TopLevelSpec; spec...)
 

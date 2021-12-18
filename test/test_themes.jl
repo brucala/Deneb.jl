@@ -24,3 +24,5 @@ end
     @test Deneb.json(spec(), 2) == "{}\n"
     @test Deneb.json(vlspec(),2) == s
 end
+
+set_theme!(:default)

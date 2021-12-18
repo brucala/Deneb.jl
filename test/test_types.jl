@@ -29,11 +29,11 @@ end
     s = TopLevelSpec(; )
     @test s isa Deneb.TopLevelSpec{Deneb.SingleSpec}
     @test s.toplevel isa Deneb.TopLevelProperties
-    @test s.spec isa Deneb.SingleSpec
-    @test s.spec.common isa Deneb.CommonProperties
-    @test s.spec.data isa Deneb.DataSpec
-    @test s.spec.encoding isa Deneb.EncodingSpec
-    @test s.spec.transform isa Deneb.TransformSpec
+    @test s.viewspec isa Deneb.SingleSpec
+    @test s.viewspec.common isa Deneb.CommonProperties
+    @test s.viewspec.data isa Deneb.DataSpec
+    @test s.viewspec.encoding isa Deneb.EncodingSpec
+    @test s.viewspec.transform isa Deneb.TransformSpec
 end
 
 @testset "DataSpec" begin

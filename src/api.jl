@@ -19,7 +19,7 @@ vlspec(s::DataSpec) = TopLevelSpec(data = value(s))
 vlspec(s::TransformSpec) = TopLevelSpec(transform = value(s))
 vlspec(s::MarkSpec) = TopLevelSpec(mark = value(s))
 vlspec(s::EncodingSpec) = TopLevelSpec(encoding = value(s))
-vlspec(s::TopLevelSpec) = TopLevelSpec(s.toplevel, s.spec)
+vlspec(s::TopLevelSpec) = TopLevelSpec(s.toplevel, s.viewspec)
 
 
 """

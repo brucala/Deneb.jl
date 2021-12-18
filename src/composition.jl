@@ -144,7 +144,7 @@ function Base.:+(a::TopLevelSpec, b::TopLevelSpec)
         @warn "Attempting to layer two specs with incompatible toplevel properties. Will use the toplevel properties from spec `a`..."
     end
     toplevel = b.toplevel * a.toplevel
-    TopLevelSpec(toplevel, a.spec + b.spec)
+    TopLevelSpec(toplevel, a.viewspec + b.viewspec)
 end
 
 function _incompatible_toplevels(a::TopLevelProperties, b::TopLevelProperties)
@@ -217,7 +217,7 @@ Horizontal concatenation of specs.
 """
 Base.hcat(A::TopLevelSpec...) = TopLevelSpec(
     *([i.toplevel for i in A]...),
-    hcat([i.spec for i in A]...)
+    hcat([i.viewspec for i in A]...)
 )
 Base.hcat(A::ConstrainedSpec...) = hcat(vlspec.(collect(A))...)
 Base.hcat(A::ViewableSpec...) = HConcatSpec(hconcat=collect(A))
@@ -229,7 +229,7 @@ Vertical concatenation of specs.
 """
 Base.vcat(A::TopLevelSpec...) = TopLevelSpec(
     *([i.toplevel for i in A]...),
-    vcat([i.spec for i in A]...)
+    vcat([i.viewspec for i in A]...)
 )
 Base.vcat(A::ConstrainedSpec...) = vcat(vlspec.(collect(A))...)
 Base.vcat(A::ViewableSpec...) = VConcatSpec(vconcat=collect(A))
@@ -241,7 +241,7 @@ General (wrappable) concatenation of specs.
 """
 Base.hvcat(rows::Tuple{Vararg{Int}}, A::TopLevelSpec...) = TopLevelSpec(
     *([i.toplevel for i in A]...),
-    hvcat(rows, [i.spec for i in A]...)
+    hvcat(rows, [i.viewspec for i in A]...)
 )
 Base.hvcat(rows::Tuple{Vararg{Int}}, A::ConstrainedSpec...) = hvcat(rows, vlspec.(collect(A))...)
 Base.hvcat(rows::Tuple{Vararg{Int}}, A::ViewableSpec...) = ConcatSpec(concat=collect(A), columns=first(rows))
