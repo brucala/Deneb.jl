@@ -12,7 +12,7 @@ include("composition.jl")
 include("themes.jl")
 
 export spec, vlspec, field,
-    Data, Mark, Encoding, Transform,
+    Data, Mark, Encoding, Transform, Facet, Repeat,
     save,
     set_theme!, print_theme
 

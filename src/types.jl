@@ -176,16 +176,31 @@ function LayerSpec(; layer, kw...)
     LayerSpec(spectuple...)
 end
 
+const SingleOrLayerSpec = Union{SingleSpec, LayerSpec}
+
 struct FacetSpec <: LayoutSpec
-    common:: CommonProperties
+    common::CommonProperties
     transform::TransformSpec
     params::ParamsSpec
     layout::LayoutProperties
     data::DataSpec
-    spec::Union{SingleSpec, LayerSpec}
+    spec::SingleOrLayerSpec
     facet::Spec
     columns::Spec
     resolve::Spec
+end
+function FacetSpec(; kw...)
+    #haskey(kw, :spec) || error("FacetSpec constructor must contain a `spec` keyword argument")
+    haskey(kw, :facet) || error("FacetSpec constructor must contain a `facet` keyword argument")
+    spec = get(kw, :spec, SingleSpec())
+    spectuple = (
+        t === Spec ? Spec(kw, f) :
+        f !== :spec ? t(; kw...) :
+        spec isa SingleOrLayerSpec ? spec :
+        ViewableSpec(;spec...)
+        for (f, t) in zip(fieldnames(FacetSpec), fieldtypes(FacetSpec))
+    )
+    FacetSpec(spectuple...)
 end
 
 struct RepeatSpec <: LayoutSpec
@@ -194,10 +209,23 @@ struct RepeatSpec <: LayoutSpec
     params::ParamsSpec
     layout::LayoutProperties
     data::DataSpec
-    spec::Union{SingleSpec, LayerSpec}  # or can it be any ViewableSpec?
+    spec::SingleOrLayerSpec  # or can it be any ViewableSpec?
     repeat::Spec
     columns::Spec
     resolve::Spec
+end
+function RepeatSpec(; kw...)
+    #haskey(kw, :spec) || error("RepeatSpec constructor must contain a `spec` keyword argument")
+    haskey(kw, :repeat) || error("RepeatSpec constructor must contain a `repeat` keyword argument")
+    spec = get(kw, :spec, SingleSpec())
+    spectuple = (
+        t === Spec ? Spec(kw, f) :
+        f !== :spec ? t(; kw...) :
+        spec isa SingleOrLayerSpec ? spec :
+        ViewableSpec(;spec...)
+        for (f, t) in zip(fieldnames(RepeatSpec), fieldtypes(RepeatSpec))
+    )
+    RepeatSpec(spectuple...)
 end
 
 struct ConcatSpec <: ConcatView
@@ -287,7 +315,7 @@ function Base.propertynames(s::T) where T<:AbstractSpec
     isempty(s) && return tuple()
     collect(
         Iterators.flatten(
-            t <: Union{Spec, Vector, DataSpec, MarkSpec, EncodingSpec, TransformSpec, ParamsSpec} ? (f,) : propertynames(getfield(s, f))
+            t <: Union{Spec, Vector, DataSpec, MarkSpec, EncodingSpec, TransformSpec, ParamsSpec} || f === :spec ? (f,) : propertynames(getfield(s, f))
             for (f, t) in zip(fieldnames(T), fieldtypes(T))
             if !isempty(getfield(s, f))
         )

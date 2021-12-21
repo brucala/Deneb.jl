@@ -10,6 +10,7 @@ Base.show(io::IO, ::MIME"text/plain", s::AbstractSpec) = print(io, "$(typeof(s))
 Base.show(io::IO, ::MIME"application/json", s::AbstractSpec) = show(io, s)
 
 # VSCode and Jupyter lab display (and defaults to) this MIME type
+# FIXME: move to v5 when available
 Base.Multimedia.istextmime(::MIME{Symbol("application/vnd.vegalite.v4+json")}) = true
 function Base.show(io::IO, ::MIME"application/vnd.vegalite.v4+json", s::Union{TopLevelSpec, Spec})
     print(io, json(s))

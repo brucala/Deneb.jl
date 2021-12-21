@@ -14,9 +14,10 @@ Creates a Vega-Lite spec enforcing certain Vega-Lite constrains.
 vlspec(s::Spec) = TopLevelSpec(; s.spec...)
 vlspec(s::NamedTuple) = TopLevelSpec(; s...)
 vlspec(; s...) = TopLevelSpec(; s...)
-vlspec(s::ConstrainedSpec) = TopLevelSpec(value(s))
+vlspec(s::ConstrainedSpec) = TopLevelSpec(; value(s)...)
 vlspec(s::DataSpec) = TopLevelSpec(data = value(s))
 vlspec(s::TransformSpec) = TopLevelSpec(transform = value(s))
+vlspec(s::ParamsSpec) = TopLevelSpec(params = value(s))
 vlspec(s::MarkSpec) = TopLevelSpec(mark = value(s))
 vlspec(s::EncodingSpec) = TopLevelSpec(encoding = value(s))
 vlspec(s::TopLevelSpec) = TopLevelSpec(s.toplevel, s.viewspec)
@@ -32,6 +33,31 @@ Data(; url::String) = DataSpec((;url))
     Transform(; spec...)
 """
 Transform(; s...) = TransformSpec(spec(; s...))
+
+"""
+    Facet(; row, kw...)
+    Facet(; column, kw...)
+    Facet(field; columns=nothing, kw...)
+"""
+Facet(f; columns=nothing, kw...) = _layout(FacetSpec, f; columns, kw...)
+Facet(; kw...) = _layout(FacetSpec; kw...)
+
+"""
+    Repeat(; row, kw...)
+    Repeat(; column, kw...)
+    Repeat(field; columns=nothing, kw...)
+"""
+Repeat(f; columns=nothing, kw...) = _layout(RepeatSpec, f; columns, kw...)
+Repeat(; kw...) = _layout(RepeatSpec; kw...)
+
+_layout(T::Type{<:Union{FacetSpec, RepeatSpec}}, f; columns=nothing, kw...) = T(; _key(T)=>(;field(f)..., kw...), columns)
+function _layout(T::Type{<:Union{FacetSpec, RepeatSpec}}; kw...)
+    haskey(kw, :column) && haskey(kw, :row) && error("$T cannot have both the :column and the :row property")
+    !haskey(kw, :column) && !haskey(kw, :row) && error("$T must have either the :column or the :row property")
+    s = NamedTuple(k=>k in (:column, :row) ? field(v) : v for (k,v) in kw)
+    T(;_key(T)=>s)
+end
+
 
 """
     Mark(type; kw...)

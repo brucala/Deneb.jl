@@ -74,6 +74,21 @@ function Base.:*(a::LayerSpec, b::SingleSpec)
     )
 end
 
+function Base.:*(a::T, b::SingleOrLayerSpec) where T <: LayoutSpec
+    T(
+        a.common,
+        a.transform,
+        a.params,
+        a.layout,
+        a.data * b.data,
+        a.spec * b,
+        getfield(a, _key(T)),
+        a.columns,
+        a.resolve
+    )
+end
+Base.:*(a::SingleOrLayerSpec, b::LayoutSpec) = b * a
+
 Base.:*(::ConcatView, ::ConcatView) = error("Two concat specs can not be composed.")
 function Base.:*(a::SingleSpec, b::T) where T<:ConcatView
     # if single spec on the left, compose its properties with the top level properties of layer giving precedence to single spec
@@ -92,7 +107,7 @@ function Base.:*(a::SingleSpec, b::T) where T<:ConcatView
         b.params * a.params,
         b.layout,
         b.data * a.data,
-        [s * l for l in getfield(b, _concat_key(T))],
+        [s * l for l in getfield(b, _key(T))],
         #columns,  #FIXME: ConcatSpec
         b.resolve
     )
@@ -104,14 +119,16 @@ function Base.:*(a::T, b::SingleSpec) where T<:ConcatView
         a.common,
         a.layout,
         data=a.data,
-        [l * b for l in getfield(a, _concat_key(T))],
+        [l * b for l in getfield(a, _key(T))],
         #columns,  #FIXME: ConcatSpec
         a.resolve
     )
 end
-_concat_key(::Type{ConcatSpec}) = :concat
-_concat_key(::Type{HConcatSpec}) = :hconcat
-_concat_key(::Type{VConcatSpec}) = :vconcat
+_key(::Type{ConcatSpec}) = :concat
+_key(::Type{HConcatSpec}) = :hconcat
+_key(::Type{VConcatSpec}) = :vconcat
+_key(::Type{FacetSpec}) = :facet
+_key(::Type{RepeatSpec}) = :repeat
 
 
 ###
@@ -126,8 +143,6 @@ function LayerSpec(s::SingleSpec)
     layer = [SingleSpec(; value(common)..., transform=transform.transform , params=params.params, mark=mark.mark, encoding=encoding.encoding, view, projection)]
     LayerSpec(;data=data.data, width, height, layer=layer)
 end
-
-const SingleOrLayerSpec = Union{SingleSpec, LayerSpec}
 
 """
     spec1::ConstrainedSpec + spec2::ConstrainedSpec
