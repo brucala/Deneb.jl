@@ -3,5 +3,5 @@
     "properties":{
         "notebook": "false"
     },
-    "order": ["single-view_plots", "layered_plots"]
+    "order": ["single-view_plots", "layered_plots", "multi-view_plots"]
 }
