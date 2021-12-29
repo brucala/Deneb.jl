@@ -11,7 +11,8 @@ data = Data(url="https://vega.github.io/vega-datasets/data/penguins.json")
 chart = Data(data) * Mark(:area) * Transform(
     density="Body Mass (g)",
     groupby=["Species"],
-    extent=[2500, 6500]
+    extent=[2500, 6500],
+    steps=100,
 ) * Encoding(
     x=field("value:q", title="Body Mass (g)"),
     y=field("density:q", stack="zero"),

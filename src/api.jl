@@ -46,14 +46,19 @@ Facet(; kw...) = _layout(FacetSpec; kw...)
     Repeat(; row, kw...)
     Repeat(; column, kw...)
     Repeat(field; columns=nothing, kw...)
+    Repeat(Vector{String}; columns=nothing, kw...)
 """
+Repeat(v::Vector; columns=nothing) = RepeatSpec(; repeat=v, columns)
 Repeat(f; columns=nothing, kw...) = _layout(RepeatSpec, f; columns, kw...)
 Repeat(; kw...) = _layout(RepeatSpec; kw...)
 
 _layout(T::Type{<:Union{FacetSpec, RepeatSpec}}, f; columns=nothing, kw...) = T(; _key(T)=>(;field(f)..., kw...), columns)
 function _layout(T::Type{<:Union{FacetSpec, RepeatSpec}}; kw...)
-    haskey(kw, :column) && haskey(kw, :row) && error("$T cannot have both the :column and the :row property")
-    !haskey(kw, :column) && !haskey(kw, :row) && error("$T must have either the :column or the :row property")
+    # Repeat can combine multiple properties
+    if T isa Type{FacetSpec}
+        haskey(kw, :column) && haskey(kw, :row) && error("$T cannot have both the :column and the :row property")
+        !haskey(kw, :column) && !haskey(kw, :row) && error("$T must have either the :column or the :row property")
+    end
     s = NamedTuple(k=>k in (:column, :row) ? field(v) : v for (k,v) in kw)
     T(;_key(T)=>s)
 end

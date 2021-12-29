@@ -81,7 +81,7 @@ function Base.:*(a::T, b::SingleOrLayerSpec) where T <: LayoutSpec
         a.params,
         a.layout,
         a.data * b.data,
-        a.spec * b,
+        a.spec * _remove_properties(b, :data),
         getfield(a, _key(T)),
         a.columns,
         a.resolve
@@ -129,6 +129,15 @@ _key(::Type{HConcatSpec}) = :hconcat
 _key(::Type{VConcatSpec}) = :vconcat
 _key(::Type{FacetSpec}) = :facet
 _key(::Type{RepeatSpec}) = :repeat
+
+function _remove_properties(s::ConstrainedSpec, properties...)
+    kw = Dict(
+        property => getproperty(s, property)
+        for property in propertynames(s)
+        if property ∉ properties
+    )
+    typeof(s)(;kw...)
+end
 
 
 ###
