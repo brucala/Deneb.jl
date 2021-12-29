@@ -18,7 +18,7 @@ chart = Data(data) * Mark(:bar) * Facet(column=:Origin) * Encoding(
 # save cover #src
 save("assets/facet_view.png", chart) #src
 
-# Using `column` as an encoding channel:
+# ## `column` as an encoding channel:
 
 chart = Data(data) * Mark(:bar) * Encoding(
     x=field("Horsepower:Q", bin=(;maxbins=15)),
