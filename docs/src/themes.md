@@ -57,7 +57,7 @@ chart
 
 ## User defined themes
 
-A theme can be specified by defining a top level `config` using a `NamedTuple`:
+A theme can be specified by defining a top level `config` using a `NamedTuple`. For example, the follwing user defined theme is equivalent to the Vega `:dark` theme:
 ```@example themes
 config = (
   background="#333",
