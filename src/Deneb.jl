@@ -11,7 +11,7 @@ include("render.jl")
 include("composition.jl")
 include("themes.jl")
 
-export spec, vlspec, field,
+export spec, vlspec, field, layout,
     Data, Mark, Encoding, Transform, Facet, Repeat,
     save,
     set_theme!, print_theme

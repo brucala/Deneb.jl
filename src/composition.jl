@@ -89,6 +89,13 @@ function Base.:*(a::T, b::SingleOrLayerSpec) where T <: LayoutSpec
 end
 Base.:*(a::SingleOrLayerSpec, b::LayoutSpec) = b * a
 
+Base.:*(a::TopLevelSpec, b::LayoutProperties) where T = TopLevelSpec(a.toplevel, a.viewspec * b)
+function Base.:*(a::T, b::LayoutProperties) where T<:LayoutSpec
+    T(
+        (f === :layout ? b : getfield(a, f) for f in fieldnames(T))...
+    )
+end
+
 Base.:*(::ConcatView, ::ConcatView) = error("Two concat specs can not be composed.")
 function Base.:*(a::SingleSpec, b::T) where T<:ConcatView
     # if single spec on the left, compose its properties with the top level properties of layer giving precedence to single spec
