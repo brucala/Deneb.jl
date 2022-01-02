@@ -25,9 +25,10 @@ vlspec(s::TopLevelSpec) = TopLevelSpec(s.toplevel, s.viewspec)
 
 """
     Data(table)
+    Data(; url, kw...)
 """
 Data(data) = DataSpec(data)
-Data(; url::String) = DataSpec((;url))
+Data(; url::String, kw...) = DataSpec((;url, kw...))
 
 """
     Transform(; spec...)
@@ -99,9 +100,16 @@ end
 
 """
     layout(; align, bounds, center, spacing)
-Set layout properties.
+Set layout properties. Needs to be composed with a LayoutSpec (Repeat, Facet, Concat).
 """
 layout(; align=nothing, bounds=nothing, center=nothing, spacing=nothing) = LayoutProperties(;align, bounds, center, spacing)
+
+
+"""
+    projection(type; kw...)
+Sets the projection properties.
+"""
+projection(type; kw...) = vlspec(; projection=(; type, kw...))
 
 const TYPEMAP = Dict(
     "q" => "quantitative",

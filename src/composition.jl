@@ -275,4 +275,14 @@ Base.hvcat(rows::Tuple{Vararg{Int}}, A::TopLevelSpec...) = TopLevelSpec(
     hvcat(rows, [i.viewspec for i in A]...)
 )
 Base.hvcat(rows::Tuple{Vararg{Int}}, A::ConstrainedSpec...) = hvcat(rows, vlspec.(collect(A))...)
-Base.hvcat(rows::Tuple{Vararg{Int}}, A::ViewableSpec...) = ConcatSpec(concat=collect(A), columns=first(rows))
+Base.hvcat(rows::Tuple{Vararg{Int}}, A::ViewableSpec...) = ConcatSpec(;concat=collect(A), columns=first(rows))
+
+"""
+    concat(A::AbstractSpec...; columns)
+"""
+concat(A::TopLevelSpec...; columns=nothing) = TopLevelSpec(
+    *([i.toplevel for i in A]...),
+    concat([i.viewspec for i in A]...; columns)
+)
+concat(A::ConstrainedSpec...; columns=nothing) = concat(vlspec.(collect(A))...; columns)
+concat(A::ViewableSpec...; columns=nothing) = ConcatSpec(concat=collect(A); columns)

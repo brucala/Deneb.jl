@@ -6,6 +6,7 @@
         "histograms",
         "scatter_plots",
         "area_charts",
-        "circular_plots"
+        "circular_plots",
+        "maps"
     ]
 }
