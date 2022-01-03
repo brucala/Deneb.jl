@@ -99,10 +99,10 @@ function field(f::AbstractString; kw...)
 end
 
 """
-    layout(; align, bounds, center, spacing)
+    layout(; align, bounds, center, spacing, columns)
 Set layout properties. Needs to be composed with a LayoutSpec (Repeat, Facet, Concat).
 """
-layout(; align=nothing, bounds=nothing, center=nothing, spacing=nothing) = LayoutProperties(;align, bounds, center, spacing)
+layout(; align=nothing, bounds=nothing, center=nothing, spacing=nothing, columns=nothing) = LayoutProperties(;align, bounds, center, spacing, columns)
 
 
 """
@@ -110,6 +110,10 @@ layout(; align=nothing, bounds=nothing, center=nothing, spacing=nothing) = Layou
 Sets the projection properties.
 """
 projection(type; kw...) = vlspec(; projection=(; type, kw...))
+
+###
+### Helper functions and constants
+###
 
 const TYPEMAP = Dict(
     "q" => "quantitative",

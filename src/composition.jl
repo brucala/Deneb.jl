@@ -83,7 +83,6 @@ function Base.:*(a::T, b::SingleOrLayerSpec) where T <: LayoutSpec
         a.data * b.data,
         a.spec * _remove_properties(b, :data),
         getfield(a, _key(T)),
-        a.columns,
         a.resolve
     )
 end
@@ -276,7 +275,7 @@ Base.hvcat(rows::Tuple{Vararg{Int}}, A::ViewableSpec...) = ConcatSpec(;concat=co
 """
     concat(A::AbstractSpec...; columns)
 """
-concat(A::ConstrainedSpec...; columns=nothing) = TopLevelSpec(
+concat(A::TopLevelSpec...; columns=nothing) = TopLevelSpec(
     *([i.toplevel for i in A]...),
     concat([i.viewspec for i in A]...; columns)
 )
