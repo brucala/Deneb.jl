@@ -14,7 +14,7 @@ data = Data(
 chart = Data(data) * Mark(:geoshape) * Transform(
     lookup=:id,
     from=(
-      data=(;url="data/unemployment.tsv"),
+      data=(;url="https://vega.github.io/vega-datasets/data/unemployment.tsv"),
       key=:id,
       fields=[:rate],
     ),

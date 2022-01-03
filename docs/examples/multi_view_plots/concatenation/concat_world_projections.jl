@@ -1,5 +1,5 @@
 # ---
-# cover: assets/maps_world_projections.png
+# cover: assets/concat_world_projections.png
 # author: bruno
 # description: World Projections
 # ---
@@ -20,4 +20,4 @@ projections = ["equirectangular", "mercator", "orthographic", "gnomonic"]
 chart = base * concat((projection(proj) * vlspec(title=proj) for proj in projections)..., columns=2)
 
 # save cover #src
-save("assets/maps_world_projections.png", chart) #src
+save("assets/concat_world_projections.png", chart) #src
