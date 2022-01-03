@@ -107,7 +107,6 @@ function Base.:*(a::SingleSpec, b::T) where T<:ConcatView
         view=value(a.view),
         projection=value(a.projection),
     )
-    columns = get(value(b), :columns, nothing)
     T(
         b.common * a.common,
         b.transform * a.transform,
@@ -115,19 +114,16 @@ function Base.:*(a::SingleSpec, b::T) where T<:ConcatView
         b.layout,
         b.data * a.data,
         [s * l for l in getfield(b, _key(T))],
-        #columns,  #FIXME: ConcatSpec
         b.resolve
     )
 end
 function Base.:*(a::T, b::SingleSpec) where T<:ConcatView
     # if single spec on the right, compose directly with each layer
-    columns = get(value(a), :columns, nothing)
     T(
         a.common,
         a.layout,
         data=a.data,
         [l * b for l in getfield(a, _key(T))],
-        #columns,  #FIXME: ConcatSpec
         a.resolve
     )
 end
@@ -280,7 +276,7 @@ Base.hvcat(rows::Tuple{Vararg{Int}}, A::ViewableSpec...) = ConcatSpec(;concat=co
 """
     concat(A::AbstractSpec...; columns)
 """
-concat(A::TopLevelSpec...; columns=nothing) = TopLevelSpec(
+concat(A::ConstrainedSpec...; columns=nothing) = TopLevelSpec(
     *([i.toplevel for i in A]...),
     concat([i.viewspec for i in A]...; columns)
 )

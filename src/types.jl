@@ -94,6 +94,7 @@ struct LayoutProperties <: PropertiesSpec
     bounds::Spec
     center::Spec
     spacing::Spec
+    columns::Spec
 end
 LayoutProperties(; spec...) = ConstrainedSpec(LayoutProperties; spec...)
 
@@ -186,7 +187,7 @@ struct FacetSpec <: LayoutSpec
     data::DataSpec
     spec::SingleOrLayerSpec
     facet::Spec
-    columns::Spec
+    #columns::Spec
     resolve::Spec
 end
 function FacetSpec(; kw...)
@@ -211,7 +212,7 @@ struct RepeatSpec <: LayoutSpec
     data::DataSpec
     spec::SingleOrLayerSpec  # or can it be any ViewableSpec?
     repeat::Spec
-    columns::Spec
+    #columns::Spec
     resolve::Spec
 end
 function RepeatSpec(; kw...)
@@ -235,7 +236,7 @@ struct ConcatSpec <: ConcatView
     layout::LayoutProperties
     data::DataSpec
     concat::Vector{ViewableSpec}
-    columns::Spec
+    #columns::Spec
     resolve::Spec
 end
 function ConcatSpec(; concat, kw...)
