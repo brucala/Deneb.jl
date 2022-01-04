@@ -187,11 +187,9 @@ struct FacetSpec <: LayoutSpec
     data::DataSpec
     spec::SingleOrLayerSpec
     facet::Spec
-    #columns::Spec
     resolve::Spec
 end
 function FacetSpec(; kw...)
-    #haskey(kw, :spec) || error("FacetSpec constructor must contain a `spec` keyword argument")
     haskey(kw, :facet) || error("FacetSpec constructor must contain a `facet` keyword argument")
     spec = get(kw, :spec, SingleSpec())
     spectuple = (
@@ -212,11 +210,9 @@ struct RepeatSpec <: LayoutSpec
     data::DataSpec
     spec::SingleOrLayerSpec  # or can it be any ViewableSpec?
     repeat::Spec
-    #columns::Spec
     resolve::Spec
 end
 function RepeatSpec(; kw...)
-    #haskey(kw, :spec) || error("RepeatSpec constructor must contain a `spec` keyword argument")
     haskey(kw, :repeat) || error("RepeatSpec constructor must contain a `repeat` keyword argument")
     spec = get(kw, :spec, SingleSpec())
     spectuple = (
@@ -236,7 +232,6 @@ struct ConcatSpec <: ConcatView
     layout::LayoutProperties
     data::DataSpec
     concat::Vector{ViewableSpec}
-    #columns::Spec
     resolve::Spec
 end
 function ConcatSpec(; concat, kw...)
