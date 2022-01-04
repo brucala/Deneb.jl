@@ -166,18 +166,23 @@ struct LayerSpec <: MultiViewSpec
     projection::Spec
     resolve::Spec
 end
+
+const SingleOrLayerSpec = Union{SingleSpec, LayerSpec}
+
+SingleOrLayerSpec(s::NamedTuple) = haskey(s, :layer) ? LayerSpec(; s...) : SingleSpec(; s...)
+
 function LayerSpec(; layer, kw...)
     spectuple = (
         t === Spec ? Spec(kw, f) :
         f !== :layer ? t(; kw...) :
-        layer isa Vector ? layer :
-        Union{SingleSpec, LayerSpec}[layer]
+        layer isa Vector{<:SingleOrLayerSpec} ? layer :
+        layer isa Vector{<:NamedTuple} ? [SingleOrLayerSpec(s) for s in layer] :
+        SingleOrLayerSpec[layer]
         for (f, t) in zip(fieldnames(LayerSpec), fieldtypes(LayerSpec))
     )
     LayerSpec(spectuple...)
 end
 
-const SingleOrLayerSpec = Union{SingleSpec, LayerSpec}
 
 struct FacetSpec <: LayoutSpec
     common::CommonProperties

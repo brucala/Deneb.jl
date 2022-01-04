@@ -12,8 +12,6 @@ is specified in both, then the result specification will use the property from `
 If the types of the two specs are different then the result spec will be a TopLevelSpec.
 """
 Base.:*(a::Spec, b::Spec) = isnothing(value(b)) ? Spec(a) : Spec(b)
-Base.:*(a::Spec, b::ConstrainedSpec) = vlspec(a) * b
-Base.:*(a::ConstrainedSpec, b::Spec) = a * vlspec(b)
 function Base.:*(a::Spec{NamedTuple}, b::Spec{NamedTuple})
     aspec, bspec = a.spec, b.spec
     properties = propertynames(aspec) ∪ propertynames(bspec)
@@ -23,6 +21,9 @@ function Base.:*(a::Spec{NamedTuple}, b::Spec{NamedTuple})
     )
     return Spec(new_spec)
 end
+
+Base.:*(a::Spec, b::ConstrainedSpec) = vlspec(spec(a) * spec(b))
+Base.:*(a::ConstrainedSpec, b::Spec) = vlspec(spec(a) * spec(b))
 
 Base.:*(a::T, b::T) where {T<:ConstrainedSpec}  = T((getfield(a, f) * getfield(b, f) for f in fieldnames(T))...)
 Base.:*(a::TopLevelSpec, b::TopLevelSpec)  = TopLevelSpec((getfield(a, f) * getfield(b, f) for f in fieldnames(TopLevelSpec))...)
