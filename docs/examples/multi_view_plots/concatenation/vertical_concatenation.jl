@@ -8,7 +8,7 @@ using Deneb
 
 data = Data(url="https://vega.github.io/vega-datasets/data/weather.csv")
 
-base = Data(data) * Transform(filter="datum.location === 'Seattle'")
+base = Transform(filter="datum.location === 'Seattle'") * vlspec(height=200)
 
 bar = Mark(:bar) * Encoding("month(date):O", "mean(precipitation):Q")
 
@@ -18,6 +18,6 @@ bubble = Mark(:point) * Encoding(
     size="count()",
 )
 
-chart = base * [bar; bubble]
+chart = data * base * [bar; bubble]
 
 save("assets/vertical_concat.png", chart)  #src

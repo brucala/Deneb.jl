@@ -13,6 +13,6 @@ chart = data * Mark(:bar) * Transform(
 )* Encoding(
     x=field("sum(people)", title=:population),
     y="age",
-)
+) * vlspec(height=(;step=18))
 
 save("assets/aggregate_bar_chart.png", chart)  #src
