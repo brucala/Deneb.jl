@@ -243,7 +243,8 @@ function ConcatSpec(; concat, kw...)
     spectuple = (
         t === Spec ? Spec(kw, f) :
         f !== :concat ? t(; kw...) :
-        concat isa Vector ? concat :
+        concat isa Vector{<:ViewableSpec} ? concat :
+        concat isa Vector{<:NamedTuple} ? [ViewableSpec(; s...) for s in concat] :
         ViewableSpec[concat]
         for (f, t) in zip(fieldnames(ConcatSpec), fieldtypes(ConcatSpec))
     )
@@ -263,7 +264,8 @@ function HConcatSpec(; hconcat, kw...)
     spectuple = (
         t === Spec ? Spec(kw, f) :
         f !== :hconcat ? t(; kw...) :
-        hconcat isa Vector ? hconcat :
+        hconcat isa Vector{<:ViewableSpec} ? hconcat :
+        hconcat isa Vector{<:NamedTuple} ? [ViewableSpec(; s...) for s in hconcat] :
         ViewableSpec[hconcat]
         for (f, t) in zip(fieldnames(HConcatSpec), fieldtypes(HConcatSpec))
     )
@@ -283,7 +285,8 @@ function VConcatSpec(; vconcat, kw...)
     spectuple = (
         t === Spec ? Spec(kw, f) :
         f !== :vconcat ? t(; kw...) :
-        vconcat isa Vector ? vconcat :
+        vconcat isa Vector{<:ViewableSpec} ? vconcat :
+        vconcat isa Vector{<:NamedTuple} ? [ViewableSpec(; s...) for s in vconcat] :
         ViewableSpec[vconcat]
         for (f, t) in zip(fieldnames(VConcatSpec), fieldtypes(VConcatSpec))
     )
