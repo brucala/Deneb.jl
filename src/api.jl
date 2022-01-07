@@ -117,6 +117,18 @@ Sets the projection properties.
 """
 projection(type; kw...) = vlspec(; projection=(; type, kw...))
 
+
+"""
+    condition(param::String, iftrue, iffalse)
+    condition_test(test::String, iftrue, iffalse)
+If iftrue/iffalse isn't a NamedTuple, then it'll be converted as a NamedTuple with name :value.
+"""
+condition(param::String, iftrue, iffalse=nothing) = (condition=(; param, _value(iftrue)...), _value(iffalse)...)
+condition_test(test::String, iftrue, iffalse=nothing) = (condition=(; test, _value(iftrue)...), _value(iffalse)...)
+_value(x::NamedTuple) = x
+_value(x::Nothing) = (;)
+_value(x) = (; value=x)
+
 ###
 ### Helper functions and constants
 ###
