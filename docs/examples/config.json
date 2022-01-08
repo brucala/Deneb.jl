@@ -7,6 +7,7 @@
         "single_view_plots",
         "multi_view_plots",
         "layered_plots",
-        "composite_marks"
+        "composite_marks",
+        "interactive"
     ]
 }
