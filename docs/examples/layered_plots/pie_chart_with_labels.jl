@@ -7,7 +7,7 @@
 using Deneb
 
 data = (
-    category=1:6,
+    category=string.('a':'f'),
     value=rand(1:10, 6)
 )
 

@@ -8,10 +8,10 @@ using Deneb
 
 data = Data(url="https://vega.github.io/vega-datasets/data/penguins.json")
 
-chart = data * Mark(:boxplot) * Encoding(
-    x=:Species,
+chart = data * Mark(:boxplot, size=30) * Encoding(
     y=(field="Body Mass (g)", type=:quantitative, scale=(;zero=false)),
+    x=:Species,
     color=field(:Species, legend=nothing)
-)
+) * vlspec(width=250, height=250)
 
-save("assets/error_bars_stdev.png", chart)  #src
+save("assets/boxplot.png", chart)  #src
