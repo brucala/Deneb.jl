@@ -134,6 +134,38 @@ _value(x::NamedTuple) = x
 _value(::Nothing) = (;)
 _value(x) = (; value=x)
 
+
+"""
+    interactive(;bindx=true, bindy=true, shift_on_y=false)
+"""
+function interactive(;bindx=true, bindy=true, shift_on_y=false)
+    name, select, bind = :interactive, :interval, :scales
+    bindx && bindy && !shift_on_y && return Params(;name, select, bind)
+
+    params = Params()
+    if bindx
+        name = :interactivex
+        select = (type=:interval, encodings=[:x])
+        if bindy && shift_on_y
+            zoom = "wheel![!event.shiftKey]"
+            translate = "[mousedown[!event.shiftKey], mouseup] > mousemove"
+            select = (;select..., zoom, translate)
+            end
+        params *= Params(;name, select, bind)
+    end
+    if bindy
+        name = :interactivey
+        select = (type=:interval, encodings=[:y])
+        if shift_on_y
+            zoom = "wheel![event.shiftKey]"
+            translate = "[mousedown[event.shiftKey], mouseup] > mousemove"
+            select = (;select..., zoom, translate)
+            end
+        params *= Params(;name, select, bind)
+    end
+    return params
+end
+
 ###
 ### Helper functions and constants
 ###

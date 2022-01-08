@@ -14,7 +14,7 @@ include("themes.jl")
 export spec, vlspec,
     Data, Mark, Encoding, Transform, Params, Facet, Repeat,
     field, concat, layout, projection,
-    condition, condition_test,
+    interactive, condition, condition_test,
     save, set_theme!, print_theme
 
 end # module
