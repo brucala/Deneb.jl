@@ -24,4 +24,4 @@ rule = Mark(:rule, color=:firebrick, size=3) * Transform(
 chart = data * (bar + rule)
 
 # save cover #src
-save("assets/interactive_legend.png", chart) #src
+save("assets/interactive_average.png", chart) #src
