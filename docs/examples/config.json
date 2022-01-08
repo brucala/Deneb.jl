@@ -5,9 +5,9 @@
     },
     "order": [
         "single_view_plots",
+        "composite_marks",
         "multi_view_plots",
         "layered_plots",
-        "composite_marks",
         "interactive"
     ]
 }
