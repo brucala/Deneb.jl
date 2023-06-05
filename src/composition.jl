@@ -89,7 +89,7 @@ function Base.:*(a::T, b::SingleOrLayerSpec) where T <: LayoutSpec
 end
 Base.:*(a::SingleOrLayerSpec, b::LayoutSpec) = b * a
 
-Base.:*(a::TopLevelSpec, b::LayoutProperties) where T = TopLevelSpec(a.toplevel, a.viewspec * b)
+Base.:*(a::TopLevelSpec, b::LayoutProperties) = TopLevelSpec(a.toplevel, a.viewspec * b)
 function Base.:*(a::T, b::LayoutProperties) where T<:LayoutSpec
     T(
         (f === :layout ? b : getfield(a, f) for f in fieldnames(T))...
@@ -199,16 +199,17 @@ function Base.:+(a::LayerSpec, b::LayerSpec)
     common, transform, params, data, encoding, layer, width, height, view, projection, resolve = collect(
         getfield(b, f) for f in fieldnames(LayerSpec)
     )
-    # if parent data, encoding, width and height specs are shared across layers
+    # if parent data, encoding, transform, width and height specs are shared across layers
     # then append layers: [s1, s2] + [s3, s4] -> [s1, s2, s3, s4]
-    # otherwise nest layers: [s1, s2] + [s3, s4] -> [s1, s2, [s3, s4]]
+    # otherwise nest layers: [s1, s2] + [s3, s4] -> [[s1, s2], [s3, s4]]
     data = _different_or_nothing(data, a.data)
     encoding = _different_or_nothing(encoding, a.encoding)
+    transform = _different_or_nothing(transform, a.transform)
     width = _different_or_nothing(width, a.width)
     height = _different_or_nothing(height, a.height)
     alayer = deepcopy(a.layer)
     blayer = LayerSpec(;value(common)..., data=data.data, transform=transform.transform, params=params.params, encoding=encoding.encoding, layer, width, height, view, projection, resolve)
-    if isnothing(data.data) && isnothing(value(encoding.encoding)) && isnothing(value(width)) && isnothing(value(height))
+    if isnothing(data.data) && isnothing(value(encoding.encoding)) && isempty(transform) && isnothing(value(width)) && isnothing(value(height))
         append!(alayer, blayer.layer)
     else
         push!(alayer, blayer)
@@ -228,8 +229,8 @@ function Base.:+(a::LayerSpec, b::LayerSpec)
     )
 end
 
-function _different_or_nothing(s1, s)
-    (s1 != s || isnothing(value(s1))) && return s1
+function _different_or_nothing(s1, s2)
+    (s1 != s2 || isempty(s1)) && return s1
     typeof(s1) <: Spec ? Spec(nothing) : typeof(s1)(Spec(nothing))
 end
 
