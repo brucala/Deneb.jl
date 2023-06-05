@@ -3,8 +3,13 @@ const DEFAULT_CONFIG = (
     mark=(;tooltip=true)
 )
 
+const DEFAULT_CONFIG_NO_TOOLTIP = (
+    view=(continuousWidth=300, continuousHeight=300, step=25),
+)
+
 const CONFIG_THEMES = Dict(
     :default => DEFAULT_CONFIG,
+    :default_no_tooltip => DEFAULT_CONFIG_NO_TOOLTIP,
     :empty => (;),
 )
 
