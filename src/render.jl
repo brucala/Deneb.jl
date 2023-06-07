@@ -40,9 +40,9 @@ function vl2command(fmt::Symbol)
     fmt == :vega && (fmt = :vg)
     valid_formats = (:vg, :png, :svg, :pdf)
     Symbol(fmt) ∉ valid_formats && return @warn("Format must be any of $valid_formats")
-    deps = ["--yes", "-p", "node@16", "-p", "vega", "-p", "vega-lite"]
+    deps = ["--yes", "-p", "vega", "-p", "vega-lite"]
     fmt == :vg || append!(deps, ["-p", "canvas"])
-    Cmd(`$npx $deps vl2$fmt`)
+    Cmd(`$(node()) $npx $deps vl2$fmt`)
 end
 
 # Pluto displays this MIME type
