@@ -126,18 +126,22 @@ struct TransformSpec <: ConstrainedSpec
     TransformSpec(v::Vector) = new([Spec(i) for i in v if !isempty(Spec(i))])
 end
 TransformSpec(s::Spec{Vector{Spec}}) = TransformSpec(s.spec)
-TransformSpec(s) = TransformSpec([Spec(s)])
+TransformSpec(s::Spec) = TransformSpec([s])
+TransformSpec(s) = TransformSpec(Spec(s))
 TransformSpec(; transform=Spec[], kw...) = TransformSpec(transform)
 value(s::TransformSpec) = value.(s.transform)
+Spec(s::TransformSpec) = Spec(s.transform)
 
 struct ParamsSpec <: ConstrainedSpec
     params::Vector{Spec}
     ParamsSpec(v::Vector) = new([Spec(i) for i in v if !isempty(Spec(i))])
 end
 ParamsSpec(s::Spec{Vector{Spec}}) = ParamsSpec(s.spec)
-ParamsSpec(s) = ParamsSpec([Spec(s)])
+ParamsSpec(s::Spec) = ParamsSpec([s])
+ParamsSpec(s) = ParamsSpec(Spec(s))
 ParamsSpec(; params=Spec[], kw...) = ParamsSpec(params)
 value(s::ParamsSpec) = value.(s.params)
+Spec(s::ParamsSpec) = Spec(s.params)
 
 struct SingleSpec <: ViewableSpec
     common::CommonProperties

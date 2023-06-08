@@ -76,6 +76,8 @@ function Base.:*(a::LayerSpec, b::SingleSpec)
 end
 
 function Base.:*(a::T, b::SingleOrLayerSpec) where T <: LayoutSpec
+    # do we want the properties of b to be composed with those
+    # of a, or to be part of the spec? for now put them in the spec
     T(
         a.common,
         a.transform,
