@@ -15,6 +15,7 @@ export spec, vlspec,
     Data, Mark, Encoding, Transform, Params, Facet, Repeat,
     field, concat, layout, projection,
     interactive, condition, condition_test,
-    save, set_theme!, print_theme
+    save, json, html,  # render
+    set_theme!, print_theme  # themes
 
 end # module
