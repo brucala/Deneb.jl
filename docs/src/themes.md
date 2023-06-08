@@ -28,7 +28,7 @@ chart
 
 ## Changing the theme
 
-The method `set_theme!` changes the theme during the lenght of your Julia session. For instance, the theme `:empty` disables the toplovel `config` so Vega-Lite's defaults are used:
+The method `set_theme!` changes the theme during the length of your Julia session. For instance, the theme `:empty` disables the toplevel `config` so Vega-Lite's defaults are used:
 ```@example themes
 set_theme!(:empty)
 print_theme()
@@ -38,7 +38,16 @@ The chart renders as:
 ```@example themes
 chart
 ```
-Note that the smaller figure size and that tooltips aren't enabled.
+Note the smaller figure size and that tooltips aren't enabled.
+
+A default theme with the default figure size but no tooltips, `:default_no_tooltip:`, is also available:
+```@example themes
+set_theme!(:default_no_tooltip)
+print_theme()
+```
+```@example themes
+chart
+```
 
 ## Vega themes
 
@@ -57,7 +66,7 @@ chart
 
 ## User defined themes
 
-A theme can be specified by defining a top level `config` using a `NamedTuple`. For example, the follwing user defined theme is equivalent to the Vega `:dark` theme:
+A custom theme can be specified by defining a top level `config` using a `NamedTuple`. For example, the following user defined theme is equivalent to the Vega `:dark` theme:
 ```@example themes
 config = (
   background="#333",

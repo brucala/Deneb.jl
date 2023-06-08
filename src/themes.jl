@@ -66,6 +66,7 @@ global config:
     "mark": {"tooltip": true}
 }
 ```
+The `:default_no_tooltip` theme sets the default size as above, but disables tooltips.
 The `:empty` theme uses Vega-Lite default empty configuration.
 
 Other available themes are any of the Vega themes: `:dark`, `:excel`, `:fivethirtyeight`,
@@ -75,8 +76,8 @@ config will be used.
 
     set_theme!(config_theme::Symbol, vega_theme::Symbol)
 
-Sets the global config theme (`:default`, `:empty`) and the vega theme (use `vega_theme =
-:default` for no vega theme).
+Sets the global config theme (`:default`, `:default_no_tooltip`, `:empty`) and the vega
+theme (use `vega_theme = :default` for no vega theme).
 
     set_theme!(config::NamedTuple, [vega_theme::Symbol])
 
