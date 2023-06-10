@@ -12,15 +12,7 @@ Spec(s::NamedTuple) = Spec{NamedTuple}(NamedTuple((k=>Spec(v) for (k,v) in pairs
 Spec(s::Vector) = Spec{Vector{Spec}}([Spec(i) for i in s])
 Spec(s::Spec) = Spec(s.spec)
 Spec(s, field) = Spec(get(s, field, nothing))
-
-function Spec(s::AbstractSpec)
-    Spec(
-        NamedTuple(
-            property => Spec(getproperty(s, property))
-            for property in propertynames(s)
-        )
-    )
-end
+Spec(s::AbstractSpec) = Spec(value(s))
 
 Base.:(==)(s1::Spec, s2::Spec) = s1.spec == s2.spec
 
@@ -101,7 +93,7 @@ LayoutProperties(; spec...) = ConstrainedSpec(LayoutProperties; spec...)
 struct DataSpec <: ConstrainedSpec
     data  # store the original object, not a Spec
 end
-DataSpec(s::Spec) = DataSpec(value(s))
+DataSpec(s::Union{Spec, DataSpec}) = DataSpec(value(s))
 DataSpec(; data=nothing, kw...) = DataSpec(data)
 function value(s::DataSpec)
     if Tables.istable(s.data) && :values ∉ Tables.columnnames(s.data)
@@ -181,14 +173,15 @@ function LayerSpec(; layer, kw...)
     spectuple = (
         t === Spec ? Spec(kw, f) :
         f !== :layer ? t(; kw...) :
-        layer isa Vector{<:SingleOrLayerSpec} ? layer :
-        layer isa Vector{<:NamedTuple} ? [SingleOrLayerSpec(s) for s in layer] :
-        SingleOrLayerSpec[layer]
+        _layer(layer)
         for (f, t) in zip(fieldnames(LayerSpec), fieldtypes(LayerSpec))
     )
     LayerSpec(spectuple...)
 end
 
+_layer(l::Vector{<:SingleOrLayerSpec}) = l
+_layer(l::Vector{<:NamedTuple}) = [SingleOrLayerSpec(s) for s in l]
+_layer(l) = SingleOrLayerSpec[l]
 
 struct FacetSpec <: LayoutSpec
     common::CommonProperties

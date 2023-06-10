@@ -84,7 +84,7 @@ function Base.:*(a::T, b::SingleOrLayerSpec) where T <: LayoutSpec
         a.params,
         a.layout,
         a.data * b.data,
-        a.spec * _remove_properties(b, :data),
+        a.spec * _remove_fields(b, :data),
         getfield(a, _key(T)),
         a.resolve
     )
@@ -135,11 +135,11 @@ _key(::Type{VConcatSpec}) = :vconcat
 _key(::Type{FacetSpec}) = :facet
 _key(::Type{RepeatSpec}) = :repeat
 
-function _remove_properties(s::ConstrainedSpec, properties...)
+function _remove_fields(s::T, fields...) where T<:ConstrainedSpec
     kw = Dict(
-        property => getproperty(s, property)
-        for property in propertynames(s)
-        if property ∉ properties
+        field => getfield(s, field)
+        for field in fieldnames(T)
+        if field ∉ fields
     )
     typeof(s)(;kw...)
 end
@@ -148,15 +148,6 @@ end
 ###
 ### Layering
 ###
-
-function LayerSpec(s::SingleSpec)
-    common, transform, params, data, mark, encoding, width, height, view, projection = collect(
-        getfield(s, f) for f in fieldnames(SingleSpec)
-    )
-    # Promote data, width and height specs as parent specs
-    layer = [SingleSpec(; value(common)..., transform=transform.transform , params=params.params, mark=mark.mark, encoding=encoding.encoding, view, projection)]
-    LayerSpec(;data=data.data, width, height, layer=layer)
-end
 
 """
     spec1::ConstrainedSpec + spec2::ConstrainedSpec
@@ -194,41 +185,52 @@ Base.:+(a::LayoutSpec, ::LayoutSpec) = _layout_layering_error(a)
 _layout_layering_error(a) = error("Multiview layout spec $(typeof(a)) can not be layered")
 
 # allowed layering
-Base.:+(a::SingleSpec, b::SingleSpec) = LayerSpec(a) + LayerSpec(b)
-Base.:+(a::SingleSpec, b::LayerSpec) = LayerSpec(a) + b
-Base.:+(a::LayerSpec, b::SingleSpec) = a + LayerSpec(b)
-function Base.:+(a::LayerSpec, b::LayerSpec)
-    common, transform, params, data, encoding, layer, width, height, view, projection, resolve = collect(
-        getfield(b, f) for f in fieldnames(LayerSpec)
-    )
-    # if parent data, encoding, transform, width and height specs are shared across layers
-    # then append layers: [s1, s2] + [s3, s4] -> [s1, s2, s3, s4]
-    # otherwise nest layers: [s1, s2] + [s3, s4] -> [[s1, s2], [s3, s4]]
-    data = _different_or_nothing(data, a.data)
-    encoding = _different_or_nothing(encoding, a.encoding)
-    transform = _different_or_nothing(transform, a.transform)
-    width = _different_or_nothing(width, a.width)
-    height = _different_or_nothing(height, a.height)
-    alayer = deepcopy(a.layer)
-    blayer = LayerSpec(;value(common)..., data=data.data, transform=transform.transform, params=params.params, encoding=encoding.encoding, layer, width, height, view, projection, resolve)
-    if isnothing(data.data) && isnothing(value(encoding.encoding)) && isempty(transform) && isnothing(value(width)) && isnothing(value(height))
-        append!(alayer, blayer.layer)
+function Base.:+(a::SingleSpec, b::SingleSpec)
+    shared, a, b = _extract_shared(a, b, fieldnames(LayerSpec))
+    layer = [a, b]
+    LayerSpec(; layer=layer, shared...)
+end
+function Base.:+(a::SingleSpec, b::LayerSpec)
+    shared, a, b = _extract_shared(a, b, fieldnames(LayerSpec))
+    if _has_properties_other_than_layer(b)
+        layer = Union{SingleSpec, LayerSpec}[a, b.layer...]
     else
-        push!(alayer, blayer)
+        layer = Union{SingleSpec, LayerSpec}[a, b]
     end
-    LayerSpec(
-        a.common,
-        a.transform,
-        a.params,
-        a.data,
-        a.encoding,
-        alayer,
-        a.width,
-        a.height,
-        a.view,
-        a.projection,
-        a.resolve
-    )
+    LayerSpec(; layer=layer, shared...)
+end
+Base.:+(a::LayerSpec, b::SingleSpec) = b + a
+function Base.:+(a::LayerSpec, b::LayerSpec)
+    to_extract = setdiff(fieldnames(LayerSpec), [:layer])
+    shared, a, b = _extract_shared(a, b, to_extract)
+    expand_a = _has_properties_other_than_layer(a)
+    expand_b = _has_properties_other_than_layer(b)
+    if expand_a & expand_b
+        layer = Union{SingleSpec, LayerSpec}[a.layer..., b.layer...]
+    elseif expand_a
+        layer = Union{SingleSpec, LayerSpec}[a.layer..., b]
+    elseif expand_b
+        layer = Union{SingleSpec, LayerSpec}[a, b.layer...]
+    else
+        layer = Union{SingleSpec, LayerSpec}[a, b]
+    end
+    LayerSpec(; layer=layer, shared...)
+end
+
+_has_properties_other_than_layer(s) = isempty(setdiff(propertynames(s), [:layer]))
+
+function _extract_shared(s1::ConstrainedSpec, s2::ConstrainedSpec, fields)
+    shared = Dict{Symbol, Any}()
+    for field in fields
+        field in fieldnames(typeof(s1)) || continue
+        field in fieldnames(typeof(s2)) || continue
+        if getfield(s1, field) == getfield(s2, field)
+            shared[field] = getfield(s1, field)
+        end
+    end
+    s1 = _remove_fields(s1, keys(shared)...)
+    s2 = _remove_fields(s2, keys(shared)...)
+    return NamedTuple(shared), s1, s2
 end
 
 function _different_or_nothing(s1, s2)

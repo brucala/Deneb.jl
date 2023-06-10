@@ -55,80 +55,164 @@ end
 
 @testset "test layering" begin
 
-    @testset "LayerSpec from SingleSpec" begin
-        s = (data=1, width=2, height=3, encoding=:e, mark=:bar, name=:n, view=:v, projection=:p)
-        l = Deneb.LayerSpec(Deneb.SingleSpec(;s...))
-        @test l isa Deneb.LayerSpec
+    #@testset "LayerSpec from SingleSpec" begin
+    #    s = (data=1, width=2, height=3, encoding=:e, mark=:bar, name=:n, view=:v, projection=:p)
+    #    l = Deneb.LayerSpec(Deneb.SingleSpec(;s...))
+    #    @test l isa Deneb.LayerSpec
+    #    @test value(l.data) == 1
+    #    @test value(l.width) == 2
+    #    @test value(l.height) == 3
+    #    @test isempty(l.encoding)
+    #    @test isempty(l.common)
+    #    @test isempty(l.view)
+    #    @test isempty(l.projection)
+    #    @test l.layer isa Vector
+    #    @test length(l.layer) == 1
+    #    @test value(l.layer[1].mark) == "bar"
+    #    @test value(l.layer[1].encoding) == "e"
+    #    @test value(l.layer[1].name) == "n"
+    #    @test value(l.layer[1].view) == "v"
+    #    @test value(l.layer[1].projection) == "p"
+    #end
+    @testset "layer SingleSpecs" begin
+        s1 = vlspec(data=1, width=100, mark=:bar, encoding=:a)
+        l = s1 + s1
+        @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
         @test value(l.data) == 1
-        @test value(l.width) == 2
-        @test value(l.height) == 3
-        @test isempty(l.encoding)
-        @test isempty(l.common)
-        @test isempty(l.view)
-        @test isempty(l.projection)
-        @test l.layer isa Vector
-        @test length(l.layer) == 1
-        @test value(l.layer[1].mark) == "bar"
-        @test value(l.layer[1].encoding) == "e"
-        @test value(l.layer[1].name) == "n"
-        @test value(l.layer[1].view) == "v"
-        @test value(l.layer[1].projection) == "p"
+        @test value(l.width) == 100
+        @test value(l.encoding) == "a"
+        @test length(l.layer) == 2
+        @test l.layer[1] isa Deneb.SingleSpec
+        @test l.layer[2] isa Deneb.SingleSpec
+        # mark isn't a field of LayerSpec
+        @test value(l.layer[1]) == (; mark="bar")
+        @test value(l.layer[2]) == (; mark="bar")
+        s2 = vlspec(data=2, width=200, mark=:line, encoding=:b)
+        l = s1 + s2
+        @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
+        # no property was shared between s1 and s2
+        @test propertynames(l) == [:layer]
+        @test length(l.layer) == 2
+        @test l.layer[1] isa Deneb.SingleSpec
+        @test l.layer[2] isa Deneb.SingleSpec
+        @test value(l.layer[1]) == (data=1, mark="bar", encoding="a", width=100)
+        @test value(l.layer[2]) == (data=2, mark="line", encoding="b", width=200)
     end
-
-    @testset "layer SingleSpec" begin
-        l = vlspec(data=1, width=100, mark=:bar) + vlspec(data=1, width=100, mark=:line)
+    @testset "layer SingleSpec + LayerSpec" begin
+        s1 = vlspec(data=1, width=100, mark=:bar, encoding=:a)
+        s2 = vlspec(data=2, width=100, mark=:line, encoding=:b)
+        # all properties are shared
+        # final layer with shared properties and layer = [s1, s1, s1]
+        l = s1 + s1 + s1
         @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
         @test value(l.data) == 1
         @test value(l.width) == 100
-        @test length(l.layer) == 2
-        @test value(l.layer[1]) == (;mark="bar")
-        @test value(l.layer[2]) == (; mark="line")
-        l = vlspec(data=1, width=100, mark=:bar) + vlspec(data=2, width=100, mark=:line)
+        @test value(l.encoding) == "a"
+        @test length(l.layer) == 3
+        @test l.layer[1] isa Deneb.SingleSpec
+        @test l.layer[2] isa Deneb.SingleSpec
+        @test l.layer[3] isa Deneb.SingleSpec
+        @test value(l.layer[1]) == (; mark="bar")
+        @test value(l.layer[2]) == (; mark="bar")
+        @test value(l.layer[3]) == (; mark="bar")
+        # all shared properties of layered spec (width) match SingleSpec
+        # final layer = [s1, s2, s1]
+        l = s1 + (s2 + s1)
         @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
-        @test value(l.data) == 1
+        @test value(l.width) == 100
+        @test length(l.layer) == 3
+        @test l.layer[1] isa Deneb.SingleSpec
+        @test l.layer[2] isa Deneb.SingleSpec
+        @test l.layer[3] isa Deneb.SingleSpec
+        @test value(l.layer[1]) == (data=1, mark="bar", encoding="a")
+        @test value(l.layer[2]) == (data=2, mark="line", encoding="b")
+        @test value(l.layer[3]) == (data=1, mark="bar", encoding="a")
+        # some shared properties of layered spec (width) don't match SingleSpec
+        # final layer = [s1, [s2, s2]]
+        l = s1 + (s2 + s2)
+        @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
         @test value(l.width) == 100
         @test length(l.layer) == 2
-        @test value(l.layer[1]) == (;mark="bar")
+        @test l.layer[1] isa Deneb.SingleSpec
         @test l.layer[2] isa Deneb.LayerSpec
+        @test value(l.layer[1]) == (data=1, mark="bar", encoding="a")
         @test value(l.layer[2].data) == 2
-        @test value(l.layer[2].layer) == [(; mark="line")]
+        @test value(l.layer[2].encoding) == "b"
+        @test length(l.layer[2].layer) == 2
+        @test l.layer[2].layer[1] isa Deneb.SingleSpec
+        @test l.layer[2].layer[2] isa Deneb.SingleSpec
+        @test value(l.layer[2].layer[1]) == (; mark="line")
+        @test value(l.layer[2].layer[2]) == (; mark="line")
     end
     @testset "layer LayerSpecs" begin
-        l1 = vlspec(data=1, mark=:bar) + vlspec(mark=:line)
-        l2 = vlspec(mark=:rule) + vlspec(mark=:point)
-        l = l1 + l2
+        s1 = vlspec(data=1, width=100, mark=:bar, encoding=:a)
+        s2 = vlspec(data=2, width=100, mark=:line, encoding=:b)
+        # expand all
+        l = (s1 + s2) + (s1 + s2)
         @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
-        @test value(l.data) == 1
+        @test value(l.width) == 100
         @test length(l.layer) == 4
-        @test value(l.layer[1]) == (;mark="bar")
-        @test value(l.layer[2]) == (; mark="line")
-        @test value(l.layer[3]) == (;mark="rule")
-        @test value(l.layer[4]) == (; mark="point")
-        l3 = vlspec(data=2) * l2
-        l = l1 + l3
+        @test l.layer[1] isa Deneb.SingleSpec
+        @test l.layer[2] isa Deneb.SingleSpec
+        @test l.layer[3] isa Deneb.SingleSpec
+        @test l.layer[4] isa Deneb.SingleSpec
+        @test value(l.layer[1]) == (data=1, mark="bar", encoding="a")
+        @test value(l.layer[2]) == (data=2, mark="line", encoding="b")
+        @test value(l.layer[3]) == (data=1, mark="bar", encoding="a")
+        @test value(l.layer[4]) == (data=2, mark="line", encoding="b")
+        # no expand
+        l = (s1 + s1) + (s2 + s2)
         @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
-        @test value(l.data) == 1
+        @test value(l.width) == 100
+        @test length(l.layer) == 2
+        @test l.layer[1] isa Deneb.LayerSpec
+        @test l.layer[2] isa Deneb.LayerSpec
+        @test value(l.layer[1].data) == 1
+        @test value(l.layer[1].encoding) == "a"
+        @test length(l.layer[1].layer) == 2
+        @test l.layer[2].layer[1] isa Deneb.SingleSpec
+        @test l.layer[1].layer[2] isa Deneb.SingleSpec
+        @test value(l.layer[1].layer[1]) == (; mark="bar")
+        @test value(l.layer[1].layer[2]) == (; mark="bar")
+        @test value(l.layer[2].data) == 2
+        @test value(l.layer[2].encoding) == "b"
+        @test length(l.layer[2].layer) == 2
+        @test l.layer[2].layer[1] isa Deneb.SingleSpec
+        @test l.layer[2].layer[2] isa Deneb.SingleSpec
+        @test value(l.layer[2].layer[1]) == (; mark="line")
+        @test value(l.layer[2].layer[2]) == (; mark="line")
+        # expand left
+        l = (s1 + s2) + (s2 + s2)
+        @test value(l.width) == 100
         @test length(l.layer) == 3
-        @test value(l.layer[1]) == (;mark="bar")
-        @test value(l.layer[2]) == (; mark="line")
+        @test l.layer[1] isa Deneb.SingleSpec
+        @test l.layer[2] isa Deneb.SingleSpec
         @test l.layer[3] isa Deneb.LayerSpec
-        @test value(l.layer[3].layer[1]) == (; mark="rule")
-        @test value(l.layer[3].layer[2]) == (; mark="point")
+        @test length(l.layer[3].layer) == 2
+        @test l.layer[3].layer[1] isa Deneb.SingleSpec
+        @test l.layer[3].layer[2] isa Deneb.SingleSpec
+        # expand right
+        l = (s1 + s1) + (s1 + s2)
+        @test value(l.width) == 100
+        @test length(l.layer) == 3
+        @test l.layer[1] isa Deneb.LayerSpec
+        @test l.layer[2] isa Deneb.SingleSpec
+        @test l.layer[3] isa Deneb.SingleSpec
+        @test length(l.layer[1].layer) == 2
+        @test l.layer[1].layer[1] isa Deneb.SingleSpec
+        @test l.layer[1].layer[2] isa Deneb.SingleSpec
     end
     @testset "composition with layer" begin
         l = vlspec(data=1, mark=:bar) + vlspec(data=2, mark=:line)
         cl = vlspec(data=3) * l
         @test cl isa Deneb.TopLevelSpec{Deneb.LayerSpec}
         @test value(cl.data) == 3
-        @test value(cl.layer[1].data) === nothing
+        @test value(cl.layer[1].data) == 1
         @test value(cl.layer[2].data) == 2
-        @test value(cl.layer[2].layer[1].data) === nothing
         cl = l * vlspec(data=3)
         @test cl isa Deneb.TopLevelSpec{Deneb.LayerSpec}
-        @test value(cl.data) == 1
         @test value(cl.layer[1].data) == 3
-        @test value(cl.layer[2].data) == 2
-        @test value(cl.layer[2].layer[1].data) == 3
+        @test value(cl.layer[2].data) == 3
     end
 
 end
