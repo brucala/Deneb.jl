@@ -43,6 +43,12 @@
         )
         composed_spec = t * p * Facet(:f)
         @test value(composed_spec) == (
+            transform = [(fold="a", as=["b", "c"])],
+            params = [(name="p", value=5)],
+            facet = (; field="f"),
+        )
+        composed_spec = Facet(:f) * t * p
+        @test value(composed_spec) == (
             spec=(
                 transform = [(fold="a", as=["b", "c"])],
                 params = [(name="p", value=5)],
@@ -54,26 +60,6 @@
 end
 
 @testset "test layering" begin
-
-    #@testset "LayerSpec from SingleSpec" begin
-    #    s = (data=1, width=2, height=3, encoding=:e, mark=:bar, name=:n, view=:v, projection=:p)
-    #    l = Deneb.LayerSpec(Deneb.SingleSpec(;s...))
-    #    @test l isa Deneb.LayerSpec
-    #    @test value(l.data) == 1
-    #    @test value(l.width) == 2
-    #    @test value(l.height) == 3
-    #    @test isempty(l.encoding)
-    #    @test isempty(l.common)
-    #    @test isempty(l.view)
-    #    @test isempty(l.projection)
-    #    @test l.layer isa Vector
-    #    @test length(l.layer) == 1
-    #    @test value(l.layer[1].mark) == "bar"
-    #    @test value(l.layer[1].encoding) == "e"
-    #    @test value(l.layer[1].name) == "n"
-    #    @test value(l.layer[1].view) == "v"
-    #    @test value(l.layer[1].projection) == "p"
-    #end
     @testset "layer SingleSpecs" begin
         s1 = vlspec(data=1, width=100, mark=:bar, encoding=:a)
         l = s1 + s1

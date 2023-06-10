@@ -76,20 +76,32 @@ function Base.:*(a::LayerSpec, b::SingleSpec)
 end
 
 function Base.:*(a::T, b::SingleOrLayerSpec) where T <: LayoutSpec
-    # do we want the properties of b to be composed with those
-    # of a, or to be part of the spec? for now put them in the spec
+    # if single/layer spec on the right, compose directly the layout spec
     T(
         a.common,
         a.transform,
         a.params,
         a.layout,
-        a.data * b.data,
-        a.spec * _remove_fields(b, :data),
+        a.data,
+        a.spec * b,
         getfield(a, _key(T)),
         a.resolve
     )
 end
-Base.:*(a::SingleOrLayerSpec, b::LayoutSpec) = b * a
+function Base.:*(a::SingleOrLayerSpec, b::T) where T <: LayoutSpec
+    # if single/layer spec on the left, compose its properties with the top level properties of layer giving precedence to single spec
+    T(
+        b.common * a.common,
+        b.transform * a.transform,
+        b.params * a.params,
+        b.layout,
+        b.data * a.data,
+        b.spec * _remove_fields(a, :common, :transform, :params, :data),
+        getfield(b, _key(T)),
+        b.resolve
+    )
+end
+
 
 Base.:*(a::TopLevelSpec, b::LayoutProperties) = TopLevelSpec(a.toplevel, a.viewspec * b)
 function Base.:*(a::T, b::LayoutProperties) where T<:LayoutSpec
