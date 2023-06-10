@@ -71,7 +71,11 @@ end
     @test propertynames(t) == tuple()
     t = Deneb.TransformSpec(transform=nothing)
     @test value(t) == []
+    s = Deneb.Spec(Deneb.TransformSpec(3))
+    @test value(s) == [3]
 end
+
+# TODO: add tests for MarkSpec, EncodingSpec, ParamsSpec, ...
 
 @testset "isempty" begin
     @test isempty(spec(nothing))

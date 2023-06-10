@@ -132,6 +132,8 @@ TransformSpec(; transform=Spec[], kw...) = TransformSpec(transform)
 value(s::TransformSpec) = value.(s.transform)
 Spec(s::TransformSpec) = Spec(s.transform)
 
+# TODO: parameters are named with a unique "name" property required
+# TODO: imposed named params and implement composition logic with unique names
 struct ParamsSpec <: ConstrainedSpec
     params::Vector{Spec}
     ParamsSpec(v::Vector) = new([Spec(i) for i in v if !isempty(Spec(i))])

@@ -1,21 +1,56 @@
-@testset "test spec composition" begin
-    @test spec(a=3) * spec(b=1) == spec(a=3, b=1)
-    @test spec(a=3) * spec(a=1) == spec(a=1)
-    @test spec(a=(;b=1, c=2)) * spec(a=(b=2, d=3)) == spec(a=(b=2, c=2, d=3))
-end
+@testset "test composition" begin
 
-@testset "test vlspec composition" begin
-    @test vlspec(title=2, mark=:bar) * vlspec(name="a", mark=:line) == vlspec(title=2, name="a", mark=:line)
-    @test Data(3) * Encoding(:a, :b) * Mark(:bar) isa Deneb.TopLevelSpec
-    @test value(Data(3) * Encoding(:a, :b) * Mark(:bar) * Encoding("c:q")) == (
-        data = 3,
-        mark = (; type = "bar"),
-        encoding = (
-            x = (field = "c", type = "quantitative"),
-            y = (; field = "b")
+    @testset "spec composition" begin
+        @test spec(a=3) * spec(b=1) == spec(a=3, b=1)
+        @test spec(a=3) * spec(a=1) == spec(a=1)
+        @test spec(a=(;b=1, c=2)) * spec(a=(b=2, d=3)) == spec(a=(b=2, c=2, d=3))
+    end
+
+    @testset "constrained spec composition" begin
+        @test vlspec(title=2, mark=:bar) * vlspec(name="a", mark=:line) == vlspec(title=2, name="a", mark=:line)
+        composed_spec = Data(3) * Encoding(:a, :b) * Mark(:bar)
+        @test composed_spec isa Deneb.TopLevelSpec
+        @test value(composed_spec) == (
+            data = 3,
+            mark = (; type = "bar"),
+            encoding = (
+                x = (; field = "a"),
+                y = (; field = "b")
+            )
         )
-    )
-    @test vlspec() * vlspec(transform=[1, 2]) * vlspec(transform=[2,3]) == vlspec(transform=[1,2,3])
+        @test value(composed_spec * Encoding("c:q")) == (
+            data = 3,
+            mark = (; type = "bar"),
+            encoding = (
+                x = (field = "c", type = "quantitative"),
+                y = (; field = "b")
+            )
+        )
+    end
+
+    @testset "compose Transform/Params" begin
+        @test Deneb.TransformSpec([1, 2]) * Deneb.TransformSpec([2,3]) == Deneb.TransformSpec([1,2,3])
+        @test Deneb.ParamsSpec([1, 2]) * Deneb.ParamsSpec([2,3]) == Deneb.ParamsSpec([1,2,3])
+        t = Transform(fold=:a, as=[:b, :c])
+        @test t * t == t
+        p = Params(name=:p, value=5)
+        @test p * p == p
+        composed_spec = t * p * Mark(:m)
+        @test value(composed_spec) == (
+            transform = [(fold="a", as=["b", "c"])],
+            params = [(name="p", value=5)],
+            mark = (; type="m"),
+        )
+        composed_spec = t * p * Facet(:f)
+        @test value(composed_spec) == (
+            spec=(
+                transform = [(fold="a", as=["b", "c"])],
+                params = [(name="p", value=5)],
+            ),
+            facet = (; field="f"),
+        )
+    end
+
 end
 
 @testset "test layering" begin
