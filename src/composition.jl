@@ -141,6 +141,7 @@ function Base.:*(a::T, b::SingleSpec) where T<:ConcatView
         a.resolve
     )
 end
+
 _key(::Type{ConcatSpec}) = :concat
 _key(::Type{HConcatSpec}) = :hconcat
 _key(::Type{VConcatSpec}) = :vconcat
@@ -156,6 +157,8 @@ function _remove_fields(s::T, fields...) where T<:ConstrainedSpec
     typeof(s)(;kw...)
 end
 
+Base.:*(a::T, b::ResolveSpec) where T<:TopLevelSpec{<:MultiViewSpec} = a * spec(resolve=b)
+Base.:*(a::ResolveSpec, b::T) where T<:TopLevelSpec{<:MultiViewSpec} = b * a
 
 ###
 ### Layering

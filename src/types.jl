@@ -151,6 +151,12 @@ struct SingleSpec <: ViewableSpec
 end
 SingleSpec(; spec...) = ConstrainedSpec(SingleSpec; spec...)
 
+struct ResolveSpec <: ConstrainedSpec
+    resolve::Spec
+end
+ResolveSpec(; resolve=Spec(nothing), kw...) = ResolveSpec(Spec(resolve))
+value(s::ResolveSpec) = value(s.resolve)
+
 struct LayerSpec <: MultiViewSpec
     common:: CommonProperties
     transform::TransformSpec
@@ -162,7 +168,7 @@ struct LayerSpec <: MultiViewSpec
     height::Spec
     view::Spec
     projection::Spec
-    resolve::Spec
+    resolve::ResolveSpec
 end
 
 const SingleOrLayerSpec = Union{SingleSpec, LayerSpec}
@@ -191,7 +197,7 @@ struct FacetSpec <: LayoutSpec
     data::DataSpec
     spec::SingleOrLayerSpec
     facet::Spec
-    resolve::Spec
+    resolve::ResolveSpec
 end
 function FacetSpec(; kw...)
     haskey(kw, :facet) || error("FacetSpec constructor must contain a `facet` keyword argument")
@@ -214,7 +220,7 @@ struct RepeatSpec <: LayoutSpec
     data::DataSpec
     spec::SingleOrLayerSpec  # or can it be any ViewableSpec?
     repeat::Spec
-    resolve::Spec
+    resolve::ResolveSpec
 end
 function RepeatSpec(; kw...)
     haskey(kw, :repeat) || error("RepeatSpec constructor must contain a `repeat` keyword argument")
@@ -236,7 +242,7 @@ struct ConcatSpec <: ConcatView
     layout::LayoutProperties
     data::DataSpec
     concat::Vector{ViewableSpec}
-    resolve::Spec
+    resolve::ResolveSpec
 end
 function ConcatSpec(; concat, kw...)
     spectuple = (
@@ -257,7 +263,7 @@ struct HConcatSpec <: ConcatView
     layout::LayoutProperties
     data::DataSpec
     hconcat::Vector{ViewableSpec}
-    resolve::Spec
+    resolve::ResolveSpec
 end
 function HConcatSpec(; hconcat, kw...)
     spectuple = (
@@ -278,7 +284,7 @@ struct VConcatSpec <: ConcatView
     layout::LayoutProperties
     data::DataSpec
     vconcat::Vector{ViewableSpec}
-    resolve::Spec
+    resolve::ResolveSpec
 end
 function VConcatSpec(; vconcat, kw...)
     spectuple = (
@@ -311,6 +317,7 @@ Return the parent properties of a specification.
 Base.propertynames(s::Spec) = s.spec isa NamedTuple ? propertynames(s.spec) : tuple()
 Base.propertynames(d::DataSpec) = isempty(d) ? tuple() : propertynames(value(d))
 Base.propertynames(s::MarkSpec) = isempty(s) ? tuple() : propertynames(s.mark)
+Base.propertynames(s::ResolveSpec) = isempty(s) ? tuple() : propertynames(s.resolve)
 Base.propertynames(s::EncodingSpec) = isempty(s) ? tuple() : propertynames(s.encoding)
 Base.propertynames(::TransformSpec) = tuple()
 Base.propertynames(::ParamsSpec) = tuple()
@@ -318,7 +325,7 @@ function Base.propertynames(s::T) where T<:AbstractSpec
     isempty(s) && return tuple()
     collect(
         Iterators.flatten(
-            t <: Union{Spec, Vector, DataSpec, MarkSpec, EncodingSpec, TransformSpec, ParamsSpec} || f === :spec ? (f,) : propertynames(getfield(s, f))
+            t <: Union{Spec, Vector, DataSpec, MarkSpec, EncodingSpec, TransformSpec, ParamsSpec, ResolveSpec} || f === :spec ? (f,) : propertynames(getfield(s, f))
             for (f, t) in zip(fieldnames(T), fieldtypes(T))
             if !isempty(getfield(s, f))
         )

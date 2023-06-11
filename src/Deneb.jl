@@ -16,7 +16,7 @@ export
     spec, vlspec,
     Data, Mark, Encoding, Transform, Params, Facet, Repeat,
     field, layout, projection,
-    interactive, condition, condition_test,
+    interactive, condition, condition_test, resolve,
     # composition
     concat,
     # render
@@ -25,3 +25,5 @@ export
     set_theme!, print_theme
 
 end # module
+
+SymbolOrString = Union{Symbol, AbstractString}

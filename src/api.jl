@@ -75,7 +75,7 @@ end
     Mark(type; kw...)
     Mark(; spec...)
 """
-Mark(type::Union{Symbol, String}; kw...) = MarkSpec(spec(;type=type, kw...))
+Mark(type::SymbolOrString; kw...) = MarkSpec(spec(;type=type, kw...))
 Mark(; s...) = MarkSpec(spec(; s...))
 
 """
@@ -83,8 +83,8 @@ Mark(; s...) = MarkSpec(spec(; s...))
     Encoding(x, y)
     Encoding(; spec...)
 """
-Encoding(x::Union{Symbol, AbstractString}; kw...) = Encoding(; kw...) * Encoding(x=field(x))
-Encoding(x::Union{Symbol, AbstractString}, y::Union{Symbol, AbstractString}; kw...) = Encoding(; kw...) * Encoding(x=field(x)) * Encoding(y=field(y))
+Encoding(x::SymbolOrString; kw...) = Encoding(; kw...) * Encoding(x=field(x))
+Encoding(x::SymbolOrString, y::SymbolOrString; kw...) = Encoding(; kw...) * Encoding(x=field(x)) * Encoding(y=field(y))
 Encoding(; s...) = EncodingSpec(spec(NamedTuple(k=>field(v) for (k,v) in pairs(s))))
 
 """
@@ -128,14 +128,46 @@ projection(type; kw...) = vlspec(; projection=(; type, kw...))
     condition_test(test::String, iftrue, iffalse)
 If iftrue/iffalse isn't a NamedTuple, then it'll be converted as a NamedTuple with name :value.
 """
-condition(param::Union{Symbol, AbstractString}, iftrue, iffalse=nothing) = (condition=(; param, _value(iftrue)...), _value(iffalse)...)
-condition_test(test::Union{Symbol, AbstractString}, iftrue, iffalse=nothing) = (condition=(; test, _value(iftrue)...), _value(iffalse)...)
+condition(param::SymbolOrString, iftrue, iffalse=nothing) = (condition=(; param, _value(iftrue)...), _value(iffalse)...)
+condition_test(test::SymbolOrString, iftrue, iffalse=nothing) = (condition=(; test, _value(iftrue)...), _value(iffalse)...)
 _value(x::NamedTuple) = x
 _value(::Nothing) = (;)
 _value(x) = (; value=x)
 
 
-# TODO: api for config, resolve, transforms, ...
+"""
+    resolve(type, channel, option)
+Creates a `ResolveSpec`. The `type` indicates the resolution to be defined: `scale`, `axis`, or `legend`.
+
+For scales, resolution can be specified for every channel. For axes, resolutions can be defined for `x` and `y` (positional channels).
+For legends, resolutions can be defined for `color`, `opacity`, `shape`, and `size` (non-positional channels).
+
+There are two options to resolve a scale, axis, or legend: `shared` and `independent`. Independent scales imply independent axes and legends.
+
+The defaults are documented in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/resolve.html).
+"""
+function resolve(type::SymbolOrString, channel::SymbolOrString, option::SymbolOrString)
+    Symbol(type) ∉ (:scale, :axis, :legend) && return error("resolve type must be `scale`, `axis`, or `legend`.")
+    positional_channels = (:x, :y, :xOffset, :yOffset)
+    non_positional_channels = (:color, :opacity, :shape, :size)
+    if Symbol(type) === :scale && Symbol(channel) ∉ positional_channels ∪ non_positional_channels
+        return error("channel for scale resolution must be a valid channel")
+    elseif Symbol(type) === :axis && Symbol(channel) ∉ positional_channels
+        return error("channel for axis resolution must be a positional channel (`x` or `y`)")
+    elseif Symbol(type) === :legend && Symbol(channel) ∉ non_positional_channels
+        return error("channel for legend resolution must be a non-positional channel (`color`, `opacity`, `shape`, and `size`)")
+    end
+    Symbol(option) ∉ (:shared, :independent) && return error("resolve option must be `shared` or `independent`")
+
+    nt = NamedTuple{(Symbol(type),)}(
+        (
+            NamedTuple{(Symbol(channel),)}((Symbol(option),)),
+        ),
+    )
+    return ResolveSpec(Spec(nt))
+end
+
+# TODO: api for config, transforms, ...
 
 """
     interactive(;bindx=true, bindy=true, shift_on_y=false)
