@@ -135,6 +135,8 @@ _value(::Nothing) = (;)
 _value(x) = (; value=x)
 
 
+# TODO: api for config, resolve, transforms, ...
+
 """
     interactive(;bindx=true, bindy=true, shift_on_y=false)
 """
