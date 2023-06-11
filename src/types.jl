@@ -63,7 +63,7 @@ struct TopLevelProperties <: PropertiesSpec
     background::Spec
     padding::Spec
     autosize::Spec
-    config::Spec
+    config::Spec  # TODO: create dedicated type?
     usermeta::Spec
 end
 TopLevelProperties(; spec...) = ConstrainedSpec(TopLevelProperties; spec...)
