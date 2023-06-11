@@ -5,6 +5,8 @@ using NodeJS_16_jll
 using JSON, Tables
 using MultilineStrings: indent
 
+const SymbolOrString = Union{Symbol, AbstractString}
+
 include("types.jl")
 include("api.jl")
 include("render.jl")
@@ -25,5 +27,3 @@ export
     set_theme!, print_theme
 
 end # module
-
-SymbolOrString = Union{Symbol, AbstractString}
