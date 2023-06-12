@@ -27,6 +27,6 @@ line = Mark(:line, stroke="#5276A7", interpolate="monotone") * Encoding(
     )
 )
 
-chart = base * (band + line) * spec(resolve=(;scale=(;y=:independent)))
+chart = base * (band + line) * resolve_scale(y=:independent)
 
 save("assets/layer_dual_axis.png", chart)  #src
