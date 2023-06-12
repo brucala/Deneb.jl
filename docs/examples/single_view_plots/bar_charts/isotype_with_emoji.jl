@@ -1,5 +1,5 @@
 # ---
-# cover: assets/isotype_with_emoji.png
+# cover: assets/isotype_with_emoji.svg
 # author: bruno
 # description: Isotype Visualization with Emoji
 # ---
@@ -33,4 +33,4 @@ chart = Data(data) * Mark(
     config=(;view=(; stroke=""))
 )
 
-save("assets/isotype_with_emoji.png", chart)  #src
+save("assets/isotype_with_emoji.svg", chart)  #src
