@@ -136,35 +136,74 @@ _value(x) = (; value=x)
 
 
 """
+    resolve(type; channels...)
     resolve(type, channel, option)
+
 Creates a `ResolveSpec`. The `type` indicates the resolution to be defined: `scale`, `axis`, or `legend`.
 
-For scales, resolution can be specified for every channel. For axes, resolutions can be defined for `x` and `y` (positional channels).
-For legends, resolutions can be defined for `color`, `opacity`, `shape`, and `size` (non-positional channels).
+For scales, resolution can be specified for every channel. For axes, resolutions can be defined for positional channels (`x`, `y`, `xOffset`, `yOffset`).
+For legends, resolutions can be defined for non-positional channels (`color`, `opacity`, `shape`, and `size`).
 
 There are two options to resolve a scale, axis, or legend: `shared` and `independent`. Independent scales imply independent axes and legends.
 
 The defaults are documented in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/resolve.html).
+
+# Example
+    resolve(:scale, color=:independent)
 """
 function resolve(type::SymbolOrString, channel::SymbolOrString, option::SymbolOrString)
-    Symbol(type) ∉ (:scale, :axis, :legend) && return error("resolve type must be `scale`, `axis`, or `legend`.")
+    nt = NamedTuple{(Symbol(channel),)}((option,))
+    resolve(type; nt...)
+end
+function resolve(type; channels...)
+    _validate_resolve(type; channels...)
+    nt = NamedTuple{(Symbol(type),)}((channels,))
+    return ResolveSpec(Spec(nt))
+end
+
+"""
+    resolve_scale(; channels...)
+
+Alias to `resolve(:scale; channels...)`
+"""
+resolve_scale(; channels...) = resolve(:scale; channels...)
+
+"""
+    resolve_axis(; channels...)
+
+Alias to `resolve(:axis; channels...)`
+"""
+resolve_axis(; channels...) = resolve(:axis; channels...)
+
+"""
+    resolve_legend(; channels...)
+
+Alias to `resolve(:legend; channels...)`
+"""
+resolve_legend(; channels...) = resolve(:legend; channels...)
+
+function _validate_resolve(type; channels...)
     positional_channels = (:x, :y, :xOffset, :yOffset)
     non_positional_channels = (:color, :opacity, :shape, :size)
-    if Symbol(type) === :scale && Symbol(channel) ∉ positional_channels ∪ non_positional_channels
-        return error("channel for scale resolution must be a valid channel")
-    elseif Symbol(type) === :axis && Symbol(channel) ∉ positional_channels
-        return error("channel for axis resolution must be a positional channel (`x` or `y`)")
-    elseif Symbol(type) === :legend && Symbol(channel) ∉ non_positional_channels
-        return error("channel for legend resolution must be a non-positional channel (`color`, `opacity`, `shape`, and `size`)")
-    end
-    Symbol(option) ∉ (:shared, :independent) && return error("resolve option must be `shared` or `independent`")
-
-    nt = NamedTuple{(Symbol(type),)}(
-        (
-            NamedTuple{(Symbol(channel),)}((Symbol(option),)),
-        ),
+    allowed_channels = Dict(
+        :scale => positional_channels ∪ non_positional_channels,
+        :axis => positional_channels,
+        :legend => non_positional_channels,
     )
-    return ResolveSpec(Spec(nt))
+    if Symbol(type) ∉ (:scale, :axis, :legend)
+        @warn "resolve type must be `scale`, `axis`, or `legend`."
+        @warn "$type resolve will probably be ignored"
+    else
+        for (channel, option) in channels
+            if channel ∉ allowed_channels[type]
+                @warn "channel for $type resolution must be $(allowed_channels[type]), `$channel` given"
+                @warn "$type resolve for channel $channel will probably be ignored"
+            elseif Symbol(option) ∉ (:shared, :independent)
+                @warn "resolve option must be `shared` or `independent`, `$option` given"
+                @warn "$type resolve for channel $channel will probably be ignored"
+            end
+        end
+    end
 end
 
 # TODO: api for config, transforms, ...
