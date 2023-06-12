@@ -206,7 +206,7 @@ function _validate_resolve(type; channels...)
     end
 end
 
-# TODO: api for config, transforms, ...
+# TODO: api for config, transforms, params ...
 
 """
     interactive(;bindx=true, bindy=true, shift_on_y=false)
