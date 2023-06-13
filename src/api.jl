@@ -249,6 +249,31 @@ function interactive_scales(; bindx=true, bindy=true, shift_on_y=false)
 end
 
 """
+    select(type, name; value, bind, select_options...)
+"""
+function select(type::SymbolOrString, name::SymbolOrString; value=nothing, bind=nothing, select_options...)
+    if isnothing(select_options)
+        select = type
+    else
+        select = (; type, select_options...)
+    end
+    isnothing(value) && isnothing(bind) && return Params(; name, select)
+    isnothing(value) && return Params(; name, select, bind)
+    isnothing(bind) && return Params(; name, value, select)
+    return Params(; name, value, select, bind)
+end
+
+"""
+    select_point()
+"""
+select_point(name; value=nothing, bind=nothing, select_options...) = select(:point, name; value, bind, select_options...)
+
+"""
+    select_interval()
+"""
+select_interval(name; value=nothing, bind=nothing, select_options...) = select(:interval, name; value, bind, select_options...)
+
+"""
     select_legend(name; encodings=:color, fields=nothing, bind_options=nothing)
 
 Creates a `ParamSpec` named `name` that can be composed to other specs to create selectable legends bound

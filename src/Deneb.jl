@@ -18,7 +18,9 @@ export
     spec, vlspec,
     Data, Mark, Encoding, Transform, Params, Facet, Repeat,
     field, layout, projection,
-    interactive_scales, select_legend, condition, condition_test,
+    interactive_scales,
+    select, select_point, select_interval, select_legend,
+    condition, condition_test,
     resolve, resolve_scale, resolve_axis, resolve_legend,
     # composition
     concat,
