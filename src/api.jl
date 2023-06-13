@@ -209,35 +209,81 @@ end
 # TODO: api for config, transforms, params ...
 
 """
-    interactive(;bindx=true, bindy=true, shift_on_y=false)
+    interactive_scales(;bindx=true, bindy=true, shift_on_y=false)
+
+Creates a `ParamsSpec` that can be composed to other specs to create interactive pan
+(mouse hold and drag) and zoom (mouse wheel) charts.
+`bindx` and `bindy` specify if the `x` and `y` channels are to be bound.
+If `shift_on_y` is true, then the shift key must be hold to pan and zoom in the `y` channel.
 """
-function interactive(;bindx=true, bindy=true, shift_on_y=false)
-    name, select, bind = :interactive, :interval, :scales
+function interactive_scales(; bindx=true, bindy=true, shift_on_y=false)
+    name, select, bind = :interactive_scales, :interval, :scales
     bindx && bindy && !shift_on_y && return Params(;name, select, bind)
+
+    if !bindx && !bindy
+        @warn "At least one of `bindx` and `bindy` must be true for interactive scales."
+    end
 
     params = Params()
     if bindx
-        name = :interactivex
+        namex = Symbol(String(name) * "_x")
         select = (type=:interval, encodings=[:x])
         if bindy && shift_on_y
             zoom = "wheel![!event.shiftKey]"
             translate = "[mousedown[!event.shiftKey], mouseup] > mousemove"
             select = (;select..., zoom, translate)
             end
-        params *= Params(;name, select, bind)
+        params *= Params(;name=namex, select, bind)
     end
     if bindy
-        name = :interactivey
+        namey = Symbol(String(name) * "_y")
         select = (type=:interval, encodings=[:y])
         if shift_on_y
             zoom = "wheel![event.shiftKey]"
             translate = "[mousedown[event.shiftKey], mouseup] > mousemove"
             select = (;select..., zoom, translate)
             end
-        params *= Params(;name, select, bind)
+        params *= Params(;name=namey, select, bind)
     end
     return params
 end
+
+"""
+    select_legend(name; encodings=:color, fields=nothing, bind_options=nothing)
+
+Creates a `ParamSpec` named `name` that can be composed to other specs to create selectable legends bound
+to the given `encoding` or `field`.
+To customize the events that trigger legend interaction, set `bind_options` with a property
+that maps to a Vega event stream (e.g. "dblclick").
+More info about legend binding: https://vega.github.io/vega-lite/docs/bind.html#legend-binding
+"""
+function select_legend(
+    name;
+    encoding::Union{Nothing, SymbolOrString}=nothing,
+    field::Union{Nothing, SymbolOrString}=nothing,
+    bind_options=nothing,
+)
+    if isnothing(encoding) && isnothing(field)
+        encoding = :color
+    end
+    if !isnothing(encoding) && !isnothing(field)
+        @warn "Only one `encoding` or `field` must be given to select_legend. `field` will be ignored"
+    end
+
+    if !isnothing(encoding)
+        select = (type=:point, encodings=[encoding])
+    else
+        select = (type=:point, fields=[field])
+    end
+
+    if isnothing(bind_options)
+        bind=:legend
+    else
+        bind=(; legend=bind_options)
+    end
+    return Params(; name, select, bind)
+end
+
 
 ###
 ### Helper functions and constants
