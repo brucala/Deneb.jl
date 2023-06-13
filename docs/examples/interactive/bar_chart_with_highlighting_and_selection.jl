@@ -13,12 +13,10 @@ chart = Data(data) * Mark(
     stroke=:black,
     cursor=:pointer,
     width=(;band=0.9),
-) * Params(
-    name=:highlight,
-    select=(type=:point, on=:mouseover),
-) * Params(
-    name=:select,
-    select=:point,
+) * select_point(
+    :highlight, on=:mouseover
+) * select_point(
+    :select
 ) * Encoding(
     "a:n",
     "b:q",

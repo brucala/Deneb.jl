@@ -14,19 +14,19 @@ chart = data * Mark(:circle, clip=true) * Encoding(
     size="Cylinders:Q",
 )
 
-chart * interactive()
+chart * interactive_scales()
 
 # save cover #src
 save("assets/interactive_pan_and_zoom.png", chart) #src
 
 # ## Bind `x` encoding only
 
-chart * interactive(bindy=false)
+chart * interactive_scales(bindy=false)
 
-# ## Bind `y encoding only
+# ## Bind `y` encoding only
 
-chart * interactive(bindx=false)
+chart * interactive_scales(bindx=false)
 
 # ## Hold shift for `y` encoding
 
-chart * interactive(shift_on_y=true)
+chart * interactive_scales(shift_on_y=true)

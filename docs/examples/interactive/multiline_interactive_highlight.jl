@@ -10,9 +10,11 @@ data = Data(url="https://vega.github.io/vega-datasets/data/stocks.csv")
 
 base = data  * Encoding("date:T", "price:Q", color="symbol:N")
 
-points = Mark(:circle, opacity=0) * Params(
-    name=:hover,
-    select=(type=:point, fields=[:symbol], on=:mouseover, nearest=true),
+points = Mark(:circle, opacity=0) * select_point(
+    :hover,
+    fields=[:symbol],
+    on=:mouseover,
+    nearest=true,
     value=(;symbol=:AAPL),
 )
 

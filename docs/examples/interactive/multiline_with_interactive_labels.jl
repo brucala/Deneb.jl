@@ -14,9 +14,11 @@ x, y, color = "date:T", "price:Q", "symbol:N"
 
 base_encoding = Encoding(; x, y, color)
 
-points = Mark(:point) * Params(
-    name=:label,
-    select=(type=:point, encodings=:x, on=:mouseover, nearest=true),
+points = Mark(:point) * select_point(
+    :label,
+    encodings=:x,
+    on=:mouseover,
+    nearest=true,
     value=(;x=(;year=2008)),
 ) * Encoding(
     opacity=condition(:label, 1, 0)

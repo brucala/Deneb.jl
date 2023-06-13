@@ -17,9 +17,9 @@ base = data * Mark(:area) * Encoding(
 
 upper = Encoding(x=(title="", scale=(;domain=(;param=:brush))))
 
-lower = Params(
-    name=:brush,
-    select=(type=:interval, encodings=[:x]),
+lower = select_interval(
+    :brush,
+    encodings=[:x],
 ) * vlspec(height=60)
 
 chart = base * [upper; lower]
