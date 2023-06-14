@@ -18,7 +18,7 @@ export
     spec, vlspec,
     Data, Mark, Encoding, Transform, Params, Facet, Repeat,
     field, layout, projection,
-    interactive_scales,
+    interactive_scales, expr,
     select, select_point, select_interval, select_legend, select_bind_input,
     select_range, select_dropdown, select_radio, select_checkbox,
     condition, condition_test,

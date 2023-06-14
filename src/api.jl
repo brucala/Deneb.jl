@@ -328,17 +328,19 @@ function select_range(name::SymbolOrString; value=nothing, select=nothing, bind_
 end
 
 """
-    select_dropdown(type, name; value, select, bind_options...)
+    select_dropdown(type, name; options, value, select, bind_options...)
+options is required
 """
-function select_dropdown(name::SymbolOrString; value=nothing, select=nothing, bind_options...)
-    return select_bind_input(:select, name; value, select, bind_options...)
+function select_dropdown(name::SymbolOrString; options, value=nothing, select=nothing, bind_options...)
+    return select_bind_input(:select, name; value, select, options, bind_options...)
 end
 
 """
-    select_radio(type, name; value, select, bind_options...)
+    select_radio(type, name; options, value, select, bind_options...)
+options is required
 """
-function select_radio(name::SymbolOrString; value=nothing, select=nothing, bind_options...)
-    return select_bind_input(:radio, name; value, select, bind_options...)
+function select_radio(name::SymbolOrString; options, value=nothing, select=nothing, bind_options...)
+    return select_bind_input(:radio, name; value, select, options, bind_options...)
 end
 
 """
@@ -348,6 +350,10 @@ function select_checkbox(name::SymbolOrString; value=nothing, select=nothing, bi
     return select_bind_input(:checkbox, name; value, select, bind_options...)
 end
 
+"""
+    expr()
+"""
+expr(expression::SymbolOrString) = (; expr=expression)
 
 ###
 ### Helper functions and constants
