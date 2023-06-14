@@ -353,7 +353,12 @@ end
 """
     expr()
 """
-expr(expression::SymbolOrString) = (; expr=expression)
+expr(expr::SymbolOrString) = (; expr)
+
+"""
+    param()
+"""
+param(param::SymbolOrString) = (; param)
 
 ###
 ### Helper functions and constants
