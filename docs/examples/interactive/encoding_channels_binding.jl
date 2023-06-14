@@ -34,8 +34,8 @@ chart = data * Mark(:circle) * Params(
 ) * Transform(
     calculate="datum[y]", as=:y
 ) * Encoding(
-    x=field("x:Q", axis=(; title=(; expr=:x))),
-    y=field("y:Q", axis=(; title=(; expr=:y))),
+    x=field("x:Q", axis=(; title=expr(:x))),
+    y=field("y:Q", axis=(; title=expr(:y))),
     color="Origin:N",
 )
 
