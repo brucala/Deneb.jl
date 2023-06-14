@@ -59,3 +59,28 @@ chart = base * select_checkbox(
 ) * Encoding(
     color=condition(:toggle_origin, field("Origin:N"), :grey),
 )
+
+# ## Arbitrary Widget
+
+# In addition to the widgets above, Deneb.jl has access to [any arbitrary html widget](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input)
+# via the more general `select_bind_input` function. Below an example with the
+# color-picker widget.
+
+chart = base * select_bind_input(
+    :color, :usa;
+    value="#317bb4"
+) * select_bind_input(
+    :color, :europe;
+    value="#ffb54d"
+) * select_bind_input(
+    :color, :japan;
+    value="#adadad"
+) * Encoding(
+    color=field(
+        "Origin:N",
+        scale=(
+            domain=["USA", "Europe", "Japan"],
+            range=[expr(:usa), expr(:europe), expr(:japan)],
+        ),
+    )
+)
