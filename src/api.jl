@@ -266,12 +266,12 @@ end
 """
     select_point()
 """
-select_point(name; value=nothing, bind=nothing, select_options...) = select(:point, name; value, bind, select_options...)
+select_point(name::SymbolOrString; value=nothing, bind=nothing, select_options...) = select(:point, name; value, bind, select_options...)
 
 """
     select_interval()
 """
-select_interval(name; value=nothing, bind=nothing, select_options...) = select(:interval, name; value, bind, select_options...)
+select_interval(name::SymbolOrString; value=nothing, bind=nothing, select_options...) = select(:interval, name; value, bind, select_options...)
 
 """
     select_legend(name; encodings=:color, fields=nothing, bind_options=nothing)
@@ -283,7 +283,7 @@ that maps to a Vega event stream (e.g. "dblclick").
 More info about legend binding: https://vega.github.io/vega-lite/docs/bind.html#legend-binding
 """
 function select_legend(
-    name;
+    name::SymbolOrString;
     encoding::Union{Nothing, SymbolOrString}=nothing,
     field::Union{Nothing, SymbolOrString}=nothing,
     bind_options=nothing,
@@ -307,6 +307,45 @@ function select_legend(
         bind=(; legend=bind_options)
     end
     return Params(; name, select, bind)
+end
+
+"""
+    select_bind_input(type, name; value, select, bind_options...)
+"""
+function select_bind_input(type::SymbolOrString, name::SymbolOrString; value=nothing, select=nothing, bind_options...)
+    bind = (input=type, bind_options...)
+    isnothing(value) && isnothing(select) && return Params(; name, bind)
+    isnothing(value) && return Params(; name, select, bind)
+    isnothing(select) && return Params(; name, value, bind)
+    return Params(; name, value, select, bind)
+end
+
+"""
+    select_range(type, name; value, select, bind_options...)
+"""
+function select_range(name::SymbolOrString; value=nothing, select=nothing, bind_options...)
+    return select_bind_input(:range, name; value, select, bind_options...)
+end
+
+"""
+    select_dropdown(type, name; value, select, bind_options...)
+"""
+function select_dropdown(name::SymbolOrString; value=nothing, select=nothing, bind_options...)
+    return select_bind_input(:select, name; value, select, bind_options...)
+end
+
+"""
+    select_radio(type, name; value, select, bind_options...)
+"""
+function select_radio(name::SymbolOrString; value=nothing, select=nothing, bind_options...)
+    return select_bind_input(:radio, name; value, select, bind_options...)
+end
+
+"""
+    select_checkbox(type, name; value, select, bind_options...)
+"""
+function select_checkbox(name::SymbolOrString; value=nothing, select=nothing, bind_options...)
+    return select_bind_input(:checkbox, name; value, select, bind_options...)
 end
 
 

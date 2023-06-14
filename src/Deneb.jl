@@ -19,7 +19,8 @@ export
     Data, Mark, Encoding, Transform, Params, Facet, Repeat,
     field, layout, projection,
     interactive_scales,
-    select, select_point, select_interval, select_legend,
+    select, select_point, select_interval, select_legend, select_bind_input,
+    select_range, select_dropdown, select_radio, select_checkbox,
     condition, condition_test,
     resolve, resolve_scale, resolve_axis, resolve_legend,
     # composition
