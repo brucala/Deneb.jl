@@ -28,7 +28,7 @@ line = Mark(:line)
 
 graph = base_encoding * (line + points)
 
-date_filter = Transform(filter=(;param=:label))
+date_filter = Transform(filter=param(:label))
 
 rule = Mark(:rule, color=:grey) * Encoding(; x)
 

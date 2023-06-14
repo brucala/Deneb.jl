@@ -35,7 +35,7 @@ chart = base * select_radio(
     labels=[:All, :Europe, :Japan, :USA],
     name=:Region,
 ) * Transform(
-    filter=(;param=:origin)
+    filter=param(:origin)
 ) * Encoding(
     x=(; scale=(; domain=[0, 240])),
     y=(; scale=(; domain=[0, 50])),
@@ -49,7 +49,7 @@ chart = base * select_range(
     min=1,
     max=100,
 ) * Mark(
-    opacity= (;expr="opacity/100"),
+    opacity=expr("opacity/100"),
 )
 
 # ## Checkbox Input Widget

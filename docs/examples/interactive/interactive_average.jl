@@ -18,7 +18,7 @@ bar = Mark(:bar) * select_interval(
 )
 
 rule = Mark(:rule, color=:firebrick, size=3) * Transform(
-    filter=(;param=:brush)
+    filter=param(:brush)
 ) * Encoding(y="mean(precipitation)")
 
 chart = data * (bar + rule)

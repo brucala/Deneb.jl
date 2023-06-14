@@ -13,22 +13,16 @@ using Deneb
 
 data = Data(url="https://vega.github.io/vega-datasets/data/cars.json")
 
-chart = data * Mark(:circle) * Params(
-    name=:x,
+chart = data * Mark(:circle) * select_dropdown(
+    :x;
     value=:Horsepower,
-    bind=(
-        input=:select,
-        options=[:Horsepower, :Displacement, :Weight_in_lbs, :Acceleration, :Miles_per_Gallon],
-        name="X-axis"
-    ),
-) * Params(
-    name=:y,
+    options=[:Horsepower, :Displacement, :Weight_in_lbs, :Acceleration, :Miles_per_Gallon],
+    name="X-axis",
+) * select_dropdown(
+    :y;
     value=:Miles_per_Gallon,
-    bind=(
-        input=:select,
-        options=[:Horsepower, :Displacement, :Weight_in_lbs, :Acceleration, :Miles_per_Gallon],
-        name="Y-axis"
-    ),
+    options=[:Horsepower, :Displacement, :Weight_in_lbs, :Acceleration, :Miles_per_Gallon],
+    name="Y-axis"
 ) * Transform(
     calculate="datum[x]", as=:x
 ) * Transform(

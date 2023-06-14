@@ -15,7 +15,12 @@ base = data * Mark(:area) * Encoding(
     "date:T", "price:Q"
 ) * vlspec(width = 600)
 
-upper = Encoding(x=(title="", scale=(;domain=(;param=:brush))))
+upper = Encoding(
+    x=(
+        title="",
+        scale=(;domain=param(:brush)),
+    )
+)
 
 lower = select_interval(
     :brush,
