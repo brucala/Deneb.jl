@@ -2,7 +2,7 @@
 # cover: assets/input_binding.png
 # author: bruno
 # description: Interactive Input Binding
-# title: Interactive Input Binding
+# title: Interactive Input Binding (dropdown, range, checkbox, radio widgets)
 # ---
 
 using Deneb
@@ -13,34 +13,49 @@ base = data * Mark(:point) * Encoding("Horsepower:Q", "Miles_per_Gallon:Q");
 
 # ## Dropdown Input Widget
 
-chart = base * Params(
-    name=:org,
-    select=(type=:point, fields=[:Origin]),
+chart = base * select_dropdown(
+    :origin,
     value=:USA,
-    bind=(input=:select, options=[nothing, :Europe, :Japan, :USA]),
+    select=(type=:point, fields=[:Origin]),
+    options=[nothing, :Europe, :Japan, :USA],
+    labels=[:All, :Europe, :Japan, :USA],
 ) * Encoding(
-    color=condition(:org, field("Cylinders:O"), :grey),
+    color=condition(:origin, field("Cylinders:O"), :grey),
 )
 
 # save cover #src
 save("assets/input_binding.png", chart) #src
 
-# ## Range Input Widget
+# ## Radio Input Widget
 
-base *= Transform(calculate="year(datum.Year)", as=:Year)
-
-bottom_points = Mark(:circle, color=:grey, opacity=0.5) * Params(
-    name=:CylYr,
-    select=(type=:point, fields=[:Cylinders, :Year]),
-    value=(Cylinders=4, Year=1977),
-    bind=(
-        Cylinders=(input=:range, min=3, max=8, step=1),
-        Year=(input=:range, min=1969, max=1981, step=1),
-    ),
+chart = base * select_radio(
+    :origin,
+    select=(type=:point, fields=[:Origin]),
+    options=[nothing, :Europe, :Japan, :USA],
+    labels=[:All, :Europe, :Japan, :USA],
+    name=:Region,
+) * Transform(
+    filter=(;param=:origin)
+) * Encoding(
+    x=(; scale=(; domain=[0, 240])),
+    y=(; scale=(; domain=[0, 50])),
 )
 
-top_points = Mark(:circle, size=150) *  Transform(
-    filter=(;param=:CylYr)
-) * Encoding(color=:Origin)
+# ## Range Input Widget
 
-chart = base * (bottom_points + top_points)
+chart = base * select_range(
+    :opacity,
+    value=50,
+    min=1,
+    max=100,
+) * Mark(
+    opacity= (;expr="opacity/100"),
+)
+
+# ## Checkbox Input Widget
+
+chart = base * select_checkbox(
+    :toggle_origin;
+) * Encoding(
+    color=condition(:toggle_origin, field("Origin:N"), :grey),
+)
