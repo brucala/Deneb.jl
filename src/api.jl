@@ -404,18 +404,23 @@ end
 transform_filter(predicate) = Transform(filter=predicate)
 
 function transform_aggregate(;
+    join::Bool=false,
     groupby::Union{Nothing, SymbolOrString, Vector{<:SymbolOrString}} = nothing,
-    aggregattions...
+    aggregations...
 )
     groupby isa SymbolOrString && (groupby = [groupby])
-    aggregate = NamedTuple[]
-    for (k, v) in pairs(aggregattions)
+    aggregates = NamedTuple[]
+    for (k, v) in pairs(aggregations)
         field, op = _parse_field_operation(v)
         agg = _remove_empty(; field, op, as=k)
-        push!(aggregate, agg)
+        push!(aggregates, agg)
     end
-    Transform(; _remove_empty(; aggregate, groupby)...)
+    aggregate = join ? nothing : aggregates
+    joinaggregate = join ? aggregates : nothing
+    Transform(; _remove_empty(; aggregate, joinaggregate, groupby)...)
 end
+
+transform_joinaggregate(; groupby = nothing, aggregations...) = transform_aggregate(; join=true, groupby, aggregations...)
 
 """
 if a sortby field starts with '-' then descending order
