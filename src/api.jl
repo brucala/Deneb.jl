@@ -439,6 +439,16 @@ function transform_window(;
     Transform(; nt...)
 end
 
+"""
+    transform_fold(fold::Vector; as=(:key, :value))
+Wide to long transformation
+"""
+transform_fold(
+    fold::Vector{<:SymbolOrString};
+    as::Union{Nothing, NTuple{2, SymbolOrString}, Vector{<:SymbolOrString}}=nothing,
+) = Transform(; _remove_empty(; fold, as)...)
+
+
 ###
 ### Helper functions and constants
 ###

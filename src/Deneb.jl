@@ -24,6 +24,7 @@ export
     condition, condition_test,
     resolve, resolve_scale, resolve_axis, resolve_legend,
     transform_calculate, transform_filter, transform_window,
+    transform_fold,
     # composition
     concat,
     # render
