@@ -106,3 +106,21 @@ function transform_regression(
         _remove_empty(; regression=y, on=x, groupby, method, order, extent, params, as)...
     )
 end
+
+function transform_density(
+    field;
+    groupby::Union{Nothing, SymbolOrString, Vector{<:SymbolOrString}} = nothing,
+    cumulative::Union{Nothing, Bool} = nothing,
+    counts::Union{Nothing, Bool} = nothing,
+    bandwidth::Union{Nothing, Number} = nothing,
+    extent::Union{Nothing, NTuple{2, Union{Nothing, Number}}, Vector{<:Union{Nothing, Number}}} = nothing,
+    minsteps::Union{Nothing, Number} = nothing,
+    maxsteps::Union{Nothing, Number} = nothing,
+    steps::Union{Nothing, Number} = nothing,
+    as::Union{Nothing, NTuple{2, SymbolOrString}, Vector{<:SymbolOrString}}=nothing,
+)
+    groupby isa SymbolOrString && (groupby = [groupby])
+    Transform(;
+        _remove_empty(; density=field, groupby, cumulative, counts, bandwidth, extent, minsteps, maxsteps, steps, as)...
+    )
+end

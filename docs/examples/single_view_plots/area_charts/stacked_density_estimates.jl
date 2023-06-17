@@ -8,10 +8,10 @@ using Deneb
 
 data = Data(url="https://vega.github.io/vega-datasets/data/penguins.json")
 
-chart = Data(data) * Mark(:area) * Transform(
-    density="Body Mass (g)",
-    groupby=["Species"],
-    extent=[2500, 6500],
+chart = Data(data) * Mark(:area) * transform_density(
+    "Body Mass (g)",
+    groupby=:Species,
+    extent=(2500, 6500),
     steps=100,
 ) * Encoding(
     x=field("value:q", title="Body Mass (g)"),
