@@ -8,8 +8,8 @@ using Deneb
 
 data = Data(url="https://vega.github.io/vega-datasets/data/weather.csv")
 
-base = data * Encoding("month(date)") * Transform(
-    filter="datum.location == \"Seattle\""
+base = data * Encoding("month(date)") * transform_filter(
+    "datum.location == \"Seattle\""
 )
 
 band = Mark(:area, opacity=0.3, color="#57A44C") * Encoding(

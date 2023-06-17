@@ -16,11 +16,10 @@ data = (
 
 chart = Data(data) * Mark(
     :text, size=65, baseline=:middle,
-) * Transform(
-    calculate="{'cattle': '🐄', 'pigs': '🐖', 'sheep': '🐏'}[datum.animal]",
-    as=:emoji,
-) * Transform(
-    window=[(op=:rank, as=:rank)],
+) * transform_calculate(
+    emoji="{'cattle': '🐄', 'pigs': '🐖', 'sheep': '🐏'}[datum.animal]",
+) * transform_window(
+    rank="rank()",
     groupby=[:country, :animal],
 ) * Encoding(
     x=field("rank:O", axis=nothing),

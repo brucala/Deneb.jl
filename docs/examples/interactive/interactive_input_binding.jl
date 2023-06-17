@@ -34,8 +34,8 @@ chart = base * select_radio(
     options=[nothing, :Europe, :Japan, :USA],
     labels=[:All, :Europe, :Japan, :USA],
     name=:Region,
-) * Transform(
-    filter=param(:origin)
+) * transform_filter(
+    param(:origin)
 ) * Encoding(
     x=(; scale=(; domain=[0, 240])),
     y=(; scale=(; domain=[0, 50])),

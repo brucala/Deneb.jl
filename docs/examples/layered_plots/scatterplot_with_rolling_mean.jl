@@ -8,9 +8,9 @@ using Deneb
 
 data = Data(url="https://vega.github.io/vega-datasets/data/seattle-weather.csv")
 
-line = Mark(:line, color=:red, size=3) * Transform(
-    window=[field(:temp_max, op=:mean, as=:rolling_mean)],
-    frame=[-15, 15],
+line = Mark(:line, color=:red, size=3) * transform_window(
+    rolling_mean="mean(temp_max)",
+    frame=(-15, 15),
 ) * Encoding("date:T", "rolling_mean:Q")
 
 points = Mark(:point, opacity=0.3) * Encoding(

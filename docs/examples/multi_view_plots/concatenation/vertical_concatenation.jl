@@ -8,7 +8,7 @@ using Deneb
 
 data = Data(url="https://vega.github.io/vega-datasets/data/weather.csv")
 
-base = Transform(filter="datum.location === 'Seattle'") * vlspec(height=200)
+base = transform_filter("datum.location === 'Seattle'") * vlspec(height=200)
 
 bar = Mark(:bar) * Encoding("month(date):O", "mean(precipitation):Q")
 

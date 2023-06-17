@@ -8,10 +8,10 @@ using Deneb
 
 data = Data(url="https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/iris.json")
 
-chart = data * Mark(:line, opacity=0.5) * Transform(
-    window=[(op=:count, as=:index)],
-) * Transform(
-    fold=[:petalLength, :petalWidth, :sepalLength, :sepalWidth]
+chart = data * Mark(:line, opacity=0.5) * transform_window(
+    index="count()",
+) * transform_fold(
+    [:petalLength, :petalWidth, :sepalLength, :sepalWidth]
 ) * Encoding(
     x=field(:key, title=""),
     y="value:Q",

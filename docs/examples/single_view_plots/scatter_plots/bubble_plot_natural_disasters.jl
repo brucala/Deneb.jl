@@ -6,8 +6,8 @@
 
 using Deneb
 data = Data(url="https://vega.github.io/vega-datasets/data/disasters.csv")
-chart = Data(data) * Transform(
-    filter="datum.Entity !== 'All natural disasters'"
+chart = Data(data) * transform_filter(
+    "datum.Entity !== 'All natural disasters'"
 ) * Mark(
     :circle,
     opacity=0.8,

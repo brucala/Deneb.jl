@@ -14,8 +14,8 @@ config = vlspec(
     config=(;axis=(;grid=false)),
 )
 
-chart = Data(data) * Mark(:area) * Facet(row=:symbol) * Transform(
-    filter="datum.symbol !== 'GOOG'"
+chart = Data(data) * Mark(:area) * Facet(row=:symbol) * transform_filter(
+    "datum.symbol !== 'GOOG'"
 ) * Encoding(
     x="date:t",
     y="price:q",
@@ -27,8 +27,8 @@ save("assets/facet_rows.png", chart) #src
 
 # ## `row` as an encoding channel:
 
-chart = Data(data) * Mark(:area) * Transform(
-    filter="datum.symbol !== 'GOOG'"
+chart = Data(data) * Mark(:area) * transform_filter(
+    "datum.symbol !== 'GOOG'"
 ) * Encoding(
     x="date:t",
     y="price:q",

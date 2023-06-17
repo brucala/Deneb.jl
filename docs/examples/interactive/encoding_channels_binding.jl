@@ -23,10 +23,9 @@ chart = data * Mark(:circle) * select_dropdown(
     value=:Miles_per_Gallon,
     options=[:Horsepower, :Displacement, :Weight_in_lbs, :Acceleration, :Miles_per_Gallon],
     name="Y-axis"
-) * Transform(
-    calculate="datum[x]", as=:x
-) * Transform(
-    calculate="datum[y]", as=:y
+) * transform_calculate(
+    x="datum[x]",
+    y="datum[y]",
 ) * Encoding(
     x=field("x:Q", axis=(; title=expr(:x))),
     y=field("y:Q", axis=(; title=expr(:y))),

@@ -14,9 +14,8 @@ data = Data(
     format=(; parse=(; date=:date)),
 )
 
-base = data * Mark(:bar) * Transform(
-    calculate="hours(datum.date) + minutes(datum.date) / 60",
-    as=:time,
+base = data * Mark(:bar) * transform_calculate(
+    time="hours(datum.date) + minutes(datum.date) / 60",
 ) * Encoding(
     x=field("time", bin=(; maxbins=30)),
     y="count()"

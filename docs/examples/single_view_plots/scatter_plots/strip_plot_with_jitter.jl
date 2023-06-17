@@ -16,17 +16,15 @@ base = Data(data) * Mark(:circle, size=8) * Encoding(
 )
 
 ## Generate Gaussian jitter with a Box-Muller transform
-gaussian_jitter = Transform(
-    calculate="sqrt(-2*log(random()))*cos(2*PI*random())",
-    as=:jitter,
+gaussian_jitter = transform_calculate(
+    jitter="sqrt(-2*log(random()))*cos(2*PI*random())",
 ) * vlspec(
     title="Normally distributed jitter",
 )
 
 ## Generate uniform jitter
-uniform_jitter = Transform(
-    calculate="random()",
-    as=:jitter,
+uniform_jitter = transform_calculate(
+    jitter="random()",
 ) * vlspec(
     title="Uniformly distributed jitter"
 ) * Encoding(y=(; axis=nothing));

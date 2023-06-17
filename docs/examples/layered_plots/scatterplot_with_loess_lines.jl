@@ -13,9 +13,9 @@ data = (
     C=cumsum(randn(100)),
 )
 
-base = Data(data) * Transform(
-    fold=[:A, :B, :C],
-    as=[:category, :y],
+base = Data(data) * transform_fold(
+    [:A, :B, :C],
+    as=(:category, :y),
 ) * Encoding("x:Q", "y:Q", color=:category)
 
 points = Mark(:circle, opacity=0.4)

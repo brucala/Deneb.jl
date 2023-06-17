@@ -8,18 +8,17 @@ using Deneb
 
 data = Data(url="https://vega.github.io/vega-datasets/data/population.json")
 
-base = Data(data) * Transform(
-    filter="datum.year == 2000"
-) * Transform(
-    calculate="datum.sex == 2 ? 'Female' : 'Male'",
-    as=:gender,
+base = Data(data) * transform_filter(
+    "datum.year == 2000"
+) * transform_calculate(
+    gender="datum.sex == 2 ? 'Female' : 'Male'",
 ) * vlspec(
     config=(view=(;stroke=nothing),
     axis=(;grid=false))
 )
 
-left = Mark(:bar) * Transform(
-    filter=field(:gender, equal=:Female),
+left = Mark(:bar) * transform_filter(
+    field(:gender, equal=:Female)
 ) * Encoding(
     x=field(
         "sum(people)",
@@ -35,8 +34,8 @@ left = Mark(:bar) * Transform(
     ),
 ) * vlspec(title=:Female)
 
-right = Mark(:bar) * Transform(
-    filter=field(:gender, equal=:Male),
+right = Mark(:bar) * transform_filter(
+    field(:gender, equal=:Male),
 ) * Encoding(
     x=field(
         "sum(people)",
