@@ -15,13 +15,11 @@ usa = Data(
 
 points = Data(
     url="https://vega.github.io/vega-datasets/data/airports.csv"
-) * Mark(:circle) * Transform(
-    aggregate=[
-        (op=:mean, field=:latitude, as=:latitude),
-        (op=:mean, field=:longitude, as=:longitude),
-        (op=:count, as=:count),
-      ],
-      groupby=[:state]
+) * Mark(:circle) * transform_aggregate(
+    latitude="mean(latitude)",
+    longitude="mean(longitude)",
+    count="count()",
+    groupby=:state,
 ) * Encoding(
     longitude=:longitude,
     latitude=:latitude,
