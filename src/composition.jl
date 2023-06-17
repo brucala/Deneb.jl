@@ -253,6 +253,9 @@ function _different_or_nothing(s1, s2)
     typeof(s1) <: Spec ? Spec(nothing) : typeof(s1)(Spec(nothing))
 end
 
+layer(specs::ConstrainedSpec...) = layer(specs)
+layer(specs) = sum(specs)
+
 ###
 ### Concatenation
 ###
