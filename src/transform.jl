@@ -73,3 +73,36 @@ transform_fold(
     fold::Vector{<:SymbolOrString};
     as::Union{Nothing, NTuple{2, SymbolOrString}, Vector{<:SymbolOrString}}=nothing,
 ) = Transform(; _remove_empty(; fold, as)...)
+
+function transform_loess(
+    x::SymbolOrString,
+    y::SymbolOrString;
+    groupby::Union{Nothing, SymbolOrString, Vector{<:SymbolOrString}} = nothing,
+    bandwidth::Union{Nothing, Number} = nothing,
+    as::Union{Nothing, NTuple{2, SymbolOrString}, Vector{<:SymbolOrString}}=nothing,
+)
+    groupby isa SymbolOrString && (groupby = [groupby])
+    if !(isnothing(bandwidth) || 0 <= bandwidth <= 1)
+        @warn "bandwidth should be in the range [0,1]. Setting to VegaLite's default..."
+        bandwidth = nothing
+    end
+    Transform(;
+        _remove_empty(; loess=y, on=x, groupby, bandwidth, as)...
+    )
+end
+
+function transform_regression(
+    x::SymbolOrString,
+    y::SymbolOrString;
+    groupby::Union{Nothing, SymbolOrString, Vector{<:SymbolOrString}} = nothing,
+    method::Union{Nothing, SymbolOrString} = nothing,
+    order::Union{Nothing, Int} = nothing,
+    extent::Union{Nothing, NTuple{2, Union{Nothing, Number}}, Vector{<:Union{Nothing, Number}}} = nothing,
+    params::Union{Nothing, Bool} = nothing,
+    as::Union{Nothing, NTuple{2, SymbolOrString}, Vector{<:SymbolOrString}}=nothing,
+)
+    groupby isa SymbolOrString && (groupby = [groupby])
+    Transform(;
+        _remove_empty(; regression=y, on=x, groupby, method, order, extent, params, as)...
+    )
+end

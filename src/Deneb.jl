@@ -28,10 +28,10 @@ export
     select_range, select_dropdown, select_radio, select_checkbox,
     condition, condition_test,
     # transform
-    transform_calculate, transform_filter, transform_window,
-    transform_fold, transform_aggregate, transform_joinaggregate,
+    transform_calculate, transform_filter, transform_window, transform_fold,
+    transform_aggregate, transform_joinaggregate, transform_loess, transform_regression,
     # composition
-    concat,
+    layer, concat,
     # render
     save, # json, html,
     # themes

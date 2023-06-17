@@ -20,8 +20,8 @@ base = Data(data) * transform_fold(
 
 points = Mark(:circle, opacity=0.4)
 
-lines = Mark(:line, size=4) * Transform(
-    loess=:y, on=:x, groupby=[:category]
+lines = Mark(:line, size=4) * transform_loess(
+    :x, :y, groupby=:category
 )
 
 chart = base * (points + lines) * vlspec(width=400)
