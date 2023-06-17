@@ -124,3 +124,10 @@ function transform_density(
         _remove_empty(; density=field, groupby, cumulative, counts, bandwidth, extent, minsteps, maxsteps, steps, as)...
     )
 end
+
+transform_lookup(
+    lookup::SymbolOrString,
+    from;
+    as::Union{Nothing, Vector{<:SymbolOrString}}=nothing,
+    default=nothing,
+) = Transform(; _remove_empty(; lookup, from, as, default)...)

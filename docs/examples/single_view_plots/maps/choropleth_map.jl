@@ -11,9 +11,9 @@ data = Data(
     format=(type=:topojson, feature=:counties),
 )
 
-chart = Data(data) * Mark(:geoshape) * Transform(
-    lookup=:id,
-    from=(
+chart = Data(data) * Mark(:geoshape) * transform_lookup(
+    :id,
+    (
       data=(;url="https://vega.github.io/vega-datasets/data/unemployment.tsv"),
       key=:id,
       fields=[:rate],

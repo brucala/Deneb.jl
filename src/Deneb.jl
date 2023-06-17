@@ -30,7 +30,7 @@ export
     # transform
     transform_calculate, transform_filter, transform_window, transform_fold,
     transform_aggregate, transform_joinaggregate, transform_loess,
-    transform_regression, transform_density,
+    transform_regression, transform_density, transform_lookup,
     # composition
     layer, concat,
     # render
