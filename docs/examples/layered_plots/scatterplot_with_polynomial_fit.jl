@@ -6,16 +6,6 @@
 
 using Deneb
 
-polynomial_fit = [
-    base.transform_regression(
-        "x", "y", method="poly", order=order, as_=["x", str(order)]
-    )
-    .mark_line()
-    .transform_fold([str(order)], as_=["degree", "y"])
-    .encode(alt.Color("degree:N"))
-    for order in degree_list
-]
-
 x = rand(50) .^ 2
 y = 10 .- 1.0 ./ (x .+ 0.1) .+ randn(50)
 data = (; x, y)
