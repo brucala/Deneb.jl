@@ -99,13 +99,12 @@ function field(f::AbstractString; kw...)
         f, type = split(f, ":")
         fielddict[:type] = _type(type)
     end
-    if endswith(f, ")")
-        aggregate, f = split(f, "(")
-        f = strip(f, ')')
-        agg_property = aggregate in TIMEUNITS ? :timeUnit : :aggregate
-        fielddict[agg_property] = aggregate
+    field, op = _parse_field_operation(f)
+    if !isnothing(op)
+        agg_property = op in TIMEUNITS ? :timeUnit : :aggregate
+        fielddict[agg_property] = op
     end
-    f == "" || (fielddict[:field] = f)
+    isnothing(field) || (fielddict[:field] = field)
     return (; fielddict..., kw...)
 end
 
@@ -206,7 +205,11 @@ function _validate_resolve(type; channels...)
     end
 end
 
-# TODO: api for config, transforms, params ...
+# TODO: api for config, transforms, ...
+
+###
+### Params related API
+###
 
 """
     interactive_scales(;bindx=true, bindy=true, shift_on_y=false)
@@ -250,6 +253,18 @@ end
 
 """
     select(type, name; value, bind, select_options...)
+Convenient function to create a `ParamsSpec` with the following structure:
+```json
+{
+  "name": name,
+  "value": value,
+  "select": {
+    "type": type,
+    select_options...
+  },
+  "bind": bind
+}
+```
 """
 function select(type::SymbolOrString, name::SymbolOrString; value=nothing, bind=nothing, select_options...)
     if isnothing(select_options)
@@ -311,6 +326,18 @@ end
 
 """
     select_bind_input(type, name; value, select, bind_options...)
+Convenient function to create a `ParamsSpec` with the following structure:
+```json
+{
+  "name": name,
+  "value": value,
+  "select": select,
+  "bind": {
+    "input": type,
+    bind_options...
+  }
+}
+```
 """
 function select_bind_input(type::SymbolOrString, name::SymbolOrString; value=nothing, select=nothing, bind_options...)
     bind = (input=type, bind_options...)
@@ -351,18 +378,83 @@ function select_checkbox(name::SymbolOrString; value=nothing, select=nothing, bi
 end
 
 """
-    expr()
+    expr(expr)
+
+Convenient function to create an expr spec: `{"expr": expr}`.
 """
 expr(expr::SymbolOrString) = (; expr)
 
 """
     param()
+
+Convenient function to create a param spec: `{"param": param}`.
 """
 param(param::SymbolOrString) = (; param)
 
 ###
+### Transform related API
+###
+
+transform_calculate(as::SymbolOrString, calculate::String) = Transform(; calculate, as)
+function transform_calculate(; expressions...)
+    transforms = [(; as, calculate) for (as, calculate) in pairs(expressions)]
+    return TransformSpec(transforms)
+end
+
+transform_filter(predicate) = Transform(filter=predicate)
+
+"""
+if a sortby field starts with '-' then descending order
+"""
+function transform_window(;
+    frame::Union{Nothing, NTuple{2, Union{Nothing, Int}}, Vector{<:Union{Nothing, Int}}} = nothing,
+    ignorePeers::Union{Nothing, Bool} = nothing,
+    groupby::Union{Nothing, SymbolOrString, Vector{<:SymbolOrString}} = nothing,
+    sortby::Union{Nothing, SymbolOrString, Vector{<:SymbolOrString}} = nothing,
+    operations...
+)
+    groupby isa SymbolOrString && (groupby = [groupby])
+    sortby isa SymbolOrString && (sortby = [sortby])
+    if isnothing(sortby)
+        sort = nothing
+    else
+        sort = [
+            _remove_empty(;
+                field=String(x)[1] == '-' ? x[2:end] : x,
+                order=String(x)[1] == '-' ? "descending" : nothing,
+            )
+            for x in sortby
+        ]
+    end
+
+    window = NamedTuple[]
+    for (k, v) in pairs(operations)
+        field, op, param = _parse_field_operation(v)
+        param = isnothing(param) ? param : parse(Int, param)  # they are always integer
+        w = _remove_empty(; field, op, param, as=k)
+        push!(window, w)
+    end
+
+    nt = _remove_empty(; window, frame, ignorePeers, groupby, sort)
+    Transform(; nt...)
+end
+
+###
 ### Helper functions and constants
 ###
+
+function _parse_field_operation(s::AbstractString)
+    endswith(s, ")") || return s, nothing, nothing
+    op, args = split(s[1:end-1], "(")
+    if !occursin(",", args)
+        field = args == "" ? nothing : args
+        return field, op, nothing
+    end
+    field, param = strip.(split(args, ","))
+    return field, op, param
+end
+
+_remove_empty(;values...) = NamedTuple(k => v for (k, v) in pairs(values) if !isnothing(v))
 
 const TYPEMAP = Dict(
     "q" => "quantitative",

@@ -23,6 +23,7 @@ export
     select_range, select_dropdown, select_radio, select_checkbox,
     condition, condition_test,
     resolve, resolve_scale, resolve_axis, resolve_legend,
+    transform_calculate, transform_filter, transform_window,
     # composition
     concat,
     # render
