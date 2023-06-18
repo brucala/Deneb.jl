@@ -74,8 +74,7 @@ function transform_window(;
         push!(window, w)
     end
 
-    nt = _remove_empty(; window, frame, ignorePeers, groupby, sort)
-    Transform(; nt...)
+    Transform(; _remove_empty(; window, frame, ignorePeers, groupby, sort)...)
 end
 
 """
@@ -86,6 +85,17 @@ transform_fold(
     fold::Vector{<:SymbolOrString};
     as::Union{Nothing, NTuple{2, SymbolOrString}, Vector{<:SymbolOrString}}=nothing,
 ) = Transform(; _remove_empty(; fold, as)...)
+
+function transform_pivot(
+    pivot::SymbolOrString,
+    value::SymbolOrString;
+    groupby::Union{Nothing, SymbolOrString, Vector{<:SymbolOrString}} = nothing,
+    limit::Union{Nothing, Number} = nothing,
+    op::Union{Nothing, SymbolOrString} = nothing,
+)
+    groupby isa SymbolOrString && (groupby = [groupby])
+    Transform(; _remove_empty(; pivot, value, groupby, limit, op)...)
+end
 
 function transform_loess(
     x::SymbolOrString,
@@ -167,7 +177,6 @@ end
 
 # TODO: implement rest of transformers
 # transform_flatten() =
-# transform_pivot() =
 # transform_quantile() =
 # transform_sample() =
 # transform_stack() =
