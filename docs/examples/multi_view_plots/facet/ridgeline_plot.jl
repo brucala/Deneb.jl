@@ -1,5 +1,5 @@
 # ---
-# cover: assets/facet_rows.png
+# cover: assets/ridgeline_plot.png
 # author: bruno
 # description: Facet Area (rows)
 # ---

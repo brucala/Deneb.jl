@@ -167,8 +167,6 @@ end
 
 # TODO: implement rest of transformers
 # transform_flatten() =
-# transform_fold() =
-# transform_impute() =
 # transform_pivot() =
 # transform_quantile() =
 # transform_sample() =
