@@ -17,7 +17,7 @@ function transform_aggregate(;
 )
     groupby isa SymbolOrString && (groupby = [groupby])
     aggregates = NamedTuple[]
-    for (k, v) in pairs(aggregations)
+    for (k, v) in aggregations
         field, op = _parse_field_operation(v)
         agg = _remove_empty(; field, op, as=k)
         push!(aggregates, agg)
@@ -28,6 +28,19 @@ function transform_aggregate(;
 end
 
 transform_joinaggregate(; groupby = nothing, aggregations...) = transform_aggregate(; join=true, groupby, aggregations...)
+
+transform_timeunit(
+    as::SymbolOrString, field::SymbolOrString, timeUnit
+) = Transform(; timeUnit, field, as)
+
+function transform_timeunit(; transformations...)
+    if length(transformations) > 1
+        @warn "Only one timeunit transformation should be given. Taking only the first..."
+    end
+    as, transformation = collect(transformations)[1]
+    field, timeUnit = _parse_field_operation(transformation)
+    return transform_timeunit(as, field, timeUnit)
+end
 
 """
 if a sortby field starts with '-' then descending order
@@ -117,7 +130,7 @@ function transform_density(
     minsteps::Union{Nothing, Number} = nothing,
     maxsteps::Union{Nothing, Number} = nothing,
     steps::Union{Nothing, Number} = nothing,
-    as::Union{Nothing, NTuple{2, SymbolOrString}, Vector{<:SymbolOrString}}=nothing,
+    as::Union{Nothing, NTuple{2, SymbolOrString}, Vector{<:SymbolOrString}} = nothing,
 )
     groupby isa SymbolOrString && (groupby = [groupby])
     Transform(;
@@ -128,6 +141,35 @@ end
 transform_lookup(
     lookup::SymbolOrString,
     from;
-    as::Union{Nothing, Vector{<:SymbolOrString}}=nothing,
-    default=nothing,
+    as::Union{Nothing, Vector{<:SymbolOrString}} = nothing,
+    default = nothing,
 ) = Transform(; _remove_empty(; lookup, from, as, default)...)
+
+transform_bin(
+    field::SymbolOrString,
+    as::Union{SymbolOrString, NTuple{2, SymbolOrString}, Vector{<:SymbolOrString}};
+    bin = true,
+) = Transform(; field, as, bin)
+
+function transform_impute(
+    impute::SymbolOrString,
+    key::SymbolOrString;
+    groupby::Union{Nothing, SymbolOrString, Vector{<:SymbolOrString}} = nothing,
+    keyvals = nothing,
+    frame::Union{Nothing, NTuple{2, Union{Nothing, Int}}, Vector{<:Union{Nothing, Int}}} = nothing,
+    method::Union{Nothing, SymbolOrString} = nothing,
+    value = nothing,
+)
+    groupby isa SymbolOrString && (groupby = [groupby])
+    Transform(;  _remove_empty(; impute, key, groupby, keyvals, frame, method, value)...)
+end
+
+
+# TODO: implement rest of transformers
+# transform_flatten() =
+# transform_fold() =
+# transform_impute() =
+# transform_pivot() =
+# transform_quantile() =
+# transform_sample() =
+# transform_stack() =

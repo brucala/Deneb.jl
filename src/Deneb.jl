@@ -29,8 +29,9 @@ export
     condition, condition_test,
     # transform
     transform_calculate, transform_filter, transform_window, transform_fold,
-    transform_aggregate, transform_joinaggregate, transform_loess,
-    transform_regression, transform_density, transform_lookup,
+    transform_aggregate, transform_joinaggregate, transform_timeunit,
+    transform_loess, transform_regression, transform_density, transform_lookup,
+    transform_bin, transform_impute,
     # composition
     layer, concat,
     # render
