@@ -12,6 +12,11 @@ is specified in both, then the result specification will use the property from `
 If the types of the two specs are different then the result spec will be a TopLevelSpec.
 """
 Base.:*(a::Spec, b::Spec) = isnothing(value(b)) ? Spec(a) : Spec(b)
+function Base.:*(a::Spec{<:Vector}, b::Spec{<:Vector})
+    aspec, bspec = a.spec, b.spec
+    bspec = [x for x in bspec if x ∉ aspec]
+    return Spec(vcat(aspec, bspec))
+end
 function Base.:*(a::Spec{NamedTuple}, b::Spec{NamedTuple})
     aspec, bspec = a.spec, b.spec
     properties = propertynames(aspec) ∪ propertynames(bspec)
@@ -28,16 +33,6 @@ Base.:*(a::ConstrainedSpec, b::Spec) = vlspec(spec(a) * spec(b))
 Base.:*(a::T, b::T) where {T<:ConstrainedSpec}  = T((getfield(a, f) * getfield(b, f) for f in fieldnames(T))...)
 Base.:*(a::TopLevelSpec, b::TopLevelSpec)  = TopLevelSpec((getfield(a, f) * getfield(b, f) for f in fieldnames(TopLevelSpec))...)
 Base.:*(a::DataSpec, b::DataSpec) = isnothing(value(b)) ? DataSpec(value(a)) : DataSpec(value(b))
-function Base.:*(a::T, b::T) where T <: Union{TransformSpec, ParamsSpec}
-    isempty(a) && T(value(b))
-    isempty(b) && T(value(a))
-    fieldname = first(fieldnames(T))
-    field = copy(getfield(a, fieldname))
-    for i in getfield(b, fieldname)
-        i in field || push!(field, i)
-    end
-    T(field)
-end
 Base.:*(a::ConstrainedSpec, b::ConstrainedSpec) = vlspec(a) * vlspec(b)
 
 Base.:*(::LayerSpec, ::LayerSpec) = error("Two layered specs can not be composed.")

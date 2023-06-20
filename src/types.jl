@@ -7,8 +7,8 @@ abstract type AbstractSpec end
 struct Spec{T} <: AbstractSpec
     spec::T
 end
-Spec(s::Symbol) = Spec(string(s))
-Spec(s::NamedTuple) = Spec{NamedTuple}(NamedTuple((k=>Spec(v) for (k,v) in pairs(s))))
+Spec(s::SymbolOrString) = Spec{String}(string(s))
+Spec(s::Union{NamedTuple, AbstractDict}) = Spec{NamedTuple}(NamedTuple((Symbol(k)=>Spec(v) for (k,v) in pairs(s))))
 Spec(s::Vector) = Spec{Vector{Spec}}([Spec(i) for i in s])
 Spec(s::Spec) = Spec(s.spec)
 Spec(s, field) = Spec(get(s, field, nothing))
@@ -114,28 +114,24 @@ EncodingSpec(; encoding=Spec(nothing), kw...) = EncodingSpec(Spec(encoding))
 value(s::EncodingSpec) = value(s.encoding)
 
 struct TransformSpec <: ConstrainedSpec
-    transform::Vector{Spec}
-    TransformSpec(v::Vector) = new([Spec(i) for i in v if !isempty(Spec(i))])
+    transform::Spec{<:Vector}
+    TransformSpec(s::Spec{<:Vector}) = new(Spec([i for i in s.spec if !isempty(i)]))
 end
-TransformSpec(s::Spec{Vector{Spec}}) = TransformSpec(s.spec)
-TransformSpec(s::Spec) = TransformSpec([s])
+TransformSpec(s::Spec) = TransformSpec(Spec([s]))
 TransformSpec(s) = TransformSpec(Spec(s))
-TransformSpec(; transform=Spec[], kw...) = TransformSpec(transform)
-value(s::TransformSpec) = value.(s.transform)
-Spec(s::TransformSpec) = Spec(s.transform)
+TransformSpec(; transform=Spec([]), kw...) = TransformSpec(transform)
+value(s::TransformSpec) = value(s.transform)
 
 # TODO: parameters are named with a unique "name" property required
 # TODO: imposed named params and implement composition logic with unique names
 struct ParamsSpec <: ConstrainedSpec
-    params::Vector{Spec}
-    ParamsSpec(v::Vector) = new([Spec(i) for i in v if !isempty(Spec(i))])
+    params::Spec{<:Vector}
+    ParamsSpec(s::Spec{<:Vector}) = new(Spec([i for i in s.spec if !isempty(i)]))
 end
-ParamsSpec(s::Spec{Vector{Spec}}) = ParamsSpec(s.spec)
-ParamsSpec(s::Spec) = ParamsSpec([s])
+ParamsSpec(s::Spec) = ParamsSpec(Spec([s]))
 ParamsSpec(s) = ParamsSpec(Spec(s))
-ParamsSpec(; params=Spec[], kw...) = ParamsSpec(params)
-value(s::ParamsSpec) = value.(s.params)
-Spec(s::ParamsSpec) = Spec(s.params)
+ParamsSpec(; params=Spec([]), kw...) = ParamsSpec(params)
+value(s::ParamsSpec) = value(s.params)
 
 struct SingleSpec <: ViewableSpec
     common::CommonProperties
@@ -325,7 +321,7 @@ function Base.propertynames(s::T) where T<:AbstractSpec
     isempty(s) && return tuple()
     collect(
         Iterators.flatten(
-            t <: Union{Spec, Vector, DataSpec, MarkSpec, EncodingSpec, TransformSpec, ParamsSpec, ResolveSpec} || f === :spec ? (f,) : propertynames(getfield(s, f))
+            !(t <: Union{ViewableSpec, PropertiesSpec}) || f === :spec ? (f,) : propertynames(getfield(s, f))
             for (f, t) in zip(fieldnames(T), fieldtypes(T))
             if !isempty(getfield(s, f))
         )
