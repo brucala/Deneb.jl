@@ -14,10 +14,6 @@ Base.Multimedia.istextmime(::MIME{Symbol("application/vnd.vegalite.v5+json")}) =
 function Base.show(io::IO, ::MIME"application/vnd.vegalite.v5+json", s::Union{TopLevelSpec, Spec})
     print(io, json(s))
 end
-function Base.showable(::MIME"application/vnd.vegalite.v5+json", s::Spec)
-    properties = propertynames(s)
-    :data in properties && :mark in properties && :encoding in properties
-end
 
 function Base.show(io::IO, ::MIME"image/png", s::Union{TopLevelSpec, Spec})
     print(io, convert(s, :png))
@@ -29,6 +25,21 @@ end
 
 function Base.show(io::IO, ::MIME"application/pdf", s::Union{TopLevelSpec, Spec})
     print(io, convert(s, :pdf))
+end
+
+Base.showable(mime::Union{MIME"application/vnd.vegalite.v5+json"}, s::Spec) = showable(s, mime)
+Base.showable(
+    mime::Union{MIME"application/pdf", MIME"image/svg+xml", MIME"image/png"},
+    s::Spec
+) = showable(s, mime, true)
+
+function showable(s::AbstractSpec, mime, suppress_warn=false)
+    required = (:mark, :layer, :facet, :hconcat, :vconcat, :concat, :repeat)
+    if isempty(required ∩ propertynames(s))
+        suppress_warn || @warn """Spec isn't showable by MIME $mime. Make sure the specification includes at least one of the following properties: "mark", "layer", "facet", "hconcat", "vconcat", "concat", or "repeat"."""
+        return false
+    end
+    return true
 end
 
 convert(s::AbstractSpec, fmt::Symbol) = read(
@@ -100,6 +111,7 @@ html(spec;
 ### Save
 ###
 function save(filename::AbstractString, mime::AbstractString, s::AbstractSpec)
+    showable(s, mime) || return
     open(filename, "w") do f
         show(f, mime, s)
     end
