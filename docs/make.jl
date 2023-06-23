@@ -23,6 +23,7 @@ makedocs(
     format=format,
     pages=[
         "Home" => "index.md",
+        "Getting Started" => "getting_started.md",
         "Gallery" => gallery,
         "Themes" => "themes.md",
         "API" => "api.md",
