@@ -1,4 +1,4 @@
-using Deneb: Spec, TopLevelSpec, value
+using Deneb: Spec, VegaLiteSpec, value
 
 @testset "Simple Spec" begin
     @test value(Spec(3)) == 3
@@ -26,8 +26,8 @@ end
 end
 
 @testset "basic ConstrainedSpec" begin
-    s = TopLevelSpec(; )
-    @test s isa Deneb.TopLevelSpec{Deneb.SingleSpec}
+    s = VegaLiteSpec(; )
+    @test s isa Deneb.VegaLiteSpec{Deneb.SingleSpec}
     @test s.toplevel isa Deneb.TopLevelProperties
     @test s.viewspec isa Deneb.SingleSpec
     @test s.viewspec.common isa Deneb.CommonProperties
@@ -105,9 +105,9 @@ nt = (name="chart", data=3, transform=[(;filter="a")], mark=:bar, encoding=(x=:x
     @test value(s.encoding.y.type) == "quantitative"
 end
 
-@testset "TopLevelSpec properties" begin
+@testset "VegaLiteSpec properties" begin
     @test propertynames(vlspec()) == tuple()
-    s = TopLevelSpec(; nt...)
+    s = VegaLiteSpec(; nt...)
     @test issetequal(propertynames(s), (:name, :data, :transform, :mark, :encoding))
     @test value(s.name) == "chart"
     @test value(s.data) == 3

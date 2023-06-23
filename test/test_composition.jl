@@ -9,7 +9,7 @@
     @testset "constrained spec composition" begin
         @test vlspec(title=2, mark=:bar) * vlspec(name="a", mark=:line) == vlspec(title=2, name="a", mark=:line)
         composed_spec = Data(3) * Encoding(:a, :b) * Mark(:bar)
-        @test composed_spec isa Deneb.TopLevelSpec
+        @test composed_spec isa Deneb.VegaLiteSpec
         @test value(composed_spec) == (
             data = 3,
             mark = (; type = "bar"),
@@ -63,7 +63,7 @@ end
     @testset "layer SingleSpecs" begin
         s1 = vlspec(data=1, width=100, mark=:bar, encoding=:a)
         l = s1 + s1
-        @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
+        @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
         @test value(l.data) == 1
         @test value(l.width) == 100
         @test value(l.encoding) == "a"
@@ -75,7 +75,7 @@ end
         @test value(l.layer[2]) == (; mark="bar")
         s2 = vlspec(data=2, width=200, mark=:line, encoding=:b)
         l = s1 + s2
-        @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
+        @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
         # no property was shared between s1 and s2
         @test propertynames(l) == [:layer]
         @test length(l.layer) == 2
@@ -90,7 +90,7 @@ end
         # all properties are shared
         # final layer with shared properties and layer = [s1, s1, s1]
         l = s1 + s1 + s1
-        @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
+        @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
         @test value(l.data) == 1
         @test value(l.width) == 100
         @test value(l.encoding) == "a"
@@ -104,7 +104,7 @@ end
         # all shared properties of layered spec (width) match SingleSpec
         # final layer = [s1, s2, s1]
         l = s1 + (s2 + s1)
-        @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
+        @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
         @test value(l.width) == 100
         @test length(l.layer) == 3
         @test l.layer[1] isa Deneb.SingleSpec
@@ -116,7 +116,7 @@ end
         # some shared properties of layered spec (width) don't match SingleSpec
         # final layer = [s1, [s2, s2]]
         l = s1 + (s2 + s2)
-        @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
+        @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
         @test value(l.width) == 100
         @test length(l.layer) == 2
         @test l.layer[1] isa Deneb.SingleSpec
@@ -135,7 +135,7 @@ end
         s2 = vlspec(data=2, width=100, mark=:line, encoding=:b)
         # expand all
         l = (s1 + s2) + (s1 + s2)
-        @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
+        @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
         @test value(l.width) == 100
         @test length(l.layer) == 4
         @test l.layer[1] isa Deneb.SingleSpec
@@ -148,7 +148,7 @@ end
         @test value(l.layer[4]) == (data=2, mark="line", encoding="b")
         # no expand
         l = (s1 + s1) + (s2 + s2)
-        @test l isa Deneb.TopLevelSpec{Deneb.LayerSpec}
+        @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
         @test value(l.width) == 100
         @test length(l.layer) == 2
         @test l.layer[1] isa Deneb.LayerSpec
@@ -191,12 +191,12 @@ end
     @testset "composition with layer" begin
         l = vlspec(data=1, mark=:bar) + vlspec(data=2, mark=:line)
         cl = vlspec(data=3) * l
-        @test cl isa Deneb.TopLevelSpec{Deneb.LayerSpec}
+        @test cl isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
         @test value(cl.data) == 3
         @test value(cl.layer[1].data) == 1
         @test value(cl.layer[2].data) == 2
         cl = l * vlspec(data=3)
-        @test cl isa Deneb.TopLevelSpec{Deneb.LayerSpec}
+        @test cl isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
         @test value(cl.layer[1].data) == 3
         @test value(cl.layer[2].data) == 3
     end
@@ -206,17 +206,17 @@ end
 @testset "test concatenation" begin
     a, b, c, d = vlspec(mark=:bar), vlspec(mark=:line), vlspec(mark=:point), vlspec(mark=:rule)
     s = [a b]
-    @test s isa Deneb.TopLevelSpec{Deneb.HConcatSpec}
+    @test s isa Deneb.VegaLiteSpec{Deneb.HConcatSpec}
     @test length(s.hconcat) == 2
     @test value(s.hconcat[1].mark) == "bar"
     @test value(s.hconcat[2].mark) == "line"
     s = [a; b]
-    @test s isa Deneb.TopLevelSpec{Deneb.VConcatSpec}
+    @test s isa Deneb.VegaLiteSpec{Deneb.VConcatSpec}
     @test length(s.vconcat) == 2
     @test value(s.vconcat[1].mark) == "bar"
     @test value(s.vconcat[2].mark) == "line"
     s = [a b; c d]
-    @test s isa Deneb.TopLevelSpec{Deneb.ConcatSpec}
+    @test s isa Deneb.VegaLiteSpec{Deneb.ConcatSpec}
     @test length(s.concat) == 4
     @test value(s.columns) == 2
     @test value(s.concat[1].mark) == "bar"

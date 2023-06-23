@@ -68,11 +68,11 @@ struct TopLevelProperties <: PropertiesSpec
 end
 TopLevelProperties(; spec...) = ConstrainedSpec(TopLevelProperties; spec...)
 
-struct TopLevelSpec{T<:ViewableSpec} <: ConstrainedSpec
+struct VegaLiteSpec{T<:ViewableSpec} <: ConstrainedSpec
     toplevel::TopLevelProperties
     viewspec::T
 end
-TopLevelSpec(; spec...) = ConstrainedSpec(TopLevelSpec; spec...)
+VegaLiteSpec(; spec...) = ConstrainedSpec(VegaLiteSpec; spec...)
 
 struct CommonProperties <: PropertiesSpec
     name::Spec

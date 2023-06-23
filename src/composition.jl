@@ -9,7 +9,7 @@ two specifications. For instance, `vlspec(mark=:bar) * vlspec(title="chart")` wi
 equivalent to `vlspec(mark=:bar, title="chart")`.
 Properties defined in `spec2` have precedence over `spec1`, meaning that if a given property
 is specified in both, then the result specification will use the property from `spec2`.
-If the types of the two specs are different then the result spec will be a TopLevelSpec.
+If the types of the two specs are different then the result spec will be a VegaLiteSpec.
 """
 Base.:*(a::Spec, b::Spec) = isnothing(value(b)) ? Spec(a) : Spec(b)
 function Base.:*(a::Spec{<:Vector}, b::Spec{<:Vector})
@@ -31,7 +31,7 @@ Base.:*(a::Spec, b::ConstrainedSpec) = vlspec(spec(a) * spec(b))
 Base.:*(a::ConstrainedSpec, b::Spec) = vlspec(spec(a) * spec(b))
 
 Base.:*(a::T, b::T) where {T<:ConstrainedSpec}  = T((getfield(a, f) * getfield(b, f) for f in fieldnames(T))...)
-Base.:*(a::TopLevelSpec, b::TopLevelSpec)  = TopLevelSpec((getfield(a, f) * getfield(b, f) for f in fieldnames(TopLevelSpec))...)
+Base.:*(a::VegaLiteSpec, b::VegaLiteSpec)  = VegaLiteSpec((getfield(a, f) * getfield(b, f) for f in fieldnames(VegaLiteSpec))...)
 Base.:*(a::DataSpec, b::DataSpec) = isnothing(value(b)) ? DataSpec(value(a)) : DataSpec(value(b))
 Base.:*(a::ConstrainedSpec, b::ConstrainedSpec) = vlspec(a) * vlspec(b)
 
@@ -98,7 +98,7 @@ function Base.:*(a::SingleOrLayerSpec, b::T) where T <: LayoutSpec
 end
 
 
-Base.:*(a::TopLevelSpec, b::LayoutProperties) = TopLevelSpec(a.toplevel, a.viewspec * b)
+Base.:*(a::VegaLiteSpec, b::LayoutProperties) = VegaLiteSpec(a.toplevel, a.viewspec * b)
 function Base.:*(a::T, b::LayoutProperties) where T<:LayoutSpec
     T(
         (f === :layout ? b : getfield(a, f) for f in fieldnames(T))...
@@ -152,8 +152,8 @@ function _remove_fields(s::T, fields...) where T<:ConstrainedSpec
     typeof(s)(;kw...)
 end
 
-Base.:*(a::T, b::ResolveSpec) where T<:TopLevelSpec{<:MultiViewSpec} = a * spec(resolve=b)
-Base.:*(a::ResolveSpec, b::T) where T<:TopLevelSpec{<:MultiViewSpec} = b * a
+Base.:*(a::T, b::ResolveSpec) where T<:VegaLiteSpec{<:MultiViewSpec} = a * spec(resolve=b)
+Base.:*(a::ResolveSpec, b::T) where T<:VegaLiteSpec{<:MultiViewSpec} = b * a
 
 ###
 ### Layering
@@ -169,12 +169,12 @@ Layering layered specification with shared data/encoding/sizes will append the l
 -> [s1, s2, s3, s4]), otherwise a nested layer is created ([s1, s2, [s3, s4]]).
 Multi-view layout specs (facet, repeat, concat) cannot be layered.
 """
-function Base.:+(a::TopLevelSpec, b::TopLevelSpec)
+function Base.:+(a::VegaLiteSpec, b::VegaLiteSpec)
     if _incompatible_toplevels(a.toplevel, b.toplevel)
         @warn "Attempting to layer two specs with incompatible toplevel properties. Will use the toplevel properties from spec `a`..."
     end
     toplevel = b.toplevel * a.toplevel
-    TopLevelSpec(toplevel, a.viewspec + b.viewspec)
+    VegaLiteSpec(toplevel, a.viewspec + b.viewspec)
 end
 
 function _incompatible_toplevels(a::TopLevelProperties, b::TopLevelProperties)
@@ -260,7 +260,7 @@ layer(specs) = sum(specs)
     [spec1 spec2 spec3 ...]
 Horizontal concatenation of specs.
 """
-Base.hcat(A::TopLevelSpec...) = TopLevelSpec(
+Base.hcat(A::VegaLiteSpec...) = VegaLiteSpec(
     *([i.toplevel for i in A]...),
     hcat([i.viewspec for i in A]...)
 )
@@ -272,7 +272,7 @@ Base.hcat(A::ViewableSpec...) = HConcatSpec(hconcat=collect(A))
     [spec1; spec2; spec3 ...]
 Vertical concatenation of specs.
 """
-Base.vcat(A::TopLevelSpec...) = TopLevelSpec(
+Base.vcat(A::VegaLiteSpec...) = VegaLiteSpec(
     *([i.toplevel for i in A]...),
     vcat([i.viewspec for i in A]...)
 )
@@ -284,7 +284,7 @@ Base.vcat(A::ViewableSpec...) = VConcatSpec(vconcat=collect(A))
     [spec1 spec2; spec3 spec4 ...]
 General (wrappable) concatenation of specs.
 """
-Base.hvcat(rows::Tuple{Vararg{Int}}, A::TopLevelSpec...) = TopLevelSpec(
+Base.hvcat(rows::Tuple{Vararg{Int}}, A::VegaLiteSpec...) = VegaLiteSpec(
     *([i.toplevel for i in A]...),
     hvcat(rows, [i.viewspec for i in A]...)
 )
@@ -294,7 +294,7 @@ Base.hvcat(rows::Tuple{Vararg{Int}}, A::ViewableSpec...) = ConcatSpec(;concat=co
 """
     concat(A::AbstractSpec...; columns)
 """
-concat(A::TopLevelSpec...; columns=nothing) = TopLevelSpec(
+concat(A::VegaLiteSpec...; columns=nothing) = VegaLiteSpec(
     *([i.toplevel for i in A]...),
     concat([i.viewspec for i in A]...; columns)
 )

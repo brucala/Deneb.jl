@@ -15,7 +15,7 @@ nt = (
 end
 
 @testset "test vlspec" begin
-    s = Deneb.TopLevelSpec(; nt...)
+    s = Deneb.VegaLiteSpec(; nt...)
     @test vlspec(nt) == s
     @test vlspec(; nt...) == s
     @test vlspec(spec(nt)) == s

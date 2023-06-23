@@ -1,7 +1,7 @@
 JSON.json(s::AbstractSpec) = json(value(s))
 JSON.json(s::AbstractSpec, indent) = json(value(s), indent)
-JSON.json(s::TopLevelSpec) = json(value(themespec() * s))
-JSON.json(s::TopLevelSpec, indent) = json(value(themespec() * s), indent)
+JSON.json(s::VegaLiteSpec) = json(value(themespec() * s))
+JSON.json(s::VegaLiteSpec, indent) = json(value(themespec() * s), indent)
 
 Base.show(io::IO, s::AbstractSpec) = print(io, json(s, 2))
 
@@ -11,19 +11,19 @@ Base.show(io::IO, ::MIME"application/json", s::AbstractSpec) = show(io, s)
 
 # VSCode and Jupyter lab display (and defaults to) this MIME type
 Base.Multimedia.istextmime(::MIME{Symbol("application/vnd.vegalite.v5+json")}) = true
-function Base.show(io::IO, ::MIME"application/vnd.vegalite.v5+json", s::Union{TopLevelSpec, Spec})
+function Base.show(io::IO, ::MIME"application/vnd.vegalite.v5+json", s::Union{VegaLiteSpec, Spec})
     print(io, json(s))
 end
 
-function Base.show(io::IO, ::MIME"image/png", s::Union{TopLevelSpec, Spec})
+function Base.show(io::IO, ::MIME"image/png", s::Union{VegaLiteSpec, Spec})
     print(io, convert(s, :png))
 end
 
-function Base.show(io::IO, ::MIME"image/svg+xml", s::Union{TopLevelSpec, Spec})
+function Base.show(io::IO, ::MIME"image/svg+xml", s::Union{VegaLiteSpec, Spec})
     print(io, convert(s, :svg))
 end
 
-function Base.show(io::IO, ::MIME"application/pdf", s::Union{TopLevelSpec, Spec})
+function Base.show(io::IO, ::MIME"application/pdf", s::Union{VegaLiteSpec, Spec})
     print(io, convert(s, :pdf))
 end
 
@@ -56,7 +56,7 @@ function vl2command(fmt::Symbol)
 end
 
 # Pluto displays this MIME type
-function Base.show(io::IO, ::MIME"text/html",  s::Union{TopLevelSpec, Spec})
+function Base.show(io::IO, ::MIME"text/html",  s::Union{VegaLiteSpec, Spec})
     print(io, html(s))
 end
 

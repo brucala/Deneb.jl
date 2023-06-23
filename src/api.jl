@@ -5,7 +5,7 @@ Creates an arbitrary Vega-Lite spec.
 """
 spec(s) = Spec(s)
 spec(; s...) = Spec(NamedTuple(s))
-spec(s::TopLevelSpec) = Spec(value(s))
+spec(s::VegaLiteSpec) = Spec(value(s))
 spec(s::DataSpec) = spec(data = value(s))
 spec(s::TransformSpec) = spec(transform = value(s))
 spec(s::ParamsSpec) = spec(params = value(s))
@@ -17,16 +17,16 @@ spec(s::EncodingSpec) = spec(encoding = value(s))
 
 Creates a Vega-Lite spec enforcing certain Vega-Lite constrains.
 """
-vlspec(s::Spec) = TopLevelSpec(; value(s)...)
-vlspec(s::NamedTuple) = TopLevelSpec(; s...)
-vlspec(; s...) = TopLevelSpec(; s...)
-vlspec(s::ConstrainedSpec) = TopLevelSpec(; value(s)...)
-vlspec(s::DataSpec) = TopLevelSpec(data = value(s))
-vlspec(s::TransformSpec) = TopLevelSpec(transform = value(s))
-vlspec(s::ParamsSpec) = TopLevelSpec(params = value(s))
-vlspec(s::MarkSpec) = TopLevelSpec(mark = value(s))
-vlspec(s::EncodingSpec) = TopLevelSpec(encoding = value(s))
-vlspec(s::TopLevelSpec) = TopLevelSpec(s.toplevel, s.viewspec)
+vlspec(s::Spec) = VegaLiteSpec(; value(s)...)
+vlspec(s::NamedTuple) = VegaLiteSpec(; s...)
+vlspec(; s...) = VegaLiteSpec(; s...)
+vlspec(s::ConstrainedSpec) = VegaLiteSpec(; value(s)...)
+vlspec(s::DataSpec) = VegaLiteSpec(data = value(s))
+vlspec(s::TransformSpec) = VegaLiteSpec(transform = value(s))
+vlspec(s::ParamsSpec) = VegaLiteSpec(params = value(s))
+vlspec(s::MarkSpec) = VegaLiteSpec(mark = value(s))
+vlspec(s::EncodingSpec) = VegaLiteSpec(encoding = value(s))
+vlspec(s::VegaLiteSpec) = VegaLiteSpec(s.toplevel, s.viewspec)
 
 
 """
