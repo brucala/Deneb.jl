@@ -209,7 +209,16 @@ function Base.:+(a::SingleSpec, b::LayerSpec)
     end
     LayerSpec(; layer=layer, shared...)
 end
-Base.:+(a::LayerSpec, b::SingleSpec) = b + a
+# don't use b+a because order matters
+function Base.:+(a::LayerSpec, b::SingleSpec)
+    shared, a, b = _extract_shared(a, b, fieldnames(LayerSpec))
+    if _has_properties_other_than_layer(a)
+        layer = Union{SingleSpec, LayerSpec}[a.layer..., b]
+    else
+        layer = Union{SingleSpec, LayerSpec}[a, b]
+    end
+    LayerSpec(; layer=layer, shared...)
+end
 function Base.:+(a::LayerSpec, b::LayerSpec)
     to_extract = setdiff(fieldnames(LayerSpec), [:layer])
     shared, a, b = _extract_shared(a, b, to_extract)
