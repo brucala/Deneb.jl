@@ -43,4 +43,5 @@ summer_triangle = Mark(
 chart = base * (cygnus + summer_triangle)
 
 # save cover #src
-save("assets/deneb_logo.png", chart) #src
+# svg so transparency works # src
+save("assets/deneb_logo.svg", chart) #src
