@@ -31,10 +31,19 @@ vlspec(s::VegaLiteSpec) = VegaLiteSpec(s.toplevel, s.viewspec)
 
 """
     Data(table)
-    Data(; url, kw...)
+    Data(; url, [format], [name])
+    Data(generator::SymbolOrString; properties...)
 """
 Data(data) = DataSpec(data)
-Data(; url::String, kw...) = DataSpec((;url, kw...))
+Data(;
+    url::String,
+    name::SymbolOrString=nothing,
+    format=nothing,
+) = DataSpec(_remove_empty(;url, format, name))
+function Data(generator::SymbolOrString; kw...)
+    kw = isempty(kw) ? true : kw
+    Data(NamedTuple{(generator,)}((kw, )))
+end
 
 """
     Transform(; spec...)
@@ -89,7 +98,7 @@ Encoding(; s...) = EncodingSpec(spec(NamedTuple(k=>field(v) for (k,v) in pairs(s
 
 """
     field(field; kw...)
-Shortcut to create an arbitrary encoding field.
+Shortcut to create an arbitrary encoding channel with a field.
 """
 field(f) = f
 field(f::Symbol; kw...) = (field=f, kw...)
