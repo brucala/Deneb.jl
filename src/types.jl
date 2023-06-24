@@ -96,7 +96,15 @@ end
 DataSpec(s::Union{Spec, DataSpec}) = DataSpec(value(s))
 DataSpec(; data=nothing, kw...) = DataSpec(data)
 function value(s::DataSpec)
-    if Tables.istable(s.data) && :values ∉ Tables.columnnames(s.data)
+    if (
+        Tables.istable(s.data)
+        # already in the VegaLite shape
+        && !haskey(s.data, :values)
+        # data generators
+        && !haskey(s.data, :graticule)
+        && !haskey(s.data, :sequence)
+        && !haskey(s.data, :sphere)
+    )
         return (values=Tables.rowtable(s.data), )
     end
     s.data
