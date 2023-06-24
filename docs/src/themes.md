@@ -26,6 +26,8 @@ chart = Data(
 chart
 ```
 
+The choice to increase VegaLite's default size and to enable tooltips by default is an opinionated one. The next section explains how to disable Deneb's default theme and use VegaLite's instead.
+
 ## Changing the theme
 
 The method `set_theme!` changes the theme during the length of your Julia session. For instance, the theme `:empty` disables the toplevel `config` so Vega-Lite's defaults are used:

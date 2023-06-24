@@ -26,9 +26,20 @@ makedocs(
     format=format,
     pages=[
         "Home" => "index.md",
-        "Getting Started" => "getting_started.md",
+        "Getting Started" => [
+            "Installation" => "installation.md",
+            "Basic Tutorial" => "basic_tutorial.md",
+        ],
+        "User Guide" => [
+            "VegaLite Specification" => "vlspec.md",
+            "Data, Mark and Encoding" => "data_mark_encoding.md",
+            "Composition and Layering" => "composition_and_layering.md",
+            "Multi-views" => "multiview.md",
+            # "Customization" => "customization.md",
+            "Themes" => "themes.md",
+            # "Internals" => "internals.md",
+        ],
         "Gallery" => gallery,
-        "Themes" => "themes.md",
         "API" => "api.md",
     ]
 )
