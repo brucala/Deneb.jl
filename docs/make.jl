@@ -15,7 +15,10 @@ assets = []
 isnothing(gallery_assets) || push!(assets, gallery_assets)
 
 
-format = Documenter.HTML(;assets)
+format = Documenter.HTML(;
+    assets,
+    prettyurls = get(ENV, "CI", nothing) == "true",
+)
 
 makedocs(
     modules=[Deneb],
