@@ -21,7 +21,7 @@ export
     Data, Mark, Encoding, Transform, Params, Facet, Repeat,
     field, layout, projection,
     resolve, resolve_scale, resolve_axis, resolve_legend,
-    expr, param,
+    config, title, expr, param,
     #params
     interactive_scales,
     select, select_point, select_interval, select_legend, select_bind_input,

@@ -37,7 +37,7 @@ vlspec(s::VegaLiteSpec) = VegaLiteSpec(s.toplevel, s.viewspec)
 Data(data) = DataSpec(data)
 Data(;
     url::String,
-    name::SymbolOrString=nothing,
+    name::Union{Nothing, SymbolOrString}=nothing,
     format=nothing,
 ) = DataSpec(_remove_empty(;url, format, name))
 function Data(generator::SymbolOrString; kw...)
@@ -201,6 +201,24 @@ function _validate_resolve(type; channels...)
 end
 
 """
+    title(title)
+"""
+title(title::SymbolOrString) = vlspec(title=title)
+title(; properties...) = vlspec(title=properties)
+
+
+"""
+    config(; properties...)
+    config(type; properties...)
+"""
+config(;properties...) = vlspec(config=properties)
+function config(type::SymbolOrString; properties...)
+    vlspec(
+        config=NamedTuple{(type,)}((properties,))
+    )
+end
+
+"""
     expr(expr)
 
 Convenient function to create an expr spec: `{"expr": expr}`.
@@ -208,13 +226,11 @@ Convenient function to create an expr spec: `{"expr": expr}`.
 expr(expr::SymbolOrString) = (; expr)
 
 """
-    param()
+    param(param)
 
 Convenient function to create a param spec: `{"param": param}`.
 """
 param(param::SymbolOrString) = (; param)
-
-# TODO: api for config
 
 ###
 ### Helper functions and constants
