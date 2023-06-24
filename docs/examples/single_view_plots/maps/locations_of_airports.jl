@@ -29,9 +29,8 @@ points = Data(
 
 base = projection("albersUsa") * vlspec(
     width=500,
-    height=300,
-    title="Number of Airports in US"
-)
+    height=300
+) * title("Number of Airports in US")
 
 chart = base * (usa + points)
 

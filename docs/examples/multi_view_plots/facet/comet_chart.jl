@@ -8,10 +8,10 @@ using Deneb
 
 data = Data(url="https://vega.github.io/vega-datasets/data/barley.json")
 
-chart = data * vlspec(
-    view=(stroke=nothing),
-    config=(; legend=(orient=:bottom, direction=:horizontal)),
-    title="Barley Yield comparison between 1932 and 1931"
+chart = data * config(
+    :legend, orient=:bottom, direction=:horizontal
+) * title(
+    "Barley Yield comparison between 1932 and 1931"
 ) * transform_pivot(
     :year, :yield; groupby=[:variety, :site]
 ) * transform_fold(

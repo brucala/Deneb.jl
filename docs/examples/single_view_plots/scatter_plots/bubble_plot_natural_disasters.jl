@@ -29,15 +29,15 @@ chart = Data(data) * transform_filter(
         legend=(clipHeight=30, format='s'),
         scale=(; rangeMax=5000),
     )
+) * title(
+    text="Global Deaths from Natural Disasters (1900-2017)",
+    subtitle="The size of the bubble represents the total death count per year, by type of disaster",
+    anchor=:start,
+) * config(
+    :view, stroke=""
 ) * vlspec(
     width=600,
     height=400,
-    title=(
-        text="Global Deaths from Natural Disasters (1900-2017)",
-        subtitle="The size of the bubble represents the total death count per year, by type of disaster",
-        anchor="start",
-    ),
-    config=(; view=(; stroke=""))
 )
 
 # save cover #src

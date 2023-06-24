@@ -29,7 +29,6 @@ chart = Data(data) * Mark(
 ) * vlspec(
     width=800,
     height=200,
-    config=(;view=(; stroke=""))
-)
+) * config(:view, stroke="")
 
 save("assets/isotype_with_emoji.svg", chart)  #src

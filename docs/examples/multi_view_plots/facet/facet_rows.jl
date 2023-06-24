@@ -8,11 +8,10 @@ using Deneb
 
 data = Data(url="https://vega.github.io/vega-datasets/data/stocks.csv")
 
-config = vlspec(
+config_options = vlspec(
     height=50,
-    width=350,
-    config=(;axis=(;grid=false)),
-)
+    width=350
+) * config(:axis, grid=false)
 
 chart = Data(data) * Mark(:area) * Facet(row=:symbol) * transform_filter(
     "datum.symbol !== 'GOOG'"
@@ -20,7 +19,7 @@ chart = Data(data) * Mark(:area) * Facet(row=:symbol) * transform_filter(
     x="date:t",
     y="price:q",
     color=:symbol,
-) * config
+) * config_options
 
 # save cover #src
 save("assets/facet_rows.png", chart) #src
@@ -34,4 +33,4 @@ chart = Data(data) * Mark(:area) * transform_filter(
     y="price:q",
     color=:symbol,
     row=:symbol,
-) * config
+) * config_options

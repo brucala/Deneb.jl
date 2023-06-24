@@ -17,7 +17,7 @@ base = data * Mark(:geoshape, fill=:lightgray, stroke=:gray) * vlspec(
 
 projections = ["equirectangular", "mercator", "orthographic", "gnomonic"]
 
-chart = base * concat((projection(proj) * vlspec(title=proj) for proj in projections)..., columns=2)
+chart = base * concat((projection(proj) * title(proj) for proj in projections)..., columns=2)
 
 # save cover #src
 save("assets/concat_world_projections.png", chart) #src

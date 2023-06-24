@@ -8,13 +8,15 @@ using Deneb
 
 data = Data(url="https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/seattle-weather.csv")
 
-config = vlspec(
-    height=20,
-    config=(axis=(;grid=false), view=(; stroke=nothing)),
-    title=(text="Seattle Weather", anchor=:end),
-)
+config_options = vlspec(
+    height=20
+) * config(
+    :axis, grid=false
+) * config(
+    :view, stroke=nothing
+) * title(text="Seattle Weather", anchor=:end)
 
-chart = Data(data) * config * transform_timeunit(
+chart = Data(data) * config_options * transform_timeunit(
     Month="month(date)"
 ) * transform_joinaggregate(
     mean_temp="mean(temp_max)", groupby=:Month,

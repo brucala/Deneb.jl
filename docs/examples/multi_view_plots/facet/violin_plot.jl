@@ -28,10 +28,8 @@ chart = data * Mark(:area, orient=:horizontal) * transform_density(
         spacing=0,
         header=(titleOrient=:bottom, labelOrient=:bottom, labelPadding=0),
     )
-) * vlspec(
-    width=100,
-    config=(;view=(;stroke=""))
-)
+) * vlspec(width=100) * config(:view, stroke="")
+
 
 # save cover #src
 save("assets/violin_plot.png", chart) #src

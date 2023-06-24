@@ -8,7 +8,7 @@ using Deneb
 
 data = Data(url="https://vega.github.io/vega-datasets/data/seattle-weather.csv")
 
-properties = vlspec(width=600, title="Seattle Weather: 2012-2015")
+properties = vlspec(width=600) * title("Seattle Weather: 2012-2015")
 
 scale=(
     domain=[:sun, :fog, :drizzle, :rain, :snow],
