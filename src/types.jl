@@ -96,6 +96,7 @@ end
 DataSpec(s::Union{Spec, DataSpec}) = DataSpec(value(s))
 DataSpec(; data=nothing, kw...) = DataSpec(data)
 function value(s::DataSpec)
+    Tables.isrowtable(s.data) && return (values=s.data, )
     if (
         Tables.istable(s.data)
         # already in the VegaLite shape
