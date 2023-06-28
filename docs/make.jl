@@ -45,3 +45,5 @@ makedocs(
 )
 
 gallery_cb()
+
+deploydocs(repo="github.com/brucala/Deneb.jl")
