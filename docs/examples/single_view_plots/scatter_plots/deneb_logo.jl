@@ -1,5 +1,5 @@
 # ---
-# cover: assets/deneb_logo.svg
+# cover: assets/deneb_logo.png
 # author: bruno
 # description: Deneb.jl Logo
 # ---
@@ -11,7 +11,7 @@ blue, green, purple, red = "#4063D8", "#389826", "#9558B2", "#CB3C33"
 
 star(star, constellation, magnitude, az, alt) = (; star, constellation, magnitude, az, alt)
 
-# azimuth/altitude taken from arbitrary time/location for convenient orientation
+## azimuth/altitude taken from arbitrary time/location for a desired orientation
 data = [
     star(:Deneb, :Cygnus, 1.25, 40.8, 17.0),
     star(:Vega, :Lyra, 0, 63.1, 29.3),
@@ -28,32 +28,33 @@ color_scale = (
     range=[red, green, purple],
 )
 
-base = Data(data) * Encoding(
+base = Data(data) * Mark(
+    :point, shape=star_shape, filled=true, opacity=1,
+) * Encoding(
     longitude="az:Q",
     latitude="alt:Q",
     tooltip=[field(:star), field(:constellation), field(:magnitude)],
 )
 
-cygnus = Mark(
-    :point, shape=star_shape, color=blue, filled=true, opacity=1
-) * transform_filter(
-    "datum.constellation == 'Cygnus' & datum.star != 'Deneb'"
+cygnus = transform_filter(
+    "datum.constellation == 'Cygnus'"
 ) * Encoding(
     size=field(
         "magnitude:Q",
         legend=nothing,
-        scale=(type=:log, reverse=true, range=[200, 1000])
-    )
+        scale=(type=:log, reverse=true, range=[200, 1500]),
+    ),
+    color=(;value=blue)
 )
 
-summer_triangle = Mark(
-    :point, shape=star_shape, size=10000, filled=true, opacity=1
-) * Encoding(
+summer_triangle = Encoding(
     color=field(:star; legend=nothing, scale=color_scale),
+    size=(; value=10000),
 ) * config(:view, stroke="")
 
 logo = base * (cygnus + summer_triangle)
 
 # save cover #src
+save("assets/deneb_logo.png", logo) #src
 # svg so transparency works #src
-save("assets/deneb_logo.svg", logo * vlspec(background="")) #src
+save("assets/deneb_logo-transparent.svg", logo * vlspec(background="")) #src
