@@ -31,7 +31,7 @@ makedocs(
             "Basic Tutorial" => "basic_tutorial.md",
         ],
         "User Guide" => [
-            "VegaLite Specification" => "vlspec.md",
+            "Introduction" => "intro.md",
             "Data, Mark and Encoding" => "data_mark_encoding.md",
             "Composition and Layering" => "composition_and_layering.md",
             "Multi-views" => "multiview.md",
