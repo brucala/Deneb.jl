@@ -5,8 +5,8 @@
 
 
 <p align="center">
-  <a href="https://github.com/brucala/Deneb.jl/actions?query=workflow%3ARun%20tests">
-    <img alt="building" src="https://github.com/brucala/Deneb.jl/workflows/Run%20tests/badge.svg">
+  <a href="https://github.com/brucala/Deneb.jl/actions/workflows/test.yml">
+    <img alt="building" src="https://github.com/brucala/Deneb.jl/actions/workflows/test.yml/badge.svg">
   </a>
   <a href="https://brucala.github.io/Deneb.jl/dev/">
     <img src="https://img.shields.io/badge/docs-dev-blue.svg" alt="license">

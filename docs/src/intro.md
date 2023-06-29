@@ -66,7 +66,7 @@ The following patterns have been demonstrated in the previous example:
 - The `x` and `y` channels have not been defined in the `Encoding` as positional arguments. Alternatively they could've been explicitely definded as keyword arguments.
 - Inspired by Altair, a string shorthand syntax have been used to conveniently represent the `type`, `field`, `aggregate` and `timeUnit` properties of the encoding channels.
 
-The following more elaborated example illustrates further the convinience of Deneb.jl's API:
+The following example illustrates further the convinience of Deneb.jl's API in a more elaborated visualization:
 
 ```@example intro
 bar = Mark(:bar) * select_interval(
