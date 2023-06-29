@@ -1,6 +1,7 @@
 using Documenter, DemoCards, Deneb, UUIDs
 
-# overload default
+# overload default for a version that can be embeded in the docs
+# TODO: this should be done in a smarter way
 function Base.show(io::IO, ::MIME"text/html", s::Deneb.VegaLiteSpec)
     divid = string("vl", replace(string(uuid4()), "-" => ""))
     print(io, "<div id='$divid' style=\"width:100%;height:100%;\"></div>")
