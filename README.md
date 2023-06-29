@@ -1,6 +1,18 @@
-<div align="center"><img src="docs/src/assets/logo.svg" width="100"></div>
-
 # Deneb.jl
+
+<p align="center">
+<img src="docs/src/assets/logo.svg" width="200"></p>
+
+
+<p align="center">
+  <a href="https://github.com/brucala/Deneb.jl/actions?query=workflow%3ARun%20tests">
+    <img alt="building" src="https://github.com/brucala/Deneb.jl/workflows/Run%20tests/badge.svg">
+  </a>
+  <a href="https://brucala.github.io/Deneb.jl/dev/">
+    <img src="https://img.shields.io/badge/docs-dev-blue.svg" alt="license">
+  </a>
+</p>
+
 
 **Deneb** is the brightest star in the constellation of the *Cygnus*, and together with **Vega** and **Altair** they form the *Summer Triangle* asterism.
 
