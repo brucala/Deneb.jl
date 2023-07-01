@@ -11,7 +11,7 @@ Properties defined in `spec2` have precedence over `spec1`, meaning that if a gi
 is specified in both, then the result specification will use the property from `spec2`.
 If the types of the two specs are different then the result spec will be a VegaLiteSpec.
 """
-Base.:*(a::Spec, b::Spec) = isnothing(value(b)) ? Spec(a) : Spec(b)
+Base.:*(a::Spec, b::Spec) = isnothing(specvalue(b)) ? Spec(a) : Spec(b)
 function Base.:*(a::Spec{<:Vector}, b::Spec{<:Vector})
     aspec, bspec = a.spec, b.spec
     bspec = [x for x in bspec if x ∉ aspec]
@@ -32,13 +32,13 @@ Base.:*(a::ConstrainedSpec, b::Spec) = vlspec(spec(a) * spec(b))
 
 Base.:*(a::T, b::T) where {T<:ConstrainedSpec}  = T((getfield(a, f) * getfield(b, f) for f in fieldnames(T))...)
 Base.:*(a::VegaLiteSpec, b::VegaLiteSpec)  = VegaLiteSpec((getfield(a, f) * getfield(b, f) for f in fieldnames(VegaLiteSpec))...)
-Base.:*(a::DataSpec, b::DataSpec) = isnothing(value(b)) ? DataSpec(value(a)) : DataSpec(value(b))
+Base.:*(a::DataSpec, b::DataSpec) = isnothing(specvalue(b)) ? DataSpec(specvalue(a)) : DataSpec(specvalue(b))
 Base.:*(a::ConstrainedSpec, b::ConstrainedSpec) = vlspec(a) * vlspec(b)
 
 Base.:*(::LayerSpec, ::LayerSpec) = error("Two layered specs can not be composed.")
 function Base.:*(a::SingleSpec, b::LayerSpec)
     # if single spec on the left, compose its properties with the top level properties of layer giving precedence to single spec
-    s = SingleSpec(mark=value(a.mark))
+    s = SingleSpec(mark=specvalue(a.mark))
     LayerSpec(
         b.common * a.common,
         b.transform * a.transform,
@@ -109,12 +109,12 @@ Base.:*(::ConcatView, ::ConcatView) = error("Two concat specs can not be compose
 function Base.:*(a::SingleSpec, b::T) where T<:ConcatView
     # if single spec on the left, compose its properties with the top level properties of layer giving precedence to single spec
     s = SingleSpec(
-        mark=value(a.mark),
-        encoding=value(a.encoding),
-        width=value(a.width),
-        height=value(a.height),
-        view=value(a.view),
-        projection=value(a.projection),
+        mark=specvalue(a.mark),
+        encoding=specvalue(a.encoding),
+        width=specvalue(a.width),
+        height=specvalue(a.height),
+        view=specvalue(a.view),
+        projection=specvalue(a.projection),
     )
     T(
         b.common * a.common,

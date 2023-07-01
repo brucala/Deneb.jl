@@ -1,7 +1,7 @@
-JSON.json(s::AbstractSpec) = json(value(s))
-JSON.json(s::AbstractSpec, indent) = json(value(s), indent)
-JSON.json(s::VegaLiteSpec) = json(value(themespec() * s))
-JSON.json(s::VegaLiteSpec, indent) = json(value(themespec() * s), indent)
+JSON.json(s::AbstractSpec) = json(specvalue(s))
+JSON.json(s::AbstractSpec, indent) = json(specvalue(s), indent)
+JSON.json(s::VegaLiteSpec) = json(specvalue(themespec() * s))
+JSON.json(s::VegaLiteSpec, indent) = json(specvalue(themespec() * s), indent)
 
 Base.show(io::IO, s::AbstractSpec) = print(io, json(s, 2))
 

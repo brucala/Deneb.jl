@@ -1,15 +1,15 @@
-using Deneb: value, themespec
+using Deneb: specvalue, themespec
 
 @testset "Test set_theme!" begin
-    @test value(themespec()) == (;config=Deneb.DEFAULT_CONFIG)
+    @test specvalue(themespec()) == (;config=Deneb.DEFAULT_CONFIG)
     set_theme!(:empty)
-    @test value(themespec()) == (;)
+    @test specvalue(themespec()) == (;)
     set_theme!(:empty, :dark)
-    @test value(themespec()) == (;
+    @test specvalue(themespec()) == (;
         usermeta=(;embedOptions=(;theme="dark"))
     )
     set_theme!(:dark)
-    @test value(themespec()) == (
+    @test specvalue(themespec()) == (
         config=Deneb.DEFAULT_CONFIG,
         usermeta=(;embedOptions=(;theme="dark"))
     )

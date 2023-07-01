@@ -10,7 +10,7 @@
         @test vlspec(title=2, mark=:bar) * vlspec(name="a", mark=:line) == vlspec(title=2, name="a", mark=:line)
         composed_spec = Data(3) * Encoding(:a, :b) * Mark(:bar)
         @test composed_spec isa Deneb.VegaLiteSpec
-        @test value(composed_spec) == (
+        @test specvalue(composed_spec) == (
             data = 3,
             mark = (; type = "bar"),
             encoding = (
@@ -18,7 +18,7 @@
                 y = (; field = "b")
             )
         )
-        @test value(composed_spec * Encoding("c:q")) == (
+        @test specvalue(composed_spec * Encoding("c:q")) == (
             data = 3,
             mark = (; type = "bar"),
             encoding = (
@@ -36,19 +36,19 @@
         p = Params(name=:p, value=5)
         @test p * p == p
         composed_spec = t * p * Mark(:m)
-        @test value(composed_spec) == (
+        @test specvalue(composed_spec) == (
             transform = [(fold="a", as=["b", "c"])],
             params = [(name="p", value=5)],
             mark = (; type="m"),
         )
         composed_spec = t * p * Facet(:f)
-        @test value(composed_spec) == (
+        @test specvalue(composed_spec) == (
             transform = [(fold="a", as=["b", "c"])],
             params = [(name="p", value=5)],
             facet = (; field="f"),
         )
         composed_spec = Facet(:f) * t * p
-        @test value(composed_spec) == (
+        @test specvalue(composed_spec) == (
             spec=(
                 transform = [(fold="a", as=["b", "c"])],
                 params = [(name="p", value=5)],
@@ -64,15 +64,15 @@ end
         s1 = vlspec(data=1, width=100, mark=:bar, encoding=:a)
         l = s1 + s1
         @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
-        @test value(l.data) == 1
-        @test value(l.width) == 100
-        @test value(l.encoding) == "a"
+        @test specvalue(l.data) == 1
+        @test specvalue(l.width) == 100
+        @test specvalue(l.encoding) == "a"
         @test length(l.layer) == 2
         @test l.layer[1] isa Deneb.SingleSpec
         @test l.layer[2] isa Deneb.SingleSpec
         # mark isn't a field of LayerSpec
-        @test value(l.layer[1]) == (; mark="bar")
-        @test value(l.layer[2]) == (; mark="bar")
+        @test specvalue(l.layer[1]) == (; mark="bar")
+        @test specvalue(l.layer[2]) == (; mark="bar")
         s2 = vlspec(data=2, width=200, mark=:line, encoding=:b)
         l = s1 + s2
         @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
@@ -81,8 +81,8 @@ end
         @test length(l.layer) == 2
         @test l.layer[1] isa Deneb.SingleSpec
         @test l.layer[2] isa Deneb.SingleSpec
-        @test value(l.layer[1]) == (data=1, mark="bar", encoding="a", width=100)
-        @test value(l.layer[2]) == (data=2, mark="line", encoding="b", width=200)
+        @test specvalue(l.layer[1]) == (data=1, mark="bar", encoding="a", width=100)
+        @test specvalue(l.layer[2]) == (data=2, mark="line", encoding="b", width=200)
     end
     @testset "layer SingleSpec + LayerSpec" begin
         s1 = vlspec(data=1, width=100, mark=:bar, encoding=:a)
@@ -91,44 +91,44 @@ end
         # final layer with shared properties and layer = [s1, s1, s1]
         l = s1 + s1 + s1
         @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
-        @test value(l.data) == 1
-        @test value(l.width) == 100
-        @test value(l.encoding) == "a"
+        @test specvalue(l.data) == 1
+        @test specvalue(l.width) == 100
+        @test specvalue(l.encoding) == "a"
         @test length(l.layer) == 3
         @test l.layer[1] isa Deneb.SingleSpec
         @test l.layer[2] isa Deneb.SingleSpec
         @test l.layer[3] isa Deneb.SingleSpec
-        @test value(l.layer[1]) == (; mark="bar")
-        @test value(l.layer[2]) == (; mark="bar")
-        @test value(l.layer[3]) == (; mark="bar")
+        @test specvalue(l.layer[1]) == (; mark="bar")
+        @test specvalue(l.layer[2]) == (; mark="bar")
+        @test specvalue(l.layer[3]) == (; mark="bar")
         # all shared properties of layered spec (width) match SingleSpec
         # final layer = [s1, s2, s1]
         l = s1 + (s2 + s1)
         @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
-        @test value(l.width) == 100
+        @test specvalue(l.width) == 100
         @test length(l.layer) == 3
         @test l.layer[1] isa Deneb.SingleSpec
         @test l.layer[2] isa Deneb.SingleSpec
         @test l.layer[3] isa Deneb.SingleSpec
-        @test value(l.layer[1]) == (data=1, mark="bar", encoding="a")
-        @test value(l.layer[2]) == (data=2, mark="line", encoding="b")
-        @test value(l.layer[3]) == (data=1, mark="bar", encoding="a")
+        @test specvalue(l.layer[1]) == (data=1, mark="bar", encoding="a")
+        @test specvalue(l.layer[2]) == (data=2, mark="line", encoding="b")
+        @test specvalue(l.layer[3]) == (data=1, mark="bar", encoding="a")
         # some shared properties of layered spec (width) don't match SingleSpec
         # final layer = [s1, [s2, s2]]
         l = s1 + (s2 + s2)
         @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
-        @test value(l.width) == 100
+        @test specvalue(l.width) == 100
         @test length(l.layer) == 2
         @test l.layer[1] isa Deneb.SingleSpec
         @test l.layer[2] isa Deneb.LayerSpec
-        @test value(l.layer[1]) == (data=1, mark="bar", encoding="a")
-        @test value(l.layer[2].data) == 2
-        @test value(l.layer[2].encoding) == "b"
+        @test specvalue(l.layer[1]) == (data=1, mark="bar", encoding="a")
+        @test specvalue(l.layer[2].data) == 2
+        @test specvalue(l.layer[2].encoding) == "b"
         @test length(l.layer[2].layer) == 2
         @test l.layer[2].layer[1] isa Deneb.SingleSpec
         @test l.layer[2].layer[2] isa Deneb.SingleSpec
-        @test value(l.layer[2].layer[1]) == (; mark="line")
-        @test value(l.layer[2].layer[2]) == (; mark="line")
+        @test specvalue(l.layer[2].layer[1]) == (; mark="line")
+        @test specvalue(l.layer[2].layer[2]) == (; mark="line")
     end
     @testset "layer LayerSpecs" begin
         s1 = vlspec(data=1, width=100, mark=:bar, encoding=:a)
@@ -136,40 +136,40 @@ end
         # expand all
         l = (s1 + s2) + (s1 + s2)
         @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
-        @test value(l.width) == 100
+        @test specvalue(l.width) == 100
         @test length(l.layer) == 4
         @test l.layer[1] isa Deneb.SingleSpec
         @test l.layer[2] isa Deneb.SingleSpec
         @test l.layer[3] isa Deneb.SingleSpec
         @test l.layer[4] isa Deneb.SingleSpec
-        @test value(l.layer[1]) == (data=1, mark="bar", encoding="a")
-        @test value(l.layer[2]) == (data=2, mark="line", encoding="b")
-        @test value(l.layer[3]) == (data=1, mark="bar", encoding="a")
-        @test value(l.layer[4]) == (data=2, mark="line", encoding="b")
+        @test specvalue(l.layer[1]) == (data=1, mark="bar", encoding="a")
+        @test specvalue(l.layer[2]) == (data=2, mark="line", encoding="b")
+        @test specvalue(l.layer[3]) == (data=1, mark="bar", encoding="a")
+        @test specvalue(l.layer[4]) == (data=2, mark="line", encoding="b")
         # no expand
         l = (s1 + s1) + (s2 + s2)
         @test l isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
-        @test value(l.width) == 100
+        @test specvalue(l.width) == 100
         @test length(l.layer) == 2
         @test l.layer[1] isa Deneb.LayerSpec
         @test l.layer[2] isa Deneb.LayerSpec
-        @test value(l.layer[1].data) == 1
-        @test value(l.layer[1].encoding) == "a"
+        @test specvalue(l.layer[1].data) == 1
+        @test specvalue(l.layer[1].encoding) == "a"
         @test length(l.layer[1].layer) == 2
         @test l.layer[2].layer[1] isa Deneb.SingleSpec
         @test l.layer[1].layer[2] isa Deneb.SingleSpec
-        @test value(l.layer[1].layer[1]) == (; mark="bar")
-        @test value(l.layer[1].layer[2]) == (; mark="bar")
-        @test value(l.layer[2].data) == 2
-        @test value(l.layer[2].encoding) == "b"
+        @test specvalue(l.layer[1].layer[1]) == (; mark="bar")
+        @test specvalue(l.layer[1].layer[2]) == (; mark="bar")
+        @test specvalue(l.layer[2].data) == 2
+        @test specvalue(l.layer[2].encoding) == "b"
         @test length(l.layer[2].layer) == 2
         @test l.layer[2].layer[1] isa Deneb.SingleSpec
         @test l.layer[2].layer[2] isa Deneb.SingleSpec
-        @test value(l.layer[2].layer[1]) == (; mark="line")
-        @test value(l.layer[2].layer[2]) == (; mark="line")
+        @test specvalue(l.layer[2].layer[1]) == (; mark="line")
+        @test specvalue(l.layer[2].layer[2]) == (; mark="line")
         # expand left
         l = (s1 + s2) + (s2 + s2)
-        @test value(l.width) == 100
+        @test specvalue(l.width) == 100
         @test length(l.layer) == 3
         @test l.layer[1] isa Deneb.SingleSpec
         @test l.layer[2] isa Deneb.SingleSpec
@@ -179,7 +179,7 @@ end
         @test l.layer[3].layer[2] isa Deneb.SingleSpec
         # expand right
         l = (s1 + s1) + (s1 + s2)
-        @test value(l.width) == 100
+        @test specvalue(l.width) == 100
         @test length(l.layer) == 3
         @test l.layer[1] isa Deneb.LayerSpec
         @test l.layer[2] isa Deneb.SingleSpec
@@ -192,13 +192,13 @@ end
         l = vlspec(data=1, mark=:bar) + vlspec(data=2, mark=:line)
         cl = vlspec(data=3) * l
         @test cl isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
-        @test value(cl.data) == 3
-        @test value(cl.layer[1].data) == 1
-        @test value(cl.layer[2].data) == 2
+        @test specvalue(cl.data) == 3
+        @test specvalue(cl.layer[1].data) == 1
+        @test specvalue(cl.layer[2].data) == 2
         cl = l * vlspec(data=3)
         @test cl isa Deneb.VegaLiteSpec{Deneb.LayerSpec}
-        @test value(cl.layer[1].data) == 3
-        @test value(cl.layer[2].data) == 3
+        @test specvalue(cl.layer[1].data) == 3
+        @test specvalue(cl.layer[2].data) == 3
     end
 
 end
@@ -208,19 +208,19 @@ end
     s = [a b]
     @test s isa Deneb.VegaLiteSpec{Deneb.HConcatSpec}
     @test length(s.hconcat) == 2
-    @test value(s.hconcat[1].mark) == "bar"
-    @test value(s.hconcat[2].mark) == "line"
+    @test specvalue(s.hconcat[1].mark) == "bar"
+    @test specvalue(s.hconcat[2].mark) == "line"
     s = [a; b]
     @test s isa Deneb.VegaLiteSpec{Deneb.VConcatSpec}
     @test length(s.vconcat) == 2
-    @test value(s.vconcat[1].mark) == "bar"
-    @test value(s.vconcat[2].mark) == "line"
+    @test specvalue(s.vconcat[1].mark) == "bar"
+    @test specvalue(s.vconcat[2].mark) == "line"
     s = [a b; c d]
     @test s isa Deneb.VegaLiteSpec{Deneb.ConcatSpec}
     @test length(s.concat) == 4
-    @test value(s.columns) == 2
-    @test value(s.concat[1].mark) == "bar"
-    @test value(s.concat[2].mark) == "line"
-    @test value(s.concat[3].mark) == "point"
-    @test value(s.concat[4].mark) == "rule"
+    @test specvalue(s.columns) == 2
+    @test specvalue(s.concat[1].mark) == "bar"
+    @test specvalue(s.concat[2].mark) == "line"
+    @test specvalue(s.concat[3].mark) == "point"
+    @test specvalue(s.concat[4].mark) == "rule"
 end

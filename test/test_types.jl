@@ -1,9 +1,9 @@
-using Deneb: Spec, VegaLiteSpec, value
+using Deneb: Spec, VegaLiteSpec, specvalue
 
 @testset "Simple Spec" begin
-    @test value(Spec(3)) == 3
-    @test value(Spec("a")) == "a"
-    @test value(Spec(:a)) == "a"
+    @test specvalue(Spec(3)) == 3
+    @test specvalue(Spec("a")) == "a"
+    @test specvalue(Spec(:a)) == "a"
 end
 
 nt = (a=1, b=(c="x",))
@@ -11,16 +11,16 @@ nt = (a=1, b=(c="x",))
     s = Spec(nt)
     @test s.spec isa NamedTuple
     @test eltype(s.spec) === Spec
-    @test value(s) == nt
-    @test value(Spec(nt, :a)) == 1
-    @test isnothing(value(Spec(nt, :c)))
+    @test specvalue(s) == nt
+    @test specvalue(Spec(nt, :a)) == 1
+    @test isnothing(specvalue(Spec(nt, :c)))
 end
 
 @testset "Vector Spec" begin
     v = [1, nt]
     s = Spec(v)
     @test s.spec isa Vector{Spec}
-    @test value(s) == v
+    @test specvalue(s) == v
     @test s.spec[1].spec == 1
     @test s.spec[2] == Spec(nt)
 end
@@ -39,7 +39,7 @@ end
 @testset "DataSpec" begin
     d = Deneb.DataSpec(data=3)
     @test d isa Deneb.DataSpec
-    @test value(d) == 3
+    @test specvalue(d) == 3
     d = Deneb.DataSpec(data=(a=1:2, b='a':'b'))
     @test d isa Deneb.DataSpec
     @test propertynames(d) == (:values,)
@@ -51,28 +51,28 @@ end
 @testset "TransformSpec" begin
     t = Deneb.TransformSpec(transform=3)
     @test t isa Deneb.TransformSpec
-    @test value(t) == [3]
+    @test specvalue(t) == [3]
     t = Deneb.TransformSpec(transform=[1, 2])
     @test t isa Deneb.TransformSpec
-    @test value(t) == [1, 2]
+    @test specvalue(t) == [1, 2]
     t = Deneb.TransformSpec(transform=Spec([1, 2]))
     @test t isa Deneb.TransformSpec
-    @test value(t) == [1, 2]
+    @test specvalue(t) == [1, 2]
     t = Deneb.TransformSpec(transform=[Spec(1), Spec(2)])
     @test t isa Deneb.TransformSpec
-    @test value(t) == [1, 2]
+    @test specvalue(t) == [1, 2]
     @test propertynames(t) == tuple()
     t = Deneb.TransformSpec(transform=(;filter="a"))
     @test t isa Deneb.TransformSpec
-    @test value(t) == [(;filter="a")]
+    @test specvalue(t) == [(;filter="a")]
     t = Deneb.TransformSpec(transform=[(;filter="a")])
     @test t isa Deneb.TransformSpec
-    @test value(t) == [(;filter="a")]
+    @test specvalue(t) == [(;filter="a")]
     @test propertynames(t) == tuple()
     t = Deneb.TransformSpec(transform=nothing)
-    @test value(t) == []
+    @test specvalue(t) == []
     s = Deneb.Spec(Deneb.TransformSpec(3))
-    @test value(s) == [3]
+    @test specvalue(s) == [3]
 end
 
 # TODO: add tests for MarkSpec, EncodingSpec, ParamsSpec, ...
@@ -94,28 +94,28 @@ nt = (name="chart", data=3, transform=[(;filter="a")], mark=:bar, encoding=(x=:x
     @test propertynames(spec()) == tuple()
     s = Spec(nt)
     @test issetequal(propertynames(s), (:name, :data, :transform, :mark, :encoding))
-    @test value(s.name) == "chart"
-    @test value(s.data) == 3
-    @test value(s.transform) == [(;filter="a")]
-    @test value(s.mark) == "bar"
+    @test specvalue(s.name) == "chart"
+    @test specvalue(s.data) == 3
+    @test specvalue(s.transform) == [(;filter="a")]
+    @test specvalue(s.mark) == "bar"
     @test issetequal(propertynames(s.encoding), (:x, :y))
-    @test value(s.encoding.x) == "x"
+    @test specvalue(s.encoding.x) == "x"
     @test issetequal(propertynames(s.encoding.y), (:field, :type))
-    @test value(s.encoding.y.field) == "y"
-    @test value(s.encoding.y.type) == "quantitative"
+    @test specvalue(s.encoding.y.field) == "y"
+    @test specvalue(s.encoding.y.type) == "quantitative"
 end
 
 @testset "VegaLiteSpec properties" begin
     @test propertynames(vlspec()) == tuple()
     s = VegaLiteSpec(; nt...)
     @test issetequal(propertynames(s), (:name, :data, :transform, :mark, :encoding))
-    @test value(s.name) == "chart"
-    @test value(s.data) == 3
-    @test value(s.transform) == [(;filter="a")]
-    @test value(s.mark) == "bar"
+    @test specvalue(s.name) == "chart"
+    @test specvalue(s.data) == 3
+    @test specvalue(s.transform) == [(;filter="a")]
+    @test specvalue(s.mark) == "bar"
     @test issetequal(propertynames(s.encoding), (:x, :y))
-    @test value(s.encoding.x) == "x"
+    @test specvalue(s.encoding.x) == "x"
     @test issetequal(propertynames(s.encoding.y), (:field, :type))
-    @test value(s.encoding.y.field) == "y"
-    @test value(s.encoding.y.type) == "quantitative"
+    @test specvalue(s.encoding.y.field) == "y"
+    @test specvalue(s.encoding.y.type) == "quantitative"
 end
