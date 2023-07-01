@@ -254,6 +254,7 @@ const TYPEMAP = Dict(
     "o" => "ordinal",
     "n" => "nominal",
     "t" => "temporal",
+    "g" => "geojson",
 )
 function _type(t::AbstractString)
     t = lowercase(t)

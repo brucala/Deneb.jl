@@ -35,7 +35,7 @@ using DataFrames
 Data(DataFrame(data))
 ```
 
-As shown in the output, Deneb.jl is in charge to internally transform this data into an appropriate spec with a format that Vega-Lite can interpret.
+As shown in the output, Deneb.jl internally transform this data into an appropriate spec with a format that Vega-Lite can interpret.
 ## Data from a URL
 
 Alternatively, data can be loaded from a URL using the `url` keyword argument.
@@ -79,3 +79,25 @@ Mark(:errorband, extent=:ci, borders=(opacity=0.5, strokeDash=[6, 4]))
 Refer to [Vega-Lite's documentation](https://vega.github.io/vega-lite/docs/mark.html) to learn more about the mark types and their properties.
 
 # Encoding
+
+The `encoding` property of a single view specification represents the mapping between encoding channels (such as `x`, `y`, or `color`) and data fields. In Deneb.jl the `encoding` is defined with `Encoding`, which can optionally take one or two positional arguments representing the the `x` and `y` channels, and any number of keyword arguments representing any arbitrary Vega-Lite channel (including explicit `x`/`y` channels). In the simplest scenario the arguments are of type `String` or `Symbol` representing the `field` property of the given encoding channel.
+
+```@example building_blocks
+Encoding(:Horsepower, :Miles_per_Gallon, color=:Origin)
+```
+
+## Shorthand string syntax
+
+Similar to Altair, the encoding channels can be defined with a shorthand string syntax to conveniently define the `field`, the `type` and the `aggregate`/`timeUnit` properties of encoding channels. The `type` can be defined by separating the field with a `:` followed by a shorthand type code (`q`: `quantitative`, `o`: `ordinal`, `n`: `nominal`, `t`: `temporal`, `g`: `geojson`).
+
+```@example building_blocks
+Encoding("Horsepower:q", "Miles_per_Gallon:q", color="Origin:n")
+```
+
+An `aggregate`/`timeUnit` property of encoding channel can also be specified with the shorthand string syntax by wrapping the `field` property with parenthesis and the desired `aggregate`/`timeUnit` function:
+
+```@example building_blocks
+Encoding("monthdate(date):t", "mean(temperature):q", color="year(date):o")
+```
+
+## The `field` function
