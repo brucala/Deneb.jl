@@ -1,4 +1,4 @@
-name: Run tests
+name: Tests
 
 on: [push, pull_request]
 
@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        julia-version: 
+        julia-version:
           - '1'  # latest release
           - '1.6' # LTS
     steps:
