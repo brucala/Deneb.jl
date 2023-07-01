@@ -12,13 +12,13 @@ Spec(s::Union{NamedTuple, AbstractDict}) = Spec{NamedTuple}(NamedTuple((Symbol(k
 Spec(s::Vector) = Spec{Vector{Spec}}([Spec(i) for i in s])
 Spec(s::Spec) = Spec(s.spec)
 Spec(s, field) = Spec(get(s, field, nothing))
-Spec(s::AbstractSpec) = Spec(specvalue(s))
+Spec(s::AbstractSpec) = Spec(rawspec(s))
 
 Base.:(==)(s1::Spec, s2::Spec) = s1.spec == s2.spec
 
-specvalue(s::Spec) = s.spec
-specvalue(s::Spec{NamedTuple}) = NamedTuple((k=>specvalue(v) for (k,v) in pairs(s.spec)))
-specvalue(s::Spec{Vector{Spec}}) = [specvalue(v) for v in s.spec]
+rawspec(s::Spec) = s.spec
+rawspec(s::Spec{NamedTuple}) = NamedTuple((k=>rawspec(v) for (k,v) in pairs(s.spec)))
+rawspec(s::Spec{Vector{Spec}}) = [rawspec(v) for v in s.spec]
 
 ###
 ### Constrained specs
@@ -50,13 +50,13 @@ function _viewtype(spec)
         SingleSpec
 end
 
-function specvalue(s::ConstrainedSpec)
+function rawspec(s::ConstrainedSpec)
     NamedTuple(
-        p => specvalue(getproperty(s, p))
+        p => rawspec(getproperty(s, p))
         for p in propertynames(s)
     )
 end
-specvalue(v::Vector{T}) where T<:ConstrainedSpec = [specvalue(x) for x in v]
+rawspec(v::Vector{T}) where T<:ConstrainedSpec = [rawspec(x) for x in v]
 
 struct TopLevelProperties <: PropertiesSpec
     schema::Spec
@@ -93,9 +93,9 @@ LayoutProperties(; spec...) = ConstrainedSpec(LayoutProperties; spec...)
 struct DataSpec <: ConstrainedSpec
     data  # store the original object, not a Spec
 end
-DataSpec(s::Union{Spec, DataSpec}) = DataSpec(specvalue(s))
+DataSpec(s::Union{Spec, DataSpec}) = DataSpec(rawspec(s))
 DataSpec(; data=nothing, kw...) = DataSpec(data)
-function specvalue(s::DataSpec)
+function rawspec(s::DataSpec)
     Tables.isrowtable(s.data) && return (values=s.data, )
     if (
         Tables.istable(s.data)
@@ -114,13 +114,13 @@ struct MarkSpec <: ConstrainedSpec
     mark::Spec
 end
 MarkSpec(; mark=Spec(nothing), kw...) = MarkSpec(Spec(mark))
-specvalue(s::MarkSpec) = specvalue(s.mark)
+rawspec(s::MarkSpec) = rawspec(s.mark)
 
 struct EncodingSpec <: ConstrainedSpec
     encoding::Spec
 end
 EncodingSpec(; encoding=Spec(nothing), kw...) = EncodingSpec(Spec(encoding))
-specvalue(s::EncodingSpec) = specvalue(s.encoding)
+rawspec(s::EncodingSpec) = rawspec(s.encoding)
 
 struct TransformSpec <: ConstrainedSpec
     transform::Spec{<:Vector}
@@ -129,7 +129,7 @@ end
 TransformSpec(s::Spec) = TransformSpec(Spec([s]))
 TransformSpec(s) = TransformSpec(Spec(s))
 TransformSpec(; transform=Spec([]), kw...) = TransformSpec(transform)
-specvalue(s::TransformSpec) = specvalue(s.transform)
+rawspec(s::TransformSpec) = rawspec(s.transform)
 
 # TODO: parameters are named with a unique "name" property required
 # TODO: imposed named params and implement composition logic with unique names
@@ -140,7 +140,7 @@ end
 ParamsSpec(s::Spec) = ParamsSpec(Spec([s]))
 ParamsSpec(s) = ParamsSpec(Spec(s))
 ParamsSpec(; params=Spec([]), kw...) = ParamsSpec(params)
-specvalue(s::ParamsSpec) = specvalue(s.params)
+rawspec(s::ParamsSpec) = rawspec(s.params)
 
 struct SingleSpec <: ViewableSpec
     common::CommonProperties
@@ -160,7 +160,7 @@ struct ResolveSpec <: ConstrainedSpec
     resolve::Spec
 end
 ResolveSpec(; resolve=Spec(nothing), kw...) = ResolveSpec(Spec(resolve))
-specvalue(s::ResolveSpec) = specvalue(s.resolve)
+rawspec(s::ResolveSpec) = rawspec(s.resolve)
 
 struct LayerSpec <: MultiViewSpec
     common:: CommonProperties
@@ -303,12 +303,12 @@ function VConcatSpec(; vconcat, kw...)
     VConcatSpec(spectuple...)
 end
 
-Base.:(==)(s1::ConstrainedSpec, s2::ConstrainedSpec) = specvalue(s1) == specvalue(s2)
+Base.:(==)(s1::ConstrainedSpec, s2::ConstrainedSpec) = rawspec(s1) == rawspec(s2)
 
 Base.isempty(::Spec) = false
 Base.isempty(::Spec{Nothing}) = true
 Base.isempty(s::Spec{T}) where T<:Union{NamedTuple, Vector} = isempty(s.spec) || all(isempty, values(s.spec))
-Base.isempty(s::DataSpec) = isnothing(specvalue(s))
+Base.isempty(s::DataSpec) = isnothing(rawspec(s))
 Base.isempty(s::T) where T<:ConstrainedSpec = all(isempty, [getfield(s, f) for f in fieldnames(T)])
 
 ###
@@ -320,7 +320,7 @@ Base.isempty(s::T) where T<:ConstrainedSpec = all(isempty, [getfield(s, f) for f
 Return the parent properties of a specification.
 """
 Base.propertynames(s::Spec) = s.spec isa NamedTuple ? propertynames(s.spec) : tuple()
-Base.propertynames(d::DataSpec) = isempty(d) ? tuple() : propertynames(specvalue(d))
+Base.propertynames(d::DataSpec) = isempty(d) ? tuple() : propertynames(rawspec(d))
 Base.propertynames(s::MarkSpec) = isempty(s) ? tuple() : propertynames(s.mark)
 Base.propertynames(s::ResolveSpec) = isempty(s) ? tuple() : propertynames(s.resolve)
 Base.propertynames(s::EncodingSpec) = isempty(s) ? tuple() : propertynames(s.encoding)
@@ -338,7 +338,7 @@ function Base.propertynames(s::T) where T<:AbstractSpec
 end
 
 Base.getproperty(s::Spec, i::Symbol) = i in fieldnames(Spec) ? getfield(s, i) : s.spec[i]
-Base.getproperty(s::DataSpec, i::Symbol) = i in fieldnames(DataSpec) ? getfield(s, i) : getfield(specvalue(s), i)
+Base.getproperty(s::DataSpec, i::Symbol) = i in fieldnames(DataSpec) ? getfield(s, i) : getfield(rawspec(s), i)
 function Base.getproperty(s::T, f::Symbol) where T<:AbstractSpec
     f in fieldnames(T) && return getfield(s, f)
     for field in fieldnames(T)
