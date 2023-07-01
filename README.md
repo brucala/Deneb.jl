@@ -1,6 +1,6 @@
 # Deneb.jl
 
-<div style="text-align: center;">
+<div align="center">
 
   <img src="docs/src/assets/logo.svg" alt="Deneb.jl logo" width="200">
 
