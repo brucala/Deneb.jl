@@ -96,19 +96,18 @@ end
 DataSpec(s::Union{Spec, DataSpec}) = DataSpec(rawspec(s))
 DataSpec(; data=nothing, kw...) = DataSpec(data)
 function rawspec(s::DataSpec)
+    !Tables.istable(s.data) && return s.data
     Tables.isrowtable(s.data) && return (values=s.data, )
-    if (
-        Tables.istable(s.data)
-        # already in the VegaLite shape
-        && !haskey(s.data, :values)
-        # data generators
-        && !haskey(s.data, :graticule)
-        && !haskey(s.data, :sequence)
-        && !haskey(s.data, :sphere)
+    # already in the VegaLite shape or a data generators
+    if s.data isa NamedTuple && (
+            haskey(s.data, :values)
+            || haskey(s.data, :graticule)
+            || haskey(s.data, :sequence)
+            || haskey(s.data, :sphere)
     )
-        return (values=Tables.rowtable(s.data), )
+        return s.data
     end
-    s.data
+    return (values=Tables.rowtable(s.data), )
 end
 struct MarkSpec <: ConstrainedSpec
     mark::Spec
