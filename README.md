@@ -10,8 +10,6 @@
 
 </div>
 
-
-
 **Deneb** is the brightest star in the constellation of the *Cygnus*, and together with **Vega** and **Altair** they form the *Summer Triangle* asterism.
 
 **Deneb.jl** is a convenient Julia API for creating [Vega-Lite](https://vega.github.io/vega-lite/) visualizations, with high inspiration from Python's [Vega-Altair](https://altair-viz.github.io/).
