@@ -30,6 +30,6 @@ VegaLite.jl allows for the creation of virtually any possible Vega-Lite specific
 Below a list of good and not-so-good things about Deneb.jl:
 - It provides a coherent API that allows for a convenient and intuitive construction of any Vega-Lite visualization.
 - Layering and composing single and multi-view charts is intuitive using the operators `+` (familiar to [Altair](https://altair-viz.github.io/) users) and `*` (familiar to [AlgebraOfGraphics.jl](https://github.com/MakieOrg/AlgebraOfGraphics.jl) users).
-- While the documentation is still mostly lacking, there is a comprehensive set of examples available in the [Gallery](@ref) section. These examples should serve as a valuable resource to enable any user already familiar with Vega-Lite and/or Altair.
-- I initially started this project as an exercise to learn more about Julia. Therefore, the internal design of Deneb.jl was primarily driven by my personal learning apetite at the time and might not represent the optimal or most idiomatic design choices. However, things just work.
+- While the documentation may currently lack completeness and coherence, there is a comprehensive set of examples available in the [Gallery](@ref) section. These examples should serve as a valuable resource to enable any user already familiar with Vega-Lite and/or Altair.
+- I initially started this project as an exercise to learn more about Julia. Therefore, the internal design of Deneb.jl was primarily driven by my personal learning appetite at the time and might not represent the optimal or most idiomatic design choices. However, things just work.
 - There are numerous tests in place, although the test coverage is not yet close to 100% in any way.
