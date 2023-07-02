@@ -22,7 +22,7 @@ export
     field, layout, projection,
     resolve, resolve_scale, resolve_axis, resolve_legend,
     config, title, expr, param,
-    #params
+    # params
     interactive_scales,
     select, select_point, select_interval, select_legend, select_bind_input,
     select_range, select_dropdown, select_radio, select_checkbox,

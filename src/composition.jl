@@ -163,10 +163,8 @@ Base.:*(a::ResolveSpec, b::T) where T<:VegaLiteSpec{<:MultiViewSpec} = b * a
     spec1::ConstrainedSpec + spec2::ConstrainedSpec
 The addition of two specs will produce a new spec with both specs layered.
 The order matters as `spec1` will appear below `spec2`.
-If the specs contain common data, encoding or size properties, they will be promoted to the
-top level specification.
-Layering layered specification with shared data/encoding/sizes will append the layers ([s1, s2] + [s3, s4]
--> [s1, s2, s3, s4]), otherwise a nested layer is created ([s1, s2, [s3, s4]]).
+If the specs contain shared properties (e.g. `data`, `encoding`, `width`...),
+they will be promoted to the top level specification.
 Multi-view layout specs (facet, repeat, concat) cannot be layered.
 """
 function Base.:+(a::VegaLiteSpec, b::VegaLiteSpec)
