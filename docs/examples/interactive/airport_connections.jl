@@ -28,7 +28,7 @@ connections = flights * Mark(:rule, opacity=0.35) * transform_filter(
     (param=:org, empty=false),
 ) * transform_lookup(
     :origin, airports,
-) *  transform_lookup(
+) * transform_lookup(
     :destination, airports; as=[:state, :lat2, :lon2],
 ) * Encoding(
     longitude=:longitude,
