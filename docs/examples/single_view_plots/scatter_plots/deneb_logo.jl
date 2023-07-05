@@ -1,7 +1,7 @@
 # ---
 # cover: assets/deneb_logo.png
 # author: bruno
-# description: Deneb.jl Logo
+# title: Deneb.jl Logo
 # ---
 
 using Deneb
@@ -23,36 +23,31 @@ data = [
     star("η Cygni", :Cygnus, 3.85, 54.6, 15.1),
 ]
 
-color_scale = (
-    domain=[:Deneb, :Vega, :Altair],
-    range=[red, green, purple],
+is_triangle = "datum.star == 'Deneb' || datum.star == 'Vega' || datum.star == 'Altair'"
+
+color_scale = (domain=[:Deneb, :Vega, :Altair], range=[red, green, purple])
+color=condition_test(
+    is_triangle,
+    field(:star; legend=nothing, scale=color_scale),
+    blue,
 )
 
-base = Data(data) * Mark(
+size_scale = (type=:log, reverse=true, range=[200, 800], domain=[2.2, 3.85])
+size=condition_test(
+    is_triangle,
+    10000,
+    field(:magnitude, legend=nothing, scale=size_scale),
+)
+
+logo = Data(data) * Mark(
     :point, shape=star_shape, filled=true, opacity=1,
 ) * Encoding(
-    longitude="az:Q",
-    latitude="alt:Q",
+    longitude=:az,
+    latitude=:alt,
     tooltip=[field(:star), field(:constellation), field(:magnitude)],
-)
-
-cygnus = transform_filter(
-    "datum.constellation == 'Cygnus'"
-) * Encoding(
-    size=field(
-        "magnitude:Q",
-        legend=nothing,
-        scale=(type=:log, reverse=true, range=[200, 1500]),
-    ),
-    color=(;value=blue)
-)
-
-summer_triangle = Encoding(
-    color=field(:star; legend=nothing, scale=color_scale),
-    size=(; value=10000),
-) * config(:view, stroke="")
-
-logo = base * (cygnus + summer_triangle)
+    size=size,
+    color=color,
+) * projection("equirectangular")
 
 # save cover #src
 save("assets/deneb_logo.png", logo) #src
