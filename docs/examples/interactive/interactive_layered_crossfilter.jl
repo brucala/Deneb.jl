@@ -1,7 +1,7 @@
 # ---
 # cover: assets/interactive_crossfilter.png
 # author: bruno
-# description: Interactive Layered Crossfilter
+# title: Interactive Layered Crossfilter
 # ---
 
 using Deneb

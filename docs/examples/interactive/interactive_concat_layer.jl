@@ -1,7 +1,7 @@
 # ---
 # cover: assets/interactive_concat_layer.png
 # author: bruno
-# description: Interactive Dashboard with Cross Highlight
+# title: Interactive Dashboard with Cross Highlight
 # ---
 
 using Deneb
