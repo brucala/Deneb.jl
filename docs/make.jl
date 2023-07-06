@@ -12,7 +12,7 @@ end
 
 gallery, gallery_cb, gallery_assets = makedemos("examples")
 
-assets = []
+assets = ["assets/favicon.ico"]
 isnothing(gallery_assets) || push!(assets, gallery_assets)
 
 

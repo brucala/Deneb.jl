@@ -52,4 +52,14 @@ logo = Data(data) * Mark(
 # save cover #src
 save("assets/deneb_logo.png", logo) #src
 # svg so transparency works #src
-save("assets/deneb_logo-transparent.svg", logo * vlspec(background="")) #src
+transparent = vlspec(background="") #src
+save("assets/deneb_logo-transparent.svg", logo * transparent) #src
+favicon = Data(data) * transform_filter(is_triangle) * Mark( #src
+    :point, shape=star_shape, filled=true, opacity=1, size=60000,  #src
+) * Encoding(  #src
+    longitude=:az,  #src
+    latitude=:alt,  #src
+    color=field(:star; legend=nothing, scale=color_scale),  #src
+) * projection("equirectangular") * config(:view, stroke="")  #src
+save("assets/favicon.svg", favicon * transparent) #src
+# run(`convert -density 300 -define icon:auto-resize=256,128,96,64,48,32,16 -background none assets/favicon.svg assets/favicon.ico`) #src
