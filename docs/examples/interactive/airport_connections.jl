@@ -2,6 +2,7 @@
 # cover: assets/airport_connections.png
 # author: bruno
 # title: Connections among U.S. Airports
+# description: Connections among U.S. Airports
 # ---
 
 using Deneb
