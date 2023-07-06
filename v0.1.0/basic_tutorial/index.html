@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Basic Tutorial · Deneb.jl</title><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../democards/gridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li class="is-active"><a class="tocitem" href>Basic Tutorial</a><ul class="internal"><li><a class="tocitem" href="#The-Data"><span>The Data</span></a></li><li><a class="tocitem" href="#Encoding-Data-with-Marks"><span>Encoding Data with Marks</span></a></li><li><a class="tocitem" href="#Data-Transformation:-Aggregation"><span>Data Transformation: Aggregation</span></a></li><li><a class="tocitem" href="#Customize-your-Visualization"><span>Customize your Visualization</span></a></li><li><a class="tocitem" href="#Publish-your-Visualization"><span>Publish your Visualization</span></a></li></ul></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../intro/">Introduction</a></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../multiview/">Multi-views</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Getting Started</a></li><li class="is-active"><a href>Basic Tutorial</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Basic Tutorial</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/basic_tutorial.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Introduction-to-Deneb.jl"><a class="docs-heading-anchor" href="#Introduction-to-Deneb.jl">Introduction to Deneb.jl</a><a id="Introduction-to-Deneb.jl-1"></a><a class="docs-heading-anchor-permalink" href="#Introduction-to-Deneb.jl" title="Permalink"></a></h1><p>This tutorial (as much of the documentation and example gallery) is adapted from <a href="https://vega.github.io/vega-lite/tutorials/getting_started.html">Vega-Lite&#39;s</a> and <a href="https://altair-viz.github.io/getting_started/starting.html">Altair&#39;s</a> documentation.</p><p>The tutorial will guide through the process of writing a visualization specification in Deneb.jl. We will walk you through all main components of Deneb by adding each of them to an example specification one-by-one. This tutorial assumes that you are working an environment that can render rich MIME types (like Jupyter, Pluto, VSCode, ...) so the plots are automatically displayed.</p><h2 id="The-Data"><a class="docs-heading-anchor" href="#The-Data">The Data</a><a id="The-Data-1"></a><a class="docs-heading-anchor-permalink" href="#The-Data" title="Permalink"></a></h2><p>Deneb.jl accepts any tabular data that supports the <a href="https://github.com/JuliaData/Tables.jl">Tables.jl</a> interface (e.g. <a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a>). For the purpose of this tutorial we will use data with a categorical variable in in the first column <code>a</code> and a numerical variable in a second column <code>b</code>. We&#39;ll represent this data as a <code>NamedTuple</code> (but we could choose any other representation that supports Tables.jl interface):</p><pre><code class="language-julia hljs">data = (
+    a = collect(&quot;CCCDDDEEE&quot;),
+    b = [2, 7, 4, 1, 2, 6, 8, 4, 7],
+)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">(a = [&#39;C&#39;, &#39;C&#39;, &#39;C&#39;, &#39;D&#39;, &#39;D&#39;, &#39;D&#39;, &#39;E&#39;, &#39;E&#39;, &#39;E&#39;], b = [2, 7, 4, 1, 2, 6, 8, 4, 7])</code></pre><p>Deneb.jl can now consume this data with <a href="../api/#Deneb.Data-Tuple{Any}"><code>Data</code></a>:</p><pre><code class="language-julia hljs">using Deneb
+Data(data)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.DataSpec: 
+{
+  &quot;values&quot;: [
+    {
+      &quot;a&quot;: &quot;C&quot;,
+      &quot;b&quot;: 2
+    },
+    {
+      &quot;a&quot;: &quot;C&quot;,
+      &quot;b&quot;: 7
+    },
+    {
+      &quot;a&quot;: &quot;C&quot;,
+      &quot;b&quot;: 4
+    },
+    {
+      &quot;a&quot;: &quot;D&quot;,
+      &quot;b&quot;: 1
+    },
+    {
+      &quot;a&quot;: &quot;D&quot;,
+      &quot;b&quot;: 2
+    },
+    {
+      &quot;a&quot;: &quot;D&quot;,
+      &quot;b&quot;: 6
+    },
+    {
+      &quot;a&quot;: &quot;E&quot;,
+      &quot;b&quot;: 8
+    },
+    {
+      &quot;a&quot;: &quot;E&quot;,
+      &quot;b&quot;: 4
+    },
+    {
+      &quot;a&quot;: &quot;E&quot;,
+      &quot;b&quot;: 7
+    }
+  ]
+}
+</code></pre><p>This created a <code>DataSpec</code> that produces the <code>data</code> property of a Vega-Lite specification that defines the data source of a visualization. Deneb.jl also supports other types of data sources supported by Vega-Lite, besides tabular data.</p><h2 id="Encoding-Data-with-Marks"><a class="docs-heading-anchor" href="#Encoding-Data-with-Marks">Encoding Data with Marks</a><a id="Encoding-Data-with-Marks-1"></a><a class="docs-heading-anchor-permalink" href="#Encoding-Data-with-Marks" title="Permalink"></a></h2><p>Basic graphical elements in Vega-Lite are marks. Marks provide basic shapes whose properties (such as position, size, and color) can be used to visually encode data, either from a data field (or a variable), or a constant value.</p><p>In Deneb.jl the <code>mark</code> of a Vega-Lite specification can be created with <a href="../api/#Deneb.Mark-Tuple{Union{AbstractString, Symbol}}"><code>Mark</code></a>. For instance we can set the <code>mark</code> property as a <code>point</code>:</p><pre><code class="language-julia hljs">Mark(:point)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.MarkSpec: 
+{
+  &quot;type&quot;: &quot;point&quot;
+}
+</code></pre><p>To show a Vega-Lite visualization of the data as a point, we can compose the <code>DataSpec</code> and the <code>MarkSpec</code> with the <a href="../api/#Base.:*-Tuple{Deneb.Spec, Deneb.Spec}"><code>*</code></a> operator to build a showable <code>VegaLiteSpec</code>:</p><pre><code class="language-julia hljs">Data(data) * Mark(:point)</code></pre><div id='vl128b345f0f214ae4b53c08a4e98ce1ea' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vl128b345f0f214ae4b53c08a4e98ce1ea',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"a":"C","b":2},{"a":"C","b":7},{"a":"C","b":4},{"a":"D","b":1},{"a":"D","b":2},{"a":"D","b":6},{"a":"E","b":8},{"a":"E","b":4},{"a":"E","b":7}]},"mark":{"type":"point"}},{mode:'vega-lite'}).catch(console.warn);})</script><p>Now, it looks like we get a point. In fact, Vega-Lite renders one point for each object in the array, but they are all overlapping since we have not specified each point’s position.</p><p>To visually separate the points, data variables can be mapped to visual properties of a mark. For example, we can encode the variable <code>a</code> of the data with <code>x</code> channel, which represents the x-position of the points. We can do that by adding an encoding object with its key <code>x</code> mapped to a channel definition that describes variable <code>a</code>. In Deneb.jl this can be achieved with <a href="../api/#Deneb.Encoding-Tuple{Union{AbstractString, Symbol}}"><code>Encoding</code></a>:</p><pre><code class="language-julia hljs">Encoding(x=(field=:a, type=:nominal))</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.EncodingSpec: 
+{
+  &quot;x&quot;: {
+    &quot;field&quot;: &quot;a&quot;,
+    &quot;type&quot;: &quot;nominal&quot;
+  }
+}
+</code></pre><p>Or alternatively using this convenient shortcut (borrowed from <a href="https://altair-viz.github.io/user_guide/encodings/index.html#encoding-shorthands">Altair</a>) for a field and type definition:</p><pre><code class="language-julia hljs">Encoding(x=&quot;a:N&quot;)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.EncodingSpec: 
+{
+  &quot;x&quot;: {
+    &quot;field&quot;: &quot;a&quot;,
+    &quot;type&quot;: &quot;nominal&quot;
+  }
+}
+</code></pre><p>We can now compose the data, mark and encoding specs to create the following visualization:</p><pre><code class="language-julia hljs">Data(data) * Mark(:point) * Encoding(x=&quot;a:N&quot;)</code></pre><div id='vl6ef69848ba5540a8ae2ecfa508316362' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vl6ef69848ba5540a8ae2ecfa508316362',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"a":"C","b":2},{"a":"C","b":7},{"a":"C","b":4},{"a":"D","b":1},{"a":"D","b":2},{"a":"D","b":6},{"a":"E","b":8},{"a":"E","b":4},{"a":"E","b":7}]},"mark":{"type":"point"},"encoding":{"x":{"field":"a","type":"nominal"}}},{mode:'vega-lite'}).catch(console.warn);})</script><p>The <code>Encoding</code> object is a key-value mapping between encoding channels (such as <code>x</code>, <code>y</code>) and definitions of the mapped data fields. The channel definition describes the field’s name (<code>field</code>) and its data type (<code>type</code>). In this example, we map the values for field <code>a</code> to the encoding channel <code>x</code> (the x-location of the points) and set <code>a</code>’s data type to <code>nominal</code>, since it represents categories.</p><p>In the visualization above, Vega-Lite automatically adds an axis with labels for the different categories as well as an axis title. However, 3 points in each category are still overlapping. So far, we have only defined a visual encoding for the field <code>a</code>. We can also map the field <code>b</code> to the <code>y</code> channel.</p><pre><code class="language-julia hljs">Encoding(y=&quot;b:Q&quot;)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.EncodingSpec: 
+{
+  &quot;y&quot;: {
+    &quot;field&quot;: &quot;b&quot;,
+    &quot;type&quot;: &quot;quantitative&quot;
+  }
+}
+</code></pre><p>This time we set the field type to be <code>quantitative</code> (with the shorthand <code>&quot;:Q&quot;</code>) because the values in field <code>b</code> are numeric.</p><pre><code class="language-julia hljs">Data(data) * Mark(:point) * Encoding(
+    x=&quot;a:N&quot;,
+    y=&quot;b:Q&quot;
+)</code></pre><div id='vl923cf97d146f492cb52d80a30d3d0480' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vl923cf97d146f492cb52d80a30d3d0480',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"a":"C","b":2},{"a":"C","b":7},{"a":"C","b":4},{"a":"D","b":1},{"a":"D","b":2},{"a":"D","b":6},{"a":"E","b":8},{"a":"E","b":4},{"a":"E","b":7}]},"mark":{"type":"point"},"encoding":{"x":{"field":"a","type":"nominal"},"y":{"field":"b","type":"quantitative"}}},{mode:'vega-lite'}).catch(console.warn);})</script><p>Now we can see the raw data points. Note that Vega-Lite automatically adds grid lines to the y-axis to facilitate comparison of the <code>b</code> values.</p><h2 id="Data-Transformation:-Aggregation"><a class="docs-heading-anchor" href="#Data-Transformation:-Aggregation">Data Transformation: Aggregation</a><a id="Data-Transformation:-Aggregation-1"></a><a class="docs-heading-anchor-permalink" href="#Data-Transformation:-Aggregation" title="Permalink"></a></h2><p>Vega-Lite also supports data transformation such as aggregation. For example, we can set the <code>aggregate</code> property to <code>average</code> in the <code>y</code> channel encoding:</p><pre><code class="language-julia hljs">Encoding(
+    y=(field=:b, aggregate=:average, type=:nominal)
+)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.EncodingSpec: 
+{
+  &quot;y&quot;: {
+    &quot;field&quot;: &quot;b&quot;,
+    &quot;aggregate&quot;: &quot;average&quot;,
+    &quot;type&quot;: &quot;nominal&quot;
+  }
+}
+</code></pre><p>Or using the following convenient Deneb.jl shorthand syntax for aggregation:</p><pre><code class="language-julia hljs">Encoding(y=&quot;average(b):N&quot;)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.EncodingSpec: 
+{
+  &quot;y&quot;: {
+    &quot;aggregate&quot;: &quot;average&quot;,
+    &quot;field&quot;: &quot;b&quot;,
+    &quot;type&quot;: &quot;nominal&quot;
+  }
+}
+</code></pre><p>We can then visualize the average of of all <code>b</code> values in each <code>a</code> category:</p><pre><code class="language-julia hljs">Data(data) * Mark(:point) * Encoding(
+    x=&quot;a:N&quot;,
+    y=&quot;average(b):Q&quot;,
+)</code></pre><div id='vlfe44e549eae441369dde9ac8b813165b' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vlfe44e549eae441369dde9ac8b813165b',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"a":"C","b":2},{"a":"C","b":7},{"a":"C","b":4},{"a":"D","b":1},{"a":"D","b":2},{"a":"D","b":6},{"a":"E","b":8},{"a":"E","b":4},{"a":"E","b":7}]},"mark":{"type":"point"},"encoding":{"x":{"field":"a","type":"nominal"},"y":{"aggregate":"average","field":"b","type":"quantitative"}}},{mode:'vega-lite'}).catch(console.warn);})</script><p>Great! You computed the aggregate values for each category and visualized the resulting value as a point. Typically aggregated values for categories are visualized using bar charts. To create a bar chart, we have to change the mark type from <code>point</code> to <code>bar</code>.</p><pre><code class="language-julia hljs">Data(data) * Mark(:bar) * Encoding(
+    x=&quot;a:N&quot;,
+    y=&quot;average(b):Q&quot;,
+)</code></pre><div id='vl643fea45b30746b68048bd26008d8ec6' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vl643fea45b30746b68048bd26008d8ec6',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"a":"C","b":2},{"a":"C","b":7},{"a":"C","b":4},{"a":"D","b":1},{"a":"D","b":2},{"a":"D","b":6},{"a":"E","b":8},{"a":"E","b":4},{"a":"E","b":7}]},"mark":{"type":"bar"},"encoding":{"x":{"field":"a","type":"nominal"},"y":{"aggregate":"average","field":"b","type":"quantitative"}}},{mode:'vega-lite'}).catch(console.warn);})</script><p>Since the quantitative value is on <code>y</code>, you automatically get a vertical bar chart. If we swap the <code>x</code> and <code>y</code> channel, we get a horizontal bar chart instead.</p><pre><code class="language-julia hljs">Data(data) * Mark(:bar) * Encoding(
+    y=&quot;a:N&quot;,
+    x=&quot;average(b):Q&quot;,
+)</code></pre><div id='vldf8bc1ec4a174314b2944bd5809698ba' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vldf8bc1ec4a174314b2944bd5809698ba',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"a":"C","b":2},{"a":"C","b":7},{"a":"C","b":4},{"a":"D","b":1},{"a":"D","b":2},{"a":"D","b":6},{"a":"E","b":8},{"a":"E","b":4},{"a":"E","b":7}]},"mark":{"type":"bar"},"encoding":{"y":{"field":"a","type":"nominal"},"x":{"aggregate":"average","field":"b","type":"quantitative"}}},{mode:'vega-lite'}).catch(console.warn);})</script><h2 id="Customize-your-Visualization"><a class="docs-heading-anchor" href="#Customize-your-Visualization">Customize your Visualization</a><a id="Customize-your-Visualization-1"></a><a class="docs-heading-anchor-permalink" href="#Customize-your-Visualization" title="Permalink"></a></h2><p>Vega-Lite automatically provides default properties for the visualization. You can further customize these values by adding more properties. Deneb.jl provides an API to conveniently set Vega-Lite&#39;s properties to customize the looks of the visualization. For instance, example, we can specify the axis titles using the the <code>title</code> property in each of the encoding channels via the <code>field</code> method, and we can specify the color of the mark by setting the <code>color</code> property in the <code>Mark</code>:</p><pre><code class="language-julia hljs">Data(data) * Mark(:bar, color=:tomato) * Encoding(
+    y=field(&quot;a:N&quot;, title=:category),
+    x=field(&quot;average(b):Q&quot;, title=&quot;Mean of b&quot;),
+)</code></pre><div id='vl001850b63ba346a88e8deeb6671129b0' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vl001850b63ba346a88e8deeb6671129b0',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"a":"C","b":2},{"a":"C","b":7},{"a":"C","b":4},{"a":"D","b":1},{"a":"D","b":2},{"a":"D","b":6},{"a":"E","b":8},{"a":"E","b":4},{"a":"E","b":7}]},"mark":{"type":"bar","color":"tomato"},"encoding":{"y":{"field":"a","type":"nominal","title":"category"},"x":{"aggregate":"average","field":"b","type":"quantitative","title":"Mean of b"}}},{mode:'vega-lite'}).catch(console.warn);})</script><h2 id="Publish-your-Visualization"><a class="docs-heading-anchor" href="#Publish-your-Visualization">Publish your Visualization</a><a id="Publish-your-Visualization-1"></a><a class="docs-heading-anchor-permalink" href="#Publish-your-Visualization" title="Permalink"></a></h2><p>If you are running Deneb under an environment that can render rich MIME types (Jupyter, Pluto, VSCode, ...) then charts will be automatically displayed. You can inspect the raw JSON VegaLite specification by using the <code>print</code> or the <code>Deneb.json</code> methods:</p><pre><code class="language-julia hljs">chart = Data(data) * Mark(:bar, color=:tomato) * Encoding(
+    y=field(&quot;a:N&quot;, title=:category),
+    x=field(&quot;average(b):Q&quot;, title=&quot;Mean of b&quot;),
+)
+print(chart)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">{
+  &quot;config&quot;: {
+    &quot;view&quot;: {
+      &quot;continuousWidth&quot;: 300,
+      &quot;continuousHeight&quot;: 300,
+      &quot;step&quot;: 25
+    },
+    &quot;mark&quot;: {
+      &quot;tooltip&quot;: true
+    }
+  },
+  &quot;data&quot;: {
+    &quot;values&quot;: [
+      {
+        &quot;a&quot;: &quot;C&quot;,
+        &quot;b&quot;: 2
+      },
+      {
+        &quot;a&quot;: &quot;C&quot;,
+        &quot;b&quot;: 7
+      },
+      {
+        &quot;a&quot;: &quot;C&quot;,
+        &quot;b&quot;: 4
+      },
+      {
+        &quot;a&quot;: &quot;D&quot;,
+        &quot;b&quot;: 1
+      },
+      {
+        &quot;a&quot;: &quot;D&quot;,
+        &quot;b&quot;: 2
+      },
+      {
+        &quot;a&quot;: &quot;D&quot;,
+        &quot;b&quot;: 6
+      },
+      {
+        &quot;a&quot;: &quot;E&quot;,
+        &quot;b&quot;: 8
+      },
+      {
+        &quot;a&quot;: &quot;E&quot;,
+        &quot;b&quot;: 4
+      },
+      {
+        &quot;a&quot;: &quot;E&quot;,
+        &quot;b&quot;: 7
+      }
+    ]
+  },
+  &quot;mark&quot;: {
+    &quot;type&quot;: &quot;bar&quot;,
+    &quot;color&quot;: &quot;tomato&quot;
+  },
+  &quot;encoding&quot;: {
+    &quot;y&quot;: {
+      &quot;field&quot;: &quot;a&quot;,
+      &quot;type&quot;: &quot;nominal&quot;,
+      &quot;title&quot;: &quot;category&quot;
+    },
+    &quot;x&quot;: {
+      &quot;aggregate&quot;: &quot;average&quot;,
+      &quot;field&quot;: &quot;b&quot;,
+      &quot;type&quot;: &quot;quantitative&quot;,
+      &quot;title&quot;: &quot;Mean of b&quot;
+    }
+  }
+}</code></pre><p>Note that the <code>config</code> property of the specification was automatically generated by the default <a href="../themes/#Themes"><code>Deneb.jl</code> theme</a>.</p><p>You can publish your visualization somewhere in the web using <a href="https://github.com/vega/vega-embed">Vega-Embed</a> to embed the Vega-Lite specification in a webpage. A simple example of a stand-alone HTML document can be generated for any chart using the <code>Deneb.html</code> method:</p><pre><code class="language-julia hljs">print(Deneb.html(chart))</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vega@5&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vega-lite@5&quot;&gt;&lt;/script&gt;
+    &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vega-embed@6&quot;&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div id=&quot;vis-b247e992-f61b-4bb6-baf8-64db30f022b4&quot;&gt;&lt;/div&gt;
+
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    var spec = {&quot;config&quot;:{&quot;view&quot;:{&quot;continuousWidth&quot;:300,&quot;continuousHeight&quot;:300,&quot;step&quot;:25},&quot;mark&quot;:{&quot;tooltip&quot;:true}},&quot;data&quot;:{&quot;values&quot;:[{&quot;a&quot;:&quot;C&quot;,&quot;b&quot;:2},{&quot;a&quot;:&quot;C&quot;,&quot;b&quot;:7},{&quot;a&quot;:&quot;C&quot;,&quot;b&quot;:4},{&quot;a&quot;:&quot;D&quot;,&quot;b&quot;:1},{&quot;a&quot;:&quot;D&quot;,&quot;b&quot;:2},{&quot;a&quot;:&quot;D&quot;,&quot;b&quot;:6},{&quot;a&quot;:&quot;E&quot;,&quot;b&quot;:8},{&quot;a&quot;:&quot;E&quot;,&quot;b&quot;:4},{&quot;a&quot;:&quot;E&quot;,&quot;b&quot;:7}]},&quot;mark&quot;:{&quot;type&quot;:&quot;bar&quot;,&quot;color&quot;:&quot;tomato&quot;},&quot;encoding&quot;:{&quot;y&quot;:{&quot;field&quot;:&quot;a&quot;,&quot;type&quot;:&quot;nominal&quot;,&quot;title&quot;:&quot;category&quot;},&quot;x&quot;:{&quot;aggregate&quot;:&quot;average&quot;,&quot;field&quot;:&quot;b&quot;,&quot;type&quot;:&quot;quantitative&quot;,&quot;title&quot;:&quot;Mean of b&quot;}}};
+    var embedOpt = {&#39;mode&#39;: &#39;vega-lite&#39;};
+    function showError(el, error){
+        el.innerHTML = (&#39;&lt;div class=&quot;error&quot; style=&quot;color:red;&quot;&gt;&#39;
+                        + &#39;&lt;p&gt;JavaScript Error: &#39; + error.message + &#39;&lt;/p&gt;&#39;
+                        + &quot;&lt;p&gt;This usually means there&#39;s a typo in your chart specification. &quot;
+                        + &quot;See the javascript console for the full traceback.&lt;/p&gt;&quot;
+                        + &#39;&lt;/div&gt;&#39;);
+        throw error;
+    }
+    const el = document.getElementById(&#39;vis-b247e992-f61b-4bb6-baf8-64db30f022b4&#39;);
+    vegaEmbed(&#39;#vis-b247e992-f61b-4bb6-baf8-64db30f022b4&#39;, spec, embedOpt).catch(error =&gt; showError(el, error));
+    &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><p>You can also save the visualization to a file as an stand-alone HTM document using the <code>save</code> method:</p><pre><code class="nohighlight hljs">save(&quot;chart.html&quot;, chart)</code></pre><p>The visualization can also be saved as a JSON file or as an image by using any of the following extensions: <code>.json</code>, <code>.png</code>, <code>.svg</code>, <code>.pdf</code>.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../installation/">« Installation</a><a class="docs-footer-nextpage" href="../intro/">Introduction »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Thursday 6 July 2023 15:55">Thursday 6 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
