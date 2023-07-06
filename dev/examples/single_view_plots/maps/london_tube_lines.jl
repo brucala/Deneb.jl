@@ -1,7 +1,5 @@
 using Deneb
 
-set_theme!(:empty)
-
 boroughs = Data(
     url="https://vega.github.io/vega-datasets/data/londonBoroughs.json",
     format=(type=:topojson, feature=:boroughs),
@@ -50,10 +48,7 @@ lines = tubelines * Mark(
     )
 )
 
-background + labels + lines
-
-
-set_theme!(:default)  #hide
+chart = background + labels + lines
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
 
