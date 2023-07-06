@@ -6,8 +6,6 @@
 
 using Deneb
 
-set_theme!(:empty)
-
 boroughs = Data(
     url="https://vega.github.io/vega-datasets/data/londonBoroughs.json",
     format=(type=:topojson, feature=:boroughs),
@@ -56,10 +54,7 @@ lines = tubelines * Mark(
     )
 )
 
-background + labels + lines
+chart = background + labels + lines
 
 # save cover #src
 save("assets/london_tubes.png", chart) #src
-
-# reset default theme #src
-set_theme!(:default)  #hide
