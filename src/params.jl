@@ -171,10 +171,19 @@ end
 """
     condition(param::String, iftrue, iffalse)
     condition_test(test::String, iftrue, iffalse)
+    condition_test(ifthen_pairs::Vector{Pair}, iffalse)
+
 If iftrue/iffalse isn't a NamedTuple, then it'll be converted as a NamedTuple with name :value.
 """
 condition(param::SymbolOrString, iftrue, iffalse=nothing) = (condition=(; param, _value(iftrue)...), _value(iffalse)...)
-condition_test(test::SymbolOrString, iftrue, iffalse=nothing) = (condition=(; test, _value(iftrue)...), _value(iffalse)...)
+condition_test(test::String, iftrue, iffalse=nothing) = (condition=(; test, _value(iftrue)...), _value(iffalse)...)
+function condition_test(ifthen_pairs::Vector{Pair{String, T}}, iffalse=nothing) where T
+    # TODO: maybe make ifthen_pairs a Vararg of pairs instead of a vector just a single condition_test
+    return (
+        condition=[(; test, _value(iftrue)...) for (test, iftrue) in ifthen_pairs],
+        _value(iffalse)...
+    )
+end
 _value(x::NamedTuple) = x
 _value(::Nothing) = (;)
 _value(x) = (; value=x)
