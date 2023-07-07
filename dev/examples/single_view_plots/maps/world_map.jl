@@ -1,5 +1,6 @@
 using Deneb
 
+# Background using VegaLite's sphere and graticule generators
 sphere = Data(:sphere) * Mark(:geoshape, fill=:lightblue)
 graticule = Data(:graticule, step=[20, 20]) * Mark(:geoshape, stroke=:gray, strokeWidth=0.5)
 
