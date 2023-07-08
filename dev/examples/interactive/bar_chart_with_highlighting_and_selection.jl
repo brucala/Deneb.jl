@@ -15,12 +15,10 @@ chart = Data(data) * Mark(
     "a:n",
     "b:q",
     fillOpacity=condition(:select, 1, 0.3),
-    strokeWidth=(
-        condition=[
-            (param=:select, empty=false, value=2),
-            (param=:highlight, empty=false, value=1),
-        ],
-        value=0,
+    strokeWidth=condition(
+        [:select => 2, :highlight => 1],
+        0,
+        empty=[false, false],
     )
 )
 
