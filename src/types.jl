@@ -24,11 +24,28 @@ rawspec(s::Spec{Vector{Spec}}) = [rawspec(v) for v in s.spec]
 ### Constrained specs
 ###
 
+"""Specifications that impose certain constrains in their properties"""
 abstract type ConstrainedSpec <: AbstractSpec end
+
+"""Specifications containing a specific set of properties"""
 abstract type PropertiesSpec <: ConstrainedSpec end
+
+"""Single and Multi-view specifications"""
 abstract type ViewableSpec <: ConstrainedSpec end
+
+"""
+Layered and Layout specifications.
+https://vega.github.io/vega-lite/docs/composition.html
+"""
 abstract type MultiViewSpec <: ViewableSpec end
+
+"""Facet, Repeat and Concat specifications"""
 abstract type LayoutSpec <: MultiViewSpec end
+
+"""
+Concatenation specifications.
+https://vega.github.io/vega-lite/docs/concat.html
+"""
 abstract type ConcatView <: LayoutSpec end
 
 function ConstrainedSpec(T::Type{<:ConstrainedSpec}; spec...)
@@ -58,6 +75,10 @@ function rawspec(s::ConstrainedSpec)
 end
 rawspec(v::Vector{T}) where T<:ConstrainedSpec = [rawspec(x) for x in v]
 
+"""
+Top-Level specification of a Vega-Lite specification.
+https://vega.github.io/vega-lite/docs/spec.html#top-level
+"""
 struct TopLevelProperties <: PropertiesSpec
     schema::Spec
     background::Spec
@@ -68,12 +89,21 @@ struct TopLevelProperties <: PropertiesSpec
 end
 TopLevelProperties(; spec...) = ConstrainedSpec(TopLevelProperties; spec...)
 
+"""
+Vega-Lite specification.
+https://vega.github.io/vega-lite/docs/spec.html
+"""
 struct VegaLiteSpec{T<:ViewableSpec} <: ConstrainedSpec
     toplevel::TopLevelProperties
     viewspec::T
 end
 VegaLiteSpec(; spec...) = ConstrainedSpec(VegaLiteSpec; spec...)
 
+"""
+Common properties of all view specifications.
+https://vega.github.io/vega-lite/docs/spec.html#common
+The `data`, `transform` and `params` common properties are defined in dedicated Spec types.
+"""
 struct CommonProperties <: PropertiesSpec
     name::Spec
     description::Spec
@@ -81,6 +111,10 @@ struct CommonProperties <: PropertiesSpec
 end
 CommonProperties(; spec...) = ConstrainedSpec(CommonProperties; spec...)
 
+"""
+Common properties of all layout (`facet`, `repeat`, `concat`) specifications.
+https://vega.github.io/vega-lite/docs/spec.html#common
+"""
 struct LayoutProperties <: PropertiesSpec
     align::Spec
     bounds::Spec
@@ -90,6 +124,10 @@ struct LayoutProperties <: PropertiesSpec
 end
 LayoutProperties(; spec...) = ConstrainedSpec(LayoutProperties; spec...)
 
+"""
+Spec containing the `data` property of viewable specifications.
+https://vega.github.io/vega-lite/docs/data.html
+"""
 struct DataSpec <: ConstrainedSpec
     data  # store the original object, not a Spec
 end
@@ -109,18 +147,31 @@ function rawspec(s::DataSpec)
     end
     return (values=Tables.rowtable(s.data), )
 end
+
+"""
+Spec containing the `mark` property of a Single-View spec.
+https://vega.github.io/vega-lite/docs/mark.html
+"""
 struct MarkSpec <: ConstrainedSpec
     mark::Spec
 end
 MarkSpec(; mark=Spec(nothing), kw...) = MarkSpec(Spec(mark))
 rawspec(s::MarkSpec) = rawspec(s.mark)
 
+"""
+Spec containing the `encoding` property of a Single or Layered view specification.
+https://vega.github.io/vega-lite/docs/encoding.html
+"""
 struct EncodingSpec <: ConstrainedSpec
     encoding::Spec
 end
 EncodingSpec(; encoding=Spec(nothing), kw...) = EncodingSpec(Spec(encoding))
 rawspec(s::EncodingSpec) = rawspec(s.encoding)
 
+"""
+Spec containing the `transform` common property to all viewable specifications.
+https://vega.github.io/vega-lite/docs/transform.html
+"""
 struct TransformSpec <: ConstrainedSpec
     transform::Spec{<:Vector}
     TransformSpec(s::Spec{<:Vector}) = new(Spec([i for i in s.spec if !isempty(i)]))
@@ -130,9 +181,13 @@ TransformSpec(s) = TransformSpec(Spec(s))
 TransformSpec(; transform=Spec([]), kw...) = TransformSpec(transform)
 rawspec(s::TransformSpec) = rawspec(s.transform)
 
-# TODO: parameters are named with a unique "name" property required
-# TODO: imposed named params and implement composition logic with unique names
+"""
+Spec containing the `params` common property to all viewable specifications.
+https://vega.github.io/vega-lite/docs/parameter.html
+"""
 struct ParamsSpec <: ConstrainedSpec
+    # TODO: parameters are named with a unique "name" property required
+    # TODO: imposed named params and implement composition logic with unique names
     params::Spec{<:Vector}
     ParamsSpec(s::Spec{<:Vector}) = new(Spec([i for i in s.spec if !isempty(i)]))
 end
@@ -141,6 +196,10 @@ ParamsSpec(s) = ParamsSpec(Spec(s))
 ParamsSpec(; params=Spec([]), kw...) = ParamsSpec(params)
 rawspec(s::ParamsSpec) = rawspec(s.params)
 
+"""
+Single view specification.
+https://vega.github.io/vega-lite/docs/spec.html#single
+"""
 struct SingleSpec <: ViewableSpec
     common::CommonProperties
     transform::TransformSpec
@@ -155,12 +214,17 @@ struct SingleSpec <: ViewableSpec
 end
 SingleSpec(; spec...) = ConstrainedSpec(SingleSpec; spec...)
 
+"""
+Spec containing the `resolve` property common to all Multi-View specifications.
+https://vega.github.io/vega-lite/docs/resolve.html
+"""
 struct ResolveSpec <: ConstrainedSpec
     resolve::Spec
 end
 ResolveSpec(; resolve=Spec(nothing), kw...) = ResolveSpec(Spec(resolve))
 rawspec(s::ResolveSpec) = rawspec(s.resolve)
 
+"""Layer specification. https://vega.github.io/vega-lite/docs/layer.html"""
 struct LayerSpec <: MultiViewSpec
     common:: CommonProperties
     transform::TransformSpec
@@ -193,6 +257,7 @@ _layer(l::Vector{<:SingleOrLayerSpec}) = l
 _layer(l::Vector{<:NamedTuple}) = [SingleOrLayerSpec(s) for s in l]
 _layer(l) = SingleOrLayerSpec[l]
 
+"""Facet specification. https://vega.github.io/vega-lite/docs/facet.html"""
 struct FacetSpec <: LayoutSpec
     common::CommonProperties
     transform::TransformSpec
@@ -216,6 +281,7 @@ function FacetSpec(; kw...)
     FacetSpec(spectuple...)
 end
 
+"""Repeat specification. https://vega.github.io/vega-lite/docs/repeat.html"""
 struct RepeatSpec <: LayoutSpec
     common:: CommonProperties
     transform::TransformSpec
@@ -239,6 +305,7 @@ function RepeatSpec(; kw...)
     RepeatSpec(spectuple...)
 end
 
+"""General concatenation specification. https://vega.github.io/vega-lite/docs/concat.html#concat"""
 struct ConcatSpec <: ConcatView
     common:: CommonProperties
     transform::TransformSpec
@@ -260,6 +327,7 @@ function ConcatSpec(; concat, kw...)
     ConcatSpec(spectuple...)
 end
 
+"""Horizontal concatenation specification. https://vega.github.io/vega-lite/docs/concat.html#hconcat"""
 struct HConcatSpec <: ConcatView
     common:: CommonProperties
     transform::TransformSpec
@@ -281,6 +349,7 @@ function HConcatSpec(; hconcat, kw...)
     HConcatSpec(spectuple...)
 end
 
+"""Vertical concatenation specification. https://vega.github.io/vega-lite/docs/concat.html#vconcat"""
 struct VConcatSpec <: ConcatView
     common:: CommonProperties
     transform::TransformSpec
@@ -302,6 +371,10 @@ function VConcatSpec(; vconcat, kw...)
     VConcatSpec(spectuple...)
 end
 
+###
+### Equality and isempty
+###
+
 Base.:(==)(s1::ConstrainedSpec, s2::ConstrainedSpec) = rawspec(s1) == rawspec(s2)
 
 Base.isempty(::Spec) = false
@@ -316,7 +389,7 @@ Base.isempty(s::T) where T<:ConstrainedSpec = all(isempty, [getfield(s, f) for f
 
 """
     propertynames(::AbstractSpec)
-Return the parent properties of a specification.
+Return the top properties of a specification.
 """
 Base.propertynames(s::Spec) = s.spec isa NamedTuple ? propertynames(s.spec) : tuple()
 Base.propertynames(d::DataSpec) = isempty(d) ? tuple() : propertynames(rawspec(d))
