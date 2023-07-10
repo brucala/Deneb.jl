@@ -16,6 +16,18 @@ spec(s::EncodingSpec) = spec(encoding = rawspec(s))
     vlspec(s)
 
 Creates a Vega-Lite spec enforcing certain Vega-Lite constrains.
+
+# Example
+```julia
+vlspec(
+    data=(; url="https://vega.github.io/vega-datasets/data/seattle-weather.csv"),
+    mark=:bar,
+    encoding=(
+        x=(timeUnit=:month, field=:date, type=:ordinal),
+        y=(aggregate=:mean, field=:precipitation),
+    )
+)
+```
 """
 vlspec(s::Spec) = VegaLiteSpec(; rawspec(s)...)
 vlspec(s::NamedTuple) = VegaLiteSpec(; s...)
@@ -33,6 +45,12 @@ vlspec(s::VegaLiteSpec) = VegaLiteSpec(s.toplevel, s.viewspec)
     Data(table)
     Data(; url, [format], [name])
     Data(generator::SymbolOrString; properties...)
+
+Creates a `DataSpec` containing the `data` property of a viewable specification.
+Available constructors are:
+- using a `table` that supports the [Tables.jl interface](https://github.com/JuliaData/Tables.jl)
+- using a `url` to load the data from, with optional `format` and `name` properties. https://vega.github.io/vega-lite/docs/data.html#url
+- using a `generator` with specific `properties` to a use any of the available [Vega-Lite data generator](https://vega.github.io/vega-lite/docs/data.html#data-generators)
 """
 Data(data) = DataSpec(data)
 Data(;
@@ -47,38 +65,65 @@ end
 
 """
     Transform(; spec...)
+
+Creates a `TransformSpec` containing the `transform` property of a viewable specification.
+See also the more convenient `transform_*` methods.
 """
 Transform(; s...) = TransformSpec(spec(; s...))
 
 """
     Params(; spec...)
+
+Creates a `ParamsSpec` containing the `params` property of a viewable specification.
+See also the more convenient `select_*` methods and the `interactive_scales` function.
 """
 Params(; s...) = ParamsSpec(spec(; s...))
 
 """
-    Facet(; row, kw...)
-    Facet(; column, kw...)
-    Facet(field; columns=nothing, kw...)
-"""
-Facet(f; columns=nothing, kw...) = _layout(FacetSpec, f; columns, kw...)
-Facet(; kw...) = _layout(FacetSpec; kw...)
+    Facet(; [row], , [column], kw...)
+    Facet(field; columns::Int=nothing, kw...)
 
+Creates a `FacetSpec` for a facet specification. https://vega.github.io/vega-lite/docs/facet.html.
+A `field` can be passed as a positional argument, or must be passed in the `row`/`column` keyword argument.
+# Examples
+```
+Facet("site:O", columns=2, sort=(op=:median, field=:yield))
+Facet(row="Origin:N)
+```
 """
-    Repeat(; row, kw...)
-    Repeat(; column, kw...)
-    Repeat(field; columns=nothing, kw...)
-    Repeat(Vector{String}; columns=nothing, kw...)
-"""
-Repeat(v::Vector; columns=nothing) = RepeatSpec(; repeat=v, columns)
-Repeat(f; columns=nothing, kw...) = _layout(RepeatSpec, f; columns, kw...)
-Repeat(; kw...) = _layout(RepeatSpec; kw...)
-
-_layout(T::Type{<:Union{FacetSpec, RepeatSpec}}, f; columns=nothing, kw...) = T(; _key(T)=>(;field(f)..., kw...), columns)
-function _layout(T::Type{<:Union{FacetSpec, RepeatSpec}}; kw...)
-    s = NamedTuple(k=>k in (:column, :row) ? field(v) : v for (k,v) in kw)
-    T(;_key(T)=>s)
+Facet(f; columns::Union{Nothing, Int}=nothing, kw...) = FacetSpec(; facet=(; field(f)..., kw...), columns)
+function Facet(;
+    row::Union{Nothing, SymbolOrString}=nothing,
+    column::Union{Nothing, SymbolOrString}=nothing,
+    kw...
+)
+    if isnothing(row) && isnothing(column)
+        return error("`Facet` without positional arguments needs at least the `row` or the `column` property.")
+    end
+    return FacetSpec(; facet=(; _remove_empty(;row=field(row), column=field(column))..., kw...))
 end
 
+"""
+    Repeat(; [row::Vector], [column::Vector], [layer::Vector])
+    Repeat(field::Vector{SymbolOrString}; columns::Int=nothing)
+
+Creates a `RepeatSpec` for a repeat specification. https://vega.github.io/vega-lite/docs/repeat.html.
+A `field` can be passed as a positional argument, or must be passed in the `row`/`column` keyword argument.
+# Examples
+```
+```
+"""
+Repeat(v::Vector{<:SymbolOrString}; columns::Union{Nothing, Int}=nothing) = RepeatSpec(; repeat=v, columns)
+function Repeat(;
+    row::Union{Nothing, Vector{<:SymbolOrString}}=nothing,
+    column::Union{Nothing, Vector{<:SymbolOrString}}=nothing,
+    layer::Union{Nothing, Vector{<:SymbolOrString}}=nothing,
+)
+    if isnothing(row) && isnothing(column) && isnothing(layer)
+        return error("`Repeat` without positional arguments needs at least any of the `row`, `column`, or `layer` properties.")
+    end
+    return RepeatSpec(; repeat=(; _remove_empty(; row, column, layer)...))
+end
 
 """
     Mark(type; kw...)

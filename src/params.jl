@@ -178,9 +178,11 @@ If iftrue/iffalse isn't a NamedTuple, then it'll be converted as a NamedTuple wi
 Nested conditions via a vector of ifthen_pairs.
 
 # Examples
-julia> condition(:myparam, 1, 2; empty=true)
-julia> condition_test("datum.x > 0", field("color:O"), :blue)
-julia> condition_test(["datum.x > 5" => field("color:O"), "datum.x < 0" => :blue], :gray)
+```
+condition(:myparam, 1, 2; empty=true)
+condition_test("datum.x > 0", field("color:O"), :blue)
+condition_test(["datum.x > 5" => field("color:O"), "datum.x < 0" => :blue], :gray)
+```
 """
 condition(param::SymbolOrString, iftrue, iffalse=nothing; empty::Union{Bool, Nothing}=nothing) = (condition=(; param, _empty(empty)..., _value(iftrue)...), _value(iffalse)...)
 function condition(
