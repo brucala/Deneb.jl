@@ -93,8 +93,8 @@ Facet(row="Origin:N)
 """
 Facet(f; columns::Union{Nothing, Int}=nothing, kw...) = FacetSpec(; facet=(; field(f)..., kw...), columns)
 function Facet(;
-    row::Union{Nothing, SymbolOrString}=nothing,
-    column::Union{Nothing, SymbolOrString}=nothing,
+    row::Union{Nothing, SymbolOrString, NamedTuple}=nothing,
+    column::Union{Nothing, SymbolOrString, NamedTuple}=nothing,
     kw...
 )
     if isnothing(row) && isnothing(column)

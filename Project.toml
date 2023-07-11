@@ -1,7 +1,7 @@
 name = "Deneb"
 uuid = "b5a61f88-a05b-4725-9526-4eca17cec623"
 authors = ["brucala <brucala@gmail.com>"]
-version = "0.2.0"
+version = "0.2.1"
 
 [deps]
 JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
