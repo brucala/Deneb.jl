@@ -11,29 +11,30 @@ Base.show(io::IO, ::MIME"application/json", s::AbstractSpec) = show(io, s)
 
 # VSCode and Jupyter lab display (and defaults to) this MIME type
 Base.Multimedia.istextmime(::MIME{Symbol("application/vnd.vegalite.v5+json")}) = true
-function Base.show(io::IO, ::MIME"application/vnd.vegalite.v5+json", s::Union{VegaLiteSpec, Spec})
+function Base.show(io::IO, ::MIME"application/vnd.vegalite.v5+json", s::VegaLiteSpec)
     print(io, json(s))
 end
 
-function Base.show(io::IO, ::MIME"image/png", s::Union{VegaLiteSpec, Spec})
+function Base.show(io::IO, ::MIME"image/png", s::VegaLiteSpec)
     print(io, convert(s, :png))
 end
 
-function Base.show(io::IO, ::MIME"image/svg+xml", s::Union{VegaLiteSpec, Spec})
+function Base.show(io::IO, ::MIME"image/svg+xml", s::VegaLiteSpec)
     print(io, convert(s, :svg))
 end
 
-function Base.show(io::IO, ::MIME"application/pdf", s::Union{VegaLiteSpec, Spec})
+function Base.show(io::IO, ::MIME"application/pdf", s::VegaLiteSpec)
     print(io, convert(s, :pdf))
 end
 
-Base.showable(mime::Union{MIME"application/vnd.vegalite.v5+json"}, s::Spec) = showable(s, mime)
+Base.showable(mime::Union{MIME"application/vnd.vegalite.v5+json"}, s::VegaLiteSpec) = showable(s, mime)
 Base.showable(
     mime::Union{MIME"application/pdf", MIME"image/svg+xml", MIME"image/png"},
-    s::Spec
+    s::VegaLiteSpec
 ) = showable(s, mime, true)
 
-function showable(s::AbstractSpec, mime, suppress_warn=false)
+# TODO: Ideally this method would validate the json
+function showable(s::VegaLiteSpec, mime, suppress_warn=false)
     required = (:mark, :layer, :facet, :hconcat, :vconcat, :concat, :repeat)
     if isempty(required ∩ propertynames(s))
         suppress_warn || @warn """Spec isn't showable by MIME $mime. Make sure the specification includes at least one of the following properties: "mark", "layer", "facet", "hconcat", "vconcat", "concat", or "repeat"."""
@@ -56,7 +57,7 @@ function vl2command(fmt::Symbol)
 end
 
 # Pluto displays this MIME type
-function Base.show(io::IO, ::MIME"text/html",  s::Union{VegaLiteSpec, Spec})
+function Base.show(io::IO, ::MIME"text/html",  s::VegaLiteSpec)
     print(io, html(s))
 end
 
