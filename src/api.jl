@@ -49,8 +49,10 @@ vlspec(s::VegaLiteSpec) = VegaLiteSpec(s.toplevel, s.viewspec)
 Creates a `DataSpec` containing the `data` property of a viewable specification.
 Available constructors are:
 - using a `table` that supports the [Tables.jl interface](https://github.com/JuliaData/Tables.jl)
-- using a `url` to load the data from, with optional `format` and `name` properties. https://vega.github.io/vega-lite/docs/data.html#url
+- using a `url` to load the data from, with optional `format` and `name` properties. [](https://vega.github.io/vega-lite/docs/data.html#url)
 - using a `generator` with specific `properties` to a use any of the available [Vega-Lite data generator](https://vega.github.io/vega-lite/docs/data.html#data-generators)
+
+See more in [Vega-Lite's](https://vega.github.io/vega-lite/docs/data.html) and [Deneb's](https://brucala.github.io/Deneb.jl/dev/data_mark_encoding/#Data) documentation.
 """
 Data(data) = DataSpec(data)
 Data(;
@@ -83,7 +85,7 @@ Params(; s...) = ParamsSpec(spec(; s...))
     Facet(; [row], , [column], kw...)
     Facet(field; columns::Int=nothing, kw...)
 
-Creates a `FacetSpec` for a facet specification. https://vega.github.io/vega-lite/docs/facet.html.
+Creates a `FacetSpec` for a facet specification. [](https://vega.github.io/vega-lite/docs/facet.html).
 A `field` can be passed as a positional argument, or must be passed in the `row`/`column` keyword argument.
 # Examples
 ```
@@ -107,10 +109,12 @@ end
     Repeat(; [row::Vector], [column::Vector], [layer::Vector])
     Repeat(field::Vector{SymbolOrString}; columns::Int=nothing)
 
-Creates a `RepeatSpec` for a repeat specification. https://vega.github.io/vega-lite/docs/repeat.html.
-A `field` can be passed as a positional argument, or must be passed in the `row`/`column` keyword argument.
+Creates a `RepeatSpec` for a repeat specification. [](https://vega.github.io/vega-lite/docs/repeat.html).
+A `field` can be passed as a positional argument, or must be passed in the `row`/`column/layer` keyword argument.
 # Examples
 ```
+Repeat([:Horsepower, :Miles_per_Gallon, :Acceleration], columns=2)
+Repeat(column=[:distance, :delay, :time])
 ```
 """
 Repeat(v::Vector{<:SymbolOrString}; columns::Union{Nothing, Int}=nothing) = RepeatSpec(; repeat=v, columns)
@@ -127,15 +131,34 @@ end
 
 """
     Mark(type; kw...)
-    Mark(; spec...)
+
+Creates a `MarkSpec` containing the `mark` property of a single view specification.
+The `type` property of the mark is specified as a positional argument.
+See more in [Vega-Lite's](https://vega.github.io/vega-lite/docs/mark.html) and
+[Deneb's](https://brucala.github.io/Deneb.jl/dev/data_mark_encoding/#Mark) documentation.
 """
 Mark(type::SymbolOrString; kw...) = MarkSpec(spec(;type=type, kw...))
-Mark(; s...) = MarkSpec(spec(; s...))
 
 """
-    Encoding(x; kw...)
-    Encoding(x, y)
-    Encoding(; spec...)
+    Encoding(x; channels...)
+    Encoding(x, y; channels...)
+    Encoding(; channels...)
+
+Creates an `EncodingSpec` containing the `encoding` property of a single or layer view specification.
+The `x` and `y` channels can be specified as positional arguments using the shorthad string syntax.
+See more in [Vega-Lite's](https://vega.github.io/vega-lite/docs/encoding.html) and
+[Deneb.jl's](https://brucala.github.io/Deneb.jl/dev/data_mark_encoding/#Encoding).
+
+# Examples
+
+```
+Encoding("monthdate(date):T", "mean(precipitation):Q", color="year(date):O")
+Encoding(
+    x=field("bin_min:Q", bin=:binned, title="Maximum Daily Temperature (C)"),
+    y=field("value:Q", scale=(range=[20, -20]), axis=nothing),
+    fill=field="mean_temp:Q",
+)
+```
 """
 Encoding(x::SymbolOrString; kw...) = Encoding(; kw...) * Encoding(x=field(x))
 Encoding(x::SymbolOrString, y::SymbolOrString; kw...) = Encoding(; kw...) * Encoding(x=field(x)) * Encoding(y=field(y))
@@ -143,7 +166,8 @@ Encoding(; s...) = EncodingSpec(spec(NamedTuple(k=>field(v) for (k,v) in pairs(s
 
 """
     field(field; kw...)
-Shortcut to create an arbitrary encoding channel with a field.
+Shortcut to create an arbitrary encoding channel, the positional argument `field`
+can use the shorthand string syntax (e.g. "mean(x):Q").
 """
 field(f) = f
 field(f::Symbol; kw...) = (field=f, kw...)

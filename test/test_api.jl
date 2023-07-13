@@ -23,10 +23,9 @@ end
 end
 
 @testset "test Mark" begin
-    @test Mark(a=3) isa Deneb.MarkSpec
-    @test rawspec(Mark(a=3).a) == 3
-    @test Mark(:bar, tooltip=true) isa Deneb.MarkSpec
-    @test rawspec(Mark(:bar, tooltip=true)) == (type="bar", tooltip=true)
+    m = Mark(:bar, tooltip=true)
+    @test m isa Deneb.MarkSpec
+    @test rawspec(m) == (type="bar", tooltip=true)
 end
 
 @testset "test Encoding" begin
