@@ -389,7 +389,7 @@ Base.isempty(s::T) where T<:ConstrainedSpec = all(isempty, [getfield(s, f) for f
 
 """
     propertynames(::AbstractSpec)
-Return the top properties of a specification.
+Return the top-level properties of a specification.
 """
 Base.propertynames(s::Spec) = s.spec isa NamedTuple ? propertynames(s.spec) : tuple()
 Base.propertynames(d::DataSpec) = isempty(d) ? tuple() : propertynames(rawspec(d))
@@ -402,13 +402,24 @@ function Base.propertynames(s::T) where T<:AbstractSpec
     isempty(s) && return tuple()
     collect(
         Iterators.flatten(
-            !(t <: Union{ViewableSpec, PropertiesSpec}) || f === :spec ? (f,) : propertynames(getfield(s, f))
+            _isproperty(t, f) ? (f,) : propertynames(getfield(s, f))
             for (f, t) in zip(fieldnames(T), fieldtypes(T))
             if !isempty(getfield(s, f))
         )
     )
 end
 
+# fields of type ViewableSpecs and PropertiesSpecs aren't properties
+# except field spec in FacetSpec and RepeatSpec which is a ViewableSpec and a property
+_isproperty(fieldtype::Type{T}, fieldname::Symbol) where T = _isproperty(fieldtype) || _isproperty(fieldname)
+_isproperty(fieldname::Symbol) = fieldname === :spec
+_isproperty(fieldtype::Type{T}) where T = true
+_isproperty(fieldtype::Type{<:Union{ViewableSpec, PropertiesSpec}}) = false
+
+"""
+    getproperty(spec::AbstractSpec, property::Symbol)
+Returns property `property` of a specification.
+"""
 Base.getproperty(s::Spec, i::Symbol) = i in fieldnames(Spec) ? getfield(s, i) : s.spec[i]
 Base.getproperty(s::DataSpec, i::Symbol) = i in fieldnames(DataSpec) ? getfield(s, i) : getfield(rawspec(s), i)
 function Base.getproperty(s::T, f::Symbol) where T<:AbstractSpec
