@@ -5,6 +5,7 @@ using NodeJS_18_jll
 using JSON, Tables
 using MultilineStrings: indent
 using DefaultApplication
+using REPL
 
 const SymbolOrString = Union{Symbol, AbstractString}
 
