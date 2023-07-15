@@ -229,7 +229,7 @@ end
 ### Display in a browser
 ###
 
-function Base.display(spec::VegaLiteSpec)
+function Base.display(::REPL.REPLDisplay, spec::VegaLiteSpec)
     # write html in temporary file
     path = tempname() * ".html"
     write(path, html(spec))
