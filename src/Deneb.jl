@@ -4,6 +4,7 @@ using UUIDs
 using NodeJS_18_jll
 using JSON, Tables
 using MultilineStrings: indent
+using DefaultApplication
 
 const SymbolOrString = Union{Symbol, AbstractString}
 

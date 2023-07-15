@@ -23,6 +23,9 @@ end
 end
 
 @testset "test Mark" begin
+    m = Mark(a=3)
+    @test m isa Deneb.MarkSpec
+    @test rawspec(m) == (; a=3)
     m = Mark(:bar, tooltip=true)
     @test m isa Deneb.MarkSpec
     @test rawspec(m) == (type="bar", tooltip=true)
