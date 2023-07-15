@@ -69,7 +69,7 @@ end
 ### HTML templates
 ###
 
-html_div(spec; div="vis-"*string(uuid4()), kw...) = """
+html_div(spec::VegaLiteSpec; div="vis-"*string(uuid4()), kw...) = """
 <div id="$div"></div>
 
 <script type="text/javascript">
@@ -88,7 +88,7 @@ vegaEmbed('#$div', spec, embedOpt).catch(error => showError(el, error));
 </script>"""
 
 function html_full(
-    spec;
+    spec::VegaLiteSpec;
     div="vis-"*string(uuid4()),
     vega_version=5,
     vegalite_version=5,
@@ -112,7 +112,7 @@ end
 
 # Template taken from Vega-Altair v5
 function html_universal(
-    spec;
+    spec::VegaLiteSpec;
     div="vis-"*string(uuid4()),
     vega_version=5,
     vegalite_version=5,
@@ -223,4 +223,16 @@ function save(filename::AbstractString, s::VegaLiteSpec)
         throw(ArgumentError("Unknown file type."))
     end
     save(filename, mime, s)
+end
+
+###
+### Display in a browser
+###
+
+function Base.display(spec::VegaLiteSpec)
+    # write html in temporary file
+    path = tempname() * ".html"
+    write(path, html(spec))
+    # launch browser tab with the html chart
+    DefaultApplication.open(path)
 end
