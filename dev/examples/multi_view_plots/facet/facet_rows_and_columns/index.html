@@ -21,7 +21,72 @@ chart = Data(data) * Mark(:bar) * Facet(
     ),
 ) * vlspec(
     height=(;step=10), width=100
-)</code></pre><div id='vl0fa6371921544137b1bbf7d4866cc522' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vl0fa6371921544137b1bbf7d4866cc522',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"a":"a1","b":"b1","c":"x","p":0.702112619300638},{"a":"a1","b":"b1","c":"y","p":0.9716007254511154},{"a":"a1","b":"b1","c":"z","p":0.39352775631404535},{"a":"a1","b":"b2","c":"x","p":0.8870026539148137},{"a":"a1","b":"b2","c":"y","p":0.3735342841274598},{"a":"a1","b":"b2","c":"z","p":0.1070462935058365},{"a":"a1","b":"b3","c":"x","p":0.30528963739561554},{"a":"a1","b":"b3","c":"y","p":0.0042238303569346325},{"a":"a1","b":"b3","c":"z","p":0.9722839443577262},{"a":"a2","b":"b1","c":"x","p":0.0087762578234587},{"a":"a2","b":"b1","c":"y","p":0.001348513684467978},{"a":"a2","b":"b1","c":"z","p":0.36756391286624246},{"a":"a2","b":"b2","c":"x","p":0.5081412739620461},{"a":"a2","b":"b2","c":"y","p":0.44044825227619344},{"a":"a2","b":"b2","c":"z","p":0.2301668852126426},{"a":"a2","b":"b3","c":"x","p":0.6547184812928448},{"a":"a2","b":"b3","c":"y","p":0.5189217431314919},{"a":"a2","b":"b3","c":"z","p":0.597886865739623},{"a":"a3","b":"b1","c":"x","p":0.4453791553785402},{"a":"a3","b":"b1","c":"y","p":0.5471580783986885},{"a":"a3","b":"b1","c":"z","p":0.183910622794204},{"a":"a3","b":"b2","c":"x","p":0.39116042765155035},{"a":"a3","b":"b2","c":"y","p":0.2856144869973436},{"a":"a3","b":"b2","c":"z","p":0.8420655177486069},{"a":"a3","b":"b3","c":"x","p":0.8779193145156576},{"a":"a3","b":"b3","c":"y","p":0.5961536990682017},{"a":"a3","b":"b3","c":"z","p":0.09019213203193455}]},"spec":{"mark":{"type":"bar"},"encoding":{"x":{"field":"p","type":"quantitative","axis":{"format":"%"},"title":null},"y":{"field":"c","axis":null},"color":{"field":"c","legend":{"orient":"bottom","titleOrient":"left"},"title":"settings"}},"width":100,"height":{"step":10}},"facet":{"row":{"field":"a","title":"Factor A","header":{"labelAngle":0}},"column":{"field":"b","title":"Factor B"}}},{mode:'vega-lite'}).catch(console.warn);})</script><h2 id="column-and-row-as-an-encoding-channels:"><a class="docs-heading-anchor" href="#column-and-row-as-an-encoding-channels:"><code>column</code> and <code>row</code> as an encoding channels:</a><a id="column-and-row-as-an-encoding-channels:-1"></a><a class="docs-heading-anchor-permalink" href="#column-and-row-as-an-encoding-channels:" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart = Data(data) * Mark(:bar) * Encoding(
+)</code></pre><style>
+  #vis-aa2ba957-fae7-4c07-ab7d-c02f312ccbcd.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-aa2ba957-fae7-4c07-ab7d-c02f312ccbcd.vega-embed details,
+  #vis-aa2ba957-fae7-4c07-ab7d-c02f312ccbcd.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-aa2ba957-fae7-4c07-ab7d-c02f312ccbcd"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-aa2ba957-fae7-4c07-ab7d-c02f312ccbcd") {
+      outputDiv = document.getElementById("vis-aa2ba957-fae7-4c07-ab7d-c02f312ccbcd");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"a":"a1","b":"b1","c":"x","p":0.2962342775898139},{"a":"a1","b":"b1","c":"y","p":0.7849308694133141},{"a":"a1","b":"b1","c":"z","p":0.877958374854513},{"a":"a1","b":"b2","c":"x","p":0.7296548444760373},{"a":"a1","b":"b2","c":"y","p":0.41698378877880016},{"a":"a1","b":"b2","c":"z","p":0.4975540270653873},{"a":"a1","b":"b3","c":"x","p":0.6883975624410816},{"a":"a1","b":"b3","c":"y","p":0.8326045945281437},{"a":"a1","b":"b3","c":"z","p":0.7808445178027019},{"a":"a2","b":"b1","c":"x","p":0.6457265625657471},{"a":"a2","b":"b1","c":"y","p":0.6782950805664585},{"a":"a2","b":"b1","c":"z","p":0.3651744176396743},{"a":"a2","b":"b2","c":"x","p":0.9974183328212962},{"a":"a2","b":"b2","c":"y","p":0.24741937001322833},{"a":"a2","b":"b2","c":"z","p":0.1936178165570246},{"a":"a2","b":"b3","c":"x","p":0.22424876787016057},{"a":"a2","b":"b3","c":"y","p":0.496633400685041},{"a":"a2","b":"b3","c":"z","p":0.6862947356617852},{"a":"a3","b":"b1","c":"x","p":0.4210314410101339},{"a":"a3","b":"b1","c":"y","p":0.12527352378648593},{"a":"a3","b":"b1","c":"z","p":0.4444274829687431},{"a":"a3","b":"b2","c":"x","p":0.6481089424246018},{"a":"a3","b":"b2","c":"y","p":0.517609291855319},{"a":"a3","b":"b2","c":"z","p":0.3929812026490265},{"a":"a3","b":"b3","c":"x","p":0.8843366950986093},{"a":"a3","b":"b3","c":"y","p":0.2852691330933421},{"a":"a3","b":"b3","c":"z","p":0.2197936981436417}]},"spec":{"mark":{"type":"bar"},"encoding":{"x":{"field":"p","type":"quantitative","axis":{"format":"%"},"title":null},"y":{"field":"c","axis":null},"color":{"field":"c","legend":{"orient":"bottom","titleOrient":"left"},"title":"settings"}},"width":100,"height":{"step":10}},"facet":{"row":{"field":"a","title":"Factor A","header":{"labelAngle":0}},"column":{"field":"b","title":"Factor B"}}}, {"mode": "vega-lite"});
+</script>
+<h2 id="column-and-row-as-an-encoding-channels:"><a class="docs-heading-anchor" href="#column-and-row-as-an-encoding-channels:"><code>column</code> and <code>row</code> as an encoding channels:</a><a id="column-and-row-as-an-encoding-channels:-1"></a><a class="docs-heading-anchor-permalink" href="#column-and-row-as-an-encoding-channels:" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart = Data(data) * Mark(:bar) * Encoding(
     x=field(&quot;p:q&quot;, axis=(;format=&quot;%&quot;), title=nothing),
     y=field(:c, axis=nothing),
     color=field(
@@ -33,4 +98,69 @@ chart = Data(data) * Mark(:bar) * Facet(
     column=field(:b, title=&quot;Factor B&quot;),
 ) * vlspec(
     height=(;step=10), width=100
-)</code></pre><div id='vle35c64561152444a99e93077b46d6e5a' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vle35c64561152444a99e93077b46d6e5a',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"a":"a1","b":"b1","c":"x","p":0.702112619300638},{"a":"a1","b":"b1","c":"y","p":0.9716007254511154},{"a":"a1","b":"b1","c":"z","p":0.39352775631404535},{"a":"a1","b":"b2","c":"x","p":0.8870026539148137},{"a":"a1","b":"b2","c":"y","p":0.3735342841274598},{"a":"a1","b":"b2","c":"z","p":0.1070462935058365},{"a":"a1","b":"b3","c":"x","p":0.30528963739561554},{"a":"a1","b":"b3","c":"y","p":0.0042238303569346325},{"a":"a1","b":"b3","c":"z","p":0.9722839443577262},{"a":"a2","b":"b1","c":"x","p":0.0087762578234587},{"a":"a2","b":"b1","c":"y","p":0.001348513684467978},{"a":"a2","b":"b1","c":"z","p":0.36756391286624246},{"a":"a2","b":"b2","c":"x","p":0.5081412739620461},{"a":"a2","b":"b2","c":"y","p":0.44044825227619344},{"a":"a2","b":"b2","c":"z","p":0.2301668852126426},{"a":"a2","b":"b3","c":"x","p":0.6547184812928448},{"a":"a2","b":"b3","c":"y","p":0.5189217431314919},{"a":"a2","b":"b3","c":"z","p":0.597886865739623},{"a":"a3","b":"b1","c":"x","p":0.4453791553785402},{"a":"a3","b":"b1","c":"y","p":0.5471580783986885},{"a":"a3","b":"b1","c":"z","p":0.183910622794204},{"a":"a3","b":"b2","c":"x","p":0.39116042765155035},{"a":"a3","b":"b2","c":"y","p":0.2856144869973436},{"a":"a3","b":"b2","c":"z","p":0.8420655177486069},{"a":"a3","b":"b3","c":"x","p":0.8779193145156576},{"a":"a3","b":"b3","c":"y","p":0.5961536990682017},{"a":"a3","b":"b3","c":"z","p":0.09019213203193455}]},"mark":{"type":"bar"},"encoding":{"x":{"field":"p","type":"quantitative","axis":{"format":"%"},"title":null},"y":{"field":"c","axis":null},"color":{"field":"c","legend":{"orient":"bottom","titleOrient":"left"},"title":"settings"},"row":{"field":"a","title":"Factor A","header":{"labelAngle":0}},"column":{"field":"b","title":"Factor B"}},"width":100,"height":{"step":10}},{mode:'vega-lite'}).catch(console.warn);})</script><hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 15 July 2023 13:07">Saturday 15 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+)</code></pre><style>
+  #vis-acbf0f78-6389-4a27-96ba-28eff27b5deb.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-acbf0f78-6389-4a27-96ba-28eff27b5deb.vega-embed details,
+  #vis-acbf0f78-6389-4a27-96ba-28eff27b5deb.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-acbf0f78-6389-4a27-96ba-28eff27b5deb"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-acbf0f78-6389-4a27-96ba-28eff27b5deb") {
+      outputDiv = document.getElementById("vis-acbf0f78-6389-4a27-96ba-28eff27b5deb");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"a":"a1","b":"b1","c":"x","p":0.2962342775898139},{"a":"a1","b":"b1","c":"y","p":0.7849308694133141},{"a":"a1","b":"b1","c":"z","p":0.877958374854513},{"a":"a1","b":"b2","c":"x","p":0.7296548444760373},{"a":"a1","b":"b2","c":"y","p":0.41698378877880016},{"a":"a1","b":"b2","c":"z","p":0.4975540270653873},{"a":"a1","b":"b3","c":"x","p":0.6883975624410816},{"a":"a1","b":"b3","c":"y","p":0.8326045945281437},{"a":"a1","b":"b3","c":"z","p":0.7808445178027019},{"a":"a2","b":"b1","c":"x","p":0.6457265625657471},{"a":"a2","b":"b1","c":"y","p":0.6782950805664585},{"a":"a2","b":"b1","c":"z","p":0.3651744176396743},{"a":"a2","b":"b2","c":"x","p":0.9974183328212962},{"a":"a2","b":"b2","c":"y","p":0.24741937001322833},{"a":"a2","b":"b2","c":"z","p":0.1936178165570246},{"a":"a2","b":"b3","c":"x","p":0.22424876787016057},{"a":"a2","b":"b3","c":"y","p":0.496633400685041},{"a":"a2","b":"b3","c":"z","p":0.6862947356617852},{"a":"a3","b":"b1","c":"x","p":0.4210314410101339},{"a":"a3","b":"b1","c":"y","p":0.12527352378648593},{"a":"a3","b":"b1","c":"z","p":0.4444274829687431},{"a":"a3","b":"b2","c":"x","p":0.6481089424246018},{"a":"a3","b":"b2","c":"y","p":0.517609291855319},{"a":"a3","b":"b2","c":"z","p":0.3929812026490265},{"a":"a3","b":"b3","c":"x","p":0.8843366950986093},{"a":"a3","b":"b3","c":"y","p":0.2852691330933421},{"a":"a3","b":"b3","c":"z","p":0.2197936981436417}]},"mark":{"type":"bar"},"encoding":{"x":{"field":"p","type":"quantitative","axis":{"format":"%"},"title":null},"y":{"field":"c","axis":null},"color":{"field":"c","legend":{"orient":"bottom","titleOrient":"left"},"title":"settings"},"row":{"field":"a","title":"Factor A","header":{"labelAngle":0}},"column":{"field":"b","title":"Factor B"}},"width":100,"height":{"step":10}}, {"mode": "vega-lite"});
+</script>
+<hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Monday 24 July 2023 15:45">Monday 24 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

@@ -5,7 +5,72 @@ Data(url=cars) * Mark(:point) * Encoding(
     &quot;Horsepower:q&quot;,
     &quot;Miles_per_Gallon:q&quot;,
     color=:Origin
-)</code></pre><div id='vl8d7f931c2dd4427b899c339bd8323723' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vl8d7f931c2dd4427b899c339bd8323723',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"color":{"field":"Origin"},"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"}}},{mode:'vega-lite'}).catch(console.warn);})</script><h2 id="Data"><a class="docs-heading-anchor" href="#Data">Data</a><a id="Data-1"></a><a class="docs-heading-anchor-permalink" href="#Data" title="Permalink"></a></h2><p>Similar to Vega-Lite, in Deneb.jl a dataset can be defined in several ways:</p><ul><li>as tabular data,</li><li>as a URL from which to load the data,</li><li>or as any of Vega-Lite&#39;s data generators.</li></ul><h3 id="Tabular-data"><a class="docs-heading-anchor" href="#Tabular-data">Tabular data</a><a id="Tabular-data-1"></a><a class="docs-heading-anchor-permalink" href="#Tabular-data" title="Permalink"></a></h3><p>Deneb.jl accepts any tabular data that supports the <a href="https://github.com/JuliaData/Tables.jl">Tables.jl</a> interface (e.g. <a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> or any of <a href="https://github.com/JuliaData/Tables.jl/blob/main/INTEGRATIONS.md">these formats</a>) by simply passing the data to <code>Data</code>.</p><pre><code class="language-julia hljs">data = (a=[1, 2], b=[&quot;potato&quot;, &quot;tomato&quot;])
+)</code></pre><style>
+  #vis-a6ae839c-ea7e-44cf-82fc-4bce9f95d21e.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-a6ae839c-ea7e-44cf-82fc-4bce9f95d21e.vega-embed details,
+  #vis-a6ae839c-ea7e-44cf-82fc-4bce9f95d21e.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-a6ae839c-ea7e-44cf-82fc-4bce9f95d21e"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-a6ae839c-ea7e-44cf-82fc-4bce9f95d21e") {
+      outputDiv = document.getElementById("vis-a6ae839c-ea7e-44cf-82fc-4bce9f95d21e");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"color":{"field":"Origin"},"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"}}}, {"mode": "vega-lite"});
+</script>
+<h2 id="Data"><a class="docs-heading-anchor" href="#Data">Data</a><a id="Data-1"></a><a class="docs-heading-anchor-permalink" href="#Data" title="Permalink"></a></h2><p>Similar to Vega-Lite, in Deneb.jl a dataset can be defined in several ways:</p><ul><li>as tabular data,</li><li>as a URL from which to load the data,</li><li>or as any of Vega-Lite&#39;s data generators.</li></ul><h3 id="Tabular-data"><a class="docs-heading-anchor" href="#Tabular-data">Tabular data</a><a id="Tabular-data-1"></a><a class="docs-heading-anchor-permalink" href="#Tabular-data" title="Permalink"></a></h3><p>Deneb.jl accepts any tabular data that supports the <a href="https://github.com/JuliaData/Tables.jl">Tables.jl</a> interface (e.g. <a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> or any of <a href="https://github.com/JuliaData/Tables.jl/blob/main/INTEGRATIONS.md">these formats</a>) by simply passing the data to <code>Data</code>.</p><pre><code class="language-julia hljs">data = (a=[1, 2], b=[&quot;potato&quot;, &quot;tomato&quot;])
 Data(data)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.DataSpec: 
 {
   &quot;values&quot;: [
@@ -52,7 +117,72 @@ Data(DataFrame(data))</code></pre><pre class="documenter-example-output"><code c
     :graticule, step=[15, 15]
 ) * Mark(:geoshape) * projection(
     :orthographic, rotate=[0, -45, 0]
-)</code></pre><div id='vle8df8e0c67c94db4ab5abbffaa537b16' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vle8df8e0c67c94db4ab5abbffaa537b16',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"graticule":{"step":[15,15]}},"mark":{"type":"geoshape"},"projection":{"type":"orthographic","rotate":[0,-45,0]}},{mode:'vega-lite'}).catch(console.warn);})</script><h2 id="Mark"><a class="docs-heading-anchor" href="#Mark">Mark</a><a id="Mark-1"></a><a class="docs-heading-anchor-permalink" href="#Mark" title="Permalink"></a></h2><p>The <code>mark</code> property of a Vega-Lite specification can be defined in Deneb.jl using <code>Mark</code>, where the positional argument defines the <code>mark</code> type (<code>point</code>, <code>bar</code>, <code>line</code>,...) as a <code>String</code> or a <code>Symbol</code>.</p><pre><code class="language-julia hljs">Mark(:errorband)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.MarkSpec: 
+)</code></pre><style>
+  #vis-6f1d838e-a608-4696-b1b4-a638120a198c.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-6f1d838e-a608-4696-b1b4-a638120a198c.vega-embed details,
+  #vis-6f1d838e-a608-4696-b1b4-a638120a198c.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-6f1d838e-a608-4696-b1b4-a638120a198c"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-6f1d838e-a608-4696-b1b4-a638120a198c") {
+      outputDiv = document.getElementById("vis-6f1d838e-a608-4696-b1b4-a638120a198c");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"graticule":{"step":[15,15]}},"mark":{"type":"geoshape"},"projection":{"type":"orthographic","rotate":[0,-45,0]}}, {"mode": "vega-lite"});
+</script>
+<h2 id="Mark"><a class="docs-heading-anchor" href="#Mark">Mark</a><a id="Mark-1"></a><a class="docs-heading-anchor-permalink" href="#Mark" title="Permalink"></a></h2><p>The <code>mark</code> property of a Vega-Lite specification can be defined in Deneb.jl using <code>Mark</code>, where the positional argument defines the <code>mark</code> type (<code>point</code>, <code>bar</code>, <code>line</code>,...) as a <code>String</code> or a <code>Symbol</code>.</p><pre><code class="language-julia hljs">Mark(:errorband)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.MarkSpec: 
 {
   &quot;type&quot;: &quot;errorband&quot;
 }
@@ -163,4 +293,4 @@ Data(DataFrame(data))</code></pre><pre class="documenter-example-output"><code c
     &quot;value&quot;: &quot;#ff9900&quot;
   }
 }
-</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../intro/">« Introduction</a><a class="docs-footer-nextpage" href="../composition_and_layering/">Composition and Layering »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 15 July 2023 13:07">Saturday 15 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../intro/">« Introduction</a><a class="docs-footer-nextpage" href="../composition_and_layering/">Composition and Layering »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Monday 24 July 2023 15:45">Monday 24 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

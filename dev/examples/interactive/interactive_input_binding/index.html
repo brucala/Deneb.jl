@@ -11,7 +11,72 @@ base = data * Mark(:point) * Encoding(&quot;Horsepower:Q&quot;, &quot;Miles_per_
     labels=[:All, :Europe, :Japan, :USA],
 ) * Encoding(
     color=condition(:origin, field(&quot;Cylinders:O&quot;), :grey),
-)</code></pre><div id='vlc97f503163114e0ab3b34887eb793f32' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vlc97f503163114e0ab3b34887eb793f32',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"origin","value":"USA","select":{"type":"point","fields":["Origin"]},"bind":{"input":"select","options":[null,"Europe","Japan","USA"],"labels":["All","Europe","Japan","USA"]}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"},"color":{"condition":{"param":"origin","field":"Cylinders","type":"ordinal"},"value":"grey"}}},{mode:'vega-lite'}).catch(console.warn);})</script><h2 id="Radio-Input-Widget"><a class="docs-heading-anchor" href="#Radio-Input-Widget">Radio Input Widget</a><a id="Radio-Input-Widget-1"></a><a class="docs-heading-anchor-permalink" href="#Radio-Input-Widget" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart = base * select_radio(
+)</code></pre><style>
+  #vis-05061c97-4f2d-47c8-b780-7d431a1e8abf.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-05061c97-4f2d-47c8-b780-7d431a1e8abf.vega-embed details,
+  #vis-05061c97-4f2d-47c8-b780-7d431a1e8abf.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-05061c97-4f2d-47c8-b780-7d431a1e8abf"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-05061c97-4f2d-47c8-b780-7d431a1e8abf") {
+      outputDiv = document.getElementById("vis-05061c97-4f2d-47c8-b780-7d431a1e8abf");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"origin","value":"USA","select":{"type":"point","fields":["Origin"]},"bind":{"input":"select","options":[null,"Europe","Japan","USA"],"labels":["All","Europe","Japan","USA"]}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"},"color":{"condition":{"param":"origin","field":"Cylinders","type":"ordinal"},"value":"grey"}}}, {"mode": "vega-lite"});
+</script>
+<h2 id="Radio-Input-Widget"><a class="docs-heading-anchor" href="#Radio-Input-Widget">Radio Input Widget</a><a id="Radio-Input-Widget-1"></a><a class="docs-heading-anchor-permalink" href="#Radio-Input-Widget" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart = base * select_radio(
     :origin,
     select=(type=:point, fields=[:Origin]),
     options=[nothing, :Europe, :Japan, :USA],
@@ -22,18 +87,213 @@ base = data * Mark(:point) * Encoding(&quot;Horsepower:Q&quot;, &quot;Miles_per_
 ) * Encoding(
     x=(; scale=(; domain=[0, 240])),
     y=(; scale=(; domain=[0, 50])),
-)</code></pre><div id='vl14842ae6953146d1894b3bd714504f13' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vl14842ae6953146d1894b3bd714504f13',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"transform":[{"filter":{"param":"origin"}}],"params":[{"name":"origin","select":{"type":"point","fields":["Origin"]},"bind":{"input":"radio","options":[null,"Europe","Japan","USA"],"labels":["All","Europe","Japan","USA"],"name":"Region"}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative","scale":{"domain":[0,240]}},"y":{"field":"Miles_per_Gallon","type":"quantitative","scale":{"domain":[0,50]}}}},{mode:'vega-lite'}).catch(console.warn);})</script><h2 id="Range-Input-Widget"><a class="docs-heading-anchor" href="#Range-Input-Widget">Range Input Widget</a><a id="Range-Input-Widget-1"></a><a class="docs-heading-anchor-permalink" href="#Range-Input-Widget" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart = base * select_range(
+)</code></pre><style>
+  #vis-c92404b6-f33d-4997-85bf-315afd27da62.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-c92404b6-f33d-4997-85bf-315afd27da62.vega-embed details,
+  #vis-c92404b6-f33d-4997-85bf-315afd27da62.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-c92404b6-f33d-4997-85bf-315afd27da62"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-c92404b6-f33d-4997-85bf-315afd27da62") {
+      outputDiv = document.getElementById("vis-c92404b6-f33d-4997-85bf-315afd27da62");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"transform":[{"filter":{"param":"origin"}}],"params":[{"name":"origin","select":{"type":"point","fields":["Origin"]},"bind":{"input":"radio","options":[null,"Europe","Japan","USA"],"labels":["All","Europe","Japan","USA"],"name":"Region"}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative","scale":{"domain":[0,240]}},"y":{"field":"Miles_per_Gallon","type":"quantitative","scale":{"domain":[0,50]}}}}, {"mode": "vega-lite"});
+</script>
+<h2 id="Range-Input-Widget"><a class="docs-heading-anchor" href="#Range-Input-Widget">Range Input Widget</a><a id="Range-Input-Widget-1"></a><a class="docs-heading-anchor-permalink" href="#Range-Input-Widget" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart = base * select_range(
     :opacity,
     value=50,
     min=1,
     max=100,
 ) * Mark(
     opacity=expr(&quot;opacity/100&quot;),
-)</code></pre><div id='vlffef6c5905544c0f802ae91ad63b33e9' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vlffef6c5905544c0f802ae91ad63b33e9',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"opacity","value":50,"bind":{"input":"range","min":1,"max":100}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point","opacity":{"expr":"opacity/100"}},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"}}},{mode:'vega-lite'}).catch(console.warn);})</script><h2 id="Checkbox-Input-Widget"><a class="docs-heading-anchor" href="#Checkbox-Input-Widget">Checkbox Input Widget</a><a id="Checkbox-Input-Widget-1"></a><a class="docs-heading-anchor-permalink" href="#Checkbox-Input-Widget" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart = base * select_checkbox(
+)</code></pre><style>
+  #vis-08f3330b-5b5d-4c91-8e82-f99fe7230d3b.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-08f3330b-5b5d-4c91-8e82-f99fe7230d3b.vega-embed details,
+  #vis-08f3330b-5b5d-4c91-8e82-f99fe7230d3b.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-08f3330b-5b5d-4c91-8e82-f99fe7230d3b"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-08f3330b-5b5d-4c91-8e82-f99fe7230d3b") {
+      outputDiv = document.getElementById("vis-08f3330b-5b5d-4c91-8e82-f99fe7230d3b");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"opacity","value":50,"bind":{"input":"range","min":1,"max":100}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point","opacity":{"expr":"opacity/100"}},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"}}}, {"mode": "vega-lite"});
+</script>
+<h2 id="Checkbox-Input-Widget"><a class="docs-heading-anchor" href="#Checkbox-Input-Widget">Checkbox Input Widget</a><a id="Checkbox-Input-Widget-1"></a><a class="docs-heading-anchor-permalink" href="#Checkbox-Input-Widget" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart = base * select_checkbox(
     :toggle_origin;
 ) * Encoding(
     color=condition(:toggle_origin, field(&quot;Origin:N&quot;), :grey),
-)</code></pre><div id='vl76b5953488ba472d930ac7ffafac1aa6' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vl76b5953488ba472d930ac7ffafac1aa6',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"toggle_origin","bind":{"input":"checkbox"}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"},"color":{"condition":{"param":"toggle_origin","field":"Origin","type":"nominal"},"value":"grey"}}},{mode:'vega-lite'}).catch(console.warn);})</script><h2 id="Arbitrary-Widget"><a class="docs-heading-anchor" href="#Arbitrary-Widget">Arbitrary Widget</a><a id="Arbitrary-Widget-1"></a><a class="docs-heading-anchor-permalink" href="#Arbitrary-Widget" title="Permalink"></a></h2><p>In addition to the widgets above, Deneb.jl has access to <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input">any arbitrary html widget</a> via the more general <code>select_bind_input</code> function. Below an example with the color-picker widget.</p><pre><code class="language-julia hljs">chart = base * select_bind_input(
+)</code></pre><style>
+  #vis-c4c30af4-d6f6-4177-9d40-81026d9ab09b.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-c4c30af4-d6f6-4177-9d40-81026d9ab09b.vega-embed details,
+  #vis-c4c30af4-d6f6-4177-9d40-81026d9ab09b.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-c4c30af4-d6f6-4177-9d40-81026d9ab09b"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-c4c30af4-d6f6-4177-9d40-81026d9ab09b") {
+      outputDiv = document.getElementById("vis-c4c30af4-d6f6-4177-9d40-81026d9ab09b");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"toggle_origin","bind":{"input":"checkbox"}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"},"color":{"condition":{"param":"toggle_origin","field":"Origin","type":"nominal"},"value":"grey"}}}, {"mode": "vega-lite"});
+</script>
+<h2 id="Arbitrary-Widget"><a class="docs-heading-anchor" href="#Arbitrary-Widget">Arbitrary Widget</a><a id="Arbitrary-Widget-1"></a><a class="docs-heading-anchor-permalink" href="#Arbitrary-Widget" title="Permalink"></a></h2><p>In addition to the widgets above, Deneb.jl has access to <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input">any arbitrary html widget</a> via the more general <code>select_bind_input</code> function. Below an example with the color-picker widget.</p><pre><code class="language-julia hljs">chart = base * select_bind_input(
     :color, :usa;
     value=&quot;#317bb4&quot;
 ) * select_bind_input(
@@ -50,4 +310,69 @@ base = data * Mark(:point) * Encoding(&quot;Horsepower:Q&quot;, &quot;Miles_per_
             range=[expr(:usa), expr(:europe), expr(:japan)],
         ),
     )
-)</code></pre><div id='vl9ba7f0b0e3144820bc7768c1b5a579ac' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vl9ba7f0b0e3144820bc7768c1b5a579ac',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"usa","value":"#317bb4","bind":{"input":"color"}},{"name":"europe","value":"#ffb54d","bind":{"input":"color"}},{"name":"japan","value":"#adadad","bind":{"input":"color"}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"},"color":{"field":"Origin","type":"nominal","scale":{"domain":["USA","Europe","Japan"],"range":[{"expr":"usa"},{"expr":"europe"},{"expr":"japan"}]}}}},{mode:'vega-lite'}).catch(console.warn);})</script><hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 15 July 2023 13:07">Saturday 15 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+)</code></pre><style>
+  #vis-4dcafd95-4ba4-46c2-8e06-0cf2ed0f332d.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-4dcafd95-4ba4-46c2-8e06-0cf2ed0f332d.vega-embed details,
+  #vis-4dcafd95-4ba4-46c2-8e06-0cf2ed0f332d.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-4dcafd95-4ba4-46c2-8e06-0cf2ed0f332d"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-4dcafd95-4ba4-46c2-8e06-0cf2ed0f332d") {
+      outputDiv = document.getElementById("vis-4dcafd95-4ba4-46c2-8e06-0cf2ed0f332d");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"usa","value":"#317bb4","bind":{"input":"color"}},{"name":"europe","value":"#ffb54d","bind":{"input":"color"}},{"name":"japan","value":"#adadad","bind":{"input":"color"}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"},"color":{"field":"Origin","type":"nominal","scale":{"domain":["USA","Europe","Japan"],"range":[{"expr":"usa"},{"expr":"europe"},{"expr":"japan"}]}}}}, {"mode": "vega-lite"});
+</script>
+<hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Monday 24 July 2023 15:45">Monday 24 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

@@ -13,4 +13,69 @@ chart = Data(data) * Mark(:bar) * transform_joinaggregate(
 ) * Encoding(
     x=field(&quot;PercentOfTotal:Q&quot;, title=&quot;% of total Time&quot;),
     y=&quot;Activity:N&quot;
-)</code></pre><div id='vlb45837c4c9ae4e98bbddeb3178cd1c89' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vlb45837c4c9ae4e98bbddeb3178cd1c89',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"transform":[{"joinaggregate":[{"field":"Time","op":"sum","as":"TotalTime"}]},{"as":"PercentOfTotal","calculate":"datum.Time/datum.TotalTime * 100"}],"data":{"values":[{"Activity":"Sleeping","Time":8},{"Activity":"Eating","Time":2},{"Activity":"TV","Time":4},{"Activity":"Work","Time":8},{"Activity":"Exercise","Time":2}]},"mark":{"type":"bar"},"encoding":{"x":{"field":"PercentOfTotal","type":"quantitative","title":"% of total Time"},"y":{"field":"Activity","type":"nominal"}}},{mode:'vega-lite'}).catch(console.warn);})</script><hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 15 July 2023 13:07">Saturday 15 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+)</code></pre><style>
+  #vis-3c060ef2-a14d-4300-a672-5b8afd531c62.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-3c060ef2-a14d-4300-a672-5b8afd531c62.vega-embed details,
+  #vis-3c060ef2-a14d-4300-a672-5b8afd531c62.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-3c060ef2-a14d-4300-a672-5b8afd531c62"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-3c060ef2-a14d-4300-a672-5b8afd531c62") {
+      outputDiv = document.getElementById("vis-3c060ef2-a14d-4300-a672-5b8afd531c62");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"transform":[{"joinaggregate":[{"field":"Time","op":"sum","as":"TotalTime"}]},{"as":"PercentOfTotal","calculate":"datum.Time/datum.TotalTime * 100"}],"data":{"values":[{"Activity":"Sleeping","Time":8},{"Activity":"Eating","Time":2},{"Activity":"TV","Time":4},{"Activity":"Work","Time":8},{"Activity":"Exercise","Time":2}]},"mark":{"type":"bar"},"encoding":{"x":{"field":"PercentOfTotal","type":"quantitative","title":"% of total Time"},"y":{"field":"Activity","type":"nominal"}}}, {"mode": "vega-lite"});
+</script>
+<hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Monday 24 July 2023 15:45">Monday 24 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

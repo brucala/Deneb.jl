@@ -28,4 +28,69 @@ chart = data * config(
         title=&quot;Yield Delta (%)&quot;
     ),
     column=field(&quot;site:N&quot;, title=:Site),
-)</code></pre><div id='vl3e5ac94440a2415c923ee2c0ed7c6a9c' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vl3e5ac94440a2415c923ee2c0ed7c6a9c',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true},"legend":{"orient":"bottom","direction":"horizontal"}},"title":"Barley Yield comparison between 1932 and 1931","transform":[{"pivot":"year","value":"yield","groupby":["variety","site"]},{"fold":["1931","1932"],"as":["year","yield"]},{"as":"delta","calculate":"datum['1932'] - datum['1931']"}],"data":{"url":"https://vega.github.io/vega-datasets/data/barley.json"},"mark":{"type":"trail"},"encoding":{"x":{"field":"year","type":"ordinal","title":null},"y":{"field":"variety","type":"nominal","title":"Variety"},"size":{"field":"yield","type":"quantitative","scale":{"range":[0,12]},"legend":{"values":[20,60]},"title":"Barley Yield (bushels/acre)"},"color":{"field":"delta","type":"quantitative","scale":{"domainMid":0},"title":"Yield Delta (%)"},"column":{"field":"site","type":"nominal","title":"Site"}}},{mode:'vega-lite'}).catch(console.warn);})</script><hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 15 July 2023 13:07">Saturday 15 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+)</code></pre><style>
+  #vis-8a22cf52-7b49-4ebd-80e0-e50885246357.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-8a22cf52-7b49-4ebd-80e0-e50885246357.vega-embed details,
+  #vis-8a22cf52-7b49-4ebd-80e0-e50885246357.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-8a22cf52-7b49-4ebd-80e0-e50885246357"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-8a22cf52-7b49-4ebd-80e0-e50885246357") {
+      outputDiv = document.getElementById("vis-8a22cf52-7b49-4ebd-80e0-e50885246357");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true},"legend":{"orient":"bottom","direction":"horizontal"}},"title":"Barley Yield comparison between 1932 and 1931","transform":[{"pivot":"year","value":"yield","groupby":["variety","site"]},{"fold":["1931","1932"],"as":["year","yield"]},{"as":"delta","calculate":"datum['1932'] - datum['1931']"}],"data":{"url":"https://vega.github.io/vega-datasets/data/barley.json"},"mark":{"type":"trail"},"encoding":{"x":{"field":"year","type":"ordinal","title":null},"y":{"field":"variety","type":"nominal","title":"Variety"},"size":{"field":"yield","type":"quantitative","scale":{"range":[0,12]},"legend":{"values":[20,60]},"title":"Barley Yield (bushels/acre)"},"color":{"field":"delta","type":"quantitative","scale":{"domainMid":0},"title":"Yield Delta (%)"},"column":{"field":"site","type":"nominal","title":"Site"}}}, {"mode": "vega-lite"});
+</script>
+<hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Monday 24 July 2023 15:45">Monday 24 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

@@ -19,4 +19,69 @@ lines = points * Mark(:line) * Encoding(color=&quot;degree:N&quot;) * layer(
     for order in (1, 3, 5)
 )
 
-chart = (points + lines) * vlspec(width=400)</code></pre><div id='vlbbeefffd9f1644439c21b94f812ea178' style="width:100%;height:100%;"></div><script type='text/javascript'>requirejs.config({paths:{'vg-embed': 'https://cdn.jsdelivr.net/npm/vega-embed@6?noext','vega-lib': 'https://cdn.jsdelivr.net/npm/vega-lib?noext','vega-lite': 'https://cdn.jsdelivr.net/npm/vega-lite@5?noext','vega': 'https://cdn.jsdelivr.net/npm/vega@5?noext'}}); require(['vg-embed'],function(vegaEmbed){vegaEmbed('#vlbbeefffd9f1644439c21b94f812ea178',{"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"x":0.029514766879453255,"y":2.9899872817605218},{"x":0.4392464940326316,"y":7.562900516541781},{"x":0.5342632996097816,"y":8.425105973570666},{"x":0.9243497275244063,"y":9.671185823871081},{"x":0.05670230661087814,"y":2.9507783669959893},{"x":0.22035490040086428,"y":5.578879724038584},{"x":0.5065654215249626,"y":9.428862073421712},{"x":0.12956844174516877,"y":4.609009243017138},{"x":0.7931557584571047,"y":7.501168974718875},{"x":0.8305534432618926,"y":7.5806812334296545},{"x":0.06649135335969962,"y":4.470833513069578},{"x":0.048811221032543095,"y":3.5196561034143534},{"x":0.682448780037118,"y":8.773235593003157},{"x":0.7138897815865392,"y":7.865444136910006},{"x":0.48245280591654993,"y":9.899856400496272},{"x":0.6896190490666093,"y":9.626727081898174},{"x":0.023681589358887974,"y":1.2781171734081629},{"x":0.5980466900276553,"y":8.106463508506137},{"x":0.5994996704958457,"y":8.734487848083026},{"x":0.05928699717490479,"y":0.7542311227306864},{"x":0.13348506713186428,"y":5.254101434986063},{"x":0.5011320195795622,"y":7.620821955313238},{"x":0.002497829787397722,"y":-1.1755724959987408},{"x":0.6072269965574167,"y":7.723182250919716},{"x":0.8265979914893701,"y":8.351906531821799},{"x":0.2370611816255734,"y":5.557722440103956},{"x":0.008933689536944543,"y":3.824039117891702},{"x":0.8924714781750731,"y":9.841000201363515},{"x":0.006785310267206194,"y":0.5519672087821967},{"x":0.4006535885119136,"y":7.982426471612828},{"x":0.6319151697324366,"y":10.87934155273507},{"x":0.17816598422829044,"y":6.515506169728541},{"x":0.8449717442011128,"y":10.060490064932404},{"x":0.970384545028573,"y":8.073367548161869},{"x":0.10343524596481335,"y":5.906482027285479},{"x":0.14549362176798997,"y":7.598299014773787},{"x":0.4688240014559802,"y":8.797672171072053},{"x":0.7769435763612995,"y":7.996122662343708},{"x":0.5464790048427487,"y":9.766214436818618},{"x":0.143238081867926,"y":7.729527162913505},{"x":0.062428350225714434,"y":4.552542736326363},{"x":0.8239444182073892,"y":9.821343970582955},{"x":0.6885047756751362,"y":9.904921524974327},{"x":0.30168030220539443,"y":7.365731897254911},{"x":0.057821535191586865,"y":3.4362922472351682},{"x":0.3503435530406161,"y":7.222583836273188},{"x":0.3510492170801018,"y":9.142137147092123},{"x":0.39901767767244095,"y":7.950498933321333},{"x":0.3662871305163607,"y":8.171467186316603},{"x":0.07521163646068785,"y":3.4255248639503804}]},"layer":[{"mark":{"type":"circle","color":"black"},"encoding":{"x":{"field":"x","type":"quantitative"},"y":{"field":"y","type":"quantitative"}},"width":400},{"encoding":{"x":{"field":"x","type":"quantitative"},"y":{"field":"y","type":"quantitative"},"color":{"field":"degree","type":"nominal"}},"layer":[{"transform":[{"regression":"y","on":"x","method":"poly","order":1,"as":["x","1"]},{"fold":["1"],"as":["degree","y"]}],"mark":{"type":"line","color":"black"},"width":400},{"transform":[{"regression":"y","on":"x","method":"poly","order":3,"as":["x","3"]},{"fold":["3"],"as":["degree","y"]}],"mark":{"type":"line","color":"black"},"width":400},{"transform":[{"regression":"y","on":"x","method":"poly","order":5,"as":["x","5"]},{"fold":["5"],"as":["degree","y"]}],"mark":{"type":"line","color":"black"},"width":400}]}]},{mode:'vega-lite'}).catch(console.warn);})</script><hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 15 July 2023 13:07">Saturday 15 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+chart = (points + lines) * vlspec(width=400)</code></pre><style>
+  #vis-a8b6117c-db7c-475d-856c-096c2e847023.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-a8b6117c-db7c-475d-856c-096c2e847023.vega-embed details,
+  #vis-a8b6117c-db7c-475d-856c-096c2e847023.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-a8b6117c-db7c-475d-856c-096c2e847023"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-a8b6117c-db7c-475d-856c-096c2e847023") {
+      outputDiv = document.getElementById("vis-a8b6117c-db7c-475d-856c-096c2e847023");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"x":0.25915768843215575,"y":6.528293559346873},{"x":0.011528960134938947,"y":0.26688575821649874},{"x":0.04450046288848373,"y":3.869900033824925},{"x":0.4713718839597977,"y":9.40880876152715},{"x":0.6763666468867027,"y":8.136566763977026},{"x":0.006080835758154631,"y":1.7358312583962388},{"x":0.0761591111214805,"y":3.4881266314679387},{"x":0.5388166419627362,"y":8.340813570474557},{"x":0.21809321318329405,"y":8.225600039907814},{"x":0.11299243332723345,"y":5.05211929596596},{"x":0.042460481844846125,"y":0.9161169204944279},{"x":3.6156080230816034e-5,"y":-1.6057137110248296},{"x":0.031537835941659494,"y":2.8077185325013048},{"x":0.5903089177351916,"y":7.95243658136432},{"x":0.690917951060348,"y":9.15540744669426},{"x":0.4403794563769091,"y":7.728286267835317},{"x":0.11588168769262677,"y":6.40037742321317},{"x":0.019374623798960895,"y":2.287990656794018},{"x":0.12434302443345778,"y":6.284492859232328},{"x":0.17169165875260956,"y":4.903351739144487},{"x":0.35800394546599734,"y":8.243188285218066},{"x":0.06270105053707085,"y":4.735458822545006},{"x":0.08071426038358133,"y":6.4713991270853555},{"x":0.5085600300072536,"y":9.970690503166955},{"x":0.09630337996351332,"y":5.552943795407954},{"x":0.07130791278961836,"y":4.683921548750504},{"x":0.6062669367216552,"y":8.70136367882139},{"x":0.14688951848436166,"y":5.29691201450933},{"x":0.5481898115506973,"y":8.678106120473442},{"x":0.14311928814879646,"y":4.703249282179783},{"x":0.031965086174999345,"y":3.455651790927415},{"x":0.9245864451336366,"y":8.689784695478659},{"x":0.37387583121754775,"y":8.209582237603236},{"x":0.22365263392105914,"y":8.19057728174666},{"x":0.04194909219758051,"y":3.2833212663404887},{"x":0.3986828746888409,"y":7.670792081404058},{"x":0.46564852703169235,"y":9.47132374533975},{"x":0.0006054638839629341,"y":0.9992413570360877},{"x":0.7880349560083676,"y":9.117746861487355},{"x":0.06270073847275981,"y":3.40786519683141},{"x":0.17377187084458046,"y":6.827813626872151},{"x":0.2121774342233698,"y":7.051008378786875},{"x":0.7646269222573054,"y":10.029197863082699},{"x":0.003597263855441312,"y":0.14125981872734847},{"x":0.0016316119371777569,"y":1.5715568550335348},{"x":0.2537494100752704,"y":6.500138133922506},{"x":0.11202848581979413,"y":4.763498759300881},{"x":0.022799717364557267,"y":-0.3215732116181309},{"x":0.0933936196719709,"y":4.770929161026233},{"x":0.5839340378453416,"y":8.040280453616628}]},"layer":[{"mark":{"type":"circle","color":"black"},"encoding":{"x":{"field":"x","type":"quantitative"},"y":{"field":"y","type":"quantitative"}},"width":400},{"encoding":{"x":{"field":"x","type":"quantitative"},"y":{"field":"y","type":"quantitative"},"color":{"field":"degree","type":"nominal"}},"layer":[{"transform":[{"regression":"y","on":"x","method":"poly","order":1,"as":["x","1"]},{"fold":["1"],"as":["degree","y"]}],"mark":{"type":"line","color":"black"},"width":400},{"transform":[{"regression":"y","on":"x","method":"poly","order":3,"as":["x","3"]},{"fold":["3"],"as":["degree","y"]}],"mark":{"type":"line","color":"black"},"width":400},{"transform":[{"regression":"y","on":"x","method":"poly","order":5,"as":["x","5"]},{"fold":["5"],"as":["degree","y"]}],"mark":{"type":"line","color":"black"},"width":400}]}]}, {"mode": "vega-lite"});
+</script>
+<hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Monday 24 July 2023 15:45">Monday 24 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
