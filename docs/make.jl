@@ -5,7 +5,6 @@ gallery, gallery_cb, gallery_assets = makedemos("examples")
 assets = ["assets/favicon.ico"]
 isnothing(gallery_assets) || push!(assets, gallery_assets)
 
-
 format = Documenter.HTML(;
     assets,
     prettyurls = get(ENV, "CI", nothing) == "true",
@@ -32,7 +31,8 @@ makedocs(
         ],
         "Gallery" => gallery,
         "API" => "api.md",
-    ]
+    ],
+    strict=true,
 )
 
 gallery_cb()
