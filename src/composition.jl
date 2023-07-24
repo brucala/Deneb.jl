@@ -165,7 +165,8 @@ The addition of two specs will produce a new spec with both specs layered.
 The order matters as `spec1` will appear below `spec2`.
 If the specs contain shared properties (e.g. `data`, `encoding`, `width`...),
 they will be promoted to the top level specification.
-Multi-view layout specs (facet, repeat, concat) cannot be layered.
+Multi-view layout specs (facet, repeat, concat) cannot be layered. However,
+layered specs can be faceted/repeated/concatenated.
 """
 function Base.:+(a::VegaLiteSpec, b::VegaLiteSpec)
     if _incompatible_toplevels(a.toplevel, b.toplevel)

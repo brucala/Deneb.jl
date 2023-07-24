@@ -1,6 +1,6 @@
 # Building Blocks of a Vega-Lite Visualization
 
-The `data`, `mark` and `encoding` properties of a Vega-Lite specification are the basic building blocks of a Vega-Lite visualization. In the Deneb.jl, sub-specifications for these properties can conveniently be defined using `Data`, `Mark`, and `Encoding` and then composed using the `*` operator to build the final specification.
+The `data`, `mark` and `encoding` properties of a Vega-Lite specification are the basic building blocks of a Vega-Lite visualization. In Deneb.jl, sub-specifications for these properties can conveniently be defined using `Data`, `Mark`, and `Encoding` and then composed using the `*` operator to build the final specification.
 
 ```@example building_blocks
 using Deneb

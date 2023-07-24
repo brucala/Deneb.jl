@@ -1,4 +1,4 @@
-# Multi-views
+# [Multi-view specs](@id multiview)
 
 Layers, concatenation facets, repeat
 
