@@ -1,4 +1,6 @@
-# Composition with `*`
+# Composition and Layering
+
+## Composition with `*`
 
 In Deneb.jl, different components or sub-specifications of a Vega-Lite visualization can be defined separately and conveniently be composed using the `*` operator to build the final specification.
 
@@ -27,7 +29,7 @@ chart * title("Power vs Displacement") * Encoding(
 )
 ```
 
-# Layering with `+`
+## Layering with `+`
 
 [Layered views](https://vega.github.io/vega-lite/docs/layer.html), or charts that are superimposed one on top of another, can be conveniently created in Deneb.jl using the `+` operator.
 
