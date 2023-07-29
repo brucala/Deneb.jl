@@ -49,6 +49,8 @@ Data(data) * Mark(:line) * Repeat(
     x="month(date)",
     y=(field=(;repeat=:column), aggregate=:mean),
     color=:location,
+) * vlspec(
+    height=200, width=200
 )
 ```
 
@@ -68,13 +70,14 @@ In Deneb.jl, this can be achieved using [`Facet`](@ref).
 
 ```@example multiview
 data = Data(url="https://vega.github.io/vega-datasets/data/cars.json")
-
-data * Mark(:bar) * Facet(column=:Origin) * Encoding(
+base = Mark(:bar) * Encoding(
     x=field("Horsepower:Q", bin=(;maxbins=15)),
     y="count()"
 ) * vlspec(
     height=200, width=200
 )
+
+data * base * Facet(column=:Origin)
 ```
 
 ## Faceting with encoding channels
@@ -82,13 +85,7 @@ data * Mark(:bar) * Facet(column=:Origin) * Encoding(
 Vega-Lite also provides the [`facet`, `row` and `column` encoding channels](https://vega.github.io/vega-lite/docs/facet.html#facet-row-and-column-encoding-channels) that serve as a convenient way of producing facet specifications. 
 
 ```@example multiview
-data * Mark(:bar) * Encoding(
-    x=field("Horsepower:Q", bin=(;maxbins=15)),
-    y="count()",
-    column=:Origin
-) * vlspec(
-    height=200, width=200
-)
+data * base * Encoding(column=:Origin)
 ```
 
 The limitation of faceting via encoding channels is that it cannot create complicated compound charts like facet views of layered charts, while this can be achieved with the more flexible `Facet`.
