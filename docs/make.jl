@@ -25,6 +25,7 @@ makedocs(
             "Data, Mark and Encoding" => "data_mark_encoding.md",
             "Composition and Layering" => "composition_and_layering.md",
             "Multi-views" => "multiview.md",
+            "Interactive Charts" => "interactive.md",
             # "Customization" => "customization.md",
             "Themes" => "themes.md",
             # "Internals" => "internals.md",

@@ -1,3 +1,7 @@
+"""
+    json(spec::VegaLiteSpec, [indent])
+Creates a JSON string with the VegaLite specification of spec.
+"""
 JSON.json(s::AbstractSpec) = json(rawspec(s))
 JSON.json(s::AbstractSpec, indent) = json(rawspec(s), indent)
 JSON.json(s::VegaLiteSpec) = json(rawspec(themespec() * s))
@@ -188,6 +192,10 @@ function html_universal(
     """
 end
 
+"""
+    html(spec::VegaLiteSpec)
+Creates an HTML string of the VegaLite spec.
+"""
 html(spec;
     html_func=html_full,
     div="vis-"*string(uuid4()),
@@ -200,13 +208,16 @@ html(spec;
 ### Save
 ###
 
+"""
+    save(filename, spec)
+Saves the spec as filename. Allowed formats are `.json`, `.html`, `.png`, `.svg`, `.pdf`.
+"""
 function save(filename::AbstractString, mime::AbstractString, s::VegaLiteSpec)
     showable(s, mime) || return
     open(filename, "w") do f
         show(f, mime, s)
     end
 end
-
 function save(filename::AbstractString, s::VegaLiteSpec)
     file_ext = lowercase(splitext(filename)[2])
     if file_ext == ".svg"

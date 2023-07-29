@@ -256,6 +256,10 @@ function _different_or_nothing(s1, s2)
     typeof(s1) <: Spec ? Spec(nothing) : typeof(s1)(Spec(nothing))
 end
 
+"""
+    layer(specs...)
+Layer specs, equivalent to `spec1 + spec2 + ...`.
+"""
 layer(specs::ConstrainedSpec...) = layer(specs)
 layer(specs) = sum(specs)
 

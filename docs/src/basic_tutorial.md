@@ -22,7 +22,7 @@ using Deneb
 Data(data)
 ```
 
-This created a [`DataSpec`](@ref) that contains the `data` property of a Vega-Lite specification that defines the data source of a visualization. Deneb.jl also supports other types of data sources supported by Vega-Lite, besides tabular data, as described in the [Data](@ref) section.
+This created a [`Deneb.DataSpec`](@ref) that contains the `data` property of a Vega-Lite specification that defines the data source of a visualization. Deneb.jl also supports other types of data sources supported by Vega-Lite, besides tabular data, as described in the [Data](@ref) section.
 
 ## Encoding Data with Marks
 
@@ -34,7 +34,7 @@ In Deneb.jl the `mark` of a Vega-Lite specification can be created with [`Mark`]
 Mark(:point)
 ```
 
-To show a Vega-Lite visualization of the data as a point, we can compose the `DataSpec` and the [`MarkSpec`](@ref) with the [`*`](@ref) operator to build a showable [`VegaLiteSpec`](@ref):
+To show a Vega-Lite visualization of the data as a point, we can compose the `DataSpec` and the [`Deneb.MarkSpec`](@ref) with the [`*`](@ref) operator to build a showable [`Deneb.VegaLiteSpec`](@ref):
 
 ```@example tutorial
 Data(data) * Mark(:point)
