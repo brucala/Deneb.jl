@@ -1,27 +1,27 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Composition and Layering · Deneb.jl</title><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/gridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../intro/">Introduction</a></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li class="is-active"><a class="tocitem" href>Composition and Layering</a><ul class="internal"><li><a class="tocitem" href="#Composition-with-*"><span>Composition with <code>*</code></span></a></li><li><a class="tocitem" href="#Layering-with"><span>Layering with <code>+</code></span></a></li></ul></li><li><a class="tocitem" href="../multiview/">Multi-views</a></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">User Guide</a></li><li class="is-active"><a href>Composition and Layering</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Composition and Layering</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/composition_and_layering.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Composition-and-Layering"><a class="docs-heading-anchor" href="#Composition-and-Layering">Composition and Layering</a><a id="Composition-and-Layering-1"></a><a class="docs-heading-anchor-permalink" href="#Composition-and-Layering" title="Permalink"></a></h1><h2 id="Composition-with-*"><a class="docs-heading-anchor" href="#Composition-with-*">Composition with <code>*</code></a><a id="Composition-with-*-1"></a><a class="docs-heading-anchor-permalink" href="#Composition-with-*" title="Permalink"></a></h2><p>In Deneb.jl, different components or sub-specifications of a Vega-Lite visualization can be defined separately and conveniently be composed using the <a href="../api/#Base.:*-Tuple{Deneb.Spec, Deneb.Spec}"><code>*</code></a> operator to build the final specification.</p><pre><code class="language-julia hljs">using Deneb
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Composition and Layering · Deneb.jl</title><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/gridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../intro/">Introduction</a></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li class="is-active"><a class="tocitem" href>Composition and Layering</a><ul class="internal"><li><a class="tocitem" href="#Composition-with-*"><span>Composition with <code>*</code></span></a></li><li><a class="tocitem" href="#Layering-with"><span>Layering with <code>+</code></span></a></li></ul></li><li><a class="tocitem" href="../multiview/">Multi-views</a></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">User Guide</a></li><li class="is-active"><a href>Composition and Layering</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Composition and Layering</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/composition_and_layering.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Composition-and-Layering"><a class="docs-heading-anchor" href="#Composition-and-Layering">Composition and Layering</a><a id="Composition-and-Layering-1"></a><a class="docs-heading-anchor-permalink" href="#Composition-and-Layering" title="Permalink"></a></h1><h2 id="Composition-with-*"><a class="docs-heading-anchor" href="#Composition-with-*">Composition with <code>*</code></a><a id="Composition-with-*-1"></a><a class="docs-heading-anchor-permalink" href="#Composition-with-*" title="Permalink"></a></h2><p>In Deneb.jl, different components or sub-specifications of a Vega-Lite visualization can be defined separately and conveniently be composed using the <a href="../api/#Base.:*-Tuple{Deneb.Spec, Deneb.Spec}"><code>*</code></a> operator to build the final specification.</p><pre><code class="language-julia hljs">using Deneb
 cars = Data(url=&quot;https://vega.github.io/vega-datasets/data/cars.json&quot;)
 mark = Mark(:point)
 encoding = Encoding(&quot;Horsepower:q&quot;, &quot;Miles_per_Gallon:q&quot;, color=:Origin)
 
 chart = cars * mark * encoding</code></pre><style>
-  #vis-dcca0e18-5d4b-4d04-a765-4381a1590b54.vega-embed {
+  #vis-6520df4c-a5dc-4bc2-8dd3-0b24649c7b00.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-dcca0e18-5d4b-4d04-a765-4381a1590b54.vega-embed details,
-  #vis-dcca0e18-5d4b-4d04-a765-4381a1590b54.vega-embed details summary {
+  #vis-6520df4c-a5dc-4bc2-8dd3-0b24649c7b00.vega-embed details,
+  #vis-6520df4c-a5dc-4bc2-8dd3-0b24649c7b00.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-dcca0e18-5d4b-4d04-a765-4381a1590b54"></div>
+<div id="vis-6520df4c-a5dc-4bc2-8dd3-0b24649c7b00"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-dcca0e18-5d4b-4d04-a765-4381a1590b54") {
-      outputDiv = document.getElementById("vis-dcca0e18-5d4b-4d04-a765-4381a1590b54");
+    if (outputDiv.id !== "vis-6520df4c-a5dc-4bc2-8dd3-0b24649c7b00") {
+      outputDiv = document.getElementById("vis-6520df4c-a5dc-4bc2-8dd3-0b24649c7b00");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -73,23 +73,23 @@ chart = cars * mark * encoding</code></pre><style>
     x=(; title=&quot;Power [hp]&quot;),
     y=(; title=&quot;Consumption [mi / gal]&quot;)
 )</code></pre><style>
-  #vis-19503eca-cddb-41c7-a218-3e577d3ceb3b.vega-embed {
+  #vis-2323b663-6f50-4d82-955e-c99e24d6431b.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-19503eca-cddb-41c7-a218-3e577d3ceb3b.vega-embed details,
-  #vis-19503eca-cddb-41c7-a218-3e577d3ceb3b.vega-embed details summary {
+  #vis-2323b663-6f50-4d82-955e-c99e24d6431b.vega-embed details,
+  #vis-2323b663-6f50-4d82-955e-c99e24d6431b.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-19503eca-cddb-41c7-a218-3e577d3ceb3b"></div>
+<div id="vis-2323b663-6f50-4d82-955e-c99e24d6431b"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-19503eca-cddb-41c7-a218-3e577d3ceb3b") {
-      outputDiv = document.getElementById("vis-19503eca-cddb-41c7-a218-3e577d3ceb3b");
+    if (outputDiv.id !== "vis-2323b663-6f50-4d82-955e-c99e24d6431b") {
+      outputDiv = document.getElementById("vis-2323b663-6f50-4d82-955e-c99e24d6431b");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -140,23 +140,23 @@ chart = cars * mark * encoding</code></pre><style>
 <h3 id="Order"><a class="docs-heading-anchor" href="#Order">Order</a><a id="Order-1"></a><a class="docs-heading-anchor-permalink" href="#Order" title="Permalink"></a></h3><p>Properties defined in the right-side spec have precedence over the left-side spec, meaning that if a given property is specified in both, then the result specification will use the property from the right-side spec.</p><pre><code class="language-julia hljs">chart * title(&quot;Power vs Displacement&quot;) * Encoding(
     x=field(:Displacement, title=&quot;Displacement [in³]&quot;)
 )</code></pre><style>
-  #vis-fe7183d4-c6d4-4519-9d5d-3eb423116b75.vega-embed {
+  #vis-efd6a998-f6fb-4d7d-8a34-b20e1f6435bb.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-fe7183d4-c6d4-4519-9d5d-3eb423116b75.vega-embed details,
-  #vis-fe7183d4-c6d4-4519-9d5d-3eb423116b75.vega-embed details summary {
+  #vis-efd6a998-f6fb-4d7d-8a34-b20e1f6435bb.vega-embed details,
+  #vis-efd6a998-f6fb-4d7d-8a34-b20e1f6435bb.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-fe7183d4-c6d4-4519-9d5d-3eb423116b75"></div>
+<div id="vis-efd6a998-f6fb-4d7d-8a34-b20e1f6435bb"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-fe7183d4-c6d4-4519-9d5d-3eb423116b75") {
-      outputDiv = document.getElementById("vis-fe7183d4-c6d4-4519-9d5d-3eb423116b75");
+    if (outputDiv.id !== "vis-efd6a998-f6fb-4d7d-8a34-b20e1f6435bb") {
+      outputDiv = document.getElementById("vis-efd6a998-f6fb-4d7d-8a34-b20e1f6435bb");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -211,23 +211,23 @@ base = stocks * Encoding(
 )
 
 base * (Mark(:line) + Mark(:point) + Mark(:rule))</code></pre><style>
-  #vis-5edcfba1-b449-4541-851b-c9506cff7a57.vega-embed {
+  #vis-0f944c7a-4bc5-4013-a68a-d5f2c7c67b71.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-5edcfba1-b449-4541-851b-c9506cff7a57.vega-embed details,
-  #vis-5edcfba1-b449-4541-851b-c9506cff7a57.vega-embed details summary {
+  #vis-0f944c7a-4bc5-4013-a68a-d5f2c7c67b71.vega-embed details,
+  #vis-0f944c7a-4bc5-4013-a68a-d5f2c7c67b71.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-5edcfba1-b449-4541-851b-c9506cff7a57"></div>
+<div id="vis-0f944c7a-4bc5-4013-a68a-d5f2c7c67b71"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-5edcfba1-b449-4541-851b-c9506cff7a57") {
-      outputDiv = document.getElementById("vis-5edcfba1-b449-4541-851b-c9506cff7a57");
+    if (outputDiv.id !== "vis-0f944c7a-4bc5-4013-a68a-d5f2c7c67b71") {
+      outputDiv = document.getElementById("vis-0f944c7a-4bc5-4013-a68a-d5f2c7c67b71");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -276,23 +276,23 @@ base * (Mark(:line) + Mark(:point) + Mark(:rule))</code></pre><style>
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/stocks.csv"},"encoding":{"x":{"timeUnit":"yearquarter","field":"date","type":"temporal"},"y":{"aggregate":"mean","field":"price","type":"quantitative"}},"layer":[{"mark":{"type":"line"}},{"mark":{"type":"point"}},{"mark":{"type":"rule"}}]}, {"mode": "vega-lite"});
 </script>
 <p>Alternatively, the <a href="../api/#Deneb.layer-Tuple{Vararg{Deneb.ConstrainedSpec, N} where N}"><code>layer</code></a> method can also be used, with any number of specs as arguments.</p><pre><code class="language-julia hljs">base * layer(Mark(:line), Mark(:point), Mark(:rule))</code></pre><style>
-  #vis-c40c67de-0e33-4514-8d87-ded3e261ebee.vega-embed {
+  #vis-20f167c3-b307-4d4c-b1aa-c18b85a2dabe.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-c40c67de-0e33-4514-8d87-ded3e261ebee.vega-embed details,
-  #vis-c40c67de-0e33-4514-8d87-ded3e261ebee.vega-embed details summary {
+  #vis-20f167c3-b307-4d4c-b1aa-c18b85a2dabe.vega-embed details,
+  #vis-20f167c3-b307-4d4c-b1aa-c18b85a2dabe.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-c40c67de-0e33-4514-8d87-ded3e261ebee"></div>
+<div id="vis-20f167c3-b307-4d4c-b1aa-c18b85a2dabe"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-c40c67de-0e33-4514-8d87-ded3e261ebee") {
-      outputDiv = document.getElementById("vis-c40c67de-0e33-4514-8d87-ded3e261ebee");
+    if (outputDiv.id !== "vis-20f167c3-b307-4d4c-b1aa-c18b85a2dabe") {
+      outputDiv = document.getElementById("vis-20f167c3-b307-4d4c-b1aa-c18b85a2dabe");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -355,23 +355,23 @@ points = movies * Mark(
 )
 
 heatmap + points</code></pre><style>
-  #vis-d4ec2ab8-bf18-4d56-bcce-67d2f533961e.vega-embed {
+  #vis-c6c64716-63c3-40cf-ba39-74a3f3f33415.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-d4ec2ab8-bf18-4d56-bcce-67d2f533961e.vega-embed details,
-  #vis-d4ec2ab8-bf18-4d56-bcce-67d2f533961e.vega-embed details summary {
+  #vis-c6c64716-63c3-40cf-ba39-74a3f3f33415.vega-embed details,
+  #vis-c6c64716-63c3-40cf-ba39-74a3f3f33415.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-d4ec2ab8-bf18-4d56-bcce-67d2f533961e"></div>
+<div id="vis-c6c64716-63c3-40cf-ba39-74a3f3f33415"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-d4ec2ab8-bf18-4d56-bcce-67d2f533961e") {
-      outputDiv = document.getElementById("vis-d4ec2ab8-bf18-4d56-bcce-67d2f533961e");
+    if (outputDiv.id !== "vis-c6c64716-63c3-40cf-ba39-74a3f3f33415") {
+      outputDiv = document.getElementById("vis-c6c64716-63c3-40cf-ba39-74a3f3f33415");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -420,23 +420,23 @@ heatmap + points</code></pre><style>
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/movies.json"},"layer":[{"mark":{"type":"rect"},"encoding":{"x":{"field":"IMDB Rating","type":"quantitative","bin":true},"y":{"field":"Rotten Tomatoes Rating","type":"quantitative","bin":true},"color":{"aggregate":"count","scale":{"scheme":"greenblue"}}}},{"mark":{"type":"circle","color":"black","size":5},"encoding":{"x":{"field":"IMDB Rating","type":"quantitative"},"y":{"field":"Rotten Tomatoes Rating","type":"quantitative"}}}]}, {"mode": "vega-lite"});
 </script>
 <p>If we put the two layers in the opposite order, the points will be drawn first and will be obscured by the heatmap marks:</p><pre><code class="language-julia hljs">points + heatmap</code></pre><style>
-  #vis-668c60d8-218b-4588-989d-93cb982c9283.vega-embed {
+  #vis-1af01dcd-10ae-448a-aca7-3170bb72e9fa.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-668c60d8-218b-4588-989d-93cb982c9283.vega-embed details,
-  #vis-668c60d8-218b-4588-989d-93cb982c9283.vega-embed details summary {
+  #vis-1af01dcd-10ae-448a-aca7-3170bb72e9fa.vega-embed details,
+  #vis-1af01dcd-10ae-448a-aca7-3170bb72e9fa.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-668c60d8-218b-4588-989d-93cb982c9283"></div>
+<div id="vis-1af01dcd-10ae-448a-aca7-3170bb72e9fa"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-668c60d8-218b-4588-989d-93cb982c9283") {
-      outputDiv = document.getElementById("vis-668c60d8-218b-4588-989d-93cb982c9283");
+    if (outputDiv.id !== "vis-1af01dcd-10ae-448a-aca7-3170bb72e9fa") {
+      outputDiv = document.getElementById("vis-1af01dcd-10ae-448a-aca7-3170bb72e9fa");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -495,23 +495,23 @@ line2 = Mark(color=&quot;#F18727&quot;) * Encoding(
 )
 
 chart = base * (line1 + line2) * resolve_scale(y=:independent)</code></pre><style>
-  #vis-38a7847c-3520-4d74-bea7-4b986b3721bf.vega-embed {
+  #vis-3c117b7b-0589-41ed-bf8b-118f7682eba9.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-38a7847c-3520-4d74-bea7-4b986b3721bf.vega-embed details,
-  #vis-38a7847c-3520-4d74-bea7-4b986b3721bf.vega-embed details summary {
+  #vis-3c117b7b-0589-41ed-bf8b-118f7682eba9.vega-embed details,
+  #vis-3c117b7b-0589-41ed-bf8b-118f7682eba9.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-38a7847c-3520-4d74-bea7-4b986b3721bf"></div>
+<div id="vis-3c117b7b-0589-41ed-bf8b-118f7682eba9"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-38a7847c-3520-4d74-bea7-4b986b3721bf") {
-      outputDiv = document.getElementById("vis-38a7847c-3520-4d74-bea7-4b986b3721bf");
+    if (outputDiv.id !== "vis-3c117b7b-0589-41ed-bf8b-118f7682eba9") {
+      outputDiv = document.getElementById("vis-3c117b7b-0589-41ed-bf8b-118f7682eba9");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -559,4 +559,4 @@ chart = base * (line1 + line2) * resolve_scale(y=:independent)</code></pre><styl
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"encoding":{"x":{"timeUnit":"year","field":"Year","type":"temporal"}},"layer":[{"mark":{"type":"line","color":"#5276A7"},"encoding":{"y":{"aggregate":"average","field":"Horsepower","type":"quantitative","axis":{"titleColor":"#5276A7"}}}},{"mark":{"type":"line","color":"#F18727"},"encoding":{"y":{"aggregate":"average","field":"Miles_per_Gallon","type":"quantitative","axis":{"titleColor":"#F18727"}}}}],"resolve":{"scale":{"y":"independent"}}}, {"mode": "vega-lite"});
 </script>
-<h3 id="Layering-multi-views"><a class="docs-heading-anchor" href="#Layering-multi-views">Layering multi-views</a><a id="Layering-multi-views-1"></a><a class="docs-heading-anchor-permalink" href="#Layering-multi-views" title="Permalink"></a></h3><p><a href="../multiview/#multiview">Multi-view</a> layout specs (facet, repeat, concat) cannot be layered, but layered specs can be faceted/repeated/concatenated.</p><h3 id="Examples"><a class="docs-heading-anchor" href="#Examples">Examples</a><a id="Examples-1"></a><a class="docs-heading-anchor-permalink" href="#Examples" title="Permalink"></a></h3><p>More example of layered visualizations can be found in the <a href="../examples/#Layered-plots">Layered-plots</a> section of the Gallery.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../data_mark_encoding/">« Data, Mark and Encoding</a><a class="docs-footer-nextpage" href="../multiview/">Multi-views »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 29 July 2023 13:13">Saturday 29 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<h3 id="Layering-multi-views"><a class="docs-heading-anchor" href="#Layering-multi-views">Layering multi-views</a><a id="Layering-multi-views-1"></a><a class="docs-heading-anchor-permalink" href="#Layering-multi-views" title="Permalink"></a></h3><p><a href="../multiview/#multiview">Multi-view</a> layout specs (facet, repeat, concat) cannot be layered, but layered specs can be faceted/repeated/concatenated.</p><h3 id="Examples"><a class="docs-heading-anchor" href="#Examples">Examples</a><a id="Examples-1"></a><a class="docs-heading-anchor-permalink" href="#Examples" title="Permalink"></a></h3><p>More example of layered visualizations can be found in the <a href="../examples/#Layered-plots">Layered-plots</a> section of the Gallery.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../data_mark_encoding/">« Data, Mark and Encoding</a><a class="docs-footer-nextpage" href="../multiview/">Multi-views »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 29 July 2023 20:51">Saturday 29 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

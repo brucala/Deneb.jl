@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Introduction · Deneb.jl</title><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/gridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li class="is-active"><a class="tocitem" href>Introduction</a><ul class="internal"><li><a class="tocitem" href="#Vega-Lite-Specifications"><span>Vega-Lite Specifications</span></a></li><li><a class="tocitem" href="#The-vlspec-function"><span>The <code>vlspec</code> function</span></a></li><li><a class="tocitem" href="#The-Deneb.jl-API"><span>The Deneb.jl API</span></a></li></ul></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../multiview/">Multi-views</a></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">User Guide</a></li><li class="is-active"><a href>Introduction</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Introduction</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/intro.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Introduction"><a class="docs-heading-anchor" href="#Introduction">Introduction</a><a id="Introduction-1"></a><a class="docs-heading-anchor-permalink" href="#Introduction" title="Permalink"></a></h1><p>Deneb.jl simply provides a convenient API to create Vega-Lite JSON specifications programmatically in Julia. Then, adequate <code>show</code> methods enable automatic displaying of charts when Deneb.jl is run on platforms such as Jupyter, Pluto, VSCode, or any other environments that can render rich MIME types. Furthermore, a chart can be saved in several formats using the function <code>save</code>.</p><h2 id="Vega-Lite-Specifications"><a class="docs-heading-anchor" href="#Vega-Lite-Specifications">Vega-Lite Specifications</a><a id="Vega-Lite-Specifications-1"></a><a class="docs-heading-anchor-permalink" href="#Vega-Lite-Specifications" title="Permalink"></a></h2><p>Vega-Lite specifications describe visualizations as encoding mappings from data to properties of graphical marks. These specifications are created with a concise declarative JSON syntax. For example:</p><pre><code class="language-json hljs">{
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Introduction · Deneb.jl</title><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.045/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.13.24/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/gridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><form class="docs-search" action="../search/"><input class="docs-search-query" id="documenter-search-query" name="q" type="text" placeholder="Search docs"/></form><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li class="is-active"><a class="tocitem" href>Introduction</a><ul class="internal"><li><a class="tocitem" href="#Vega-Lite-Specifications"><span>Vega-Lite Specifications</span></a></li><li><a class="tocitem" href="#The-vlspec-function"><span>The <code>vlspec</code> function</span></a></li><li><a class="tocitem" href="#The-Deneb.jl-API"><span>The Deneb.jl API</span></a></li></ul></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../multiview/">Multi-views</a></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">User Guide</a></li><li class="is-active"><a href>Introduction</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Introduction</a></li></ul></nav><div class="docs-right"><a class="docs-edit-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/intro.md" title="Edit on GitHub"><span class="docs-icon fab"></span><span class="docs-label is-hidden-touch">Edit on GitHub</span></a><a class="docs-settings-button fas fa-cog" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-sidebar-button fa fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a></div></header><article class="content" id="documenter-page"><h1 id="Introduction"><a class="docs-heading-anchor" href="#Introduction">Introduction</a><a id="Introduction-1"></a><a class="docs-heading-anchor-permalink" href="#Introduction" title="Permalink"></a></h1><p>Deneb.jl simply provides a convenient API to create Vega-Lite JSON specifications programmatically in Julia. Then, adequate <code>show</code> methods enable automatic displaying of charts when Deneb.jl is run on platforms such as Jupyter, Pluto, VSCode, or any other environments that can render rich MIME types. Furthermore, a chart can be saved in several formats using the function <code>save</code>.</p><h2 id="Vega-Lite-Specifications"><a class="docs-heading-anchor" href="#Vega-Lite-Specifications">Vega-Lite Specifications</a><a id="Vega-Lite-Specifications-1"></a><a class="docs-heading-anchor-permalink" href="#Vega-Lite-Specifications" title="Permalink"></a></h2><p>Vega-Lite specifications describe visualizations as encoding mappings from data to properties of graphical marks. These specifications are created with a concise declarative JSON syntax. For example:</p><pre><code class="language-json hljs">{
   &quot;data&quot;: {&quot;url&quot;: &quot;https://vega.github.io/vega-datasets/data/seattle-weather.csv&quot;},
   &quot;mark&quot;: &quot;bar&quot;,
   &quot;encoding&quot;: {
@@ -7,23 +7,23 @@
     &quot;y&quot;: {&quot;aggregate&quot;: &quot;mean&quot;, &quot;field&quot;: &quot;precipitation&quot;}
   }
 }</code></pre><p>represents the following visualization:</p><style>
-  #vis-cc140caa-5ead-4ff9-8c9e-2cfdafb5332a.vega-embed {
+  #vis-32b7e0a0-91a4-4ef2-b5a7-e86533919a52.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-cc140caa-5ead-4ff9-8c9e-2cfdafb5332a.vega-embed details,
-  #vis-cc140caa-5ead-4ff9-8c9e-2cfdafb5332a.vega-embed details summary {
+  #vis-32b7e0a0-91a4-4ef2-b5a7-e86533919a52.vega-embed details,
+  #vis-32b7e0a0-91a4-4ef2-b5a7-e86533919a52.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-cc140caa-5ead-4ff9-8c9e-2cfdafb5332a"></div>
+<div id="vis-32b7e0a0-91a4-4ef2-b5a7-e86533919a52"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-cc140caa-5ead-4ff9-8c9e-2cfdafb5332a") {
-      outputDiv = document.getElementById("vis-cc140caa-5ead-4ff9-8c9e-2cfdafb5332a");
+    if (outputDiv.id !== "vis-32b7e0a0-91a4-4ef2-b5a7-e86533919a52") {
+      outputDiv = document.getElementById("vis-32b7e0a0-91a4-4ef2-b5a7-e86533919a52");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -81,23 +81,23 @@ vlspec(
         y=(aggregate=:mean, field=:precipitation),
     )
 )</code></pre><style>
-  #vis-be880779-c4fc-4bed-b242-cbba914f3128.vega-embed {
+  #vis-5e5e340d-aec4-4c8f-abc6-b554886fa848.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-be880779-c4fc-4bed-b242-cbba914f3128.vega-embed details,
-  #vis-be880779-c4fc-4bed-b242-cbba914f3128.vega-embed details summary {
+  #vis-5e5e340d-aec4-4c8f-abc6-b554886fa848.vega-embed details,
+  #vis-5e5e340d-aec4-4c8f-abc6-b554886fa848.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-be880779-c4fc-4bed-b242-cbba914f3128"></div>
+<div id="vis-5e5e340d-aec4-4c8f-abc6-b554886fa848"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-be880779-c4fc-4bed-b242-cbba914f3128") {
-      outputDiv = document.getElementById("vis-be880779-c4fc-4bed-b242-cbba914f3128");
+    if (outputDiv.id !== "vis-5e5e340d-aec4-4c8f-abc6-b554886fa848") {
+      outputDiv = document.getElementById("vis-5e5e340d-aec4-4c8f-abc6-b554886fa848");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -152,23 +152,23 @@ x=(timeUnit=:month, field=:date, type=:ordinal)
 y=(aggregate=:mean, field=:precipitation)
 encoding = (; x, y)
 vlspec(; data, mark, encoding)</code></pre><style>
-  #vis-a82a044c-fb5d-4281-b26b-ea41f3966a99.vega-embed {
+  #vis-a6cc45ac-c172-417e-b780-a1fa9a45b717.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-a82a044c-fb5d-4281-b26b-ea41f3966a99.vega-embed details,
-  #vis-a82a044c-fb5d-4281-b26b-ea41f3966a99.vega-embed details summary {
+  #vis-a6cc45ac-c172-417e-b780-a1fa9a45b717.vega-embed details,
+  #vis-a6cc45ac-c172-417e-b780-a1fa9a45b717.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-a82a044c-fb5d-4281-b26b-ea41f3966a99"></div>
+<div id="vis-a6cc45ac-c172-417e-b780-a1fa9a45b717"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-a82a044c-fb5d-4281-b26b-ea41f3966a99") {
-      outputDiv = document.getElementById("vis-a82a044c-fb5d-4281-b26b-ea41f3966a99");
+    if (outputDiv.id !== "vis-a6cc45ac-c172-417e-b780-a1fa9a45b717") {
+      outputDiv = document.getElementById("vis-a6cc45ac-c172-417e-b780-a1fa9a45b717");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -218,23 +218,23 @@ vlspec(; data, mark, encoding)</code></pre><style>
 </script>
 <h2 id="The-Deneb.jl-API"><a class="docs-heading-anchor" href="#The-Deneb.jl-API">The Deneb.jl API</a><a id="The-Deneb.jl-API-1"></a><a class="docs-heading-anchor-permalink" href="#The-Deneb.jl-API" title="Permalink"></a></h2><p>With <code>vlspec</code> one can build any arbitrary Vega-Lite spec programmatically, providing already an advantage over directly writing JSON specs. However, these direct translations are still rather verbose. Deneb.jl provides an API to create specs in a more concise and convenient way.</p><pre><code class="language-julia hljs">data = Data(url=&quot;https://vega.github.io/vega-datasets/data/seattle-weather.csv&quot;)
 chart = data * Mark(:bar) * Encoding(&quot;month(date):O&quot;, &quot;mean(precipitation)&quot;)</code></pre><style>
-  #vis-5b350597-6c9f-4d6d-9290-a158e5485413.vega-embed {
+  #vis-4560549f-970e-4010-a35e-03d537956e9e.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-5b350597-6c9f-4d6d-9290-a158e5485413.vega-embed details,
-  #vis-5b350597-6c9f-4d6d-9290-a158e5485413.vega-embed details summary {
+  #vis-4560549f-970e-4010-a35e-03d537956e9e.vega-embed details,
+  #vis-4560549f-970e-4010-a35e-03d537956e9e.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-5b350597-6c9f-4d6d-9290-a158e5485413"></div>
+<div id="vis-4560549f-970e-4010-a35e-03d537956e9e"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-5b350597-6c9f-4d6d-9290-a158e5485413") {
-      outputDiv = document.getElementById("vis-5b350597-6c9f-4d6d-9290-a158e5485413");
+    if (outputDiv.id !== "vis-4560549f-970e-4010-a35e-03d537956e9e") {
+      outputDiv = document.getElementById("vis-4560549f-970e-4010-a35e-03d537956e9e");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -295,23 +295,23 @@ rule = Mark(:rule, color=:firebrick, size=3) * transform_filter(
 ) * Encoding(y=&quot;mean(precipitation)&quot;)
 
 chart = data * (bar + rule)</code></pre><style>
-  #vis-718d68f2-e771-4351-a45b-8356b3ce1a59.vega-embed {
+  #vis-8a8b58e9-2058-4d54-982c-9186bc69b259.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-718d68f2-e771-4351-a45b-8356b3ce1a59.vega-embed details,
-  #vis-718d68f2-e771-4351-a45b-8356b3ce1a59.vega-embed details summary {
+  #vis-8a8b58e9-2058-4d54-982c-9186bc69b259.vega-embed details,
+  #vis-8a8b58e9-2058-4d54-982c-9186bc69b259.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-718d68f2-e771-4351-a45b-8356b3ce1a59"></div>
+<div id="vis-8a8b58e9-2058-4d54-982c-9186bc69b259"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-718d68f2-e771-4351-a45b-8356b3ce1a59") {
-      outputDiv = document.getElementById("vis-718d68f2-e771-4351-a45b-8356b3ce1a59");
+    if (outputDiv.id !== "vis-8a8b58e9-2058-4d54-982c-9186bc69b259") {
+      outputDiv = document.getElementById("vis-8a8b58e9-2058-4d54-982c-9186bc69b259");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -429,4 +429,4 @@ chart = data * (bar + rule)</code></pre><style>
       }
     }
   ]
-}</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../basic_tutorial/">« Basic Tutorial</a><a class="docs-footer-nextpage" href="../data_mark_encoding/">Data, Mark and Encoding »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 29 July 2023 13:13">Saturday 29 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+}</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../basic_tutorial/">« Basic Tutorial</a><a class="docs-footer-nextpage" href="../data_mark_encoding/">Data, Mark and Encoding »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 29 July 2023 20:51">Saturday 29 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
