@@ -21,18 +21,18 @@ Currently Deneb.jl supports the following Vega-Lite data transformation via `tra
 
 | Transform | Method | Examples |
 | --- | --- | --- |
-| [Aggregate](https://vega.github.io/vega-lite/docs/aggregate.html) | [`transform_aggregate()`](@ref) | [Locations of airports](@ref), [Airport connections](@ref), [Ridgeline plot](@ref) |
+| [Aggregate](https://vega.github.io/vega-lite/docs/aggregate.html) | [`transform_aggregate()`](@ref) | [Locations of airports](@ref), [Connections among U.S. Airports](@ref), [Ridgeline plot](@ref) |
 | [Bin](https://vega.github.io/vega-lite/docs/bin.html) | [`transform_bin()`](@ref) | [Ridgeline plot](@ref) |
-| [Calculate](https://vega.github.io/vega-lite/docs/calculate.html) | [`transform_calculate()`](@ref) | [Line chart](@ref), [Scatterplot with links](@ref), [Isotype with Emoji](@ref), [Percent of total](@ref), [Earthquakes](@ref), [Encoding channels binding](@ref), [Waterfall chart](@ref), ... |
+| [Calculate](https://vega.github.io/vega-lite/docs/calculate.html) | [`transform_calculate()`](@ref) | [Line chart](@ref), [Scatterplot with links](@ref), [Isotype with emoji](@ref), [Percent of total](@ref), [Earthquakes](@ref), [Encoding channels binding](@ref), [Waterfall chart](@ref), ... |
 | [Density](https://vega.github.io/vega-lite/docs/density.html) | [`transform_density()`](@ref) | [Violin plot](@ref), [Stacked density estimates](@ref) |
 | [Extent](https://vega.github.io/vega-lite/docs/extent.html) | Not implemented yet | |
-| [Filter](https://vega.github.io/vega-lite/docs/filter.html) | [`transform_filter()`](@ref) | [Population pyramid](@ref), [Interactive average](@ref), [Interactive input binding](@ref), [Earthquakes](@ref), [Airport connections](@ref), ... |
+| [Filter](https://vega.github.io/vega-lite/docs/filter.html) | [`transform_filter()`](@ref) | [Population pyramid](@ref), [Interactive average](@ref), [Interactive Input Binding (dropdown, range, checkbox, radio widgets)](@ref), [Earthquakes](@ref), [Connections among U.S. Airports](@ref), ... |
 | [Flatten](https://vega.github.io/vega-lite/docs/flatten.html) | Not implemented yet | |
 | [Fold](https://vega.github.io/vega-lite/docs/fold.html) | [`transform_fold()`](@ref) | [Comet chart](@ref), [Parallel coordinates](@ref), [Scatterplot with polynomial fit](@ref) |
 | [Impute](https://vega.github.io/vega-lite/docs/impute.html) | [`transform_impute()`](@ref) | [Ridgeline plot](@ref) |
 | [Join Aggregate](https://vega.github.io/vega-lite/docs/joinaggregate.html) | [`transform_joinaggregate()`](@ref) | [Ridgeline plot](@ref), [Percent of total](@ref) |
-| [Loess](https://vega.github.io/vega-lite/docs/loess.html) | [`transform_loess()`](@ref) | [Scaterplot with loess lines](@ref) |
-| [Lookup](https://vega.github.io/vega-lite/docs/lookup.html) | [`transform_lookup()`](@ref) | [Choropleth map](@ref), [Airport connections](@ref)|
+| [Loess](https://vega.github.io/vega-lite/docs/loess.html) | [`transform_loess()`](@ref) | [Scatterplot with loess lines](@ref) |
+| [Lookup](https://vega.github.io/vega-lite/docs/lookup.html) | [`transform_lookup()`](@ref) | [Choropleth map](@ref), [Connections among U.S. Airports](@ref)|
 | [Pivot](https://vega.github.io/vega-lite/docs/pivot.html) | [`transform_pivot()`](@ref) | [Comet chart](@ref) |
 | [Quantile](https://vega.github.io/vega-lite/docs/quantile.html) | Not implemented yet | |
 | [Regression](https://vega.github.io/vega-lite/docs/regression.html) | [`transform_regression()`](@ref) | [Scatterplot with polynomial fit](@ref) |
