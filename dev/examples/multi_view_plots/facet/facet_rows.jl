@@ -7,7 +7,7 @@ config_options = vlspec(
     width=350
 ) * config(:axis, grid=false)
 
-chart = Data(data) * Mark(:area) * Facet(row=:symbol) * transform_filter(
+chart = data * Mark(:area) * Facet(row=:symbol) * transform_filter(
     "datum.symbol !== 'GOOG'"
 ) * Encoding(
     x="date:t",
@@ -15,7 +15,7 @@ chart = Data(data) * Mark(:area) * Facet(row=:symbol) * transform_filter(
     color=:symbol,
 ) * config_options
 
-chart = Data(data) * Mark(:area) * transform_filter(
+chart = data * Mark(:area) * transform_filter(
     "datum.symbol !== 'GOOG'"
 ) * Encoding(
     x="date:t",
