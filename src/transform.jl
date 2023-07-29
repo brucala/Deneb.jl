@@ -2,14 +2,29 @@
 ### Transform related API
 ###
 
+"""
+    transform_calculate(; expressions...)
+Creates a `TransformSpec` for the given calculate expressions.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/aggregate.html)
+"""
 transform_calculate(as::SymbolOrString, calculate::String) = Transform(; calculate, as)
 function transform_calculate(; expressions...)
     transforms = [(; as, calculate) for (as, calculate) in pairs(expressions)]
     return TransformSpec(transforms)
 end
 
+"""
+    transform_filter(predicate)
+Creates a `TransformSpec` for the given predicate filter.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/calculate.html)
+"""
 transform_filter(predicate) = Transform(filter=predicate)
 
+"""
+    transform_aggregate(; [groupby], aggregations...)
+Creates a `TransformSpec` for the given aggregations.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/aggregate.html)
+"""
 function transform_aggregate(;
     join::Bool=false,
     groupby::Union{Nothing, SymbolOrString, Vector{<:SymbolOrString}} = nothing,
@@ -27,12 +42,21 @@ function transform_aggregate(;
     Transform(; _remove_empty(; aggregate, joinaggregate, groupby)...)
 end
 
+"""
+    transform_joinaggregate(; [groupby], aggregations...)
+Creates a `TransformSpec` for the given join aggregations.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/joinaggregate.html)
+"""
 transform_joinaggregate(; groupby = nothing, aggregations...) = transform_aggregate(; join=true, groupby, aggregations...)
 
+"""
+    transform_timeunit(; transformations...)
+Creates a `TransformSpec` for the given timeUnit transformations.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/timeunit.html)
+"""
 transform_timeunit(
     as::SymbolOrString, field::SymbolOrString, timeUnit
 ) = Transform(; timeUnit, field, as)
-
 function transform_timeunit(; transformations...)
     if length(transformations) > 1
         @warn "Only one timeunit transformation should be given. Taking only the first..."
@@ -43,7 +67,10 @@ function transform_timeunit(; transformations...)
 end
 
 """
-if a sortby field starts with '-' then descending order
+    transform_window(; [frame], [ignorePeers], [groupby],[ sortby], operations...)
+Creates a `TransformSpec` for the given window operations.
+If a sortby field starts with '-' then descending order is used.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/window.html)
 """
 function transform_window(;
     frame::Union{Nothing, NTuple{2, Union{Nothing, Int}}, Vector{<:Union{Nothing, Int}}} = nothing,
@@ -79,13 +106,19 @@ end
 
 """
     transform_fold(fold::Vector; as=(:key, :value))
-Wide to long transformation
+Creates a `TransformSpec` for the given fold (wide to long) transformation.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/fold.html)
 """
 transform_fold(
     fold::Vector{<:SymbolOrString};
     as::Union{Nothing, NTuple{2, SymbolOrString}, Vector{<:SymbolOrString}}=nothing,
 ) = Transform(; _remove_empty(; fold, as)...)
 
+"""
+    transform_pivot(pivot, value; [groupby], [limit], [op])
+Creates a `TransformSpec` for the given pivot (long to wide) transformation.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/pivot.html)
+"""
 function transform_pivot(
     pivot::SymbolOrString,
     value::SymbolOrString;
@@ -97,6 +130,11 @@ function transform_pivot(
     Transform(; _remove_empty(; pivot, value, groupby, limit, op)...)
 end
 
+"""
+    transform_loess(x, y; [groupby], [bandwith], [as])
+Creates a `TransformSpec` for a Loess  transformation.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/loess.html)
+"""
 function transform_loess(
     x::SymbolOrString,
     y::SymbolOrString;
@@ -114,6 +152,11 @@ function transform_loess(
     )
 end
 
+"""
+    transform_loess(x, y; [groupby], [method], [order], [extent], [params], [as])
+Creates a `TransformSpec` for a regression model transformation.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/regression.html)
+"""
 function transform_regression(
     x::SymbolOrString,
     y::SymbolOrString;
@@ -130,6 +173,11 @@ function transform_regression(
     )
 end
 
+"""
+    transform_density(field; [groupby], [cumulative], [counts], [bandwith], [extent], [minsteps], [maxsteps], [steps], [as])
+Creates a `TransformSpec` for a density transformation.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/density.html)
+"""
 function transform_density(
     field;
     groupby::Union{Nothing, SymbolOrString, Vector{<:SymbolOrString}} = nothing,
@@ -148,6 +196,11 @@ function transform_density(
     )
 end
 
+"""
+    transform_lookup(lookup, from; [as], [default])
+Creates a `TransformSpec` for a lookup transformation.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/lookup.html)
+"""
 transform_lookup(
     lookup::SymbolOrString,
     from;
@@ -155,12 +208,22 @@ transform_lookup(
     default = nothing,
 ) = Transform(; _remove_empty(; lookup, from, as, default)...)
 
+"""
+    transform_bin(field, as; [bin])
+Creates a `TransformSpec` for a bin transformation.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/bin.html)
+"""
 transform_bin(
     field::SymbolOrString,
     as::Union{SymbolOrString, NTuple{2, SymbolOrString}, Vector{<:SymbolOrString}};
     bin = true,
 ) = Transform(; field, as, bin)
 
+"""
+    transform_bin(impute, key; [groupby], [keyvals], [frame], [method], [value])
+Creates a `TransformSpec` for an impute transformation.
+See more in Vega-Lite's [documentation](https://vega.github.io/vega-lite/docs/impute.html)
+"""
 function transform_impute(
     impute::SymbolOrString,
     key::SymbolOrString;
@@ -173,7 +236,6 @@ function transform_impute(
     groupby isa SymbolOrString && (groupby = [groupby])
     Transform(;  _remove_empty(; impute, key, groupby, keyvals, frame, method, value)...)
 end
-
 
 # TODO: implement rest of transformers
 # transform_flatten() =
