@@ -1,6 +1,6 @@
 # Building Blocks of a Vega-Lite Visualization
 
-The `data`, `mark` and `encoding` properties of a Vega-Lite specification are the basic building blocks of a Vega-Lite visualization. In Deneb.jl, sub-specifications for these properties can conveniently be defined using `Data`, `Mark`, and `Encoding` and then composed using the `*` operator to build the final specification.
+The `data`, `mark` and `encoding` properties of a Vega-Lite specification are the basic building blocks of a Vega-Lite visualization. In Deneb.jl, sub-specifications for these properties can conveniently be defined using [`Data`](@ref), [`Mark`](@ref), and [`Encoding`](@ref) and then composed using the [`*`](@ref) operator to build the final specification.
 
 ```@example building_blocks
 using Deneb
@@ -21,7 +21,7 @@ Similar to Vega-Lite, in Deneb.jl a dataset can be defined in several ways:
 
 ### Tabular data
 
-Deneb.jl accepts any tabular data that supports the [Tables.jl](https://github.com/JuliaData/Tables.jl) interface (e.g. [DataFrames.jl](https://github.com/JuliaData/DataFrames.jl) or any of [these formats](https://github.com/JuliaData/Tables.jl/blob/main/INTEGRATIONS.md)) by simply passing the data to `Data`.
+Deneb.jl accepts any tabular data that supports the [Tables.jl](https://github.com/JuliaData/Tables.jl) interface (e.g. [DataFrames.jl](https://github.com/JuliaData/DataFrames.jl) or any of [these formats](https://github.com/JuliaData/Tables.jl/blob/main/INTEGRATIONS.md)) by simply passing the data to [`Data`](@ref).
 
 ```@example building_blocks
 data = (a=[1, 2], b=["potato", "tomato"])
@@ -68,7 +68,7 @@ Data(
 
 ## Mark
 
-The `mark` property of a Vega-Lite specification can be defined in Deneb.jl using `Mark`, where the positional argument defines the `mark` type (`point`, `bar`, `line`,...) as a `String` or a `Symbol`.
+The `mark` property of a Vega-Lite specification can be defined in Deneb.jl using [`Mark`](@ref), where the positional argument defines the `mark` type (`point`, `bar`, `line`,...) as a `String` or a `Symbol`.
 
 ```@example building_blocks
 Mark(:errorband)
@@ -84,7 +84,7 @@ Refer to [Vega-Lite's documentation](https://vega.github.io/vega-lite/docs/mark.
 
 ## Encoding
 
-The `encoding` property of a single view specification represents the mapping between encoding channels (such as `x`, `y`, or `color`) and data fields. In Deneb.jl the `encoding` is defined with `Encoding`, which can optionally take one or two positional arguments representing the the `x` and `y` channels, and any number of keyword arguments representing any arbitrary Vega-Lite channel (including explicit `x`/`y` channels). In the simplest scenario the arguments are of type `String` or `Symbol` representing the `field` property of the given encoding channel.
+The `encoding` property of a single view specification represents the mapping between encoding channels (such as `x`, `y`, or `color`) and data fields. In Deneb.jl the `encoding` is defined with [`Encoding`](@ref), which can optionally take one or two positional arguments representing the the `x` and `y` channels, and any number of keyword arguments representing any arbitrary Vega-Lite channel (including explicit `x`/`y` channels). In the simplest scenario the arguments are of type `String` or `Symbol` representing the `field` property of the given encoding channel.
 
 ```@example building_blocks
 Encoding(:Horsepower, :Miles_per_Gallon, color=:Origin)
@@ -120,7 +120,7 @@ Encoding(
 )
 ```
 
-Alternatively, the convenient `field` function can be used where the first positional argument can use the shorthand string syntax for fields, and other properties can be set as keyword arguments.
+Alternatively, the convenient [`field`](@ref) function can be used where the first positional argument can use the shorthand string syntax for fields, and other properties can be set as keyword arguments.
 
 ```@example building_blocks
 Encoding(

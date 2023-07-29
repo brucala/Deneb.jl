@@ -2,7 +2,7 @@
 
 ## Composition with `*`
 
-In Deneb.jl, different components or sub-specifications of a Vega-Lite visualization can be defined separately and conveniently be composed using the `*` operator to build the final specification.
+In Deneb.jl, different components or sub-specifications of a Vega-Lite visualization can be defined separately and conveniently be composed using the [`*`](@ref) operator to build the final specification.
 
 ```@example composition_and_layering
 using Deneb
@@ -22,6 +22,8 @@ chart = chart * title("Consumption vs power") * Mark(shape=:triangle) * Encoding
 )
 ```
 
+### Order
+
 Properties defined in the right-side spec have precedence over the left-side spec, meaning that if a given property is specified in both, then the result specification will use the property from the right-side spec.
 ```@example composition_and_layering
 chart * title("Power vs Displacement") * Encoding(
@@ -31,7 +33,7 @@ chart * title("Power vs Displacement") * Encoding(
 
 ## Layering with `+`
 
-[Layered views](https://vega.github.io/vega-lite/docs/layer.html), or charts that are superimposed one on top of another, can be conveniently created in Deneb.jl using the `+` operator.
+[Layered views](https://vega.github.io/vega-lite/docs/layer.html), or charts that are superimposed one on top of another, can be conveniently created in Deneb.jl using the [`+`](@ref) operator.
 
 ```@example composition_and_layering
 stocks = Data(url="https://vega.github.io/vega-datasets/data/stocks.csv")
@@ -43,7 +45,7 @@ base = stocks * Encoding(
 base * (Mark(:line) + Mark(:point) + Mark(:rule))
 ```
 
-Alternatively, the `layer` method can also be used, with any number of specs as arguments.
+Alternatively, the [`layer`](@ref) method can also be used, with any number of specs as arguments.
 
 ```@example composition_and_layering
 base * layer(Mark(:line), Mark(:point), Mark(:rule))
@@ -77,11 +79,11 @@ points + heatmap
 
 ### Resolution
 
-When you have different scales in different layers, the scale domains are unioned so that all layers can use the same scale. In the examples above, Vega-Lite automatically used common x- and y-axis. We can disable this by setting the `resolve`` property.
+When you have different scales in different layers, the scale domains are unioned so that all layers can use the same scale. In the examples above, Vega-Lite automatically used common x- and y-axis. We can disable this by setting the `resolve` property.
 
 The default [resolutions](https://vega.github.io/vega-lite/docs/resolve.html) for layer are shared scales, axes, and legends.
 
-In Deneb.jl, the methods `resolve_scale`, `resolve_axis`, and `resolve_legend` are available to conveniently defined the desired resolution (`shared` or `independent`) of the respective channels. In the chart below, we set the y-scales of the different layers to be independent with `resolve_scale(y=:independent)`.
+In Deneb.jl, the methods [`resolve_scale`](@ref), [`resolve_axis`](@ref), and [`resolve_legend`](@ref) are available to conveniently defined the desired resolution (`shared` or `independent`) of the respective channels. In the chart below, we set the y-scales of the different layers to be independent with `resolve_scale(y=:independent)`.
 
 ```@example composition_and_layering
 base = cars * Encoding("year(Year):T") * Mark(:line)

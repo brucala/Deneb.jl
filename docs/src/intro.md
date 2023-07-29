@@ -23,7 +23,7 @@ Data(url="https://vega.github.io/vega-datasets/data/seattle-weather.csv") * Mark
 
 ## The `vlspec` function
 
-The first way to create any arbitrary Vega-Lite specification is using the `vlspec` function. The previous example can be directly translated to the following `vlspec` call:
+The first way to create any arbitrary Vega-Lite specification in Deneb.jl is using the [`vlspec`](@ref) function. The previous example can be directly translated to the following `vlspec` call:
 ```@example intro
 using Deneb
 
@@ -62,7 +62,7 @@ chart = data * Mark(:bar) * Encoding("month(date):O", "mean(precipitation)")
 ```
 
 The following patterns have been demonstrated in the previous example:
-- The sub-spec of the `data`, `mark` and `encoding` properties have been created with `Data`, `Mark` and `Encoding`, and then composed using the `*` operator.
+- The sub-spec of the `data`, `mark` and `encoding` properties have been created with [`Data`](@ref), [`Mark`](@ref) and [`Encoding`](@ref), and then composed using the [`*`](@ref) operator.
 - The `x` and `y` channels have been defined in the `Encoding` as positional arguments. Alternatively they could've been explicitly defined as keyword arguments.
 - Inspired by Altair, a string shorthand syntax have been used to conveniently represent the `type`, `field`, `aggregate` and `timeUnit` properties of the encoding channels.
 

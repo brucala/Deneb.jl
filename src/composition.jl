@@ -290,7 +290,7 @@ Base.vcat(A::ViewableSpec...) = VConcatSpec(vconcat=collect(A))
 """
     hvcat(A::AbstractSpec...)
     [spec1 spec2; spec3 spec4 ...]
-General (wrappable) concatenation of specs.
+General concatenation of specs.
 """
 Base.hvcat(rows::Tuple{Vararg{Int}}, A::VegaLiteSpec...) = VegaLiteSpec(
     *([i.toplevel for i in A]...),
@@ -301,6 +301,7 @@ Base.hvcat(rows::Tuple{Vararg{Int}}, A::ViewableSpec...) = ConcatSpec(;concat=co
 
 """
     concat(A::AbstractSpec...; columns)
+General (wrappable) concatenation of specs.
 """
 concat(A::VegaLiteSpec...; columns=nothing) = VegaLiteSpec(
     *([i.toplevel for i in A]...),
