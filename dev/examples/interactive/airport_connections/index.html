@@ -51,23 +51,23 @@ points = flights * Mark(:circle) * select_point(
 
 
 chart = base * (background + connections + points)</code></pre><style>
-  #vis-0a4e9c20-caee-4ff8-9205-de00f183aa8e.vega-embed {
+  #vis-6b21463c-d5c4-4085-bd1b-3a997ed4af67.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-0a4e9c20-caee-4ff8-9205-de00f183aa8e.vega-embed details,
-  #vis-0a4e9c20-caee-4ff8-9205-de00f183aa8e.vega-embed details summary {
+  #vis-6b21463c-d5c4-4085-bd1b-3a997ed4af67.vega-embed details,
+  #vis-6b21463c-d5c4-4085-bd1b-3a997ed4af67.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-0a4e9c20-caee-4ff8-9205-de00f183aa8e"></div>
+<div id="vis-6b21463c-d5c4-4085-bd1b-3a997ed4af67"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-0a4e9c20-caee-4ff8-9205-de00f183aa8e") {
-      outputDiv = document.getElementById("vis-0a4e9c20-caee-4ff8-9205-de00f183aa8e");
+    if (outputDiv.id !== "vis-6b21463c-d5c4-4085-bd1b-3a997ed4af67") {
+      outputDiv = document.getElementById("vis-6b21463c-d5c4-4085-bd1b-3a997ed4af67");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -115,4 +115,4 @@ chart = base * (background + connections + points)</code></pre><style>
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"layer":[{"data":{"url":"https://vega.github.io/vega-datasets/data/us-10m.json","format":{"type":"topojson","feature":"states"}},"mark":{"type":"geoshape","fill":"lightgray","stroke":"white"}},{"transform":[{"filter":{"param":"org","empty":false}},{"lookup":"origin","from":{"data":{"url":"https://vega.github.io/vega-datasets/data/airports.csv"},"key":"iata","fields":["state","latitude","longitude"]}},{"lookup":"destination","from":{"data":{"url":"https://vega.github.io/vega-datasets/data/airports.csv"},"key":"iata","fields":["state","latitude","longitude"]},"as":["state","lat2","lon2"]}],"data":{"url":"https://vega.github.io/vega-datasets/data/flights-airport.csv"},"mark":{"type":"rule","opacity":0.35},"encoding":{"longitude":{"field":"longitude"},"latitude":{"field":"latitude"},"longitude2":{"field":"lon2"},"latitude2":{"field":"lat2"}}},{"transform":[{"aggregate":[{"op":"count","as":"routes"}],"groupby":["origin"]},{"lookup":"origin","from":{"data":{"url":"https://vega.github.io/vega-datasets/data/airports.csv"},"key":"iata","fields":["state","latitude","longitude"]}},{"filter":"datum.state !== 'PR' && datum.state !== 'VI'"}],"params":[{"name":"org","select":{"type":"point","on":"mouseover","nearest":true,"fields":["origin"],"empty":false}}],"data":{"url":"https://vega.github.io/vega-datasets/data/flights-airport.csv"},"mark":{"type":"circle"},"encoding":{"longitude":{"field":"longitude"},"latitude":{"field":"latitude"},"size":{"field":"routes","type":"quantitative","scale":{"range":[0,1000]},"legend":null},"order":{"field":"routes","type":"quantitative","sort":"descending"},"tooltip":[{"field":"origin","type":"nominal"},{"field":"routes","type":"quantitative"}]}}],"width":750,"height":500,"projection":{"type":"albersUsa"}}, {"mode": "vega-lite"});
 </script>
-<hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 29 July 2023 12:29">Saturday 29 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 29 July 2023 13:13">Saturday 29 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
