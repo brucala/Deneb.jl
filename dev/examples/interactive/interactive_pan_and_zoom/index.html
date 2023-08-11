@@ -10,23 +10,23 @@ chart = data * Mark(:circle, clip=true) * Encoding(
 )
 
 chart * interactive_scales()</code></pre><style>
-  #vis-490c7277-4a8d-4109-b185-940964945da5.vega-embed {
+  #vis-b8945cb1-d14b-435a-a7af-19b396547bd8.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-490c7277-4a8d-4109-b185-940964945da5.vega-embed details,
-  #vis-490c7277-4a8d-4109-b185-940964945da5.vega-embed details summary {
+  #vis-b8945cb1-d14b-435a-a7af-19b396547bd8.vega-embed details,
+  #vis-b8945cb1-d14b-435a-a7af-19b396547bd8.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-490c7277-4a8d-4109-b185-940964945da5"></div>
+<div id="vis-b8945cb1-d14b-435a-a7af-19b396547bd8"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-490c7277-4a8d-4109-b185-940964945da5") {
-      outputDiv = document.getElementById("vis-490c7277-4a8d-4109-b185-940964945da5");
+    if (outputDiv.id !== "vis-b8945cb1-d14b-435a-a7af-19b396547bd8") {
+      outputDiv = document.getElementById("vis-b8945cb1-d14b-435a-a7af-19b396547bd8");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -75,23 +75,23 @@ chart * interactive_scales()</code></pre><style>
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"interactive_scales","select":"interval","bind":"scales"}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"circle","clip":true},"encoding":{"x":{"field":"Horsepower","type":"quantitative","scale":{"domain":[75,150]}},"y":{"field":"Miles_per_Gallon","type":"quantitative","scale":{"domain":[20,40]}},"size":{"field":"Cylinders","type":"quantitative"}}}, {"mode": "vega-lite"});
 </script>
 <h2 id="Bind-x-encoding-only"><a class="docs-heading-anchor" href="#Bind-x-encoding-only">Bind <code>x</code> encoding only</a><a id="Bind-x-encoding-only-1"></a><a class="docs-heading-anchor-permalink" href="#Bind-x-encoding-only" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart * interactive_scales(bindy=false)</code></pre><style>
-  #vis-80148dc1-0981-4b8f-b5bf-a9acd7d6066d.vega-embed {
+  #vis-53e2d18b-4c22-47ac-b55b-ccc5b49d7871.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-80148dc1-0981-4b8f-b5bf-a9acd7d6066d.vega-embed details,
-  #vis-80148dc1-0981-4b8f-b5bf-a9acd7d6066d.vega-embed details summary {
+  #vis-53e2d18b-4c22-47ac-b55b-ccc5b49d7871.vega-embed details,
+  #vis-53e2d18b-4c22-47ac-b55b-ccc5b49d7871.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-80148dc1-0981-4b8f-b5bf-a9acd7d6066d"></div>
+<div id="vis-53e2d18b-4c22-47ac-b55b-ccc5b49d7871"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-80148dc1-0981-4b8f-b5bf-a9acd7d6066d") {
-      outputDiv = document.getElementById("vis-80148dc1-0981-4b8f-b5bf-a9acd7d6066d");
+    if (outputDiv.id !== "vis-53e2d18b-4c22-47ac-b55b-ccc5b49d7871") {
+      outputDiv = document.getElementById("vis-53e2d18b-4c22-47ac-b55b-ccc5b49d7871");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -140,23 +140,23 @@ chart * interactive_scales()</code></pre><style>
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"interactive_scales_x","select":{"type":"interval","encodings":["x"]},"bind":"scales"}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"circle","clip":true},"encoding":{"x":{"field":"Horsepower","type":"quantitative","scale":{"domain":[75,150]}},"y":{"field":"Miles_per_Gallon","type":"quantitative","scale":{"domain":[20,40]}},"size":{"field":"Cylinders","type":"quantitative"}}}, {"mode": "vega-lite"});
 </script>
 <h2 id="Bind-y-encoding-only"><a class="docs-heading-anchor" href="#Bind-y-encoding-only">Bind <code>y</code> encoding only</a><a id="Bind-y-encoding-only-1"></a><a class="docs-heading-anchor-permalink" href="#Bind-y-encoding-only" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart * interactive_scales(bindx=false)</code></pre><style>
-  #vis-8c729500-e7fa-4495-8f3f-e3eab9cefed5.vega-embed {
+  #vis-44a88964-6f44-4888-8d10-a8bad3a1f5f1.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-8c729500-e7fa-4495-8f3f-e3eab9cefed5.vega-embed details,
-  #vis-8c729500-e7fa-4495-8f3f-e3eab9cefed5.vega-embed details summary {
+  #vis-44a88964-6f44-4888-8d10-a8bad3a1f5f1.vega-embed details,
+  #vis-44a88964-6f44-4888-8d10-a8bad3a1f5f1.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-8c729500-e7fa-4495-8f3f-e3eab9cefed5"></div>
+<div id="vis-44a88964-6f44-4888-8d10-a8bad3a1f5f1"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-8c729500-e7fa-4495-8f3f-e3eab9cefed5") {
-      outputDiv = document.getElementById("vis-8c729500-e7fa-4495-8f3f-e3eab9cefed5");
+    if (outputDiv.id !== "vis-44a88964-6f44-4888-8d10-a8bad3a1f5f1") {
+      outputDiv = document.getElementById("vis-44a88964-6f44-4888-8d10-a8bad3a1f5f1");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -205,23 +205,23 @@ chart * interactive_scales()</code></pre><style>
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"interactive_scales_y","select":{"type":"interval","encodings":["y"]},"bind":"scales"}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"circle","clip":true},"encoding":{"x":{"field":"Horsepower","type":"quantitative","scale":{"domain":[75,150]}},"y":{"field":"Miles_per_Gallon","type":"quantitative","scale":{"domain":[20,40]}},"size":{"field":"Cylinders","type":"quantitative"}}}, {"mode": "vega-lite"});
 </script>
 <h2 id="Hold-shift-for-y-encoding"><a class="docs-heading-anchor" href="#Hold-shift-for-y-encoding">Hold shift for <code>y</code> encoding</a><a id="Hold-shift-for-y-encoding-1"></a><a class="docs-heading-anchor-permalink" href="#Hold-shift-for-y-encoding" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart * interactive_scales(shift_on_y=true)</code></pre><style>
-  #vis-a9ddaa6d-e20a-4dee-9ded-3485c2881e48.vega-embed {
+  #vis-e8716ce1-5244-4abb-bcbe-5914d57c4fa4.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-a9ddaa6d-e20a-4dee-9ded-3485c2881e48.vega-embed details,
-  #vis-a9ddaa6d-e20a-4dee-9ded-3485c2881e48.vega-embed details summary {
+  #vis-e8716ce1-5244-4abb-bcbe-5914d57c4fa4.vega-embed details,
+  #vis-e8716ce1-5244-4abb-bcbe-5914d57c4fa4.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-a9ddaa6d-e20a-4dee-9ded-3485c2881e48"></div>
+<div id="vis-e8716ce1-5244-4abb-bcbe-5914d57c4fa4"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-a9ddaa6d-e20a-4dee-9ded-3485c2881e48") {
-      outputDiv = document.getElementById("vis-a9ddaa6d-e20a-4dee-9ded-3485c2881e48");
+    if (outputDiv.id !== "vis-e8716ce1-5244-4abb-bcbe-5914d57c4fa4") {
+      outputDiv = document.getElementById("vis-e8716ce1-5244-4abb-bcbe-5914d57c4fa4");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -269,4 +269,4 @@ chart * interactive_scales()</code></pre><style>
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"interactive_scales_x","select":{"type":"interval","encodings":["x"],"zoom":"wheel![!event.shiftKey]","translate":"[mousedown[!event.shiftKey], mouseup] > mousemove"},"bind":"scales"},{"name":"interactive_scales_y","select":{"type":"interval","encodings":["y"],"zoom":"wheel![event.shiftKey]","translate":"[mousedown[event.shiftKey], mouseup] > mousemove"},"bind":"scales"}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"circle","clip":true},"encoding":{"x":{"field":"Horsepower","type":"quantitative","scale":{"domain":[75,150]}},"y":{"field":"Miles_per_Gallon","type":"quantitative","scale":{"domain":[20,40]}},"size":{"field":"Cylinders","type":"quantitative"}}}, {"mode": "vega-lite"});
 </script>
-<hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Saturday 29 July 2023 20:51">Saturday 29 July 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Friday 11 August 2023 08:38">Friday 11 August 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
