@@ -8,4 +8,3 @@ chart = data * Mark(:line, interpolate="step-after") * Encoding(
 )
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

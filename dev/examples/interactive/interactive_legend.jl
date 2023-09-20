@@ -10,4 +10,3 @@ chart = data * Mark(:area) * Encoding(
 ) * select_legend(:select_legend)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

@@ -45,4 +45,3 @@ chart = Data(data) * config_options * transform_timeunit(
 ) * layout(bounds=:flush, spacing=0)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

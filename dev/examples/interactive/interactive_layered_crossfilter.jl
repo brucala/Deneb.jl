@@ -25,4 +25,3 @@ chart = data * transform_calculate(
 ) * (histos + filter)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

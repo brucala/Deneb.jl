@@ -15,4 +15,3 @@ points = Mark(:point, opacity=0.3) * Encoding(
 chart = data * (points + line) * vlspec(width=400)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

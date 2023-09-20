@@ -9,4 +9,3 @@ chart = data * Mark(:bar, opacity=0.7) * Encoding(
 )
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

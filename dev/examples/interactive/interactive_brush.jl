@@ -12,4 +12,3 @@ chart = data * Mark(:point) * select_interval(
 )
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

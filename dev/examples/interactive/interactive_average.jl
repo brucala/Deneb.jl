@@ -18,4 +18,3 @@ rule = Mark(:rule, color=:firebrick, size=3) * transform_filter(
 chart = data * (bar + rule)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

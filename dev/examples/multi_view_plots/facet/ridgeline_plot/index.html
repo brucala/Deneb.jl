@@ -44,23 +44,23 @@ chart = Data(data) * config_options * transform_timeunit(
         scale=(domain=[30,5], scheme=:redyellowblue),
     ),
 ) * layout(bounds=:flush, spacing=0)</code></pre><style>
-  #vis-2fb54f2d-cc02-4abe-ad83-ac5aa4611751.vega-embed {
+  #vis-9156c0d5-3241-4e4a-b57d-801b544be037.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-2fb54f2d-cc02-4abe-ad83-ac5aa4611751.vega-embed details,
-  #vis-2fb54f2d-cc02-4abe-ad83-ac5aa4611751.vega-embed details summary {
+  #vis-9156c0d5-3241-4e4a-b57d-801b544be037.vega-embed details,
+  #vis-9156c0d5-3241-4e4a-b57d-801b544be037.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-2fb54f2d-cc02-4abe-ad83-ac5aa4611751"></div>
+<div id="vis-9156c0d5-3241-4e4a-b57d-801b544be037"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-2fb54f2d-cc02-4abe-ad83-ac5aa4611751") {
-      outputDiv = document.getElementById("vis-2fb54f2d-cc02-4abe-ad83-ac5aa4611751");
+    if (outputDiv.id !== "vis-9156c0d5-3241-4e4a-b57d-801b544be037") {
+      outputDiv = document.getElementById("vis-9156c0d5-3241-4e4a-b57d-801b544be037");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -108,4 +108,4 @@ chart = Data(data) * config_options * transform_timeunit(
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25,"stroke":null},"mark":{"tooltip":true},"axis":{"grid":false}},"title":{"text":"Seattle Weather","anchor":"end"},"transform":[{"timeUnit":"month","field":"date","as":"Month"},{"joinaggregate":[{"field":"temp_max","op":"mean","as":"mean_temp"}],"groupby":["Month"]},{"field":"temp_max","as":["bin_max","bin_min"],"bin":true},{"aggregate":[{"op":"count","as":"value"}],"groupby":["Month","mean_temp","bin_min","bin_max"]},{"impute":"value","key":"bin_min","groupby":["Month","mean_temp"],"value":0}],"bounds":"flush","spacing":0,"data":{"url":"https://cdn.jsdelivr.net/npm/vega-datasets@v1.29.0/data/seattle-weather.csv"},"spec":{"mark":{"type":"area","interpolate":"monotone","fillOpacity":0.8,"stroke":"lightgray","strokeWidth":0.5,"title":"Seattle Weather"},"encoding":{"x":{"field":"bin_min","type":"quantitative","bin":"binned","title":"Maximum Daily Temperature (C)"},"y":{"field":"value","type":"quantitative","scale":{"range":[20,-20]},"axis":null},"fill":{"field":"mean_temp","type":"quantitative","legend":null,"scale":{"domain":[30,5],"scheme":"redyellowblue"}}},"height":20},"facet":{"row":{"field":"Month","type":"temporal","title":null,"header":{"labelAngle":0,"labelAlign":"right","format":"%B"}}}}, {"mode": "vega-lite"});
 </script>
-<hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Friday 11 August 2023 08:38">Friday 11 August 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Wednesday 20 September 2023 16:40">Wednesday 20 September 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

@@ -21,4 +21,3 @@ hist2d = Mark(:rect) * Encoding(
 chart = data * [top_hist; [hist2d right_hist]]
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

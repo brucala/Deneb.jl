@@ -13,4 +13,3 @@ points = Mark(:point, filled=true, color=:black) * Encoding("mean(yield)")
 chart = base * (errors + points)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

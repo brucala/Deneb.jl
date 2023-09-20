@@ -29,4 +29,3 @@ base = projection("albersUsa") * vlspec(
 chart = base * (usa + points)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

@@ -26,4 +26,3 @@ chart = Data(data) * Mark(
 ) * config(:view, stroke="")
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

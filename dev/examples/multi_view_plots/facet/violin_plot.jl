@@ -25,4 +25,3 @@ chart = data * Mark(:area, orient=:horizontal) * transform_density(
 ) * vlspec(width=100) * config(:view, stroke="")
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

@@ -49,4 +49,3 @@ middle = Mark(:text, align=:center) * Encoding(
 chart = base * [left middle right] * layout(spacing=0)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

@@ -21,4 +21,3 @@ lines = Mark(:line, size=4) * transform_loess(
 chart = base * (points + lines) * vlspec(width=400)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

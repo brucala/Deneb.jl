@@ -62,4 +62,3 @@ chart = base * select_bind_input(
 )
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

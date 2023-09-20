@@ -26,4 +26,3 @@ chart = base * [gaussian_jitter uniform_jitter] * resolve_scale(
 )
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

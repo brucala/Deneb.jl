@@ -17,4 +17,3 @@ chart * interactive_scales(bindx=false)
 chart * interactive_scales(shift_on_y=true)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

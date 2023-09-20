@@ -9,4 +9,3 @@ chart = Data((;x, y, z)) * Mark(:rect) * Encoding(
 )
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

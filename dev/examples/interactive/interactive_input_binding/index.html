@@ -12,23 +12,23 @@ base = data * Mark(:point) * Encoding(&quot;Horsepower:Q&quot;, &quot;Miles_per_
 ) * Encoding(
     color=condition(:origin, field(&quot;Cylinders:O&quot;), :grey),
 )</code></pre><style>
-  #vis-183596c3-cdbb-4b32-b958-1bca53b6059b.vega-embed {
+  #vis-c7a979b5-3c0c-4e70-bf5e-44fa7ebf2244.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-183596c3-cdbb-4b32-b958-1bca53b6059b.vega-embed details,
-  #vis-183596c3-cdbb-4b32-b958-1bca53b6059b.vega-embed details summary {
+  #vis-c7a979b5-3c0c-4e70-bf5e-44fa7ebf2244.vega-embed details,
+  #vis-c7a979b5-3c0c-4e70-bf5e-44fa7ebf2244.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-183596c3-cdbb-4b32-b958-1bca53b6059b"></div>
+<div id="vis-c7a979b5-3c0c-4e70-bf5e-44fa7ebf2244"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-183596c3-cdbb-4b32-b958-1bca53b6059b") {
-      outputDiv = document.getElementById("vis-183596c3-cdbb-4b32-b958-1bca53b6059b");
+    if (outputDiv.id !== "vis-c7a979b5-3c0c-4e70-bf5e-44fa7ebf2244") {
+      outputDiv = document.getElementById("vis-c7a979b5-3c0c-4e70-bf5e-44fa7ebf2244");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -74,7 +74,7 @@ base = data * Mark(:point) * Encoding(&quot;Horsepower:Q&quot;, &quot;Miles_per_
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"origin","value":"USA","select":{"type":"point","fields":["Origin"]},"bind":{"input":"select","options":[null,"Europe","Japan","USA"],"labels":["All","Europe","Japan","USA"]}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"},"color":{"condition":{"param":"origin","field":"Cylinders","type":"ordinal"},"value":"grey"}}}, {"mode": "vega-lite"});
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25}},"params":[{"name":"origin","value":"USA","select":{"type":"point","fields":["Origin"]},"bind":{"input":"select","options":[null,"Europe","Japan","USA"],"labels":["All","Europe","Japan","USA"]}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"},"color":{"condition":{"param":"origin","field":"Cylinders","type":"ordinal"},"value":"grey"}}}, {"mode": "vega-lite"});
 </script>
 <h2 id="Radio-Input-Widget"><a class="docs-heading-anchor" href="#Radio-Input-Widget">Radio Input Widget</a><a id="Radio-Input-Widget-1"></a><a class="docs-heading-anchor-permalink" href="#Radio-Input-Widget" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart = base * select_radio(
     :origin,
@@ -88,23 +88,23 @@ base = data * Mark(:point) * Encoding(&quot;Horsepower:Q&quot;, &quot;Miles_per_
     x=(; scale=(; domain=[0, 240])),
     y=(; scale=(; domain=[0, 50])),
 )</code></pre><style>
-  #vis-758acd49-99a9-4e2b-91b3-fbecefe8dc29.vega-embed {
+  #vis-716534ef-e912-440b-a1e5-5b4146a051a7.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-758acd49-99a9-4e2b-91b3-fbecefe8dc29.vega-embed details,
-  #vis-758acd49-99a9-4e2b-91b3-fbecefe8dc29.vega-embed details summary {
+  #vis-716534ef-e912-440b-a1e5-5b4146a051a7.vega-embed details,
+  #vis-716534ef-e912-440b-a1e5-5b4146a051a7.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-758acd49-99a9-4e2b-91b3-fbecefe8dc29"></div>
+<div id="vis-716534ef-e912-440b-a1e5-5b4146a051a7"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-758acd49-99a9-4e2b-91b3-fbecefe8dc29") {
-      outputDiv = document.getElementById("vis-758acd49-99a9-4e2b-91b3-fbecefe8dc29");
+    if (outputDiv.id !== "vis-716534ef-e912-440b-a1e5-5b4146a051a7") {
+      outputDiv = document.getElementById("vis-716534ef-e912-440b-a1e5-5b4146a051a7");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -150,7 +150,7 @@ base = data * Mark(:point) * Encoding(&quot;Horsepower:Q&quot;, &quot;Miles_per_
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"transform":[{"filter":{"param":"origin"}}],"params":[{"name":"origin","select":{"type":"point","fields":["Origin"]},"bind":{"input":"radio","options":[null,"Europe","Japan","USA"],"labels":["All","Europe","Japan","USA"],"name":"Region"}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative","scale":{"domain":[0,240]}},"y":{"field":"Miles_per_Gallon","type":"quantitative","scale":{"domain":[0,50]}}}}, {"mode": "vega-lite"});
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25}},"transform":[{"filter":{"param":"origin"}}],"params":[{"name":"origin","select":{"type":"point","fields":["Origin"]},"bind":{"input":"radio","options":[null,"Europe","Japan","USA"],"labels":["All","Europe","Japan","USA"],"name":"Region"}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative","scale":{"domain":[0,240]}},"y":{"field":"Miles_per_Gallon","type":"quantitative","scale":{"domain":[0,50]}}}}, {"mode": "vega-lite"});
 </script>
 <h2 id="Range-Input-Widget"><a class="docs-heading-anchor" href="#Range-Input-Widget">Range Input Widget</a><a id="Range-Input-Widget-1"></a><a class="docs-heading-anchor-permalink" href="#Range-Input-Widget" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart = base * select_range(
     :opacity,
@@ -160,23 +160,23 @@ base = data * Mark(:point) * Encoding(&quot;Horsepower:Q&quot;, &quot;Miles_per_
 ) * Mark(
     opacity=expr(&quot;opacity/100&quot;),
 )</code></pre><style>
-  #vis-877e1ac3-4e22-403d-b240-2ac88e0167a0.vega-embed {
+  #vis-3a083b83-d2fc-4193-a2a2-1d067abb0cf9.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-877e1ac3-4e22-403d-b240-2ac88e0167a0.vega-embed details,
-  #vis-877e1ac3-4e22-403d-b240-2ac88e0167a0.vega-embed details summary {
+  #vis-3a083b83-d2fc-4193-a2a2-1d067abb0cf9.vega-embed details,
+  #vis-3a083b83-d2fc-4193-a2a2-1d067abb0cf9.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-877e1ac3-4e22-403d-b240-2ac88e0167a0"></div>
+<div id="vis-3a083b83-d2fc-4193-a2a2-1d067abb0cf9"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-877e1ac3-4e22-403d-b240-2ac88e0167a0") {
-      outputDiv = document.getElementById("vis-877e1ac3-4e22-403d-b240-2ac88e0167a0");
+    if (outputDiv.id !== "vis-3a083b83-d2fc-4193-a2a2-1d067abb0cf9") {
+      outputDiv = document.getElementById("vis-3a083b83-d2fc-4193-a2a2-1d067abb0cf9");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -222,30 +222,30 @@ base = data * Mark(:point) * Encoding(&quot;Horsepower:Q&quot;, &quot;Miles_per_
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"opacity","value":50,"bind":{"input":"range","min":1,"max":100}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point","opacity":{"expr":"opacity/100"}},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"}}}, {"mode": "vega-lite"});
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25}},"params":[{"name":"opacity","value":50,"bind":{"input":"range","min":1,"max":100}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point","opacity":{"expr":"opacity/100"}},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"}}}, {"mode": "vega-lite"});
 </script>
 <h2 id="Checkbox-Input-Widget"><a class="docs-heading-anchor" href="#Checkbox-Input-Widget">Checkbox Input Widget</a><a id="Checkbox-Input-Widget-1"></a><a class="docs-heading-anchor-permalink" href="#Checkbox-Input-Widget" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart = base * select_checkbox(
     :toggle_origin;
 ) * Encoding(
     color=condition(:toggle_origin, field(&quot;Origin:N&quot;), :grey),
 )</code></pre><style>
-  #vis-c9ce3c83-a9e8-40b2-abc9-3cd8877f6532.vega-embed {
+  #vis-1c74ca84-d56b-4973-9511-77c6e54bfa11.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-c9ce3c83-a9e8-40b2-abc9-3cd8877f6532.vega-embed details,
-  #vis-c9ce3c83-a9e8-40b2-abc9-3cd8877f6532.vega-embed details summary {
+  #vis-1c74ca84-d56b-4973-9511-77c6e54bfa11.vega-embed details,
+  #vis-1c74ca84-d56b-4973-9511-77c6e54bfa11.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-c9ce3c83-a9e8-40b2-abc9-3cd8877f6532"></div>
+<div id="vis-1c74ca84-d56b-4973-9511-77c6e54bfa11"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-c9ce3c83-a9e8-40b2-abc9-3cd8877f6532") {
-      outputDiv = document.getElementById("vis-c9ce3c83-a9e8-40b2-abc9-3cd8877f6532");
+    if (outputDiv.id !== "vis-1c74ca84-d56b-4973-9511-77c6e54bfa11") {
+      outputDiv = document.getElementById("vis-1c74ca84-d56b-4973-9511-77c6e54bfa11");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -291,7 +291,7 @@ base = data * Mark(:point) * Encoding(&quot;Horsepower:Q&quot;, &quot;Miles_per_
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"toggle_origin","bind":{"input":"checkbox"}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"},"color":{"condition":{"param":"toggle_origin","field":"Origin","type":"nominal"},"value":"grey"}}}, {"mode": "vega-lite"});
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25}},"params":[{"name":"toggle_origin","bind":{"input":"checkbox"}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"},"color":{"condition":{"param":"toggle_origin","field":"Origin","type":"nominal"},"value":"grey"}}}, {"mode": "vega-lite"});
 </script>
 <h2 id="Arbitrary-Widget"><a class="docs-heading-anchor" href="#Arbitrary-Widget">Arbitrary Widget</a><a id="Arbitrary-Widget-1"></a><a class="docs-heading-anchor-permalink" href="#Arbitrary-Widget" title="Permalink"></a></h2><p>In addition to the widgets above, Deneb.jl has access to <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input">any arbitrary html widget</a> via the more general <code>select_bind_input</code> function. Below an example with the color-picker widget.</p><pre><code class="language-julia hljs">chart = base * select_bind_input(
     :color, :usa;
@@ -311,23 +311,23 @@ base = data * Mark(:point) * Encoding(&quot;Horsepower:Q&quot;, &quot;Miles_per_
         ),
     )
 )</code></pre><style>
-  #vis-6bdfe29e-fada-4b33-a18c-8d689af25c9f.vega-embed {
+  #vis-5132f480-9267-46c6-995b-52c06e160811.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-6bdfe29e-fada-4b33-a18c-8d689af25c9f.vega-embed details,
-  #vis-6bdfe29e-fada-4b33-a18c-8d689af25c9f.vega-embed details summary {
+  #vis-5132f480-9267-46c6-995b-52c06e160811.vega-embed details,
+  #vis-5132f480-9267-46c6-995b-52c06e160811.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-6bdfe29e-fada-4b33-a18c-8d689af25c9f"></div>
+<div id="vis-5132f480-9267-46c6-995b-52c06e160811"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-6bdfe29e-fada-4b33-a18c-8d689af25c9f") {
-      outputDiv = document.getElementById("vis-6bdfe29e-fada-4b33-a18c-8d689af25c9f");
+    if (outputDiv.id !== "vis-5132f480-9267-46c6-995b-52c06e160811") {
+      outputDiv = document.getElementById("vis-5132f480-9267-46c6-995b-52c06e160811");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -373,6 +373,6 @@ base = data * Mark(:point) * Encoding(&quot;Horsepower:Q&quot;, &quot;Miles_per_
         .catch(showError)
         .then(() => displayChart(vegaEmbed));
     }
-  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"usa","value":"#317bb4","bind":{"input":"color"}},{"name":"europe","value":"#ffb54d","bind":{"input":"color"}},{"name":"japan","value":"#adadad","bind":{"input":"color"}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"},"color":{"field":"Origin","type":"nominal","scale":{"domain":["USA","Europe","Japan"],"range":[{"expr":"usa"},{"expr":"europe"},{"expr":"japan"}]}}}}, {"mode": "vega-lite"});
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25}},"params":[{"name":"usa","value":"#317bb4","bind":{"input":"color"}},{"name":"europe","value":"#ffb54d","bind":{"input":"color"}},{"name":"japan","value":"#adadad","bind":{"input":"color"}}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"},"color":{"field":"Origin","type":"nominal","scale":{"domain":["USA","Europe","Japan"],"range":[{"expr":"usa"},{"expr":"europe"},{"expr":"japan"}]}}}}, {"mode": "vega-lite"});
 </script>
-<hr/><p><em>This page was generated using <a href="https://github.com/johnnychen94/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Friday 11 August 2023 08:38">Friday 11 August 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Wednesday 20 September 2023 16:40">Wednesday 20 September 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

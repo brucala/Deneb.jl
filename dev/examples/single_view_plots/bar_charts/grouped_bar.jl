@@ -19,4 +19,3 @@ Data(data) * Mark(:bar, tooltip=true) * Encoding(
 )
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

@@ -13,4 +13,3 @@ line = Mark(:line) * Encoding(y="mean(Miles_per_Gallon)")
 chart = base * (band + line)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

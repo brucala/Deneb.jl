@@ -14,4 +14,3 @@ projections = ["equirectangular", "mercator", "orthographic", "gnomonic"]
 chart = base * concat((projection(proj) * title(proj) for proj in projections)..., columns=2)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

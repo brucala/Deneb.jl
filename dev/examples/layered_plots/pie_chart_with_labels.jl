@@ -17,4 +17,3 @@ labels = Mark(:text, radius=140, size=20) * Encoding(text=:category)
 chart = base * (pie + labels)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

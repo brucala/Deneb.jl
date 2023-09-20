@@ -19,4 +19,3 @@ line = Mark(:line) * Encoding(
 chart = base * (points + line)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

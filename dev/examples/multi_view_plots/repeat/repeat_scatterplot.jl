@@ -32,4 +32,3 @@ chart = Data(data) * Mark(:point) * Repeat(
 )
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

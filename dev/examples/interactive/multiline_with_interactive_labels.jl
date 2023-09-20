@@ -39,4 +39,3 @@ chart = data * (graph + labels)
 set_theme!(:default)  #hide
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

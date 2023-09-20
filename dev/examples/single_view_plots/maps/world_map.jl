@@ -14,4 +14,3 @@ chart = (sphere + graticule + countries) * vlspec(
 ) * projection(:NaturalEarth1) * config(:view, stroke="")
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

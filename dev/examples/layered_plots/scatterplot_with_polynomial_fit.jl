@@ -21,4 +21,3 @@ lines = points * Mark(:line) * Encoding(color="degree:N") * layer(
 chart = (points + lines) * vlspec(width=400)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

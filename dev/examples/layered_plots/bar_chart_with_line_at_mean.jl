@@ -9,4 +9,3 @@ rule = Mark(:rule, color=:red) * Encoding(y="mean(wheat):Q")
 chart = data * (bar + rule) * vlspec(width=600)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

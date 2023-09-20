@@ -21,4 +21,3 @@ lower = select_interval(
 chart = base * [upper; lower]
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

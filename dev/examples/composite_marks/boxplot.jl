@@ -9,4 +9,3 @@ chart = data * Mark(:boxplot, size=30) * Encoding(
 ) * vlspec(width=250, height=250)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

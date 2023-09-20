@@ -15,4 +15,3 @@ bubble = Mark(:point) * Encoding(
 chart = data * base * [bar; bubble]
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

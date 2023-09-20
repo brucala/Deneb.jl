@@ -25,4 +25,3 @@ chart = data * Mark(:area) * transform_filter(
 ) * config_options
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

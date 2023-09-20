@@ -10,4 +10,3 @@ chart = data * Mark(:bar) * transform_filter(
 ) * vlspec(height=(;step=18))
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-

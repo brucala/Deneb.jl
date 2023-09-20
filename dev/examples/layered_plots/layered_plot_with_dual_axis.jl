@@ -24,4 +24,3 @@ line = Mark(:line, stroke="#5276A7", interpolate="monotone") * Encoding(
 chart = base * (band + line) * resolve_scale(y=:independent)
 
 # This file was generated using Literate.jl, https://github.com/fredrikekre/Literate.jl
-
