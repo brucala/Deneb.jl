@@ -49,23 +49,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
   &quot;type&quot;: &quot;point&quot;
 }
 </code></pre><p>To show a Vega-Lite visualization of the data as a point, we can compose the <code>DataSpec</code> and the <a href="../api/#Deneb.MarkSpec"><code>Deneb.MarkSpec</code></a> with the <a href="../api/#Base.:*-Tuple{Deneb.Spec, Deneb.Spec}"><code>*</code></a> operator to build a showable <a href="../api/#Deneb.VegaLiteSpec"><code>Deneb.VegaLiteSpec</code></a>:</p><pre><code class="language-julia hljs">Data(data) * Mark(:point)</code></pre><style>
-  #vis-692416ad-f88c-4011-970b-329f177e586b.vega-embed {
+  #vis-379f0a7b-e818-474c-9cc5-0c5230ccbadf.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-692416ad-f88c-4011-970b-329f177e586b.vega-embed details,
-  #vis-692416ad-f88c-4011-970b-329f177e586b.vega-embed details summary {
+  #vis-379f0a7b-e818-474c-9cc5-0c5230ccbadf.vega-embed details,
+  #vis-379f0a7b-e818-474c-9cc5-0c5230ccbadf.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-692416ad-f88c-4011-970b-329f177e586b"></div>
+<div id="vis-379f0a7b-e818-474c-9cc5-0c5230ccbadf"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-692416ad-f88c-4011-970b-329f177e586b") {
-      outputDiv = document.getElementById("vis-692416ad-f88c-4011-970b-329f177e586b");
+    if (outputDiv.id !== "vis-379f0a7b-e818-474c-9cc5-0c5230ccbadf") {
+      outputDiv = document.getElementById("vis-379f0a7b-e818-474c-9cc5-0c5230ccbadf");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -128,23 +128,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
   }
 }
 </code></pre><p>We can now compose the data, mark and encoding specs to create the following visualization:</p><pre><code class="language-julia hljs">Data(data) * Mark(:point) * Encoding(x=&quot;a:N&quot;)</code></pre><style>
-  #vis-7668b1d3-d94f-4006-9c63-0003760fee28.vega-embed {
+  #vis-39c456fb-750e-49eb-a170-b2a8d6eb5fa5.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-7668b1d3-d94f-4006-9c63-0003760fee28.vega-embed details,
-  #vis-7668b1d3-d94f-4006-9c63-0003760fee28.vega-embed details summary {
+  #vis-39c456fb-750e-49eb-a170-b2a8d6eb5fa5.vega-embed details,
+  #vis-39c456fb-750e-49eb-a170-b2a8d6eb5fa5.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-7668b1d3-d94f-4006-9c63-0003760fee28"></div>
+<div id="vis-39c456fb-750e-49eb-a170-b2a8d6eb5fa5"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-7668b1d3-d94f-4006-9c63-0003760fee28") {
-      outputDiv = document.getElementById("vis-7668b1d3-d94f-4006-9c63-0003760fee28");
+    if (outputDiv.id !== "vis-39c456fb-750e-49eb-a170-b2a8d6eb5fa5") {
+      outputDiv = document.getElementById("vis-39c456fb-750e-49eb-a170-b2a8d6eb5fa5");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -203,23 +203,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
     x=&quot;a:N&quot;,
     y=&quot;b:Q&quot;
 )</code></pre><style>
-  #vis-3ee35949-5f84-4578-9bbf-268755f501cd.vega-embed {
+  #vis-5456e53c-c3d9-435b-b9c5-d7d10815e34c.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-3ee35949-5f84-4578-9bbf-268755f501cd.vega-embed details,
-  #vis-3ee35949-5f84-4578-9bbf-268755f501cd.vega-embed details summary {
+  #vis-5456e53c-c3d9-435b-b9c5-d7d10815e34c.vega-embed details,
+  #vis-5456e53c-c3d9-435b-b9c5-d7d10815e34c.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-3ee35949-5f84-4578-9bbf-268755f501cd"></div>
+<div id="vis-5456e53c-c3d9-435b-b9c5-d7d10815e34c"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-3ee35949-5f84-4578-9bbf-268755f501cd") {
-      outputDiv = document.getElementById("vis-3ee35949-5f84-4578-9bbf-268755f501cd");
+    if (outputDiv.id !== "vis-5456e53c-c3d9-435b-b9c5-d7d10815e34c") {
+      outputDiv = document.getElementById("vis-5456e53c-c3d9-435b-b9c5-d7d10815e34c");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -289,23 +289,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
     x=&quot;a:N&quot;,
     y=&quot;average(b):Q&quot;,
 )</code></pre><style>
-  #vis-20f01c86-9907-4743-8d14-7a8bd73ac5cd.vega-embed {
+  #vis-e62f7d93-6c1f-448e-9c77-5855f148f676.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-20f01c86-9907-4743-8d14-7a8bd73ac5cd.vega-embed details,
-  #vis-20f01c86-9907-4743-8d14-7a8bd73ac5cd.vega-embed details summary {
+  #vis-e62f7d93-6c1f-448e-9c77-5855f148f676.vega-embed details,
+  #vis-e62f7d93-6c1f-448e-9c77-5855f148f676.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-20f01c86-9907-4743-8d14-7a8bd73ac5cd"></div>
+<div id="vis-e62f7d93-6c1f-448e-9c77-5855f148f676"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-20f01c86-9907-4743-8d14-7a8bd73ac5cd") {
-      outputDiv = document.getElementById("vis-20f01c86-9907-4743-8d14-7a8bd73ac5cd");
+    if (outputDiv.id !== "vis-e62f7d93-6c1f-448e-9c77-5855f148f676") {
+      outputDiv = document.getElementById("vis-e62f7d93-6c1f-448e-9c77-5855f148f676");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -357,23 +357,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
     x=&quot;a:N&quot;,
     y=&quot;average(b):Q&quot;,
 )</code></pre><style>
-  #vis-d54cd578-0c3f-4029-a1fa-bad8cd74598a.vega-embed {
+  #vis-85ef4b7e-0dbf-427a-b72a-494a6b03cee2.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-d54cd578-0c3f-4029-a1fa-bad8cd74598a.vega-embed details,
-  #vis-d54cd578-0c3f-4029-a1fa-bad8cd74598a.vega-embed details summary {
+  #vis-85ef4b7e-0dbf-427a-b72a-494a6b03cee2.vega-embed details,
+  #vis-85ef4b7e-0dbf-427a-b72a-494a6b03cee2.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-d54cd578-0c3f-4029-a1fa-bad8cd74598a"></div>
+<div id="vis-85ef4b7e-0dbf-427a-b72a-494a6b03cee2"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-d54cd578-0c3f-4029-a1fa-bad8cd74598a") {
-      outputDiv = document.getElementById("vis-d54cd578-0c3f-4029-a1fa-bad8cd74598a");
+    if (outputDiv.id !== "vis-85ef4b7e-0dbf-427a-b72a-494a6b03cee2") {
+      outputDiv = document.getElementById("vis-85ef4b7e-0dbf-427a-b72a-494a6b03cee2");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -425,23 +425,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
     y=&quot;a:N&quot;,
     x=&quot;average(b):Q&quot;,
 )</code></pre><style>
-  #vis-2db2eae9-c9e9-4901-9ca6-83795e00cdef.vega-embed {
+  #vis-ace49396-df63-4b27-a7a8-babeef17b8d8.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-2db2eae9-c9e9-4901-9ca6-83795e00cdef.vega-embed details,
-  #vis-2db2eae9-c9e9-4901-9ca6-83795e00cdef.vega-embed details summary {
+  #vis-ace49396-df63-4b27-a7a8-babeef17b8d8.vega-embed details,
+  #vis-ace49396-df63-4b27-a7a8-babeef17b8d8.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-2db2eae9-c9e9-4901-9ca6-83795e00cdef"></div>
+<div id="vis-ace49396-df63-4b27-a7a8-babeef17b8d8"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-2db2eae9-c9e9-4901-9ca6-83795e00cdef") {
-      outputDiv = document.getElementById("vis-2db2eae9-c9e9-4901-9ca6-83795e00cdef");
+    if (outputDiv.id !== "vis-ace49396-df63-4b27-a7a8-babeef17b8d8") {
+      outputDiv = document.getElementById("vis-ace49396-df63-4b27-a7a8-babeef17b8d8");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -493,23 +493,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
     y=field(&quot;a:N&quot;, title=:category),
     x=field(&quot;average(b):Q&quot;, title=&quot;Mean of b&quot;),
 )</code></pre><style>
-  #vis-5cf43e56-fcc4-43f6-8598-5f3ce370a184.vega-embed {
+  #vis-c170d3ab-a7ad-425a-9b5c-ae7dd221506e.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-5cf43e56-fcc4-43f6-8598-5f3ce370a184.vega-embed details,
-  #vis-5cf43e56-fcc4-43f6-8598-5f3ce370a184.vega-embed details summary {
+  #vis-c170d3ab-a7ad-425a-9b5c-ae7dd221506e.vega-embed details,
+  #vis-c170d3ab-a7ad-425a-9b5c-ae7dd221506e.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-5cf43e56-fcc4-43f6-8598-5f3ce370a184"></div>
+<div id="vis-c170d3ab-a7ad-425a-9b5c-ae7dd221506e"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-5cf43e56-fcc4-43f6-8598-5f3ce370a184") {
-      outputDiv = document.getElementById("vis-5cf43e56-fcc4-43f6-8598-5f3ce370a184");
+    if (outputDiv.id !== "vis-c170d3ab-a7ad-425a-9b5c-ae7dd221506e") {
+      outputDiv = document.getElementById("vis-c170d3ab-a7ad-425a-9b5c-ae7dd221506e");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -637,7 +637,7 @@ print(chart)</code></pre><pre class="documenter-example-output"><code class="noh
     &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vega-embed@6&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div id=&quot;vis-37bc29e8-a6f4-4a42-81e0-925123d2b319&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;vis-f57019dd-b666-4fab-bfcc-b85811c10382&quot;&gt;&lt;/div&gt;
 
     &lt;script type=&quot;text/javascript&quot;&gt;
     var spec = {&quot;config&quot;:{&quot;view&quot;:{&quot;continuousWidth&quot;:300,&quot;continuousHeight&quot;:300,&quot;step&quot;:25},&quot;mark&quot;:{&quot;tooltip&quot;:true}},&quot;data&quot;:{&quot;values&quot;:[{&quot;a&quot;:&quot;C&quot;,&quot;b&quot;:2},{&quot;a&quot;:&quot;C&quot;,&quot;b&quot;:7},{&quot;a&quot;:&quot;C&quot;,&quot;b&quot;:4},{&quot;a&quot;:&quot;D&quot;,&quot;b&quot;:1},{&quot;a&quot;:&quot;D&quot;,&quot;b&quot;:2},{&quot;a&quot;:&quot;D&quot;,&quot;b&quot;:6},{&quot;a&quot;:&quot;E&quot;,&quot;b&quot;:8},{&quot;a&quot;:&quot;E&quot;,&quot;b&quot;:4},{&quot;a&quot;:&quot;E&quot;,&quot;b&quot;:7}]},&quot;mark&quot;:{&quot;type&quot;:&quot;bar&quot;,&quot;color&quot;:&quot;tomato&quot;},&quot;encoding&quot;:{&quot;y&quot;:{&quot;field&quot;:&quot;a&quot;,&quot;type&quot;:&quot;nominal&quot;,&quot;title&quot;:&quot;category&quot;},&quot;x&quot;:{&quot;aggregate&quot;:&quot;average&quot;,&quot;field&quot;:&quot;b&quot;,&quot;type&quot;:&quot;quantitative&quot;,&quot;title&quot;:&quot;Mean of b&quot;}}};
@@ -650,8 +650,8 @@ print(chart)</code></pre><pre class="documenter-example-output"><code class="noh
                         + &#39;&lt;/div&gt;&#39;);
         throw error;
     }
-    const el = document.getElementById(&#39;vis-37bc29e8-a6f4-4a42-81e0-925123d2b319&#39;);
-    vegaEmbed(&#39;#vis-37bc29e8-a6f4-4a42-81e0-925123d2b319&#39;, spec, embedOpt).catch(error =&gt; showError(el, error));
+    const el = document.getElementById(&#39;vis-f57019dd-b666-4fab-bfcc-b85811c10382&#39;);
+    vegaEmbed(&#39;#vis-f57019dd-b666-4fab-bfcc-b85811c10382&#39;, spec, embedOpt).catch(error =&gt; showError(el, error));
     &lt;/script&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre><p>You can also save the visualization to a file as an stand-alone HTM document using the <a href="../api/#Deneb.save-Tuple{AbstractString, AbstractString, Deneb.VegaLiteSpec}"><code>save</code></a> method:</p><pre><code class="nohighlight hljs">save(&quot;chart.html&quot;, chart)</code></pre><p>The visualization can also be saved as a JSON file or as an image by using any of the following extensions: <code>.json</code>, <code>.png</code>, <code>.svg</code>, <code>.pdf</code>.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../installation/">« Installation</a><a class="docs-footer-nextpage" href="../intro/">Introduction »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Wednesday 20 September 2023 17:44">Wednesday 20 September 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+&lt;/html&gt;</code></pre><p>You can also save the visualization to a file as an stand-alone HTM document using the <a href="../api/#Deneb.save-Tuple{AbstractString, AbstractString, Deneb.VegaLiteSpec}"><code>save</code></a> method:</p><pre><code class="nohighlight hljs">save(&quot;chart.html&quot;, chart)</code></pre><p>The visualization can also be saved as a JSON file or as an image by using any of the following extensions: <code>.json</code>, <code>.png</code>, <code>.svg</code>, <code>.pdf</code>.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../installation/">« Installation</a><a class="docs-footer-nextpage" href="../intro/">Introduction »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Thursday 5 October 2023 18:27">Thursday 5 October 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

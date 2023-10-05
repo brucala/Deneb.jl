@@ -10,23 +10,23 @@ bubble = Mark(:point) * Encoding(
 )
 
 data * base * [bar bubble]</code></pre><style>
-  #vis-c34ef0cf-9e06-45d4-9c2d-9da81346e344.vega-embed {
+  #vis-5f0cf3d7-b46d-4fff-acfd-477720e92685.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-c34ef0cf-9e06-45d4-9c2d-9da81346e344.vega-embed details,
-  #vis-c34ef0cf-9e06-45d4-9c2d-9da81346e344.vega-embed details summary {
+  #vis-5f0cf3d7-b46d-4fff-acfd-477720e92685.vega-embed details,
+  #vis-5f0cf3d7-b46d-4fff-acfd-477720e92685.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-c34ef0cf-9e06-45d4-9c2d-9da81346e344"></div>
+<div id="vis-5f0cf3d7-b46d-4fff-acfd-477720e92685"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-c34ef0cf-9e06-45d4-9c2d-9da81346e344") {
-      outputDiv = document.getElementById("vis-c34ef0cf-9e06-45d4-9c2d-9da81346e344");
+    if (outputDiv.id !== "vis-5f0cf3d7-b46d-4fff-acfd-477720e92685") {
+      outputDiv = document.getElementById("vis-5f0cf3d7-b46d-4fff-acfd-477720e92685");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -75,23 +75,23 @@ data * base * [bar bubble]</code></pre><style>
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"transform":[{"filter":"datum.location === 'Seattle'"}],"data":{"url":"https://vega.github.io/vega-datasets/data/weather.csv"},"hconcat":[{"mark":{"type":"bar"},"encoding":{"x":{"timeUnit":"month","field":"date","type":"ordinal"},"y":{"aggregate":"mean","field":"precipitation","type":"quantitative"}},"height":200},{"mark":{"type":"point"},"encoding":{"x":{"field":"temp_min","type":"quantitative","bin":true},"y":{"field":"temp_max","type":"quantitative","bin":true},"size":{"aggregate":"count"}},"height":200}]}, {"mode": "vega-lite"});
 </script>
 <pre><code class="language-julia hljs">data * base * [bar; bubble]</code></pre><style>
-  #vis-db65cec6-2c41-471d-9c19-e7fb5c738e10.vega-embed {
+  #vis-7faefcb1-04f9-4d0e-b467-62a08bb280af.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-db65cec6-2c41-471d-9c19-e7fb5c738e10.vega-embed details,
-  #vis-db65cec6-2c41-471d-9c19-e7fb5c738e10.vega-embed details summary {
+  #vis-7faefcb1-04f9-4d0e-b467-62a08bb280af.vega-embed details,
+  #vis-7faefcb1-04f9-4d0e-b467-62a08bb280af.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-db65cec6-2c41-471d-9c19-e7fb5c738e10"></div>
+<div id="vis-7faefcb1-04f9-4d0e-b467-62a08bb280af"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-db65cec6-2c41-471d-9c19-e7fb5c738e10") {
-      outputDiv = document.getElementById("vis-db65cec6-2c41-471d-9c19-e7fb5c738e10");
+    if (outputDiv.id !== "vis-7faefcb1-04f9-4d0e-b467-62a08bb280af") {
+      outputDiv = document.getElementById("vis-7faefcb1-04f9-4d0e-b467-62a08bb280af");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -141,23 +141,23 @@ data * base * [bar bubble]</code></pre><style>
 </script>
 <pre><code class="language-julia hljs">line = Mark(:line) * Encoding(&quot;month(date):T&quot;, &quot;mean(wind):Q&quot;)
 data * base * concat(bar, bubble, line, columns=2)</code></pre><style>
-  #vis-dc95fb2a-5cef-4f6b-9ea0-7b1f6530d3f8.vega-embed {
+  #vis-fdec8cf4-2305-4e46-a164-5a9918119cfb.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-dc95fb2a-5cef-4f6b-9ea0-7b1f6530d3f8.vega-embed details,
-  #vis-dc95fb2a-5cef-4f6b-9ea0-7b1f6530d3f8.vega-embed details summary {
+  #vis-fdec8cf4-2305-4e46-a164-5a9918119cfb.vega-embed details,
+  #vis-fdec8cf4-2305-4e46-a164-5a9918119cfb.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-dc95fb2a-5cef-4f6b-9ea0-7b1f6530d3f8"></div>
+<div id="vis-fdec8cf4-2305-4e46-a164-5a9918119cfb"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-dc95fb2a-5cef-4f6b-9ea0-7b1f6530d3f8") {
-      outputDiv = document.getElementById("vis-dc95fb2a-5cef-4f6b-9ea0-7b1f6530d3f8");
+    if (outputDiv.id !== "vis-fdec8cf4-2305-4e46-a164-5a9918119cfb") {
+      outputDiv = document.getElementById("vis-fdec8cf4-2305-4e46-a164-5a9918119cfb");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -214,23 +214,23 @@ data * base * concat(bar, bubble, line, columns=2)</code></pre><style>
 ) * vlspec(
     height=200, width=200
 )</code></pre><style>
-  #vis-68eed0df-2d39-4e29-a39d-c002d9e1262a.vega-embed {
+  #vis-5b572ab2-c4cd-49dc-b322-2a232f89b5c0.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-68eed0df-2d39-4e29-a39d-c002d9e1262a.vega-embed details,
-  #vis-68eed0df-2d39-4e29-a39d-c002d9e1262a.vega-embed details summary {
+  #vis-5b572ab2-c4cd-49dc-b322-2a232f89b5c0.vega-embed details,
+  #vis-5b572ab2-c4cd-49dc-b322-2a232f89b5c0.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-68eed0df-2d39-4e29-a39d-c002d9e1262a"></div>
+<div id="vis-5b572ab2-c4cd-49dc-b322-2a232f89b5c0"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-68eed0df-2d39-4e29-a39d-c002d9e1262a") {
-      outputDiv = document.getElementById("vis-68eed0df-2d39-4e29-a39d-c002d9e1262a");
+    if (outputDiv.id !== "vis-5b572ab2-c4cd-49dc-b322-2a232f89b5c0") {
+      outputDiv = document.getElementById("vis-5b572ab2-c4cd-49dc-b322-2a232f89b5c0");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -287,23 +287,23 @@ base = Mark(:bar) * Encoding(
 )
 
 data * base * Facet(column=:Origin)</code></pre><style>
-  #vis-b5d01bf0-53c7-4a1b-87df-7cab63317c75.vega-embed {
+  #vis-19f9c944-10aa-4a16-a909-c28b84e48128.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-b5d01bf0-53c7-4a1b-87df-7cab63317c75.vega-embed details,
-  #vis-b5d01bf0-53c7-4a1b-87df-7cab63317c75.vega-embed details summary {
+  #vis-19f9c944-10aa-4a16-a909-c28b84e48128.vega-embed details,
+  #vis-19f9c944-10aa-4a16-a909-c28b84e48128.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-b5d01bf0-53c7-4a1b-87df-7cab63317c75"></div>
+<div id="vis-19f9c944-10aa-4a16-a909-c28b84e48128"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-b5d01bf0-53c7-4a1b-87df-7cab63317c75") {
-      outputDiv = document.getElementById("vis-b5d01bf0-53c7-4a1b-87df-7cab63317c75");
+    if (outputDiv.id !== "vis-19f9c944-10aa-4a16-a909-c28b84e48128") {
+      outputDiv = document.getElementById("vis-19f9c944-10aa-4a16-a909-c28b84e48128");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -352,23 +352,23 @@ data * base * Facet(column=:Origin)</code></pre><style>
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"spec":{"mark":{"type":"bar"},"encoding":{"x":{"field":"Horsepower","type":"quantitative","bin":{"maxbins":15}},"y":{"aggregate":"count"}},"width":200,"height":200},"facet":{"column":{"field":"Origin"}}}, {"mode": "vega-lite"});
 </script>
 <h3 id="Faceting-with-encoding-channels"><a class="docs-heading-anchor" href="#Faceting-with-encoding-channels">Faceting with encoding channels</a><a id="Faceting-with-encoding-channels-1"></a><a class="docs-heading-anchor-permalink" href="#Faceting-with-encoding-channels" title="Permalink"></a></h3><p>Vega-Lite also provides the <a href="https://vega.github.io/vega-lite/docs/facet.html#facet-row-and-column-encoding-channels"><code>facet</code>, <code>row</code> and <code>column</code> encoding channels</a> that serve as a convenient way of producing facet specifications. </p><pre><code class="language-julia hljs">data * base * Encoding(column=:Origin)</code></pre><style>
-  #vis-751ac561-d348-4504-b0a9-bb1b3bfde537.vega-embed {
+  #vis-ad2e8d6a-6a77-4c84-a086-b32102ede0bc.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-751ac561-d348-4504-b0a9-bb1b3bfde537.vega-embed details,
-  #vis-751ac561-d348-4504-b0a9-bb1b3bfde537.vega-embed details summary {
+  #vis-ad2e8d6a-6a77-4c84-a086-b32102ede0bc.vega-embed details,
+  #vis-ad2e8d6a-6a77-4c84-a086-b32102ede0bc.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-751ac561-d348-4504-b0a9-bb1b3bfde537"></div>
+<div id="vis-ad2e8d6a-6a77-4c84-a086-b32102ede0bc"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-751ac561-d348-4504-b0a9-bb1b3bfde537") {
-      outputDiv = document.getElementById("vis-751ac561-d348-4504-b0a9-bb1b3bfde537");
+    if (outputDiv.id !== "vis-ad2e8d6a-6a77-4c84-a086-b32102ede0bc") {
+      outputDiv = document.getElementById("vis-ad2e8d6a-6a77-4c84-a086-b32102ede0bc");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -416,4 +416,4 @@ data * base * Facet(column=:Origin)</code></pre><style>
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"bar"},"encoding":{"x":{"field":"Horsepower","type":"quantitative","bin":{"maxbins":15}},"y":{"aggregate":"count"},"column":{"field":"Origin"}},"width":200,"height":200}, {"mode": "vega-lite"});
 </script>
-<p>The limitation of faceting via encoding channels is that it cannot create complicated compound charts like facet views of layered charts, while this can be achieved with the more flexible <code>Facet</code>.</p><h3 id="Examples-3"><a class="docs-heading-anchor" href="#Examples-3">Examples</a><a class="docs-heading-anchor-permalink" href="#Examples-3" title="Permalink"></a></h3><p>See the <a href="../examples/#Facet">Facet</a> section of the Gallery for more examples.</p><h3 id="More-3"><a class="docs-heading-anchor" href="#More-3">More</a><a class="docs-heading-anchor-permalink" href="#More-3" title="Permalink"></a></h3><p>More about faceting in Vega-Lite&#39;s <a href="https://vega.github.io/vega-lite/docs/facet.html">Facet</a> documentation.</p><h2 id="multiview-resolution"><a class="docs-heading-anchor" href="#multiview-resolution">Resolution</a><a id="multiview-resolution-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-resolution" title="Permalink"></a></h2></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../composition_and_layering/">« Composition and Layering</a><a class="docs-footer-nextpage" href="../interactive/">Interactive Charts »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Wednesday 20 September 2023 17:44">Wednesday 20 September 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<p>The limitation of faceting via encoding channels is that it cannot create complicated compound charts like facet views of layered charts, while this can be achieved with the more flexible <code>Facet</code>.</p><h3 id="Examples-3"><a class="docs-heading-anchor" href="#Examples-3">Examples</a><a class="docs-heading-anchor-permalink" href="#Examples-3" title="Permalink"></a></h3><p>See the <a href="../examples/#Facet">Facet</a> section of the Gallery for more examples.</p><h3 id="More-3"><a class="docs-heading-anchor" href="#More-3">More</a><a class="docs-heading-anchor-permalink" href="#More-3" title="Permalink"></a></h3><p>More about faceting in Vega-Lite&#39;s <a href="https://vega.github.io/vega-lite/docs/facet.html">Facet</a> documentation.</p><h2 id="multiview-resolution"><a class="docs-heading-anchor" href="#multiview-resolution">Resolution</a><a id="multiview-resolution-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-resolution" title="Permalink"></a></h2></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../composition_and_layering/">« Composition and Layering</a><a class="docs-footer-nextpage" href="../interactive/">Interactive Charts »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 0.27.25 on <span class="colophon-date" title="Thursday 5 October 2023 18:27">Thursday 5 October 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
