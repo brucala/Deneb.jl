@@ -2,6 +2,7 @@
 # cover: assets/histogram_non_uniform.png
 # author: bruno
 # description: Histogram with non Uniform Binning
+# generate_cover: true
 # ---
 
 using Deneb

@@ -2,6 +2,7 @@
 # cover: assets/isotype_with_emoji.svg
 # author: bruno
 # description: Isotype Visualization with Emoji
+# generate_cover: true
 # ---
 
 using Deneb

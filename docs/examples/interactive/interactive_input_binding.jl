@@ -3,6 +3,7 @@
 # author: bruno
 # description: Interactive Input Binding
 # title: Interactive Input Binding (dropdown, range, checkbox, radio widgets)
+# generate_cover: true
 # ---
 
 using Deneb

@@ -2,6 +2,7 @@
 # cover: assets/interactive_pan_and_zoom.png
 # author: bruno
 # description: Interactive Pan and Zoom
+# generate_cover: true
 # ---
 
 using Deneb

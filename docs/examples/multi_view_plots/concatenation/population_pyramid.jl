@@ -2,6 +2,7 @@
 # cover: assets/population_pyramid.png
 # author: bruno
 # description: Population Pyramid
+# generate_cover: true
 # ---
 
 using Deneb

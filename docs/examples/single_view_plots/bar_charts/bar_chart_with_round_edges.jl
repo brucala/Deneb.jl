@@ -2,6 +2,7 @@
 # cover: assets/bar_chart_with_round_edges.png
 # author: bruno
 # description: Bar Chart with Round Edges
+# generate_cover: true
 # ---
 
 using Deneb

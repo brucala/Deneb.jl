@@ -2,6 +2,7 @@
 # cover: assets/layered_bar_chart.png
 # author: bruno
 # description: Layered Bar Chart
+# generate_cover: true
 # ---
 
 

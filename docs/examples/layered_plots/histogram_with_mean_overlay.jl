@@ -2,6 +2,7 @@
 # cover: assets/histogram_with_mean.png
 # author: bruno
 # description: Histogram with Global Mean Overlay
+# generate_cover: true
 # ---
 
 using Deneb

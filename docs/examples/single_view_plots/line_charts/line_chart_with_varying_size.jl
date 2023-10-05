@@ -2,6 +2,7 @@
 # cover: assets/line_chart_with_varying_size.png
 # author: bruno
 # description: Line Chart with Varying Size
+# generate_cover: true
 # ---
 
 using Deneb

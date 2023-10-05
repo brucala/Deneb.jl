@@ -2,6 +2,7 @@
 # cover: assets/bar_chart_highlight_select.png
 # author: bruno
 # description: Bar Chart with Highlighting on Hover and Selection on Click
+# generate_cover: true
 # ---
 
 using Deneb

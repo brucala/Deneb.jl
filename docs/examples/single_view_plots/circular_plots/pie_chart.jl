@@ -2,6 +2,7 @@
 # cover: assets/pie_chart.png
 # author: bruno
 # description: Pie Chart
+# generate_cover: true
 # ---
 
 using Deneb

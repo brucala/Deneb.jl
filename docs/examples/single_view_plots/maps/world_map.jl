@@ -2,6 +2,7 @@
 # cover: assets/world_map.png
 # author: bruno
 # description: World Map
+# generate_cover: true
 # ---
 
 using Deneb

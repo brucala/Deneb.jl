@@ -2,6 +2,7 @@
 # cover: assets/pie_chart_with_labels.png
 # author: bruno
 # description: Pie Chart with Labels
+# generate_cover: true
 # ---
 
 using Deneb

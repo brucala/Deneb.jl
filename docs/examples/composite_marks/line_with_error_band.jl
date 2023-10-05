@@ -2,6 +2,7 @@
 # cover: assets/error_band_ci.png
 # author: bruno
 # description: Line with Confidence Interval Band
+# generate_cover: true
 # ---
 
 using Deneb

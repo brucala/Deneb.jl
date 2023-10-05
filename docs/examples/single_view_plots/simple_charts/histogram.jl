@@ -2,6 +2,7 @@
 # cover: assets/histogram.png
 # author: bruno
 # description: Simple Histogram
+# generate_cover: true
 # ---
 
 using Deneb

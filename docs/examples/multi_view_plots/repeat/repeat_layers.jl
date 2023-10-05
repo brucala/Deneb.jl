@@ -2,6 +2,7 @@
 # cover: assets/repeated_layers.png
 # author: bruno
 # description: Line Chart with Repeated Layers
+# generate_cover: true
 # ---
 
 using Deneb

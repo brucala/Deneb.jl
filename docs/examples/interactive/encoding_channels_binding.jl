@@ -2,6 +2,7 @@
 # cover: assets/encoding_channels_binding.png
 # author: bruno
 # description: Encoding Channels Binding
+# generate_cover: true
 # ---
 
 # There is no direct way to map an encoding channel to a widget in order to

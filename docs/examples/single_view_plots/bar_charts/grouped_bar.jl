@@ -2,6 +2,7 @@
 # cover: assets/grouped_bar_chart.png
 # author: bruno
 # description: Grouped Bar Chart
+# generate_cover: true
 # ---
 
 using Deneb

@@ -5,6 +5,5 @@ Deneb = "b5a61f88-a05b-4725-9526-4eca17cec623"
 Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 
 [compat]
-# only 0.5.2 as 0.5.3 has an issue with cover files
-DemoCards = "=0.5.2"
-Documenter = "0.27"
+DemoCards = "0.5.3"
+Documenter = "1.1"

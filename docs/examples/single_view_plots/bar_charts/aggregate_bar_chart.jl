@@ -2,6 +2,7 @@
 # cover: assets/aggregate_bar_chart.png
 # author: bruno
 # description: Aggregate Bar Chart
+# generate_cover: true
 # ---
 
 using Deneb

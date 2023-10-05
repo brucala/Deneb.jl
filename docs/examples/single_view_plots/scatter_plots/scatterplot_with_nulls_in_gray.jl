@@ -2,6 +2,7 @@
 # cover: assets/scatter_null_in_gray.png
 # author: bruno
 # description: Scatterplot with Nulls in Gray
+# generate_cover: true
 # ---
 
 using Deneb

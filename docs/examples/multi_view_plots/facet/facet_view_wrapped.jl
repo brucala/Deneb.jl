@@ -2,6 +2,7 @@
 # cover: assets/wrapped_facet_view.png
 # author: bruno
 # description: Facet View (wrapped)
+# generate_cover: true
 # ---
 
 using Deneb

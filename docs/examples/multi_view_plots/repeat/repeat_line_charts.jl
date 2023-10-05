@@ -2,6 +2,7 @@
 # cover: assets/repeated_line_charts.png
 # author: bruno
 # description: Repeated Line Charts
+# generate_cover: true
 # ---
 
 using Deneb

@@ -2,6 +2,7 @@
 # cover: assets/line_chart_with_log_scale.png
 # author: bruno
 # description: Line Chart with Log Scale
+# generate_cover: true
 # ---
 
 using Deneb
