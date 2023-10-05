@@ -2,6 +2,7 @@
 # cover: assets/london_tubes.png
 # author: bruno
 # description: London Tube Lines
+# generate_cover: true
 # ---
 
 using Deneb

@@ -2,6 +2,7 @@
 # cover: assets/facet_rows.png
 # author: bruno
 # description: Facet Area (rows)
+# generate_cover: true
 # ---
 
 using Deneb

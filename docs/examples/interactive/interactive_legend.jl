@@ -2,6 +2,7 @@
 # cover: assets/interactive_legend.png
 # author: bruno
 # description: Interactive Legend
+# generate_cover: true
 # ---
 
 using Deneb

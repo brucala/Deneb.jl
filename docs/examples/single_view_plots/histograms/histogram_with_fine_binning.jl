@@ -2,6 +2,7 @@
 # cover: assets/histogram_fine_binning.png
 # author: bruno
 # description: Histogram with Fine Binning
+# generate_cover: true
 # ---
 
 using Deneb

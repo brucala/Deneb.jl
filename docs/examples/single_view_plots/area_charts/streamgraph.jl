@@ -2,6 +2,7 @@
 # cover: assets/streamgraph.png
 # author: bruno
 # description: Streamgraph
+# generate_cover: true
 # ---
 
 using Deneb

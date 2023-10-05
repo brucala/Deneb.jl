@@ -34,7 +34,6 @@ makedocs(
         "Gallery" => gallery,
         "API" => "api.md",
     ],
-    strict=true,
 )
 
 gallery_cb()

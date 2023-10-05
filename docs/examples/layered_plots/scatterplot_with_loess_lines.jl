@@ -2,6 +2,7 @@
 # cover: assets/scatterplot_with_loess_lines.png
 # author: bruno
 # description: Scatter Plot with LOESS lines
+# generate_cover: true
 # ---
 
 using Deneb

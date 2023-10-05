@@ -2,6 +2,7 @@
 # cover: assets/connected_scatter_plot.png
 # author: bruno
 # description: Connected Scatter Plot
+# generate_cover: true
 # ---
 
 using Deneb

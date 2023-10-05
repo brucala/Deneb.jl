@@ -2,6 +2,7 @@
 # cover: assets/earthquakes.png
 # author: bruno
 # description: Earthquakes
+# generate_cover: true
 # ---
 
 using Deneb

@@ -2,6 +2,7 @@
 # cover: assets/interactive_brush.png
 # author: bruno
 # description: Interactive Rectangular Brush
+# generate_cover: true
 # ---
 
 using Deneb

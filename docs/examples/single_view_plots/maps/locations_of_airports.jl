@@ -2,6 +2,7 @@
 # cover: assets/airports_count.png
 # author: bruno
 # description: Locations of US Airports
+# generate_cover: true
 # ---
 
 using Deneb

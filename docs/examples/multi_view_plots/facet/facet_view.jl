@@ -2,6 +2,7 @@
 # cover: assets/facet_view.png
 # author: bruno
 # description: Facet View
+# generate_cover: true
 # ---
 
 using Deneb

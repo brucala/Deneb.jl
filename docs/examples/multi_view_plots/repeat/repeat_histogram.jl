@@ -2,6 +2,7 @@
 # cover: assets/repeated_wrapped_histogram.png
 # author: bruno
 # description: Repeated Wrapped Histogram
+# generate_cover: true
 # ---
 
 using Deneb

@@ -2,6 +2,7 @@
 # cover: assets/cumulative_distribution.png
 # author: bruno
 # description: Cumulative Frequency Distribution
+# generate_cover: true
 # ---
 
 using Deneb

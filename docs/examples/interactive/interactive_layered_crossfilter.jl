@@ -2,6 +2,7 @@
 # cover: assets/interactive_crossfilter.png
 # author: bruno
 # description: Interactive Layered Crossfilter
+# generate_cover: true
 # ---
 
 using Deneb

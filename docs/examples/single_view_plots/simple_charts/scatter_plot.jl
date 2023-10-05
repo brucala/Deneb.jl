@@ -2,6 +2,7 @@
 # cover: assets/scatter_plot.png
 # author: bruno
 # description: Simple Scatter Plot
+# generate_cover: true
 # ---
 
 using Deneb

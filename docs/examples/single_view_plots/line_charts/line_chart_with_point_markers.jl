@@ -2,6 +2,7 @@
 # cover: assets/line_chart_with_point_markers.png
 # author: bruno
 # description: Line Chart with point markers
+# generate_cover: true
 # ---
 
 using Deneb

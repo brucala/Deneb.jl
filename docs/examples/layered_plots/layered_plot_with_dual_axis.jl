@@ -2,6 +2,7 @@
 # cover: assets/layer_dual_axis.png
 # author: bruno
 # description: Layered Plot with Dual Axis
+# generate_cover: true
 # ---
 
 using Deneb

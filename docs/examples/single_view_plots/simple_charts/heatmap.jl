@@ -2,6 +2,7 @@
 # cover: assets/heatmap.png
 # author: bruno
 # description: Simple Heatmap
+# generate_cover: true
 # ---
 
 using Deneb

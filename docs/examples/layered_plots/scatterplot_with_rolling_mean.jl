@@ -2,6 +2,7 @@
 # cover: assets/scatterplot_with_rolling_mean.png
 # author: bruno
 # description: Scatter Plot with Rolling Mean
+# generate_cover: true
 # ---
 
 using Deneb

@@ -2,6 +2,7 @@
 # cover: assets/comet_chart.png
 # author: bruno
 # description: Comet Chart
+# generate_cover: true
 # ---
 
 using Deneb

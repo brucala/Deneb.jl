@@ -2,6 +2,7 @@
 # cover: assets/line_chart_with_monotone_interpolation.png
 # author: bruno
 # description: Line Chart with Monotone Interpolation
+# generate_cover: true
 # ---
 
 using Deneb

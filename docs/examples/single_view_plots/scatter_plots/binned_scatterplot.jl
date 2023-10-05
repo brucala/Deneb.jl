@@ -2,6 +2,7 @@
 # cover: assets/binned_scatterplot.png
 # author: bruno
 # description: Binned Scatterplot
+# generate_cover: true
 # ---
 
 using Deneb
