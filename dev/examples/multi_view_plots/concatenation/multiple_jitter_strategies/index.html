@@ -25,23 +25,23 @@ uniform_jitter = transform_calculate(
 chart = base * [gaussian_jitter uniform_jitter] * resolve_scale(
     yOffset=:independent
 )</code></pre><style>
-  #vis-fdf1ba83-6ac4-4b04-b944-214c46dc7fc8.vega-embed {
+  #vis-859a6187-821a-43b9-9d30-98aa07e97385.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-fdf1ba83-6ac4-4b04-b944-214c46dc7fc8.vega-embed details,
-  #vis-fdf1ba83-6ac4-4b04-b944-214c46dc7fc8.vega-embed details summary {
+  #vis-859a6187-821a-43b9-9d30-98aa07e97385.vega-embed details,
+  #vis-859a6187-821a-43b9-9d30-98aa07e97385.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-fdf1ba83-6ac4-4b04-b944-214c46dc7fc8"></div>
+<div id="vis-859a6187-821a-43b9-9d30-98aa07e97385"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-fdf1ba83-6ac4-4b04-b944-214c46dc7fc8") {
-      outputDiv = document.getElementById("vis-fdf1ba83-6ac4-4b04-b944-214c46dc7fc8");
+    if (outputDiv.id !== "vis-859a6187-821a-43b9-9d30-98aa07e97385") {
+      outputDiv = document.getElementById("vis-859a6187-821a-43b9-9d30-98aa07e97385");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -89,4 +89,4 @@ chart = base * [gaussian_jitter uniform_jitter] * resolve_scale(
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/movies.json"},"hconcat":[{"title":"Normally distributed jitter","transform":[{"as":"jitter","calculate":"sqrt(-2*log(random()))*cos(2*PI*random())"}],"mark":{"type":"circle","size":8},"encoding":{"x":{"field":"IMDB Rating","type":"quantitative"},"y":{"field":"Major Genre","type":"nominal"},"yOffset":{"field":"jitter","type":"quantitative"},"color":{"field":"Major Genre","type":"nominal","legend":null}}},{"title":"Uniformly distributed jitter","transform":[{"as":"jitter","calculate":"random()"}],"mark":{"type":"circle","size":8},"encoding":{"x":{"field":"IMDB Rating","type":"quantitative"},"y":{"field":"Major Genre","type":"nominal","axis":null},"yOffset":{"field":"jitter","type":"quantitative"},"color":{"field":"Major Genre","type":"nominal","legend":null}}}],"resolve":{"scale":{"yOffset":"independent"}}}, {"mode": "vega-lite"});
 </script>
-<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.1.0 on <span class="colophon-date" title="Thursday 5 October 2023 20:18">Thursday 5 October 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.1.0 on <span class="colophon-date" title="Sunday 8 October 2023 15:46">Sunday 8 October 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
