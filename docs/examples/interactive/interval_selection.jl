@@ -2,7 +2,6 @@
 # cover: assets/interval_selection.png
 # author: bruno
 # description: Interval Selection
-# generate_cover: true
 # ---
 
 # !!! note "Tip"

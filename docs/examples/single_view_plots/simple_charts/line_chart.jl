@@ -2,7 +2,6 @@
 # cover: assets/line_chart.png
 # author: bruno
 # description: Simple Line Chart
-# generate_cover: true
 # ---
 
 using Deneb

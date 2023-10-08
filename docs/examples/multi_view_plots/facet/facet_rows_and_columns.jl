@@ -2,7 +2,6 @@
 # cover: assets/facet_rows_and_columns.png
 # author: bruno
 # description: Facet View (rows and columns)
-# generate_cover: true
 # ---
 
 using Deneb

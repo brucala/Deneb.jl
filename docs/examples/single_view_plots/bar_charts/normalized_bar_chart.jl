@@ -2,7 +2,6 @@
 # cover: assets/normalized_bar_chart.png
 # author: bruno
 # description: Normalized Bar Chart
-# generate_cover: true
 # ---
 
 using Deneb

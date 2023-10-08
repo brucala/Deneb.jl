@@ -2,7 +2,6 @@
 # cover: assets/boxplot.png
 # author: bruno
 # description: Box Plot (1.5 IQR)
-# generate_cover: true
 # ---
 
 using Deneb

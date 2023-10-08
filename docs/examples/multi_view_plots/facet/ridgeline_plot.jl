@@ -2,7 +2,6 @@
 # cover: assets/ridgeline_plot.png
 # author: bruno
 # description: Facet Area (rows)
-# generate_cover: true
 # ---
 
 using Deneb

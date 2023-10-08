@@ -2,7 +2,6 @@
 # cover: assets/interactive_index_chart.png
 # author: bruno
 # description: Interactive Index Chart
-# generate_cover: true
 # ---
 
 using Deneb

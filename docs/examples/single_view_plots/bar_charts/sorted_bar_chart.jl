@@ -2,7 +2,6 @@
 # cover: assets/sorted_bar_chart.png
 # author: bruno
 # description: Sorted Bar Chart
-# generate_cover: true
 # ---
 
 using Deneb

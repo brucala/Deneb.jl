@@ -2,7 +2,6 @@
 # cover: assets/stacked_density.png
 # author: bruno
 # description: Stacked Density Estimates
-# generate_cover: true
 # ---
 
 using Deneb

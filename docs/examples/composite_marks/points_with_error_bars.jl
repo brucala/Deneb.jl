@@ -2,7 +2,6 @@
 # cover: assets/error_bars_stdev.png
 # author: bruno
 # description: Error Bars with Standard Deviation
-# generate_cover: true
 # ---
 
 using Deneb

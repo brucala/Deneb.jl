@@ -2,7 +2,6 @@
 # cover: assets/interval_selection_dynamic_binning.png
 # author: bruno
 # description: Interval Selection with Dynamic Binning
-# generate_cover: true
 # ---
 
 # !!! note "Tip"

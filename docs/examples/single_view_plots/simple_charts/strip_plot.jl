@@ -2,7 +2,6 @@
 # cover: assets/strip_plot.png
 # author: bruno
 # description: Simple Strip Plot
-# generate_cover: true
 # ---
 
 using Deneb

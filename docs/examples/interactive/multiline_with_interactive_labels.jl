@@ -2,7 +2,6 @@
 # cover: assets/multiline_with_interactive_labels.png
 # author: bruno
 # description: Multiline with interactive labels
-# generate_cover: true
 # ---
 
 using Deneb

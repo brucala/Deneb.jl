@@ -2,7 +2,6 @@
 # cover: assets/stacked_area_chart.png
 # author: bruno
 # description: Simple Stacked Area Chart
-# generate_cover: true
 # ---
 
 using Deneb

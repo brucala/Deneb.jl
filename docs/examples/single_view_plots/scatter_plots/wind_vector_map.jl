@@ -2,7 +2,6 @@
 # cover: assets/wind_vector_map.png
 # author: bruno
 # description: Wind Vector Map
-# generate_cover: true
 # ---
 
 using Deneb

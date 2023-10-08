@@ -3,7 +3,6 @@
 # author: bruno
 # title: Interactive Dashboard with Cross Highlight
 # description: Interactive Dashboard with Cross Highlight
-# generate_cover: true
 # ---
 
 using Deneb

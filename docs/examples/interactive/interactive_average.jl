@@ -2,7 +2,6 @@
 # cover: assets/interactive_average.png
 # author: bruno
 # description: Interactive Average
-# generate_cover: true
 # ---
 
 using Deneb

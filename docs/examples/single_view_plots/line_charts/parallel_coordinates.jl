@@ -2,7 +2,6 @@
 # cover: assets/parallel_coordinates.png
 # author: bruno
 # description: Parallel Coordinates
-# generate_cover: true
 # ---
 
 using Deneb

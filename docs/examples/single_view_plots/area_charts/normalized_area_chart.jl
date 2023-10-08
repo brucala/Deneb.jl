@@ -2,7 +2,6 @@
 # cover: assets/normalized_area_chart.png
 # author: bruno
 # description: Normalized Area Chart
-# generate_cover: true
 # ---
 
 using Deneb

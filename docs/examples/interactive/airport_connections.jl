@@ -3,7 +3,6 @@
 # author: bruno
 # title: Connections among U.S. Airports
 # description: Connections among U.S. Airports
-# generate_cover: true
 # ---
 
 using Deneb

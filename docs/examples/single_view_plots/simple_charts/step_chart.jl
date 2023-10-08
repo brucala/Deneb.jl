@@ -2,7 +2,6 @@
 # cover: assets/step_chart.png
 # author: bruno
 # description: Simple Step Chart
-# generate_cover: true
 # ---
 
 using Deneb

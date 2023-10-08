@@ -2,7 +2,6 @@
 # cover: assets/repeated_scatterplot.png
 # author: bruno
 # description: Repeated Scatterplot Matrix
-# generate_cover: true
 # ---
 
 using Deneb

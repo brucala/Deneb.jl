@@ -2,7 +2,6 @@
 # cover: assets/2d_histogram_heatmap.png
 # author: bruno
 # description: 2D Histogram Heatmap
-# generate_cover: true
 # ---
 
 using Deneb

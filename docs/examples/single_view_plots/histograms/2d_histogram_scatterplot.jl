@@ -2,7 +2,6 @@
 # cover: assets/2d_histogram_scatterplot.png
 # author: bruno
 # description: 2D Histogram Scatterplot
-# generate_cover: true
 # ---
 
 using Deneb

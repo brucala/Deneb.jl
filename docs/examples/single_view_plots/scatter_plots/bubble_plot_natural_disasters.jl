@@ -2,7 +2,6 @@
 # cover: assets/bubble_plot_natural_disasters.png
 # author: bruno
 # description: Bubble Plot (Natural Disasters)
-# generate_cover: true
 # ---
 
 using Deneb

@@ -2,7 +2,6 @@
 # cover: assets/area_chart.png
 # author: bruno
 # description: Simple Area Chart
-# generate_cover: true
 # ---
 
 using Deneb

@@ -2,7 +2,6 @@
 # cover: assets/bubble_plot.png
 # author: bruno
 # description: Bubble Plot
-# generate_cover: true
 # ---
 
 using Deneb

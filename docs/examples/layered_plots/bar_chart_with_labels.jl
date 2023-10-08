@@ -2,7 +2,6 @@
 # cover: assets/bar_chart_with_labels.png
 # author: bruno
 # description: Bar Chart with Labels
-# generate_cover: true
 # ---
 
 using Deneb

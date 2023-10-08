@@ -2,7 +2,6 @@
 # cover: assets/strip_plot_with_jitter.png
 # author: bruno
 # description: Strip Plot with Jitter
-# generate_cover: true
 # ---
 
 using Deneb

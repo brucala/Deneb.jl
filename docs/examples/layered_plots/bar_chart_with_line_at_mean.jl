@@ -2,7 +2,6 @@
 # cover: assets/bar_chart_with_line_at_mean.png
 # author: bruno
 # description: Bar Chart with Line at Mean
-# generate_cover: true
 # ---
 
 using Deneb

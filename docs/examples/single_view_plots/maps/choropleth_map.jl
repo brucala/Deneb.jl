@@ -2,7 +2,6 @@
 # cover: assets/choropleth_map.png
 # author: bruno
 # description: Choropleth Map
-# generate_cover: true
 # ---
 
 using Deneb

@@ -2,7 +2,6 @@
 # cover: assets/scatterplot_with_polynomial_fit.png
 # author: bruno
 # description: Scatter Plot with Polynomial Fit
-# generate_cover: true
 # ---
 
 using Deneb

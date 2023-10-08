@@ -2,7 +2,6 @@
 # cover: assets/waterfall_chart.png
 # author: bruno
 # description: Waterfall Chart of Monthly Profit and Loss
-# generate_cover: true
 # ---
 
 using Deneb

@@ -2,7 +2,6 @@
 # cover: assets/radial_plot.png
 # author: bruno
 # description: radial plot
-# generate_cover: true
 # ---
 
 using Deneb

@@ -2,7 +2,6 @@
 # cover: assets/stacked_bar_chart.png
 # author: bruno
 # description: Stacked Bar Chart
-# generate_cover: true
 # ---
 
 using Deneb

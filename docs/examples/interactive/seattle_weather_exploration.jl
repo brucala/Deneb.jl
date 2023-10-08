@@ -2,7 +2,6 @@
 # cover: assets/seattle_weather.png
 # author: bruno
 # description: Seattle Weather Exploration
-# generate_cover: true
 # ---
 
 using Deneb

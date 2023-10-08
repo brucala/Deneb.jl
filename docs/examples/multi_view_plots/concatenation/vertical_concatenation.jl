@@ -2,7 +2,6 @@
 # cover: assets/vertical_concat.png
 # author: bruno
 # description: Vertical Concatenation
-# generate_cover: true
 # ---
 
 using Deneb

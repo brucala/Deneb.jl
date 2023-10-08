@@ -2,7 +2,6 @@
 # cover: assets/line_chart_with_varying_stroke.png
 # author: bruno
 # description: Line Chart with Varying stroke
-# generate_cover: true
 # ---
 
 using Deneb

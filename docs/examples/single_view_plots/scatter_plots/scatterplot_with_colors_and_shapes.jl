@@ -2,7 +2,6 @@
 # cover: assets/scatterplot_colors_shapes.png
 # author: bruno
 # description: Scatterplot with Colors and Shapes
-# generate_cover: true
 # ---
 
 using Deneb

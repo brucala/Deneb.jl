@@ -2,7 +2,6 @@
 # cover: assets/percent_of_total.png
 # author: bruno
 # description: Sorted Bar Chart
-# generate_cover: true
 # ---
 
 using Deneb

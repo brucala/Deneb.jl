@@ -2,7 +2,6 @@
 # cover: assets/marginal_histogram.png
 # author: bruno
 # description: Marginal Histogram
-# generate_cover: true
 # ---
 
 using Deneb

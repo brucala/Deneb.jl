@@ -2,7 +2,6 @@
 # cover: assets/maps_world_projections.png
 # author: bruno
 # description: World Projections
-# generate_cover: true
 # ---
 
 using Deneb

@@ -2,7 +2,6 @@
 # cover: assets/scatterplot_with_links.png
 # author: bruno
 # description: Scatterplot with External Links
-# generate_cover: true
 # ---
 
 using Deneb

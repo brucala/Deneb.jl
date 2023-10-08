@@ -2,7 +2,6 @@
 # cover: assets/layered_area_chart.png
 # author: bruno
 # description: Layered Area Chart
-# generate_cover: true
 # ---
 
 using Deneb

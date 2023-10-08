@@ -2,7 +2,6 @@
 # cover: assets/deneb_logo.png
 # author: bruno
 # title: Deneb.jl Logo
-# generate_cover: true
 # ---
 
 using Deneb

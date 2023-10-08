@@ -2,7 +2,6 @@
 # cover: assets/scatterplot_colors_sizes.png
 # author: bruno
 # description: Scatterplot with Colors and Sizes
-# generate_cover: true
 # ---
 
 using Deneb

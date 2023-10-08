@@ -2,7 +2,6 @@
 # cover: assets/multiline_interactive_highlight.png
 # author: bruno
 # description: Multiline interactive highlight
-# generate_cover: true
 # ---
 
 using Deneb

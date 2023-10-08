@@ -2,7 +2,6 @@
 # cover: assets/violin_plot.png
 # author: bruno
 # description: Violin PLot
-# generate_cover: true
 # ---
 
 using Deneb

@@ -2,7 +2,6 @@
 # cover: assets/donut_chart.png
 # author: bruno
 # description: Donut Chart
-# generate_cover: true
 # ---
 
 using Deneb

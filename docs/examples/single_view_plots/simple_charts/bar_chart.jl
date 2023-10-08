@@ -2,7 +2,6 @@
 # cover: assets/bar_chart.png
 # author: bruno
 # description: Simple Bar Chart
-# generate_cover: true
 # ---
 
 using Deneb
