@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Interactive pan and zoom · Deneb.jl</title><meta name="title" content="Interactive pan and zoom · Deneb.jl"/><meta property="og:title" content="Interactive pan and zoom · Deneb.jl"/><meta property="twitter:title" content="Interactive pan and zoom · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../../assets/documenter.js"></script><script src="../../../search_index.js"></script><script src="../../../siteinfo.js"></script><script src="../../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../../assets/themeswap.js"></script><link href="../../../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../../../democards/gridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../../"><img src="../../../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../../../installation/">Installation</a></li><li><a class="tocitem" href="../../../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../../../intro/">Introduction</a></li><li><a class="tocitem" href="../../../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../../../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../../../multiview/">Multi-views</a></li><li><a class="tocitem" href="../../../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../../../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../../../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../../">Gallery</a></li><li><a class="tocitem" href="../../../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Interactive pan and zoom</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Interactive pan and zoom</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/examples/interactive/interactive_pan_and_zoom.jl" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Interactive-pan-and-zoom"><a class="docs-heading-anchor" href="#Interactive-pan-and-zoom">Interactive pan and zoom</a><a id="Interactive-pan-and-zoom-1"></a><a class="docs-heading-anchor-permalink" href="#Interactive-pan-and-zoom" title="Permalink"></a></h1><p><a href="../interactive_pan_and_zoom.jl"><img src="https://img.shields.io/badge/download-julia-brightgreen.svg" alt="Source code"/></a> <img src="https://img.shields.io/badge/Author-bruno-blue" alt="Author"/></p><pre><code class="language-julia hljs">using Deneb
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Interactive pan and zoom · Deneb.jl</title><meta name="title" content="Interactive pan and zoom · Deneb.jl"/><meta property="og:title" content="Interactive pan and zoom · Deneb.jl"/><meta property="twitter:title" content="Interactive pan and zoom · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../../assets/documenter.js"></script><script src="../../../search_index.js"></script><script src="../../../siteinfo.js"></script><script src="../../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../../assets/themeswap.js"></script><link href="../../../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../../../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../../"><img src="../../../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../../../installation/">Installation</a></li><li><a class="tocitem" href="../../../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../../../intro/">Introduction</a></li><li><a class="tocitem" href="../../../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../../../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../../../multiview/">Multi-views</a></li><li><a class="tocitem" href="../../../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../../../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../../../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../../">Gallery</a></li><li><a class="tocitem" href="../../../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Interactive pan and zoom</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Interactive pan and zoom</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/examples/interactive/interactive_pan_and_zoom.jl" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Interactive-pan-and-zoom"><a class="docs-heading-anchor" href="#Interactive-pan-and-zoom">Interactive pan and zoom</a><a id="Interactive-pan-and-zoom-1"></a><a class="docs-heading-anchor-permalink" href="#Interactive-pan-and-zoom" title="Permalink"></a></h1><p><a href="../interactive_pan_and_zoom.jl"><img src="https://img.shields.io/badge/download-julia-brightgreen.svg" alt="Source code"/></a> <img src="https://img.shields.io/badge/Author-bruno-blue" alt="Author"/></p><pre><code class="language-julia hljs">using Deneb
 
 data = Data(url=&quot;https://vega.github.io/vega-datasets/data/cars.json&quot;)
 
@@ -10,23 +10,23 @@ chart = data * Mark(:circle, clip=true) * Encoding(
 )
 
 chart * interactive_scales()</code></pre><style>
-  #vis-4dbc544e-79d4-4bcd-a501-24fc605167f6.vega-embed {
+  #vis-b500ecb6-ed4a-48c5-ac14-18200f1ace97.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-4dbc544e-79d4-4bcd-a501-24fc605167f6.vega-embed details,
-  #vis-4dbc544e-79d4-4bcd-a501-24fc605167f6.vega-embed details summary {
+  #vis-b500ecb6-ed4a-48c5-ac14-18200f1ace97.vega-embed details,
+  #vis-b500ecb6-ed4a-48c5-ac14-18200f1ace97.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-4dbc544e-79d4-4bcd-a501-24fc605167f6"></div>
+<div id="vis-b500ecb6-ed4a-48c5-ac14-18200f1ace97"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-4dbc544e-79d4-4bcd-a501-24fc605167f6") {
-      outputDiv = document.getElementById("vis-4dbc544e-79d4-4bcd-a501-24fc605167f6");
+    if (outputDiv.id !== "vis-b500ecb6-ed4a-48c5-ac14-18200f1ace97") {
+      outputDiv = document.getElementById("vis-b500ecb6-ed4a-48c5-ac14-18200f1ace97");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -75,23 +75,23 @@ chart * interactive_scales()</code></pre><style>
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25}},"params":[{"name":"interactive_scales","select":"interval","bind":"scales"}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"circle","clip":true},"encoding":{"x":{"field":"Horsepower","type":"quantitative","scale":{"domain":[75,150]}},"y":{"field":"Miles_per_Gallon","type":"quantitative","scale":{"domain":[20,40]}},"size":{"field":"Cylinders","type":"quantitative"}}}, {"mode": "vega-lite"});
 </script>
 <h2 id="Bind-x-encoding-only"><a class="docs-heading-anchor" href="#Bind-x-encoding-only">Bind <code>x</code> encoding only</a><a id="Bind-x-encoding-only-1"></a><a class="docs-heading-anchor-permalink" href="#Bind-x-encoding-only" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart * interactive_scales(bindy=false)</code></pre><style>
-  #vis-d15c112b-3a8d-4fd7-afe8-15beaf889324.vega-embed {
+  #vis-b1433a70-de3f-4e69-b56c-d28e7289334e.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-d15c112b-3a8d-4fd7-afe8-15beaf889324.vega-embed details,
-  #vis-d15c112b-3a8d-4fd7-afe8-15beaf889324.vega-embed details summary {
+  #vis-b1433a70-de3f-4e69-b56c-d28e7289334e.vega-embed details,
+  #vis-b1433a70-de3f-4e69-b56c-d28e7289334e.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-d15c112b-3a8d-4fd7-afe8-15beaf889324"></div>
+<div id="vis-b1433a70-de3f-4e69-b56c-d28e7289334e"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-d15c112b-3a8d-4fd7-afe8-15beaf889324") {
-      outputDiv = document.getElementById("vis-d15c112b-3a8d-4fd7-afe8-15beaf889324");
+    if (outputDiv.id !== "vis-b1433a70-de3f-4e69-b56c-d28e7289334e") {
+      outputDiv = document.getElementById("vis-b1433a70-de3f-4e69-b56c-d28e7289334e");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -140,23 +140,23 @@ chart * interactive_scales()</code></pre><style>
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25}},"params":[{"name":"interactive_scales_x","select":{"type":"interval","encodings":["x"]},"bind":"scales"}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"circle","clip":true},"encoding":{"x":{"field":"Horsepower","type":"quantitative","scale":{"domain":[75,150]}},"y":{"field":"Miles_per_Gallon","type":"quantitative","scale":{"domain":[20,40]}},"size":{"field":"Cylinders","type":"quantitative"}}}, {"mode": "vega-lite"});
 </script>
 <h2 id="Bind-y-encoding-only"><a class="docs-heading-anchor" href="#Bind-y-encoding-only">Bind <code>y</code> encoding only</a><a id="Bind-y-encoding-only-1"></a><a class="docs-heading-anchor-permalink" href="#Bind-y-encoding-only" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart * interactive_scales(bindx=false)</code></pre><style>
-  #vis-dc69d918-7bc7-4e53-b8d5-33c626d96779.vega-embed {
+  #vis-b7860dce-65ce-4a04-bf03-b68be25437e2.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-dc69d918-7bc7-4e53-b8d5-33c626d96779.vega-embed details,
-  #vis-dc69d918-7bc7-4e53-b8d5-33c626d96779.vega-embed details summary {
+  #vis-b7860dce-65ce-4a04-bf03-b68be25437e2.vega-embed details,
+  #vis-b7860dce-65ce-4a04-bf03-b68be25437e2.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-dc69d918-7bc7-4e53-b8d5-33c626d96779"></div>
+<div id="vis-b7860dce-65ce-4a04-bf03-b68be25437e2"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-dc69d918-7bc7-4e53-b8d5-33c626d96779") {
-      outputDiv = document.getElementById("vis-dc69d918-7bc7-4e53-b8d5-33c626d96779");
+    if (outputDiv.id !== "vis-b7860dce-65ce-4a04-bf03-b68be25437e2") {
+      outputDiv = document.getElementById("vis-b7860dce-65ce-4a04-bf03-b68be25437e2");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -205,23 +205,23 @@ chart * interactive_scales()</code></pre><style>
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25}},"params":[{"name":"interactive_scales_y","select":{"type":"interval","encodings":["y"]},"bind":"scales"}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"circle","clip":true},"encoding":{"x":{"field":"Horsepower","type":"quantitative","scale":{"domain":[75,150]}},"y":{"field":"Miles_per_Gallon","type":"quantitative","scale":{"domain":[20,40]}},"size":{"field":"Cylinders","type":"quantitative"}}}, {"mode": "vega-lite"});
 </script>
 <h2 id="Hold-shift-for-y-encoding"><a class="docs-heading-anchor" href="#Hold-shift-for-y-encoding">Hold shift for <code>y</code> encoding</a><a id="Hold-shift-for-y-encoding-1"></a><a class="docs-heading-anchor-permalink" href="#Hold-shift-for-y-encoding" title="Permalink"></a></h2><pre><code class="language-julia hljs">chart * interactive_scales(shift_on_y=true)</code></pre><style>
-  #vis-501c6a0d-7a0b-41d2-a9d5-1d910698d686.vega-embed {
+  #vis-ebf71ef0-93b6-450d-808c-ddf9361cdd90.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-501c6a0d-7a0b-41d2-a9d5-1d910698d686.vega-embed details,
-  #vis-501c6a0d-7a0b-41d2-a9d5-1d910698d686.vega-embed details summary {
+  #vis-ebf71ef0-93b6-450d-808c-ddf9361cdd90.vega-embed details,
+  #vis-ebf71ef0-93b6-450d-808c-ddf9361cdd90.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-501c6a0d-7a0b-41d2-a9d5-1d910698d686"></div>
+<div id="vis-ebf71ef0-93b6-450d-808c-ddf9361cdd90"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-501c6a0d-7a0b-41d2-a9d5-1d910698d686") {
-      outputDiv = document.getElementById("vis-501c6a0d-7a0b-41d2-a9d5-1d910698d686");
+    if (outputDiv.id !== "vis-ebf71ef0-93b6-450d-808c-ddf9361cdd90") {
+      outputDiv = document.getElementById("vis-ebf71ef0-93b6-450d-808c-ddf9361cdd90");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -269,4 +269,4 @@ chart * interactive_scales()</code></pre><style>
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25}},"params":[{"name":"interactive_scales_x","select":{"type":"interval","encodings":["x"],"zoom":"wheel![!event.shiftKey]","translate":"[mousedown[!event.shiftKey], mouseup] > mousemove"},"bind":"scales"},{"name":"interactive_scales_y","select":{"type":"interval","encodings":["y"],"zoom":"wheel![event.shiftKey]","translate":"[mousedown[event.shiftKey], mouseup] > mousemove"},"bind":"scales"}],"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"circle","clip":true},"encoding":{"x":{"field":"Horsepower","type":"quantitative","scale":{"domain":[75,150]}},"y":{"field":"Miles_per_Gallon","type":"quantitative","scale":{"domain":[20,40]}},"size":{"field":"Cylinders","type":"quantitative"}}}, {"mode": "vega-lite"});
 </script>
-<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.1.0 on <span class="colophon-date" title="Wednesday 11 October 2023 08:24">Wednesday 11 October 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.1.0 on <span class="colophon-date" title="Wednesday 11 October 2023 08:42">Wednesday 11 October 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
