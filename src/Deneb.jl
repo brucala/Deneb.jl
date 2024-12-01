@@ -20,7 +20,7 @@ include("themes.jl")
 export
     # api
     spec, vlspec,
-    Data, Mark, Encoding, Transform, Params, Facet, Repeat,
+    Data, Datasets, Mark, Encoding, Transform, Params, Facet, Repeat,
     field, layout, projection,
     resolve, resolve_scale, resolve_axis, resolve_legend,
     config, title, expr, param,
@@ -40,5 +40,24 @@ export
     save, # json, html,
     # themes
     set_theme!, print_theme
+
+
+# Graphs extension
+
+"""
+    plotgraph
+
+Method from GraphsExt, requires Graphs and NetworkLayout
+"""
+function plotgraph end
+
+"""
+    grapdata
+
+Method from GraphsExt, requires Graphs and NetworkLayout
+"""
+function graph_data end
+
+export plotgraph, graph_data
 
 end # module

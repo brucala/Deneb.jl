@@ -27,6 +27,7 @@ makedocs(
             "Multi-views" => "multiview.md",
             "Interactive Charts" => "interactive.md",
             "Data Transformations" => "transformations.md",
+            #"Graphs" => "graphs.jl",
             # "Customization" => "customization.md",
             "Themes" => "themes.md",
             # "Internals" => "internals.md",

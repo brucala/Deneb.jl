@@ -86,8 +86,21 @@ struct TopLevelProperties <: PropertiesSpec
     autosize::Spec
     config::Spec  # TODO: create dedicated type?
     usermeta::Spec
+    datasets::Spec
 end
 TopLevelProperties(; spec...) = ConstrainedSpec(TopLevelProperties; spec...)
+
+#=
+"""
+Spec containing the `datasets` property of viewable specifications.
+https://vega.github.io/vega-lite/docs/data.html
+"""
+struct DatasetsSpec <: ConstrainedSpec
+    datasets::Spec
+end
+DatasetsSpec(; datasets=nothing, kw...) = DatasetsSpec(Spec(datasets))
+rawspec(s::DatasetsSpec) = rawspec(s.datasets)
+=#
 
 """
 Vega-Lite specification.
@@ -95,6 +108,7 @@ https://vega.github.io/vega-lite/docs/spec.html
 """
 struct VegaLiteSpec{T<:ViewableSpec} <: ConstrainedSpec
     toplevel::TopLevelProperties
+    #datasets::DatasetsSpec
     viewspec::T
 end
 VegaLiteSpec(; spec...) = ConstrainedSpec(VegaLiteSpec; spec...)
@@ -135,18 +149,17 @@ DataSpec(s::Union{Spec, DataSpec}) = DataSpec(rawspec(s))
 DataSpec(; data=nothing, kw...) = DataSpec(data)
 function rawspec(s::DataSpec)
     !Tables.istable(s.data) && return s.data
-    Tables.isrowtable(s.data) && return (values=s.data, )
     # already in the VegaLite shape or a data generators
-    if s.data isa NamedTuple && (
-            haskey(s.data, :values)
-            || haskey(s.data, :graticule)
-            || haskey(s.data, :sequence)
-            || haskey(s.data, :sphere)
-    )
-        return s.data
-    end
+    s.data isa NamedTuple && (
+        haskey(s.data, :values)
+        || haskey(s.data, :graticule)
+        || haskey(s.data, :sequence)
+        || haskey(s.data, :sphere)
+    ) && return s.data
+    Tables.isrowtable(s.data) && return (values=s.data, )
     return (values=Tables.rowtable(s.data), )
 end
+
 
 """
 Spec containing the `mark` property of a Single-View spec.

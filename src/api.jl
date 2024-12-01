@@ -33,6 +33,7 @@ vlspec(s::Spec) = VegaLiteSpec(; rawspec(s)...)
 vlspec(s::NamedTuple) = VegaLiteSpec(; s...)
 vlspec(; s...) = VegaLiteSpec(; s...)
 vlspec(s::ConstrainedSpec) = VegaLiteSpec(; rawspec(s)...)
+#vlspec(s::DatasetsSpec) = VegaLiteSpec(datasets = rawspec(s))
 vlspec(s::DataSpec) = VegaLiteSpec(data = rawspec(s))
 vlspec(s::TransformSpec) = VegaLiteSpec(transform = rawspec(s))
 vlspec(s::ParamsSpec) = VegaLiteSpec(params = rawspec(s))
@@ -64,6 +65,22 @@ function Data(generator::SymbolOrString; kw...)
     kw = isempty(kw) ? true : kw
     Data(NamedTuple{(generator,)}((kw, )))
 end
+Data(key::SymbolOrString, value::SymbolOrString) = Data(NamedTuple{(key,)}((value, )))
+
+"""
+    Datasets(; datasets...)
+
+Creates a top-level `dataspec` with the given datasets (values) and names (keywords).
+The datasets can be given as tables that supports the [Tables.jl interface](https://github.com/JuliaData/Tables.jl).
+"""
+function Datasets(; datasets...)
+    names = keys(datasets)
+    tables = (_rowtable(t) for t in values(datasets))
+    return vlspec(datasets=NamedTuple(zip(names, tables)))
+    #return DatasetsSpec(spec(NamedTuple(zip(names, tables))))
+end
+
+_rowtable(table) = Tables.istable(table) && !Tables.isrowtable(table) ? Tables.rowtable(table) : table
 
 """
     Transform(; spec...)

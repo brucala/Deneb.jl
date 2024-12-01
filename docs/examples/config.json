@@ -8,6 +8,7 @@
         "composite_marks",
         "multi_view_plots",
         "layered_plots",
-        "interactive"
+        "interactive",
+        "graphs",
     ]
 }
