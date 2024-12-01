@@ -9,6 +9,6 @@
         "multi_view_plots",
         "layered_plots",
         "interactive",
-        "graphs",
+        "graphs"
     ]
 }
