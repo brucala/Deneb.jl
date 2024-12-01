@@ -9,7 +9,7 @@ jobs:
       matrix:
         julia-version:
           - '1'  # latest release
-          - '1.6' # LTS
+          - '1.9' # Required by extensions
     steps:
       - uses: actions/checkout@v3
       - uses: julia-actions/setup-julia@latest
