@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Multi-views · Deneb.jl</title><meta name="title" content="Multi-views · Deneb.jl"/><meta property="og:title" content="Multi-views · Deneb.jl"/><meta property="twitter:title" content="Multi-views · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../intro/">Introduction</a></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../composition_and_layering/">Composition and Layering</a></li><li class="is-active"><a class="tocitem" href>Multi-views</a><ul class="internal"><li><a class="tocitem" href="#multiview-concat"><span>Concatenation</span></a></li><li><a class="tocitem" href="#multiview-repeat"><span>Repeat</span></a></li><li><a class="tocitem" href="#multiview-facet"><span>Facet</span></a></li><li><a class="tocitem" href="#multiview-resolution"><span>Resolution</span></a></li></ul></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">User Guide</a></li><li class="is-active"><a href>Multi-views</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Multi-views</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/multiview.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="multiview"><a class="docs-heading-anchor" href="#multiview">Multi-view specs</a><a id="multiview-1"></a><a class="docs-heading-anchor-permalink" href="#multiview" title="Permalink"></a></h1><p>With Vega-Lite, you can not only create single view and layered visualizations, but also concatenate, repeat and facet these views into <a href="https://vega.github.io/vega-lite/docs/composition.html">multiview displays</a>.</p><h2 id="multiview-concat"><a class="docs-heading-anchor" href="#multiview-concat">Concatenation</a><a id="multiview-concat-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-concat" title="Permalink"></a></h2><p>To place view&#39;s side-by-side, Deneb.jl provides the <a href="../api/#Base.hcat-Tuple{Vararg{Deneb.VegaLiteSpec, N} where N}"><code>Base.hcat</code></a>, <a href="../api/#Base.vcat-Tuple{Vararg{Deneb.VegaLiteSpec, N} where N}"><code>Base.vcat</code></a> and <a href="../api/#Deneb.concat-Tuple{Vararg{Deneb.VegaLiteSpec, N} where N}"><code>concat</code></a> methods respectively for horizontal, vertical and general (wrappable) concatenation of views. Square braces <code>[]</code> can also be conveniently used for concatenation.</p><pre><code class="language-julia hljs">using Deneb
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Multi-views · Deneb.jl</title><meta name="title" content="Multi-views · Deneb.jl"/><meta property="og:title" content="Multi-views · Deneb.jl"/><meta property="twitter:title" content="Multi-views · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../intro/">Introduction</a></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../composition_and_layering/">Composition and Layering</a></li><li class="is-active"><a class="tocitem" href>Multi-views</a><ul class="internal"><li><a class="tocitem" href="#multiview-concat"><span>Concatenation</span></a></li><li><a class="tocitem" href="#multiview-repeat"><span>Repeat</span></a></li><li><a class="tocitem" href="#multiview-facet"><span>Facet</span></a></li><li><a class="tocitem" href="#multiview-resolution"><span>Resolution</span></a></li></ul></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">User Guide</a></li><li class="is-active"><a href>Multi-views</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Multi-views</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/multiview.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="multiview"><a class="docs-heading-anchor" href="#multiview">Multi-view specs</a><a id="multiview-1"></a><a class="docs-heading-anchor-permalink" href="#multiview" title="Permalink"></a></h1><p>With Vega-Lite, you can not only create single view and layered visualizations, but also concatenate, repeat and facet these views into <a href="https://vega.github.io/vega-lite/docs/composition.html">multiview displays</a>.</p><h2 id="multiview-concat"><a class="docs-heading-anchor" href="#multiview-concat">Concatenation</a><a id="multiview-concat-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-concat" title="Permalink"></a></h2><p>To place view&#39;s side-by-side, Deneb.jl provides the <a href="../api/#Base.hcat-Tuple{Vararg{Deneb.VegaLiteSpec}}"><code>Base.hcat</code></a>, <a href="../api/#Base.vcat-Tuple{Vararg{Deneb.VegaLiteSpec}}"><code>Base.vcat</code></a> and <a href="../api/#Deneb.concat-Tuple{Vararg{Deneb.VegaLiteSpec}}"><code>concat</code></a> methods respectively for horizontal, vertical and general (wrappable) concatenation of views. Square braces <code>[]</code> can also be conveniently used for concatenation.</p><pre><code class="language-julia hljs">using Deneb
 data = Data(url=&quot;https://vega.github.io/vega-datasets/data/weather.csv&quot;)
 base = transform_filter(&quot;datum.location === &#39;Seattle&#39;&quot;) * vlspec(height=200)
 bar = Mark(:bar) * Encoding(&quot;month(date):O&quot;, &quot;mean(precipitation):Q&quot;)
@@ -10,23 +10,23 @@ bubble = Mark(:point) * Encoding(
 )
 
 data * base * [bar bubble]</code></pre><style>
-  #vis-6a6fd44a-cfc8-4241-bf40-7e34429a3063.vega-embed {
+  #vis-721b8831-77e8-4905-bdc8-556d491f9225.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-6a6fd44a-cfc8-4241-bf40-7e34429a3063.vega-embed details,
-  #vis-6a6fd44a-cfc8-4241-bf40-7e34429a3063.vega-embed details summary {
+  #vis-721b8831-77e8-4905-bdc8-556d491f9225.vega-embed details,
+  #vis-721b8831-77e8-4905-bdc8-556d491f9225.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-6a6fd44a-cfc8-4241-bf40-7e34429a3063"></div>
+<div id="vis-721b8831-77e8-4905-bdc8-556d491f9225"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-6a6fd44a-cfc8-4241-bf40-7e34429a3063") {
-      outputDiv = document.getElementById("vis-6a6fd44a-cfc8-4241-bf40-7e34429a3063");
+    if (outputDiv.id !== "vis-721b8831-77e8-4905-bdc8-556d491f9225") {
+      outputDiv = document.getElementById("vis-721b8831-77e8-4905-bdc8-556d491f9225");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -75,23 +75,23 @@ data * base * [bar bubble]</code></pre><style>
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"transform":[{"filter":"datum.location === 'Seattle'"}],"data":{"url":"https://vega.github.io/vega-datasets/data/weather.csv"},"hconcat":[{"mark":{"type":"bar"},"encoding":{"x":{"timeUnit":"month","field":"date","type":"ordinal"},"y":{"aggregate":"mean","field":"precipitation","type":"quantitative"}},"height":200},{"mark":{"type":"point"},"encoding":{"x":{"field":"temp_min","type":"quantitative","bin":true},"y":{"field":"temp_max","type":"quantitative","bin":true},"size":{"aggregate":"count"}},"height":200}]}, {"mode": "vega-lite"});
 </script>
 <pre><code class="language-julia hljs">data * base * [bar; bubble]</code></pre><style>
-  #vis-dfad0f42-40b3-4006-9547-dc87dc75ed88.vega-embed {
+  #vis-63a6b2b3-71e9-4599-aef8-4bc7088f4941.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-dfad0f42-40b3-4006-9547-dc87dc75ed88.vega-embed details,
-  #vis-dfad0f42-40b3-4006-9547-dc87dc75ed88.vega-embed details summary {
+  #vis-63a6b2b3-71e9-4599-aef8-4bc7088f4941.vega-embed details,
+  #vis-63a6b2b3-71e9-4599-aef8-4bc7088f4941.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-dfad0f42-40b3-4006-9547-dc87dc75ed88"></div>
+<div id="vis-63a6b2b3-71e9-4599-aef8-4bc7088f4941"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-dfad0f42-40b3-4006-9547-dc87dc75ed88") {
-      outputDiv = document.getElementById("vis-dfad0f42-40b3-4006-9547-dc87dc75ed88");
+    if (outputDiv.id !== "vis-63a6b2b3-71e9-4599-aef8-4bc7088f4941") {
+      outputDiv = document.getElementById("vis-63a6b2b3-71e9-4599-aef8-4bc7088f4941");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -141,23 +141,23 @@ data * base * [bar bubble]</code></pre><style>
 </script>
 <pre><code class="language-julia hljs">line = Mark(:line) * Encoding(&quot;month(date):T&quot;, &quot;mean(wind):Q&quot;)
 data * base * concat(bar, bubble, line, columns=2)</code></pre><style>
-  #vis-daa2c666-339e-4e77-832d-e82ed28c5871.vega-embed {
+  #vis-1b6cb25e-01f7-4f0c-aea1-70d51e3bd19f.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-daa2c666-339e-4e77-832d-e82ed28c5871.vega-embed details,
-  #vis-daa2c666-339e-4e77-832d-e82ed28c5871.vega-embed details summary {
+  #vis-1b6cb25e-01f7-4f0c-aea1-70d51e3bd19f.vega-embed details,
+  #vis-1b6cb25e-01f7-4f0c-aea1-70d51e3bd19f.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-daa2c666-339e-4e77-832d-e82ed28c5871"></div>
+<div id="vis-1b6cb25e-01f7-4f0c-aea1-70d51e3bd19f"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-daa2c666-339e-4e77-832d-e82ed28c5871") {
-      outputDiv = document.getElementById("vis-daa2c666-339e-4e77-832d-e82ed28c5871");
+    if (outputDiv.id !== "vis-1b6cb25e-01f7-4f0c-aea1-70d51e3bd19f") {
+      outputDiv = document.getElementById("vis-1b6cb25e-01f7-4f0c-aea1-70d51e3bd19f");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -205,7 +205,7 @@ data * base * concat(bar, bubble, line, columns=2)</code></pre><style>
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"transform":[{"filter":"datum.location === 'Seattle'"}],"columns":2,"data":{"url":"https://vega.github.io/vega-datasets/data/weather.csv"},"concat":[{"mark":{"type":"bar"},"encoding":{"x":{"timeUnit":"month","field":"date","type":"ordinal"},"y":{"aggregate":"mean","field":"precipitation","type":"quantitative"}},"height":200},{"mark":{"type":"point"},"encoding":{"x":{"field":"temp_min","type":"quantitative","bin":true},"y":{"field":"temp_max","type":"quantitative","bin":true},"size":{"aggregate":"count"}},"height":200},{"mark":{"type":"line"},"encoding":{"x":{"timeUnit":"month","field":"date","type":"temporal"},"y":{"aggregate":"mean","field":"wind","type":"quantitative"}},"height":200}]}, {"mode": "vega-lite"});
 </script>
-<h3 id="Examples"><a class="docs-heading-anchor" href="#Examples">Examples</a><a id="Examples-1"></a><a class="docs-heading-anchor-permalink" href="#Examples" title="Permalink"></a></h3><p>See the <a href="../examples/#Concatenation">Concatenation</a> section of the Gallery for more examples.</p><h3 id="More"><a class="docs-heading-anchor" href="#More">More</a><a id="More-1"></a><a class="docs-heading-anchor-permalink" href="#More" title="Permalink"></a></h3><p>More about concatenation in Vega-Lite&#39;s <a href="https://vega.github.io/vega-lite/docs/concat.html">Concatenation</a> documentation.</p><h2 id="multiview-repeat"><a class="docs-heading-anchor" href="#multiview-repeat">Repeat</a><a id="multiview-repeat-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-repeat" title="Permalink"></a></h2><p>Often, you may concatenate similar views where the only difference is the field that is used in an encoding. The <code>repeat</code> operator is a shortcut that creates a view for each entry in an array of fields. </p><p>In Deneb.jl, this can be achieved using <a href="../api/#Deneb.Repeat-Tuple{Vector{var&quot;#s4&quot;} where var&quot;#s4&quot;&lt;:Union{AbstractString, Symbol}}"><code>Repeat</code></a>. </p><pre><code class="language-julia hljs">Data(data) * Mark(:line) * Repeat(
+<h3 id="Examples"><a class="docs-heading-anchor" href="#Examples">Examples</a><a id="Examples-1"></a><a class="docs-heading-anchor-permalink" href="#Examples" title="Permalink"></a></h3><p>See the <a href="../examples/#Concatenation">Concatenation</a> section of the Gallery for more examples.</p><h3 id="More"><a class="docs-heading-anchor" href="#More">More</a><a id="More-1"></a><a class="docs-heading-anchor-permalink" href="#More" title="Permalink"></a></h3><p>More about concatenation in Vega-Lite&#39;s <a href="https://vega.github.io/vega-lite/docs/concat.html">Concatenation</a> documentation.</p><h2 id="multiview-repeat"><a class="docs-heading-anchor" href="#multiview-repeat">Repeat</a><a id="multiview-repeat-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-repeat" title="Permalink"></a></h2><p>Often, you may concatenate similar views where the only difference is the field that is used in an encoding. The <code>repeat</code> operator is a shortcut that creates a view for each entry in an array of fields. </p><p>In Deneb.jl, this can be achieved using <a href="../examples/#Repeat"><code>Repeat</code></a>. </p><pre><code class="language-julia hljs">Data(data) * Mark(:line) * Repeat(
     column = [&quot;temp_max&quot;, &quot;precipitation&quot;, &quot;wind&quot;]
 ) * Encoding(
     x=&quot;month(date)&quot;,
@@ -214,23 +214,23 @@ data * base * concat(bar, bubble, line, columns=2)</code></pre><style>
 ) * vlspec(
     height=200, width=200
 )</code></pre><style>
-  #vis-c14f375f-ed40-4f7b-a85b-06bfa2dfc4b0.vega-embed {
+  #vis-3a8ba407-b880-452e-93f1-340a25df0973.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-c14f375f-ed40-4f7b-a85b-06bfa2dfc4b0.vega-embed details,
-  #vis-c14f375f-ed40-4f7b-a85b-06bfa2dfc4b0.vega-embed details summary {
+  #vis-3a8ba407-b880-452e-93f1-340a25df0973.vega-embed details,
+  #vis-3a8ba407-b880-452e-93f1-340a25df0973.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-c14f375f-ed40-4f7b-a85b-06bfa2dfc4b0"></div>
+<div id="vis-3a8ba407-b880-452e-93f1-340a25df0973"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-c14f375f-ed40-4f7b-a85b-06bfa2dfc4b0") {
-      outputDiv = document.getElementById("vis-c14f375f-ed40-4f7b-a85b-06bfa2dfc4b0");
+    if (outputDiv.id !== "vis-3a8ba407-b880-452e-93f1-340a25df0973") {
+      outputDiv = document.getElementById("vis-3a8ba407-b880-452e-93f1-340a25df0973");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -278,7 +278,7 @@ data * base * concat(bar, bubble, line, columns=2)</code></pre><style>
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/weather.csv"},"spec":{"mark":{"type":"line"},"encoding":{"x":{"timeUnit":"month","field":"date"},"y":{"field":{"repeat":"column"},"aggregate":"mean"},"color":{"field":"location"}},"width":200,"height":200},"repeat":{"column":["temp_max","precipitation","wind"]}}, {"mode": "vega-lite"});
 </script>
-<h3 id="Examples-2"><a class="docs-heading-anchor" href="#Examples-2">Examples</a><a class="docs-heading-anchor-permalink" href="#Examples-2" title="Permalink"></a></h3><p>See the <a href="../examples/#Repeat">Repeat</a> section of the Gallery for more examples.</p><h3 id="More-2"><a class="docs-heading-anchor" href="#More-2">More</a><a class="docs-heading-anchor-permalink" href="#More-2" title="Permalink"></a></h3><p>More about concatenation in Vega-Lite&#39;s <a href="https://vega.github.io/vega-lite/docs/repeat.html">Repeat</a> documentation.</p><h2 id="multiview-facet"><a class="docs-heading-anchor" href="#multiview-facet">Facet</a><a id="multiview-facet-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-facet" title="Permalink"></a></h2><p>Like repeated charts, faceted charts provide a more convenient API for creating multiple views of a dataset. However, unlike <code>repeat</code> where each view contains full replication of the data set, in <code>facet</code> each view contains a different subset of the data facilitating comparison across subsets.</p><p>In Deneb.jl, this can be achieved using <a href="../api/#Deneb.Facet-Tuple{Any}"><code>Facet</code></a>.</p><pre><code class="language-julia hljs">data = Data(url=&quot;https://vega.github.io/vega-datasets/data/cars.json&quot;)
+<h3 id="Examples-2"><a class="docs-heading-anchor" href="#Examples-2">Examples</a><a class="docs-heading-anchor-permalink" href="#Examples-2" title="Permalink"></a></h3><p>See the <a href="../examples/#Repeat">Repeat</a> section of the Gallery for more examples.</p><h3 id="More-2"><a class="docs-heading-anchor" href="#More-2">More</a><a class="docs-heading-anchor-permalink" href="#More-2" title="Permalink"></a></h3><p>More about concatenation in Vega-Lite&#39;s <a href="https://vega.github.io/vega-lite/docs/repeat.html">Repeat</a> documentation.</p><h2 id="multiview-facet"><a class="docs-heading-anchor" href="#multiview-facet">Facet</a><a id="multiview-facet-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-facet" title="Permalink"></a></h2><p>Like repeated charts, faceted charts provide a more convenient API for creating multiple views of a dataset. However, unlike <code>repeat</code> where each view contains full replication of the data set, in <code>facet</code> each view contains a different subset of the data facilitating comparison across subsets.</p><p>In Deneb.jl, this can be achieved using <a href="../examples/#Facet"><code>Facet</code></a>.</p><pre><code class="language-julia hljs">data = Data(url=&quot;https://vega.github.io/vega-datasets/data/cars.json&quot;)
 base = Mark(:bar) * Encoding(
     x=field(&quot;Horsepower:Q&quot;, bin=(;maxbins=15)),
     y=&quot;count()&quot;
@@ -287,23 +287,23 @@ base = Mark(:bar) * Encoding(
 )
 
 data * base * Facet(column=:Origin)</code></pre><style>
-  #vis-309622b9-2d16-45a6-83a5-39f957a1c1ba.vega-embed {
+  #vis-43edef4d-245f-4c6b-8b58-08bf6a7bf615.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-309622b9-2d16-45a6-83a5-39f957a1c1ba.vega-embed details,
-  #vis-309622b9-2d16-45a6-83a5-39f957a1c1ba.vega-embed details summary {
+  #vis-43edef4d-245f-4c6b-8b58-08bf6a7bf615.vega-embed details,
+  #vis-43edef4d-245f-4c6b-8b58-08bf6a7bf615.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-309622b9-2d16-45a6-83a5-39f957a1c1ba"></div>
+<div id="vis-43edef4d-245f-4c6b-8b58-08bf6a7bf615"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-309622b9-2d16-45a6-83a5-39f957a1c1ba") {
-      outputDiv = document.getElementById("vis-309622b9-2d16-45a6-83a5-39f957a1c1ba");
+    if (outputDiv.id !== "vis-43edef4d-245f-4c6b-8b58-08bf6a7bf615") {
+      outputDiv = document.getElementById("vis-43edef4d-245f-4c6b-8b58-08bf6a7bf615");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -352,23 +352,23 @@ data * base * Facet(column=:Origin)</code></pre><style>
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"spec":{"mark":{"type":"bar"},"encoding":{"x":{"field":"Horsepower","type":"quantitative","bin":{"maxbins":15}},"y":{"aggregate":"count"}},"width":200,"height":200},"facet":{"column":{"field":"Origin"}}}, {"mode": "vega-lite"});
 </script>
 <h3 id="Faceting-with-encoding-channels"><a class="docs-heading-anchor" href="#Faceting-with-encoding-channels">Faceting with encoding channels</a><a id="Faceting-with-encoding-channels-1"></a><a class="docs-heading-anchor-permalink" href="#Faceting-with-encoding-channels" title="Permalink"></a></h3><p>Vega-Lite also provides the <a href="https://vega.github.io/vega-lite/docs/facet.html#facet-row-and-column-encoding-channels"><code>facet</code>, <code>row</code> and <code>column</code> encoding channels</a> that serve as a convenient way of producing facet specifications. </p><pre><code class="language-julia hljs">data * base * Encoding(column=:Origin)</code></pre><style>
-  #vis-c3dfa9eb-a643-4929-a5c1-6b5d70bc997f.vega-embed {
+  #vis-e028fe2d-72f9-47d5-aeec-64cb951f075f.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-c3dfa9eb-a643-4929-a5c1-6b5d70bc997f.vega-embed details,
-  #vis-c3dfa9eb-a643-4929-a5c1-6b5d70bc997f.vega-embed details summary {
+  #vis-e028fe2d-72f9-47d5-aeec-64cb951f075f.vega-embed details,
+  #vis-e028fe2d-72f9-47d5-aeec-64cb951f075f.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-c3dfa9eb-a643-4929-a5c1-6b5d70bc997f"></div>
+<div id="vis-e028fe2d-72f9-47d5-aeec-64cb951f075f"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-c3dfa9eb-a643-4929-a5c1-6b5d70bc997f") {
-      outputDiv = document.getElementById("vis-c3dfa9eb-a643-4929-a5c1-6b5d70bc997f");
+    if (outputDiv.id !== "vis-e028fe2d-72f9-47d5-aeec-64cb951f075f") {
+      outputDiv = document.getElementById("vis-e028fe2d-72f9-47d5-aeec-64cb951f075f");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -416,4 +416,4 @@ data * base * Facet(column=:Origin)</code></pre><style>
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"bar"},"encoding":{"x":{"field":"Horsepower","type":"quantitative","bin":{"maxbins":15}},"y":{"aggregate":"count"},"column":{"field":"Origin"}},"width":200,"height":200}, {"mode": "vega-lite"});
 </script>
-<p>The limitation of faceting via encoding channels is that it cannot create complicated compound charts like facet views of layered charts, while this can be achieved with the more flexible <code>Facet</code>.</p><h3 id="Examples-3"><a class="docs-heading-anchor" href="#Examples-3">Examples</a><a class="docs-heading-anchor-permalink" href="#Examples-3" title="Permalink"></a></h3><p>See the <a href="../examples/#Facet">Facet</a> section of the Gallery for more examples.</p><h3 id="More-3"><a class="docs-heading-anchor" href="#More-3">More</a><a class="docs-heading-anchor-permalink" href="#More-3" title="Permalink"></a></h3><p>More about faceting in Vega-Lite&#39;s <a href="https://vega.github.io/vega-lite/docs/facet.html">Facet</a> documentation.</p><h2 id="multiview-resolution"><a class="docs-heading-anchor" href="#multiview-resolution">Resolution</a><a id="multiview-resolution-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-resolution" title="Permalink"></a></h2></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../composition_and_layering/">« Composition and Layering</a><a class="docs-footer-nextpage" href="../interactive/">Interactive Charts »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="auto">Automatic (OS)</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.1.0 on <span class="colophon-date" title="Wednesday 11 October 2023 08:42">Wednesday 11 October 2023</span>. Using Julia version 1.6.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<p>The limitation of faceting via encoding channels is that it cannot create complicated compound charts like facet views of layered charts, while this can be achieved with the more flexible <code>Facet</code>.</p><h3 id="Examples-3"><a class="docs-heading-anchor" href="#Examples-3">Examples</a><a class="docs-heading-anchor-permalink" href="#Examples-3" title="Permalink"></a></h3><p>See the <a href="../examples/#Facet">Facet</a> section of the Gallery for more examples.</p><h3 id="More-3"><a class="docs-heading-anchor" href="#More-3">More</a><a class="docs-heading-anchor-permalink" href="#More-3" title="Permalink"></a></h3><p>More about faceting in Vega-Lite&#39;s <a href="https://vega.github.io/vega-lite/docs/facet.html">Facet</a> documentation.</p><h2 id="multiview-resolution"><a class="docs-heading-anchor" href="#multiview-resolution">Resolution</a><a id="multiview-resolution-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-resolution" title="Permalink"></a></h2></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../composition_and_layering/">« Composition and Layering</a><a class="docs-footer-nextpage" href="../interactive/">Interactive Charts »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Sunday 1 December 2024 18:22">Sunday 1 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
