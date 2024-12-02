@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Gallery · Deneb.jl</title><meta name="title" content="Gallery · Deneb.jl"/><meta property="og:title" content="Gallery · Deneb.jl"/><meta property="twitter:title" content="Gallery · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../intro/">Introduction</a></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../multiview/">Multi-views</a></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li class="is-active"><a class="tocitem" href>Gallery</a><ul class="internal"><li class="toplevel"><a class="tocitem" href="#Single-view-plots"><span>Single view plots</span></a></li><li><a class="tocitem" href="#Simple-charts"><span>Simple charts</span></a></li><li><a class="tocitem" href="#Line-charts"><span>Line charts</span></a></li><li><a class="tocitem" href="#Bar-charts"><span>Bar charts</span></a></li><li><a class="tocitem" href="#Histograms"><span>Histograms</span></a></li><li><a class="tocitem" href="#Scatter-plots"><span>Scatter plots</span></a></li><li><a class="tocitem" href="#Area-charts"><span>Area charts</span></a></li><li><a class="tocitem" href="#Circular-plots"><span>Circular plots</span></a></li><li><a class="tocitem" href="#Maps"><span>Maps</span></a></li><li class="toplevel"><a class="tocitem" href="#Composite-marks"><span>Composite marks</span></a></li><li class="toplevel"><a class="tocitem" href="#Multi-view-plots"><span>Multi view plots</span></a></li><li><a class="tocitem" href="#Facet"><span>Facet</span></a></li><li><a class="tocitem" href="#Repeat"><span>Repeat</span></a></li><li><a class="tocitem" href="#Concatenation"><span>Concatenation</span></a></li><li class="toplevel"><a class="tocitem" href="#Layered-plots"><span>Layered plots</span></a></li><li class="toplevel"><a class="tocitem" href="#Interactive"><span>Interactive</span></a></li><li class="toplevel"><a class="tocitem" href="#Graphs"><span>Graphs</span></a></li></ul></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Gallery</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Gallery</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/examples/index.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Gallery"><a class="docs-heading-anchor" href="#Gallery">Gallery</a><a id="Gallery-1"></a><a class="docs-heading-anchor-permalink" href="#Gallery" title="Permalink"></a></h1><p>The majority of these examples draw inspiration from the example galleries of <a href="https://vega.github.io/vega-lite/examples/">Vega-Lite</a> and <a href="https://altair-viz.github.io/gallery/index.html">Altair</a>, and have been adapted for Deneb.jl.</p><h1 id="Single-view-plots"><a class="docs-heading-anchor" href="#Single-view-plots">Single view plots</a><a id="Single-view-plots-1"></a><a class="docs-heading-anchor-permalink" href="#Single-view-plots" title="Permalink"></a></h1><h2 id="Simple-charts"><a class="docs-heading-anchor" href="#Simple-charts">Simple charts</a><a id="Simple-charts-1"></a><a class="docs-heading-anchor-permalink" href="#Simple-charts" title="Permalink"></a></h2><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/area_chart.png)">
+<div class="transition-grid-card-description"><p>Simple Area Chart</p></div><p><a href="single_view_plots/simple_charts/area_chart/#Area-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/simple_charts/area_chart/#Area-chart">Area chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/bar_chart.png)">
+<div class="transition-grid-card-description"><p>Simple Bar Chart</p></div><p><a href="single_view_plots/simple_charts/bar_chart/#Bar-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/simple_charts/bar_chart/#Bar-chart">Bar chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/heatmap.png)">
+<div class="transition-grid-card-description"><p>Simple Heatmap</p></div><p><a href="single_view_plots/simple_charts/heatmap/#Heatmap"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/simple_charts/heatmap/#Heatmap">Heatmap</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/histogram.png)">
+<div class="transition-grid-card-description"><p>Simple Histogram</p></div><p><a href="single_view_plots/simple_charts/histogram/#Histogram"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/simple_charts/histogram/#Histogram">Histogram</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/line_chart.png)">
+<div class="transition-grid-card-description"><p>Simple Line Chart</p></div><p><a href="single_view_plots/simple_charts/line_chart/#Line-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/simple_charts/line_chart/#Line-chart">Line chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/scatter_plot.png)">
+<div class="transition-grid-card-description"><p>Simple Scatter Plot</p></div><p><a href="single_view_plots/simple_charts/scatter_plot/#Scatter-plot"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/simple_charts/scatter_plot/#Scatter-plot">Scatter plot</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/step_chart.png)">
+<div class="transition-grid-card-description"><p>Simple Step Chart</p></div><p><a href="single_view_plots/simple_charts/step_chart/#Step-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/simple_charts/step_chart/#Step-chart">Step chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/strip_plot.png)">
+<div class="transition-grid-card-description"><p>Simple Strip Plot</p></div><p><a href="single_view_plots/simple_charts/strip_plot/#Strip-plot"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/simple_charts/strip_plot/#Strip-plot">Strip plot</a></p></div>
+</div></div><h2 id="Line-charts"><a class="docs-heading-anchor" href="#Line-charts">Line charts</a><a id="Line-charts-1"></a><a class="docs-heading-anchor-permalink" href="#Line-charts" title="Permalink"></a></h2><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/connected_scatter_plot.png)">
+<div class="transition-grid-card-description"><p>Connected Scatter Plot</p></div><p><a href="single_view_plots/line_charts/connected_scatter_plot/#Connected-scatter-plot"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/line_charts/connected_scatter_plot/#Connected-scatter-plot">Connected scatter plot</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/line_chart_with_log_scale.png)">
+<div class="transition-grid-card-description"><p>Line Chart with Log Scale</p></div><p><a href="single_view_plots/line_charts/line_chart_with_log_scale/#Line-chart-with-log-scale"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/line_charts/line_chart_with_log_scale/#Line-chart-with-log-scale">Line chart with log scale</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/line_chart_with_monotone_interpolation.png)">
+<div class="transition-grid-card-description"><p>Line Chart with Monotone Interpolation</p></div><p><a href="single_view_plots/line_charts/line_chart_with_monotone_interpolation/#Line-chart-with-monotone-interpolation"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/line_charts/line_chart_with_monotone_interpolation/#Line-chart-with-monotone-interpolation">Line chart with monotone interpolation</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/line_chart_with_point_markers.png)">
+<div class="transition-grid-card-description"><p>Line Chart with point markers</p></div><p><a href="single_view_plots/line_charts/line_chart_with_point_markers/#Line-chart-with-point-markers"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/line_charts/line_chart_with_point_markers/#Line-chart-with-point-markers">Line chart with point markers</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/line_chart_with_varying_size.png)">
+<div class="transition-grid-card-description"><p>Line Chart with Varying Size</p></div><p><a href="single_view_plots/line_charts/line_chart_with_varying_size/#Line-chart-with-varying-size"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/line_charts/line_chart_with_varying_size/#Line-chart-with-varying-size">Line chart with varying size</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/line_chart_with_varying_stroke.png)">
+<div class="transition-grid-card-description"><p>Line Chart with Varying stroke</p></div><p><a href="single_view_plots/line_charts/line_chart_with_varying_stroke/#Line-chart-with-varying-stroke"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/line_charts/line_chart_with_varying_stroke/#Line-chart-with-varying-stroke">Line chart with varying stroke</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/parallel_coordinates.png)">
+<div class="transition-grid-card-description"><p>Parallel Coordinates</p></div><p><a href="single_view_plots/line_charts/parallel_coordinates/#Parallel-coordinates"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/line_charts/parallel_coordinates/#Parallel-coordinates">Parallel coordinates</a></p></div>
+</div></div><h2 id="Bar-charts"><a class="docs-heading-anchor" href="#Bar-charts">Bar charts</a><a id="Bar-charts-1"></a><a class="docs-heading-anchor-permalink" href="#Bar-charts" title="Permalink"></a></h2><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/aggregate_bar_chart.png)">
+<div class="transition-grid-card-description"><p>Aggregate Bar Chart</p></div><p><a href="single_view_plots/bar_charts/aggregate_bar_chart/#Aggregate-bar-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/bar_charts/aggregate_bar_chart/#Aggregate-bar-chart">Aggregate bar chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/bar_chart_with_round_edges.png)">
+<div class="transition-grid-card-description"><p>Bar Chart with Round Edges</p></div><p><a href="single_view_plots/bar_charts/bar_chart_with_round_edges/#Bar-chart-with-round-edges"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/bar_charts/bar_chart_with_round_edges/#Bar-chart-with-round-edges">Bar chart with round edges</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/grouped_bar.png)">
+<div class="transition-grid-card-description"><p>Grouped Bar Chart</p></div><p><a href="single_view_plots/bar_charts/grouped_bar/#Grouped-bar"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/bar_charts/grouped_bar/#Grouped-bar">Grouped bar</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/horizontal_stacked_bar_chart.png)">
+<div class="transition-grid-card-description"><p>Horizontal Stacked Bar Chart</p></div><p><a href="single_view_plots/bar_charts/horizontal_stacked_bar_chart/#Horizontal-stacked-bar-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/bar_charts/horizontal_stacked_bar_chart/#Horizontal-stacked-bar-chart">Horizontal stacked bar chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/isotype_with_emoji.svg)">
+<div class="transition-grid-card-description"><p>Isotype Visualization with Emoji</p></div><p><a href="single_view_plots/bar_charts/isotype_with_emoji/#Isotype-with-emoji"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/bar_charts/isotype_with_emoji/#Isotype-with-emoji">Isotype with emoji</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/layered_bar_chart.png)">
+<div class="transition-grid-card-description"><p>Layered Bar Chart</p></div><p><a href="single_view_plots/bar_charts/layered_bar_chart/#Layered-bar-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/bar_charts/layered_bar_chart/#Layered-bar-chart">Layered bar chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/normalized_bar_chart.png)">
+<div class="transition-grid-card-description"><p>Normalized Bar Chart</p></div><p><a href="single_view_plots/bar_charts/normalized_bar_chart/#Normalized-bar-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/bar_charts/normalized_bar_chart/#Normalized-bar-chart">Normalized bar chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/percent_of_total.png)">
+<div class="transition-grid-card-description"><p>Sorted Bar Chart</p></div><p><a href="single_view_plots/bar_charts/percent_of_total/#Percent-of-total"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/bar_charts/percent_of_total/#Percent-of-total">Percent of total</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/sorted_bar_chart.png)">
+<div class="transition-grid-card-description"><p>Sorted Bar Chart</p></div><p><a href="single_view_plots/bar_charts/sorted_bar_chart/#Sorted-bar-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/bar_charts/sorted_bar_chart/#Sorted-bar-chart">Sorted bar chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/stacked_bar_chart.png)">
+<div class="transition-grid-card-description"><p>Stacked Bar Chart</p></div><p><a href="single_view_plots/bar_charts/stacked_bar_chart/#Stacked-bar-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/bar_charts/stacked_bar_chart/#Stacked-bar-chart">Stacked bar chart</a></p></div>
+</div></div><h2 id="Histograms"><a class="docs-heading-anchor" href="#Histograms">Histograms</a><a id="Histograms-1"></a><a class="docs-heading-anchor-permalink" href="#Histograms" title="Permalink"></a></h2><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/2d_histogram_heatmap.png)">
+<div class="transition-grid-card-description"><p>2D Histogram Heatmap</p></div><p><a href="single_view_plots/histograms/2d_histogram_heatmap/#d-histogram-heatmap"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/histograms/2d_histogram_heatmap/#d-histogram-heatmap">2d histogram heatmap</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/2d_histogram_scatterplot.png)">
+<div class="transition-grid-card-description"><p>2D Histogram Scatterplot</p></div><p><a href="single_view_plots/histograms/2d_histogram_scatterplot/#d-histogram-scatterplot"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/histograms/2d_histogram_scatterplot/#d-histogram-scatterplot">2d histogram scatterplot</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/histogram_with_fine_binning.png)">
+<div class="transition-grid-card-description"><p>Histogram with Fine Binning</p></div><p><a href="single_view_plots/histograms/histogram_with_fine_binning/#Histogram-with-fine-binning"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/histograms/histogram_with_fine_binning/#Histogram-with-fine-binning">Histogram with fine binning</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/histogram_with_non_uniform_binning.png)">
+<div class="transition-grid-card-description"><p>Histogram with non Uniform Binning</p></div><p><a href="single_view_plots/histograms/histogram_with_non_uniform_binning/#Histogram-with-non-uniform-binning"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/histograms/histogram_with_non_uniform_binning/#Histogram-with-non-uniform-binning">Histogram with non uniform binning</a></p></div>
+</div></div><h2 id="Scatter-plots"><a class="docs-heading-anchor" href="#Scatter-plots">Scatter plots</a><a id="Scatter-plots-1"></a><a class="docs-heading-anchor-permalink" href="#Scatter-plots" title="Permalink"></a></h2><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/binned_scatterplot.png)">
+<div class="transition-grid-card-description"><p>Binned Scatterplot</p></div><p><a href="single_view_plots/scatter_plots/binned_scatterplot/#Binned-scatterplot"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/scatter_plots/binned_scatterplot/#Binned-scatterplot">Binned scatterplot</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/bubble_plot.png)">
+<div class="transition-grid-card-description"><p>Bubble Plot</p></div><p><a href="single_view_plots/scatter_plots/bubble_plot/#Bubble-plot"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/scatter_plots/bubble_plot/#Bubble-plot">Bubble plot</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/bubble_plot_natural_disasters.png)">
+<div class="transition-grid-card-description"><p>Bubble Plot (Natural Disasters)</p></div><p><a href="single_view_plots/scatter_plots/bubble_plot_natural_disasters/#Bubble-plot-natural-disasters"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/scatter_plots/bubble_plot_natural_disasters/#Bubble-plot-natural-disasters">Bubble plot natural disasters</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/deneb_logo.png)">
+<div class="transition-grid-card-description"><p>save cover #src</p></div><p><a href="single_view_plots/scatter_plots/deneb_logo/#Deneb.jl-Logo"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/scatter_plots/deneb_logo/#Deneb.jl-Logo">Deneb.jl Logo</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/scatterplot_with_colors_and_shapes.png)">
+<div class="transition-grid-card-description"><p>Scatterplot with Colors and Shapes</p></div><p><a href="single_view_plots/scatter_plots/scatterplot_with_colors_and_shapes/#Scatterplot-with-colors-and-shapes"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/scatter_plots/scatterplot_with_colors_and_shapes/#Scatterplot-with-colors-and-shapes">Scatterplot with colors and shapes</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/scatterplot_with_colors_and_sizes.png)">
+<div class="transition-grid-card-description"><p>Scatterplot with Colors and Sizes</p></div><p><a href="single_view_plots/scatter_plots/scatterplot_with_colors_and_sizes/#Scatterplot-with-colors-and-sizes"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/scatter_plots/scatterplot_with_colors_and_sizes/#Scatterplot-with-colors-and-sizes">Scatterplot with colors and sizes</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/scatterplot_with_links.png)">
+<div class="transition-grid-card-description"><p>Scatterplot with External Links</p></div><p><a href="single_view_plots/scatter_plots/scatterplot_with_links/#Scatterplot-with-links"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/scatter_plots/scatterplot_with_links/#Scatterplot-with-links">Scatterplot with links</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/scatterplot_with_nulls_in_gray.png)">
+<div class="transition-grid-card-description"><p>Scatterplot with Nulls in Gray</p></div><p><a href="single_view_plots/scatter_plots/scatterplot_with_nulls_in_gray/#Scatterplot-with-nulls-in-gray"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/scatter_plots/scatterplot_with_nulls_in_gray/#Scatterplot-with-nulls-in-gray">Scatterplot with nulls in gray</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/table_bubble_plot.png)">
+<div class="transition-grid-card-description"><p>Table Bubble Plot (Github Punch Card)</p></div><p><a href="single_view_plots/scatter_plots/table_bubble_plot/#Table-bubble-plot"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/scatter_plots/table_bubble_plot/#Table-bubble-plot">Table bubble plot</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/wind_vector_map.png)">
+<div class="transition-grid-card-description"><p>Wind Vector Map</p></div><p><a href="single_view_plots/scatter_plots/wind_vector_map/#Wind-vector-map"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/scatter_plots/wind_vector_map/#Wind-vector-map">Wind vector map</a></p></div>
+</div></div><h2 id="Area-charts"><a class="docs-heading-anchor" href="#Area-charts">Area charts</a><a id="Area-charts-1"></a><a class="docs-heading-anchor-permalink" href="#Area-charts" title="Permalink"></a></h2><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/cumulative_frequency_distribution.png)">
+<div class="transition-grid-card-description"><p>Cumulative Frequency Distribution</p></div><p><a href="single_view_plots/area_charts/cumulative_frequency_distribution/#Cumulative-frequency-distribution"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/area_charts/cumulative_frequency_distribution/#Cumulative-frequency-distribution">Cumulative frequency distribution</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/layered_area_chart.png)">
+<div class="transition-grid-card-description"><p>Layered Area Chart</p></div><p><a href="single_view_plots/area_charts/layered_area_chart/#Layered-area-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/area_charts/layered_area_chart/#Layered-area-chart">Layered area chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/normalized_area_chart.png)">
+<div class="transition-grid-card-description"><p>Normalized Area Chart</p></div><p><a href="single_view_plots/area_charts/normalized_area_chart/#Normalized-area-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/area_charts/normalized_area_chart/#Normalized-area-chart">Normalized area chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/stacked_area_chart.png)">
+<div class="transition-grid-card-description"><p>Simple Stacked Area Chart</p></div><p><a href="single_view_plots/area_charts/stacked_area_chart/#Stacked-area-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/area_charts/stacked_area_chart/#Stacked-area-chart">Stacked area chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/stacked_density_estimates.png)">
+<div class="transition-grid-card-description"><p>Stacked Density Estimates</p></div><p><a href="single_view_plots/area_charts/stacked_density_estimates/#Stacked-density-estimates"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/area_charts/stacked_density_estimates/#Stacked-density-estimates">Stacked density estimates</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/streamgraph.png)">
+<div class="transition-grid-card-description"><p>Streamgraph</p></div><p><a href="single_view_plots/area_charts/streamgraph/#Streamgraph"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/area_charts/streamgraph/#Streamgraph">Streamgraph</a></p></div>
+</div></div><h2 id="Circular-plots"><a class="docs-heading-anchor" href="#Circular-plots">Circular plots</a><a id="Circular-plots-1"></a><a class="docs-heading-anchor-permalink" href="#Circular-plots" title="Permalink"></a></h2><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/donut_chart.png)">
+<div class="transition-grid-card-description"><p>Donut Chart</p></div><p><a href="single_view_plots/circular_plots/donut_chart/#Donut-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/circular_plots/donut_chart/#Donut-chart">Donut chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/pie_chart.png)">
+<div class="transition-grid-card-description"><p>Pie Chart</p></div><p><a href="single_view_plots/circular_plots/pie_chart/#Pie-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/circular_plots/pie_chart/#Pie-chart">Pie chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/radial_plot.png)">
+<div class="transition-grid-card-description"><p>radial plot</p></div><p><a href="single_view_plots/circular_plots/radial_plot/#Radial-plot"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/circular_plots/radial_plot/#Radial-plot">Radial plot</a></p></div>
+</div></div><h2 id="Maps"><a class="docs-heading-anchor" href="#Maps">Maps</a><a id="Maps-1"></a><a class="docs-heading-anchor-permalink" href="#Maps" title="Permalink"></a></h2><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/choropleth_map.png)">
+<div class="transition-grid-card-description"><p>Choropleth Map</p></div><p><a href="single_view_plots/maps/choropleth_map/#Choropleth-map"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/maps/choropleth_map/#Choropleth-map">Choropleth map</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/locations_of_airports.png)">
+<div class="transition-grid-card-description"><p>Locations of US Airports</p></div><p><a href="single_view_plots/maps/locations_of_airports/#Locations-of-airports"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/maps/locations_of_airports/#Locations-of-airports">Locations of airports</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/london_tube_lines.png)">
+<div class="transition-grid-card-description"><p>London Tube Lines</p></div><p><a href="single_view_plots/maps/london_tube_lines/#London-tube-lines"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/maps/london_tube_lines/#London-tube-lines">London tube lines</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/world_map.png)">
+<div class="transition-grid-card-description"><p>World Map</p></div><p><a href="single_view_plots/maps/world_map/#World-map"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/maps/world_map/#World-map">World map</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/world_projections.png)">
+<div class="transition-grid-card-description"><p>World Projections</p></div><p><a href="single_view_plots/maps/world_projections/#World-projections"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="single_view_plots/maps/world_projections/#World-projections">World projections</a></p></div>
+</div></div><h1 id="Composite-marks"><a class="docs-heading-anchor" href="#Composite-marks">Composite marks</a><a id="Composite-marks-1"></a><a class="docs-heading-anchor-permalink" href="#Composite-marks" title="Permalink"></a></h1><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/boxplot.png)">
+<div class="transition-grid-card-description"><p>Box Plot (1.5 IQR)</p></div><p><a href="composite_marks/boxplot/#Boxplot"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="composite_marks/boxplot/#Boxplot">Boxplot</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/line_with_error_band.png)">
+<div class="transition-grid-card-description"><p>Line with Confidence Interval Band</p></div><p><a href="composite_marks/line_with_error_band/#Line-with-error-band"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="composite_marks/line_with_error_band/#Line-with-error-band">Line with error band</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/points_with_error_bars.png)">
+<div class="transition-grid-card-description"><p>Error Bars with Standard Deviation</p></div><p><a href="composite_marks/points_with_error_bars/#Points-with-error-bars"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="composite_marks/points_with_error_bars/#Points-with-error-bars">Points with error bars</a></p></div>
+</div></div><h1 id="Multi-view-plots"><a class="docs-heading-anchor" href="#Multi-view-plots">Multi view plots</a><a id="Multi-view-plots-1"></a><a class="docs-heading-anchor-permalink" href="#Multi-view-plots" title="Permalink"></a></h1><h2 id="Facet"><a class="docs-heading-anchor" href="#Facet">Facet</a><a id="Facet-1"></a><a class="docs-heading-anchor-permalink" href="#Facet" title="Permalink"></a></h2><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/comet_chart.png)">
+<div class="transition-grid-card-description"><p>Comet Chart</p></div><p><a href="multi_view_plots/facet/comet_chart/#Comet-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/facet/comet_chart/#Comet-chart">Comet chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/facet_rows.png)">
+<div class="transition-grid-card-description"><p>Facet Area (rows)</p></div><p><a href="multi_view_plots/facet/facet_rows/#Facet-rows"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/facet/facet_rows/#Facet-rows">Facet rows</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/facet_rows_and_columns.png)">
+<div class="transition-grid-card-description"><p>Facet View (rows and columns)</p></div><p><a href="multi_view_plots/facet/facet_rows_and_columns/#Facet-rows-and-columns"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/facet/facet_rows_and_columns/#Facet-rows-and-columns">Facet rows and columns</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/facet_view.png)">
+<div class="transition-grid-card-description"><p>Facet View</p></div><p><a href="multi_view_plots/facet/facet_view/#Facet-view"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/facet/facet_view/#Facet-view">Facet view</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/facet_view_wrapped.png)">
+<div class="transition-grid-card-description"><p>Facet View (wrapped)</p></div><p><a href="multi_view_plots/facet/facet_view_wrapped/#Facet-view-wrapped"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/facet/facet_view_wrapped/#Facet-view-wrapped">Facet view wrapped</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/ridgeline_plot.png)">
+<div class="transition-grid-card-description"><p>Facet Area (rows)</p></div><p><a href="multi_view_plots/facet/ridgeline_plot/#Ridgeline-plot"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/facet/ridgeline_plot/#Ridgeline-plot">Ridgeline plot</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/violin_plot.png)">
+<div class="transition-grid-card-description"><p>Violin PLot</p></div><p><a href="multi_view_plots/facet/violin_plot/#Violin-plot"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/facet/violin_plot/#Violin-plot">Violin plot</a></p></div>
+</div></div><h2 id="Repeat"><a class="docs-heading-anchor" href="#Repeat">Repeat</a><a id="Repeat-1"></a><a class="docs-heading-anchor-permalink" href="#Repeat" title="Permalink"></a></h2><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/repeat_histogram.png)">
+<div class="transition-grid-card-description"><p>Repeated Wrapped Histogram</p></div><p><a href="multi_view_plots/repeat/repeat_histogram/#Repeat-histogram"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/repeat/repeat_histogram/#Repeat-histogram">Repeat histogram</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/repeat_layers.png)">
+<div class="transition-grid-card-description"><p>Line Chart with Repeated Layers</p></div><p><a href="multi_view_plots/repeat/repeat_layers/#Repeat-layers"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/repeat/repeat_layers/#Repeat-layers">Repeat layers</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/repeat_line_charts.png)">
+<div class="transition-grid-card-description"><p>Repeated Line Charts</p></div><p><a href="multi_view_plots/repeat/repeat_line_charts/#Repeat-line-charts"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/repeat/repeat_line_charts/#Repeat-line-charts">Repeat line charts</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/repeat_scatterplot.png)">
+<div class="transition-grid-card-description"><p>Repeated Scatterplot Matrix</p></div><p><a href="multi_view_plots/repeat/repeat_scatterplot/#Repeat-scatterplot"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/repeat/repeat_scatterplot/#Repeat-scatterplot">Repeat scatterplot</a></p></div>
+</div></div><h2 id="Concatenation"><a class="docs-heading-anchor" href="#Concatenation">Concatenation</a><a id="Concatenation-1"></a><a class="docs-heading-anchor-permalink" href="#Concatenation" title="Permalink"></a></h2><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/concat_world_projections.png)">
+<div class="transition-grid-card-description"><p>World Projections</p></div><p><a href="multi_view_plots/concatenation/concat_world_projections/#Concat-world-projections"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/concatenation/concat_world_projections/#Concat-world-projections">Concat world projections</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/marginal_histogram.png)">
+<div class="transition-grid-card-description"><p>Marginal Histogram</p></div><p><a href="multi_view_plots/concatenation/marginal_histogram/#Marginal-histogram"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/concatenation/marginal_histogram/#Marginal-histogram">Marginal histogram</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/multiple_jitter_strategies.png)">
+<div class="transition-grid-card-description"><p>Strip Plot with Jitter</p></div><p><a href="multi_view_plots/concatenation/multiple_jitter_strategies/#Multiple-jitter-strategies"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/concatenation/multiple_jitter_strategies/#Multiple-jitter-strategies">Multiple jitter strategies</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/population_pyramid.png)">
+<div class="transition-grid-card-description"><p>Population Pyramid</p></div><p><a href="multi_view_plots/concatenation/population_pyramid/#Population-pyramid"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/concatenation/population_pyramid/#Population-pyramid">Population pyramid</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/vertical_concatenation.png)">
+<div class="transition-grid-card-description"><p>Vertical Concatenation</p></div><p><a href="multi_view_plots/concatenation/vertical_concatenation/#Vertical-concatenation"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="multi_view_plots/concatenation/vertical_concatenation/#Vertical-concatenation">Vertical concatenation</a></p></div>
+</div></div><h1 id="Layered-plots"><a class="docs-heading-anchor" href="#Layered-plots">Layered plots</a><a id="Layered-plots-1"></a><a class="docs-heading-anchor-permalink" href="#Layered-plots" title="Permalink"></a></h1><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/bar_chart_with_labels.png)">
+<div class="transition-grid-card-description"><p>Bar Chart with Labels</p></div><p><a href="layered_plots/bar_chart_with_labels/#Bar-chart-with-labels"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="layered_plots/bar_chart_with_labels/#Bar-chart-with-labels">Bar chart with labels</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/bar_chart_with_line_at_mean.png)">
+<div class="transition-grid-card-description"><p>Bar Chart with Line at Mean</p></div><p><a href="layered_plots/bar_chart_with_line_at_mean/#Bar-chart-with-line-at-mean"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="layered_plots/bar_chart_with_line_at_mean/#Bar-chart-with-line-at-mean">Bar chart with line at mean</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/histogram_with_mean_overlay.png)">
+<div class="transition-grid-card-description"><p>Histogram with Global Mean Overlay</p></div><p><a href="layered_plots/histogram_with_mean_overlay/#Histogram-with-mean-overlay"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="layered_plots/histogram_with_mean_overlay/#Histogram-with-mean-overlay">Histogram with mean overlay</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/layered_plot_with_dual_axis.png)">
+<div class="transition-grid-card-description"><p>Layered Plot with Dual Axis</p></div><p><a href="layered_plots/layered_plot_with_dual_axis/#Layered-plot-with-dual-axis"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="layered_plots/layered_plot_with_dual_axis/#Layered-plot-with-dual-axis">Layered plot with dual axis</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/pie_chart_with_labels.png)">
+<div class="transition-grid-card-description"><p>Pie Chart with Labels</p></div><p><a href="layered_plots/pie_chart_with_labels/#Pie-chart-with-labels"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="layered_plots/pie_chart_with_labels/#Pie-chart-with-labels">Pie chart with labels</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/scatterplot_with_loess_lines.png)">
+<div class="transition-grid-card-description"><p>Scatter Plot with LOESS lines</p></div><p><a href="layered_plots/scatterplot_with_loess_lines/#Scatterplot-with-loess-lines"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="layered_plots/scatterplot_with_loess_lines/#Scatterplot-with-loess-lines">Scatterplot with loess lines</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/scatterplot_with_polynomial_fit.png)">
+<div class="transition-grid-card-description"><p>Scatter Plot with Polynomial Fit</p></div><p><a href="layered_plots/scatterplot_with_polynomial_fit/#Scatterplot-with-polynomial-fit"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="layered_plots/scatterplot_with_polynomial_fit/#Scatterplot-with-polynomial-fit">Scatterplot with polynomial fit</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/scatterplot_with_rolling_mean.png)">
+<div class="transition-grid-card-description"><p>Scatter Plot with Rolling Mean</p></div><p><a href="layered_plots/scatterplot_with_rolling_mean/#Scatterplot-with-rolling-mean"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="layered_plots/scatterplot_with_rolling_mean/#Scatterplot-with-rolling-mean">Scatterplot with rolling mean</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/waterfall_chart.png)">
+<div class="transition-grid-card-description"><p>Waterfall Chart of Monthly Profit and Loss</p></div><p><a href="layered_plots/waterfall_chart/#Waterfall-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="layered_plots/waterfall_chart/#Waterfall-chart">Waterfall chart</a></p></div>
+</div></div><h1 id="Interactive"><a class="docs-heading-anchor" href="#Interactive">Interactive</a><a id="Interactive-1"></a><a class="docs-heading-anchor-permalink" href="#Interactive" title="Permalink"></a></h1><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/airport_connections.png)">
+<div class="transition-grid-card-description"><p>Connections among U.S. Airports</p></div><p><a href="interactive/airport_connections/#Connections-among-U.S.-Airports"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/airport_connections/#Connections-among-U.S.-Airports">Connections among U.S. Airports</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/bar_chart_with_highlighting_and_selection.png)">
+<div class="transition-grid-card-description"><p>Bar Chart with Highlighting on Hover and Selection on Click</p></div><p><a href="interactive/bar_chart_with_highlighting_and_selection/#Bar-chart-with-highlighting-and-selection"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/bar_chart_with_highlighting_and_selection/#Bar-chart-with-highlighting-and-selection">Bar chart with highlighting and selection</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/earthquakes.png)">
+<div class="transition-grid-card-description"><p>Earthquakes</p></div><p><a href="interactive/earthquakes/#Earthquakes"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/earthquakes/#Earthquakes">Earthquakes</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/encoding_channels_binding.png)">
+<div class="transition-grid-card-description"><p>Encoding Channels Binding</p></div><p><a href="interactive/encoding_channels_binding/#Encoding-channels-binding"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/encoding_channels_binding/#Encoding-channels-binding">Encoding channels binding</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/interactive_average.png)">
+<div class="transition-grid-card-description"><p>Interactive Average</p></div><p><a href="interactive/interactive_average/#Interactive-average"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/interactive_average/#Interactive-average">Interactive average</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/interactive_brush.png)">
+<div class="transition-grid-card-description"><p>Interactive Rectangular Brush</p></div><p><a href="interactive/interactive_brush/#Interactive-brush"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/interactive_brush/#Interactive-brush">Interactive brush</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/interactive_concat_layer.png)">
+<div class="transition-grid-card-description"><p>Interactive Dashboard with Cross Highlight</p></div><p><a href="interactive/interactive_concat_layer/#Interactive-Dashboard-with-Cross-Highlight"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/interactive_concat_layer/#Interactive-Dashboard-with-Cross-Highlight">Interactive Dashboard with Cross Highlight</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/interactive_index_chart.png)">
+<div class="transition-grid-card-description"><p>Interactive Index Chart</p></div><p><a href="interactive/interactive_index_chart/#Interactive-index-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/interactive_index_chart/#Interactive-index-chart">Interactive index chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/interactive_input_binding.png)">
+<div class="transition-grid-card-description"><p>Interactive Input Binding</p></div><p><a href="interactive/interactive_input_binding/#Interactive-Input-Binding-(dropdown,-range,-checkbox,-radio-widgets)"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/interactive_input_binding/#Interactive-Input-Binding-(dropdown,-range,-checkbox,-radio-widgets)">Interactive Input Binding (dropdown, range, checkbox, radio widgets)</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/interactive_layered_crossfilter.png)">
+<div class="transition-grid-card-description"><p>Interactive Layered Crossfilter</p></div><p><a href="interactive/interactive_layered_crossfilter/#Interactive-layered-crossfilter"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/interactive_layered_crossfilter/#Interactive-layered-crossfilter">Interactive layered crossfilter</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/interactive_legend.png)">
+<div class="transition-grid-card-description"><p>Interactive Legend</p></div><p><a href="interactive/interactive_legend/#Interactive-legend"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/interactive_legend/#Interactive-legend">Interactive legend</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/interactive_pan_and_zoom.png)">
+<div class="transition-grid-card-description"><p>Interactive Pan and Zoom</p></div><p><a href="interactive/interactive_pan_and_zoom/#Interactive-pan-and-zoom"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/interactive_pan_and_zoom/#Interactive-pan-and-zoom">Interactive pan and zoom</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/interval_selection.png)">
+<div class="transition-grid-card-description"><p>Interval Selection</p></div><p><a href="interactive/interval_selection/#Interval-selection"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/interval_selection/#Interval-selection">Interval selection</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/interval_selection_with_dynamic_binning.png)">
+<div class="transition-grid-card-description"><p>Interval Selection with Dynamic Binning</p></div><p><a href="interactive/interval_selection_with_dynamic_binning/#Interval-selection-with-dynamic-binning"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/interval_selection_with_dynamic_binning/#Interval-selection-with-dynamic-binning">Interval selection with dynamic binning</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/multiline_interactive_highlight.png)">
+<div class="transition-grid-card-description"><p>Multiline interactive highlight</p></div><p><a href="interactive/multiline_interactive_highlight/#Multiline-interactive-highlight"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/multiline_interactive_highlight/#Multiline-interactive-highlight">Multiline interactive highlight</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/multiline_with_interactive_labels.png)">
+<div class="transition-grid-card-description"><p>Multiline with interactive labels</p></div><p><a href="interactive/multiline_with_interactive_labels/#Multiline-with-interactive-labels"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/multiline_with_interactive_labels/#Multiline-with-interactive-labels">Multiline with interactive labels</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/seattle_weather_exploration.png)">
+<div class="transition-grid-card-description"><p>Seattle Weather Exploration</p></div><p><a href="interactive/seattle_weather_exploration/#Seattle-weather-exploration"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="interactive/seattle_weather_exploration/#Seattle-weather-exploration">Seattle weather exploration</a></p></div>
+</div></div><h1 id="Graphs"><a class="docs-heading-anchor" href="#Graphs">Graphs</a><a id="Graphs-1"></a><a class="docs-heading-anchor-permalink" href="#Graphs" title="Permalink"></a></h1><div class="transition-grid-card-section"><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/graph_chart.png)">
+<div class="transition-grid-card-description"><p>Simple Graph Chart</p></div><p><a href="graphs/graph_chart/#Graph-chart"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="graphs/graph_chart/#Graph-chart">Graph chart</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/graph_chart_labels.png)">
+<div class="transition-grid-card-description"><p>Graph Chart wih Custom Labels</p></div><p><a href="graphs/graph_chart_labels/#Graph-chart-labels"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="graphs/graph_chart_labels/#Graph-chart-labels">Graph chart labels</a></p></div>
+</div><div class="card transition-grid-card">
+<div class="transition-grid-card-cover" style="background-image: url(covers/graph_chart_layout.png)">
+<div class="transition-grid-card-description"><p>Graph Chart wih Custom Layout</p></div><p><a href="graphs/graph_chart_layout/#Graph-chart-layout"></a></p></div>
+<div class="transition-grid-card-text"><p><a href="graphs/graph_chart_layout/#Graph-chart-layout">Graph chart layout</a></p></div>
+</div></div></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../themes/">« Themes</a><a class="docs-footer-nextpage" href="../api/">API »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Monday 2 December 2024 11:06">Monday 2 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

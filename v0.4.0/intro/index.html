@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Introduction · Deneb.jl</title><meta name="title" content="Introduction · Deneb.jl"/><meta property="og:title" content="Introduction · Deneb.jl"/><meta property="twitter:title" content="Introduction · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li class="is-active"><a class="tocitem" href>Introduction</a><ul class="internal"><li><a class="tocitem" href="#Vega-Lite-Specifications"><span>Vega-Lite Specifications</span></a></li><li><a class="tocitem" href="#The-vlspec-function"><span>The <code>vlspec</code> function</span></a></li><li><a class="tocitem" href="#The-Deneb.jl-API"><span>The Deneb.jl API</span></a></li></ul></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../multiview/">Multi-views</a></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">User Guide</a></li><li class="is-active"><a href>Introduction</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Introduction</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/intro.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Introduction"><a class="docs-heading-anchor" href="#Introduction">Introduction</a><a id="Introduction-1"></a><a class="docs-heading-anchor-permalink" href="#Introduction" title="Permalink"></a></h1><p>Deneb.jl simply provides a convenient API to create Vega-Lite JSON specifications programmatically in Julia. Then, adequate <code>show</code> methods enable automatic displaying of charts when Deneb.jl is run on platforms such as Jupyter, Pluto, VSCode, or any other environments that can render rich MIME types. Furthermore, a chart can be saved in several formats using the function <code>save</code>.</p><h2 id="Vega-Lite-Specifications"><a class="docs-heading-anchor" href="#Vega-Lite-Specifications">Vega-Lite Specifications</a><a id="Vega-Lite-Specifications-1"></a><a class="docs-heading-anchor-permalink" href="#Vega-Lite-Specifications" title="Permalink"></a></h2><p>Vega-Lite specifications describe visualizations as encoding mappings from data to properties of graphical marks. These specifications are created with a concise declarative JSON syntax. For example:</p><pre><code class="language-json hljs">{
+  &quot;data&quot;: {&quot;url&quot;: &quot;https://vega.github.io/vega-datasets/data/seattle-weather.csv&quot;},
+  &quot;mark&quot;: &quot;bar&quot;,
+  &quot;encoding&quot;: {
+    &quot;x&quot;: {&quot;timeUnit&quot;: &quot;month&quot;, &quot;field&quot;: &quot;date&quot;, &quot;type&quot;: &quot;ordinal&quot;},
+    &quot;y&quot;: {&quot;aggregate&quot;: &quot;mean&quot;, &quot;field&quot;: &quot;precipitation&quot;}
+  }
+}</code></pre><p>represents the following visualization:</p><style>
+  #vis-5fc772cb-17af-4653-8dcb-b29e5404fc9d.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-5fc772cb-17af-4653-8dcb-b29e5404fc9d.vega-embed details,
+  #vis-5fc772cb-17af-4653-8dcb-b29e5404fc9d.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-5fc772cb-17af-4653-8dcb-b29e5404fc9d"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-5fc772cb-17af-4653-8dcb-b29e5404fc9d") {
+      outputDiv = document.getElementById("vis-5fc772cb-17af-4653-8dcb-b29e5404fc9d");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/seattle-weather.csv"},"mark":{"type":"bar"},"encoding":{"x":{"timeUnit":"month","field":"date","type":"ordinal"},"y":{"aggregate":"mean","field":"precipitation"}}}, {"mode": "vega-lite"});
+</script>
+<h2 id="The-vlspec-function"><a class="docs-heading-anchor" href="#The-vlspec-function">The <code>vlspec</code> function</a><a id="The-vlspec-function-1"></a><a class="docs-heading-anchor-permalink" href="#The-vlspec-function" title="Permalink"></a></h2><p>The first way to create any arbitrary Vega-Lite specification in Deneb.jl is using the <a href="../api/#Deneb.vlspec-Tuple{Deneb.Spec}"><code>vlspec</code></a> function. The previous example can be directly translated to the following <code>vlspec</code> call:</p><pre><code class="language-julia hljs">using Deneb
+
+vlspec(
+    data=(; url=&quot;https://vega.github.io/vega-datasets/data/seattle-weather.csv&quot;),
+    mark=:bar,
+    encoding=(
+        x=(timeUnit=:month, field=:date, type=:ordinal),
+        y=(aggregate=:mean, field=:precipitation),
+    )
+)</code></pre><style>
+  #vis-efedb694-d096-4085-9f29-2007c8e987f3.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-efedb694-d096-4085-9f29-2007c8e987f3.vega-embed details,
+  #vis-efedb694-d096-4085-9f29-2007c8e987f3.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-efedb694-d096-4085-9f29-2007c8e987f3"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-efedb694-d096-4085-9f29-2007c8e987f3") {
+      outputDiv = document.getElementById("vis-efedb694-d096-4085-9f29-2007c8e987f3");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/seattle-weather.csv"},"mark":"bar","encoding":{"x":{"timeUnit":"month","field":"date","type":"ordinal"},"y":{"aggregate":"mean","field":"precipitation"}}}, {"mode": "vega-lite"});
+</script>
+<p>The main differences between the JSON spec and the <code>vlspec</code> are:</p><ul><li>JSON strings can be represented either as a Julia <code>String</code> (e.g. <code>&quot;https://vega.github.io/vega-datasets/data/seattle-weather.csv&quot;</code>) or as a Julia <code>Symbol</code> (e.g. <code>:bar</code>).</li><li>key-value pairs are represented as a <code>NamedNtuple</code> (a <code>Dict</code> is also accepted), so <code>{}</code> is translated to <code>()</code>, <code>:</code> is translated to <code>=</code> and keys are not surrounded by quotation marks. Note that in Julia a <code>NamedTuple</code> with a single element needs to be defined either as <code>(; a=1)</code> or as <code>(a=1, )</code>.</li></ul><p>Using Deneb.jl one can build a <code>vlspec</code> defining pieces programmatically using standard techniques.</p><pre><code class="language-julia hljs">url = &quot;https://vega.github.io/vega-datasets/data/seattle-weather.csv&quot;
+data = (; url)
+mark = :bar
+x=(timeUnit=:month, field=:date, type=:ordinal)
+y=(aggregate=:mean, field=:precipitation)
+encoding = (; x, y)
+vlspec(; data, mark, encoding)</code></pre><style>
+  #vis-fc2150f0-b4a2-4ca7-9a91-064dc0909421.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-fc2150f0-b4a2-4ca7-9a91-064dc0909421.vega-embed details,
+  #vis-fc2150f0-b4a2-4ca7-9a91-064dc0909421.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-fc2150f0-b4a2-4ca7-9a91-064dc0909421"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-fc2150f0-b4a2-4ca7-9a91-064dc0909421") {
+      outputDiv = document.getElementById("vis-fc2150f0-b4a2-4ca7-9a91-064dc0909421");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/seattle-weather.csv"},"mark":"bar","encoding":{"x":{"timeUnit":"month","field":"date","type":"ordinal"},"y":{"aggregate":"mean","field":"precipitation"}}}, {"mode": "vega-lite"});
+</script>
+<h2 id="The-Deneb.jl-API"><a class="docs-heading-anchor" href="#The-Deneb.jl-API">The Deneb.jl API</a><a id="The-Deneb.jl-API-1"></a><a class="docs-heading-anchor-permalink" href="#The-Deneb.jl-API" title="Permalink"></a></h2><p>With <code>vlspec</code> one can build any arbitrary Vega-Lite spec programmatically, providing already an advantage over directly writing JSON specs. However, these direct translations are still rather verbose. Deneb.jl provides an API to create specs in a more concise and convenient way.</p><pre><code class="language-julia hljs">data = Data(url=&quot;https://vega.github.io/vega-datasets/data/seattle-weather.csv&quot;)
+chart = data * Mark(:bar) * Encoding(&quot;month(date):O&quot;, &quot;mean(precipitation)&quot;)</code></pre><style>
+  #vis-51dfef12-926c-4e0d-8500-d5e04b2463ad.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-51dfef12-926c-4e0d-8500-d5e04b2463ad.vega-embed details,
+  #vis-51dfef12-926c-4e0d-8500-d5e04b2463ad.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-51dfef12-926c-4e0d-8500-d5e04b2463ad"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-51dfef12-926c-4e0d-8500-d5e04b2463ad") {
+      outputDiv = document.getElementById("vis-51dfef12-926c-4e0d-8500-d5e04b2463ad");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/seattle-weather.csv"},"mark":{"type":"bar"},"encoding":{"x":{"timeUnit":"month","field":"date","type":"ordinal"},"y":{"aggregate":"mean","field":"precipitation"}}}, {"mode": "vega-lite"});
+</script>
+<p>The following patterns have been demonstrated in the previous example:</p><ul><li>The sub-spec of the <code>data</code>, <code>mark</code> and <code>encoding</code> properties have been created with <a href="../data_mark_encoding/#Data"><code>Data</code></a>, <a href="../data_mark_encoding/#Mark"><code>Mark</code></a> and <a href="../data_mark_encoding/#Encoding"><code>Encoding</code></a>, and then composed using the <a href="../api/#Base.:*-Tuple{Deneb.Spec, Deneb.Spec}"><code>*</code></a> operator.</li><li>The <code>x</code> and <code>y</code> channels have been defined in the <code>Encoding</code> as positional arguments. Alternatively they could&#39;ve been explicitly defined as keyword arguments.</li><li>Inspired by Altair, a string shorthand syntax have been used to conveniently represent the <code>type</code>, <code>field</code>, <code>aggregate</code> and <code>timeUnit</code> properties of the encoding channels.</li></ul><p>The convenience of Deneb.jl&#39;s API can be further illustrated in the following example of a more elaborated visualization. This visualization represents a bar chart of the average monthly precipitation in Seattle, overlaid with a rule for the overall yearly average, and allows for an interactive moving average for a dragged region using the mouse (a region can be selected and then dragged).</p><pre><code class="language-julia hljs">bar = Mark(:bar) * select_interval(
+    :brush, encodings=[:x],
+) * Encoding(
+    &quot;month(date):O&quot;,
+    &quot;mean(precipitation)&quot;,
+    opacity=condition(:brush, 1, 0.7),
+)
+
+rule = Mark(:rule, color=:firebrick, size=3) * transform_filter(
+    param(:brush)
+) * Encoding(y=&quot;mean(precipitation)&quot;)
+
+chart = data * (bar + rule)</code></pre><style>
+  #vis-c95bbcde-dfe7-4871-b81c-64c276b29062.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-c95bbcde-dfe7-4871-b81c-64c276b29062.vega-embed details,
+  #vis-c95bbcde-dfe7-4871-b81c-64c276b29062.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-c95bbcde-dfe7-4871-b81c-64c276b29062"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-c95bbcde-dfe7-4871-b81c-64c276b29062") {
+      outputDiv = document.getElementById("vis-c95bbcde-dfe7-4871-b81c-64c276b29062");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/seattle-weather.csv"},"layer":[{"params":[{"name":"brush","select":{"type":"interval","encodings":["x"]}}],"mark":{"type":"bar"},"encoding":{"opacity":{"condition":{"param":"brush","value":1},"value":0.7},"x":{"timeUnit":"month","field":"date","type":"ordinal"},"y":{"aggregate":"mean","field":"precipitation"}}},{"transform":[{"filter":{"param":"brush"}}],"mark":{"type":"rule","color":"firebrick","size":3},"encoding":{"y":{"aggregate":"mean","field":"precipitation"}}}]}, {"mode": "vega-lite"});
+</script>
+<p>As a comparison, this is how the raw Vega-Lite specification looks like for the example above:</p><pre><code class="language-julia hljs">print(chart)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">{
+  &quot;config&quot;: {
+    &quot;view&quot;: {
+      &quot;continuousWidth&quot;: 300,
+      &quot;continuousHeight&quot;: 300,
+      &quot;step&quot;: 25
+    },
+    &quot;mark&quot;: {
+      &quot;tooltip&quot;: true
+    }
+  },
+  &quot;data&quot;: {
+    &quot;url&quot;: &quot;https://vega.github.io/vega-datasets/data/seattle-weather.csv&quot;
+  },
+  &quot;layer&quot;: [
+    {
+      &quot;params&quot;: [
+        {
+          &quot;name&quot;: &quot;brush&quot;,
+          &quot;select&quot;: {
+            &quot;type&quot;: &quot;interval&quot;,
+            &quot;encodings&quot;: [
+              &quot;x&quot;
+            ]
+          }
+        }
+      ],
+      &quot;mark&quot;: {
+        &quot;type&quot;: &quot;bar&quot;
+      },
+      &quot;encoding&quot;: {
+        &quot;opacity&quot;: {
+          &quot;condition&quot;: {
+            &quot;param&quot;: &quot;brush&quot;,
+            &quot;value&quot;: 1
+          },
+          &quot;value&quot;: 0.7
+        },
+        &quot;x&quot;: {
+          &quot;timeUnit&quot;: &quot;month&quot;,
+          &quot;field&quot;: &quot;date&quot;,
+          &quot;type&quot;: &quot;ordinal&quot;
+        },
+        &quot;y&quot;: {
+          &quot;aggregate&quot;: &quot;mean&quot;,
+          &quot;field&quot;: &quot;precipitation&quot;
+        }
+      }
+    },
+    {
+      &quot;transform&quot;: [
+        {
+          &quot;filter&quot;: {
+            &quot;param&quot;: &quot;brush&quot;
+          }
+        }
+      ],
+      &quot;mark&quot;: {
+        &quot;type&quot;: &quot;rule&quot;,
+        &quot;color&quot;: &quot;firebrick&quot;,
+        &quot;size&quot;: 3
+      },
+      &quot;encoding&quot;: {
+        &quot;y&quot;: {
+          &quot;aggregate&quot;: &quot;mean&quot;,
+          &quot;field&quot;: &quot;precipitation&quot;
+        }
+      }
+    }
+  ]
+}</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../basic_tutorial/">« Basic Tutorial</a><a class="docs-footer-nextpage" href="../data_mark_encoding/">Data, Mark and Encoding »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Monday 2 December 2024 11:06">Monday 2 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
