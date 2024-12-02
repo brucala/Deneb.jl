@@ -43,23 +43,23 @@ chart = select_range(
 ) * projection(
     :orthographic, rotate=(; expr=&quot;[rotate0, rotate1, 0]&quot;)
 ) * (sphere + world + earthquakes)</code></pre><style>
-  #vis-cd5f02b9-5898-46e8-87e5-a3021c3d834d.vega-embed {
+  #vis-f0444bb5-08ee-47b8-b42e-3a07f604048e.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-cd5f02b9-5898-46e8-87e5-a3021c3d834d.vega-embed details,
-  #vis-cd5f02b9-5898-46e8-87e5-a3021c3d834d.vega-embed details summary {
+  #vis-f0444bb5-08ee-47b8-b42e-3a07f604048e.vega-embed details,
+  #vis-f0444bb5-08ee-47b8-b42e-3a07f604048e.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-cd5f02b9-5898-46e8-87e5-a3021c3d834d"></div>
+<div id="vis-f0444bb5-08ee-47b8-b42e-3a07f604048e"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-cd5f02b9-5898-46e8-87e5-a3021c3d834d") {
-      outputDiv = document.getElementById("vis-cd5f02b9-5898-46e8-87e5-a3021c3d834d");
+    if (outputDiv.id !== "vis-f0444bb5-08ee-47b8-b42e-3a07f604048e") {
+      outputDiv = document.getElementById("vis-f0444bb5-08ee-47b8-b42e-3a07f604048e");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -107,4 +107,4 @@ chart = select_range(
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"params":[{"name":"rotate0","value":0,"bind":{"input":"range","min":-90,"max":90,"step":1}},{"name":"rotate1","value":0,"bind":{"input":"range","min":-90,"max":90,"step":1}},{"name":"earthquakeSize","value":6,"bind":{"input":"range","min":0,"max":12,"step":0.1}}],"layer":[{"data":{"sphere":true},"mark":{"type":"geoshape","fill":"aliceblue"}},{"data":{"url":"https://vega.github.io/vega-datasets/data/world-110m.json","format":{"type":"topojson","feature":"countries"}},"mark":{"type":"geoshape","fill":"mintcream","stroke":"black"}},{"transform":[{"as":"longitude","calculate":"datum.geometry.coordinates[0]"},{"as":"latitude","calculate":"datum.geometry.coordinates[1]"},{"as":"magnitude","calculate":"datum.properties.mag"},{"filter":"(rotate0 * -1) - 90 < datum.longitude && datum.longitude < (rotate0 * -1) + 90 && (rotate1 * -1) - 90 < datum.latitude && datum.latitude < (rotate1 * -1) + 90"}],"data":{"url":"https://vega.github.io/vega-datasets/data/earthquakes.json","format":{"type":"json","property":"features"}},"mark":{"type":"circle","color":"red","opacity":0.25},"encoding":{"longitude":{"field":"longitude"},"latitude":{"field":"latitude"},"size":{"field":"magnitude","scale":{"type":"sqrt","domain":[0,100],"range":[0,{"expr":"pow(earthquakeSize, 3)"}]},"legend":null},"tooltip":{"field":"magnitude"}}}],"projection":{"type":"orthographic","rotate":{"expr":"[rotate0, rotate1, 0]"}}}, {"mode": "vega-lite"});
 </script>
-<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Sunday 1 December 2024 18:22">Sunday 1 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Monday 2 December 2024 10:51">Monday 2 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
