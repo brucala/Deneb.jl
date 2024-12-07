@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Multi-views · Deneb.jl</title><meta name="title" content="Multi-views · Deneb.jl"/><meta property="og:title" content="Multi-views · Deneb.jl"/><meta property="twitter:title" content="Multi-views · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../intro/">Introduction</a></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../composition_and_layering/">Composition and Layering</a></li><li class="is-active"><a class="tocitem" href>Multi-views</a><ul class="internal"><li><a class="tocitem" href="#multiview-concat"><span>Concatenation</span></a></li><li><a class="tocitem" href="#multiview-repeat"><span>Repeat</span></a></li><li><a class="tocitem" href="#multiview-facet"><span>Facet</span></a></li><li><a class="tocitem" href="#multiview-resolution"><span>Resolution</span></a></li></ul></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../graphs/">Graphs</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">User Guide</a></li><li class="is-active"><a href>Multi-views</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Multi-views</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/multiview.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="multiview"><a class="docs-heading-anchor" href="#multiview">Multi-view specs</a><a id="multiview-1"></a><a class="docs-heading-anchor-permalink" href="#multiview" title="Permalink"></a></h1><p>With Vega-Lite, you can not only create single view and layered visualizations, but also concatenate, repeat and facet these views into <a href="https://vega.github.io/vega-lite/docs/composition.html">multiview displays</a>.</p><h2 id="multiview-concat"><a class="docs-heading-anchor" href="#multiview-concat">Concatenation</a><a id="multiview-concat-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-concat" title="Permalink"></a></h2><p>To place view&#39;s side-by-side, Deneb.jl provides the <a href="../api/#Base.hcat-Tuple{Vararg{Deneb.VegaLiteSpec}}"><code>Base.hcat</code></a>, <a href="../api/#Base.vcat-Tuple{Vararg{Deneb.VegaLiteSpec}}"><code>Base.vcat</code></a> and <a href="../api/#Deneb.concat-Tuple{Vararg{Deneb.VegaLiteSpec}}"><code>concat</code></a> methods respectively for horizontal, vertical and general (wrappable) concatenation of views. Square braces <code>[]</code> can also be conveniently used for concatenation.</p><pre><code class="language-julia hljs">using Deneb
+data = Data(url=&quot;https://vega.github.io/vega-datasets/data/weather.csv&quot;)
+base = transform_filter(&quot;datum.location === &#39;Seattle&#39;&quot;) * vlspec(height=200)
+bar = Mark(:bar) * Encoding(&quot;month(date):O&quot;, &quot;mean(precipitation):Q&quot;)
+bubble = Mark(:point) * Encoding(
+    x=field(&quot;temp_min:Q&quot;, bin=true),
+    y=field(&quot;temp_max:Q&quot;, bin=true),
+    size=&quot;count()&quot;,
+)
+
+data * base * [bar bubble]</code></pre><style>
+  #vis-a49be705-2fae-4c42-bb38-55cb81d630ef.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-a49be705-2fae-4c42-bb38-55cb81d630ef.vega-embed details,
+  #vis-a49be705-2fae-4c42-bb38-55cb81d630ef.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-a49be705-2fae-4c42-bb38-55cb81d630ef"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-a49be705-2fae-4c42-bb38-55cb81d630ef") {
+      outputDiv = document.getElementById("vis-a49be705-2fae-4c42-bb38-55cb81d630ef");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"transform":[{"filter":"datum.location === 'Seattle'"}],"data":{"url":"https://vega.github.io/vega-datasets/data/weather.csv"},"hconcat":[{"mark":{"type":"bar"},"encoding":{"x":{"timeUnit":"month","field":"date","type":"ordinal"},"y":{"aggregate":"mean","field":"precipitation","type":"quantitative"}},"height":200},{"mark":{"type":"point"},"encoding":{"x":{"field":"temp_min","type":"quantitative","bin":true},"y":{"field":"temp_max","type":"quantitative","bin":true},"size":{"aggregate":"count"}},"height":200}]}, {"mode": "vega-lite"});
+</script>
+<pre><code class="language-julia hljs">data * base * [bar; bubble]</code></pre><style>
+  #vis-ad36b9b4-e62a-427b-be1d-988ef5f3f1b9.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-ad36b9b4-e62a-427b-be1d-988ef5f3f1b9.vega-embed details,
+  #vis-ad36b9b4-e62a-427b-be1d-988ef5f3f1b9.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-ad36b9b4-e62a-427b-be1d-988ef5f3f1b9"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-ad36b9b4-e62a-427b-be1d-988ef5f3f1b9") {
+      outputDiv = document.getElementById("vis-ad36b9b4-e62a-427b-be1d-988ef5f3f1b9");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"transform":[{"filter":"datum.location === 'Seattle'"}],"data":{"url":"https://vega.github.io/vega-datasets/data/weather.csv"},"vconcat":[{"mark":{"type":"bar"},"encoding":{"x":{"timeUnit":"month","field":"date","type":"ordinal"},"y":{"aggregate":"mean","field":"precipitation","type":"quantitative"}},"height":200},{"mark":{"type":"point"},"encoding":{"x":{"field":"temp_min","type":"quantitative","bin":true},"y":{"field":"temp_max","type":"quantitative","bin":true},"size":{"aggregate":"count"}},"height":200}]}, {"mode": "vega-lite"});
+</script>
+<pre><code class="language-julia hljs">line = Mark(:line) * Encoding(&quot;month(date):T&quot;, &quot;mean(wind):Q&quot;)
+data * base * concat(bar, bubble, line, columns=2)</code></pre><style>
+  #vis-99222a74-bf3a-48b9-ad6e-8702ee682705.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-99222a74-bf3a-48b9-ad6e-8702ee682705.vega-embed details,
+  #vis-99222a74-bf3a-48b9-ad6e-8702ee682705.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-99222a74-bf3a-48b9-ad6e-8702ee682705"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-99222a74-bf3a-48b9-ad6e-8702ee682705") {
+      outputDiv = document.getElementById("vis-99222a74-bf3a-48b9-ad6e-8702ee682705");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"transform":[{"filter":"datum.location === 'Seattle'"}],"columns":2,"data":{"url":"https://vega.github.io/vega-datasets/data/weather.csv"},"concat":[{"mark":{"type":"bar"},"encoding":{"x":{"timeUnit":"month","field":"date","type":"ordinal"},"y":{"aggregate":"mean","field":"precipitation","type":"quantitative"}},"height":200},{"mark":{"type":"point"},"encoding":{"x":{"field":"temp_min","type":"quantitative","bin":true},"y":{"field":"temp_max","type":"quantitative","bin":true},"size":{"aggregate":"count"}},"height":200},{"mark":{"type":"line"},"encoding":{"x":{"timeUnit":"month","field":"date","type":"temporal"},"y":{"aggregate":"mean","field":"wind","type":"quantitative"}},"height":200}]}, {"mode": "vega-lite"});
+</script>
+<h3 id="Examples"><a class="docs-heading-anchor" href="#Examples">Examples</a><a id="Examples-1"></a><a class="docs-heading-anchor-permalink" href="#Examples" title="Permalink"></a></h3><p>See the <a href="../examples/#Concatenation">Concatenation</a> section of the Gallery for more examples.</p><h3 id="More"><a class="docs-heading-anchor" href="#More">More</a><a id="More-1"></a><a class="docs-heading-anchor-permalink" href="#More" title="Permalink"></a></h3><p>More about concatenation in Vega-Lite&#39;s <a href="https://vega.github.io/vega-lite/docs/concat.html">Concatenation</a> documentation.</p><h2 id="multiview-repeat"><a class="docs-heading-anchor" href="#multiview-repeat">Repeat</a><a id="multiview-repeat-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-repeat" title="Permalink"></a></h2><p>Often, you may concatenate similar views where the only difference is the field that is used in an encoding. The <code>repeat</code> operator is a shortcut that creates a view for each entry in an array of fields. </p><p>In Deneb.jl, this can be achieved using <a href="../examples/#Repeat"><code>Repeat</code></a>. </p><pre><code class="language-julia hljs">Data(data) * Mark(:line) * Repeat(
+    column = [&quot;temp_max&quot;, &quot;precipitation&quot;, &quot;wind&quot;]
+) * Encoding(
+    x=&quot;month(date)&quot;,
+    y=(field=(;repeat=:column), aggregate=:mean),
+    color=:location,
+) * vlspec(
+    height=200, width=200
+)</code></pre><style>
+  #vis-5c5d1510-01d5-4a43-b9e7-27eee1b5b8c7.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-5c5d1510-01d5-4a43-b9e7-27eee1b5b8c7.vega-embed details,
+  #vis-5c5d1510-01d5-4a43-b9e7-27eee1b5b8c7.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-5c5d1510-01d5-4a43-b9e7-27eee1b5b8c7"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-5c5d1510-01d5-4a43-b9e7-27eee1b5b8c7") {
+      outputDiv = document.getElementById("vis-5c5d1510-01d5-4a43-b9e7-27eee1b5b8c7");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/weather.csv"},"spec":{"mark":{"type":"line"},"encoding":{"x":{"timeUnit":"month","field":"date"},"y":{"field":{"repeat":"column"},"aggregate":"mean"},"color":{"field":"location"}},"width":200,"height":200},"repeat":{"column":["temp_max","precipitation","wind"]}}, {"mode": "vega-lite"});
+</script>
+<h3 id="Examples-2"><a class="docs-heading-anchor" href="#Examples-2">Examples</a><a class="docs-heading-anchor-permalink" href="#Examples-2" title="Permalink"></a></h3><p>See the <a href="../examples/#Repeat">Repeat</a> section of the Gallery for more examples.</p><h3 id="More-2"><a class="docs-heading-anchor" href="#More-2">More</a><a class="docs-heading-anchor-permalink" href="#More-2" title="Permalink"></a></h3><p>More about concatenation in Vega-Lite&#39;s <a href="https://vega.github.io/vega-lite/docs/repeat.html">Repeat</a> documentation.</p><h2 id="multiview-facet"><a class="docs-heading-anchor" href="#multiview-facet">Facet</a><a id="multiview-facet-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-facet" title="Permalink"></a></h2><p>Like repeated charts, faceted charts provide a more convenient API for creating multiple views of a dataset. However, unlike <code>repeat</code> where each view contains full replication of the data set, in <code>facet</code> each view contains a different subset of the data facilitating comparison across subsets.</p><p>In Deneb.jl, this can be achieved using <a href="../examples/#Facet"><code>Facet</code></a>.</p><pre><code class="language-julia hljs">data = Data(url=&quot;https://vega.github.io/vega-datasets/data/cars.json&quot;)
+base = Mark(:bar) * Encoding(
+    x=field(&quot;Horsepower:Q&quot;, bin=(;maxbins=15)),
+    y=&quot;count()&quot;
+) * vlspec(
+    height=200, width=200
+)
+
+data * base * Facet(column=:Origin)</code></pre><style>
+  #vis-38cf0aa2-d69c-4611-8416-7dbb7bfa05b6.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-38cf0aa2-d69c-4611-8416-7dbb7bfa05b6.vega-embed details,
+  #vis-38cf0aa2-d69c-4611-8416-7dbb7bfa05b6.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-38cf0aa2-d69c-4611-8416-7dbb7bfa05b6"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-38cf0aa2-d69c-4611-8416-7dbb7bfa05b6") {
+      outputDiv = document.getElementById("vis-38cf0aa2-d69c-4611-8416-7dbb7bfa05b6");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"spec":{"mark":{"type":"bar"},"encoding":{"x":{"field":"Horsepower","type":"quantitative","bin":{"maxbins":15}},"y":{"aggregate":"count"}},"width":200,"height":200},"facet":{"column":{"field":"Origin"}}}, {"mode": "vega-lite"});
+</script>
+<h3 id="Faceting-with-encoding-channels"><a class="docs-heading-anchor" href="#Faceting-with-encoding-channels">Faceting with encoding channels</a><a id="Faceting-with-encoding-channels-1"></a><a class="docs-heading-anchor-permalink" href="#Faceting-with-encoding-channels" title="Permalink"></a></h3><p>Vega-Lite also provides the <a href="https://vega.github.io/vega-lite/docs/facet.html#facet-row-and-column-encoding-channels"><code>facet</code>, <code>row</code> and <code>column</code> encoding channels</a> that serve as a convenient way of producing facet specifications. </p><pre><code class="language-julia hljs">data * base * Encoding(column=:Origin)</code></pre><style>
+  #vis-dc61995f-896a-44f4-96b0-7cabeec500a4.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-dc61995f-896a-44f4-96b0-7cabeec500a4.vega-embed details,
+  #vis-dc61995f-896a-44f4-96b0-7cabeec500a4.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-dc61995f-896a-44f4-96b0-7cabeec500a4"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-dc61995f-896a-44f4-96b0-7cabeec500a4") {
+      outputDiv = document.getElementById("vis-dc61995f-896a-44f4-96b0-7cabeec500a4");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"bar"},"encoding":{"x":{"field":"Horsepower","type":"quantitative","bin":{"maxbins":15}},"y":{"aggregate":"count"},"column":{"field":"Origin"}},"width":200,"height":200}, {"mode": "vega-lite"});
+</script>
+<p>The limitation of faceting via encoding channels is that it cannot create complicated compound charts like facet views of layered charts, while this can be achieved with the more flexible <code>Facet</code>.</p><h3 id="Examples-3"><a class="docs-heading-anchor" href="#Examples-3">Examples</a><a class="docs-heading-anchor-permalink" href="#Examples-3" title="Permalink"></a></h3><p>See the <a href="../examples/#Facet">Facet</a> section of the Gallery for more examples.</p><h3 id="More-3"><a class="docs-heading-anchor" href="#More-3">More</a><a class="docs-heading-anchor-permalink" href="#More-3" title="Permalink"></a></h3><p>More about faceting in Vega-Lite&#39;s <a href="https://vega.github.io/vega-lite/docs/facet.html">Facet</a> documentation.</p><h2 id="multiview-resolution"><a class="docs-heading-anchor" href="#multiview-resolution">Resolution</a><a id="multiview-resolution-1"></a><a class="docs-heading-anchor-permalink" href="#multiview-resolution" title="Permalink"></a></h2></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../composition_and_layering/">« Composition and Layering</a><a class="docs-footer-nextpage" href="../interactive/">Interactive Charts »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Saturday 7 December 2024 21:16">Saturday 7 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

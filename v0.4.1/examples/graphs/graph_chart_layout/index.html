@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Graph chart layout · Deneb.jl</title><meta name="title" content="Graph chart layout · Deneb.jl"/><meta property="og:title" content="Graph chart layout · Deneb.jl"/><meta property="twitter:title" content="Graph chart layout · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../../assets/documenter.js"></script><script src="../../../search_index.js"></script><script src="../../../siteinfo.js"></script><script src="../../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../../assets/themeswap.js"></script><link href="../../../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../../../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../../"><img src="../../../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../../../installation/">Installation</a></li><li><a class="tocitem" href="../../../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../../../intro/">Introduction</a></li><li><a class="tocitem" href="../../../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../../../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../../../multiview/">Multi-views</a></li><li><a class="tocitem" href="../../../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../../../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../../../graphs/">Graphs</a></li><li><a class="tocitem" href="../../../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../../">Gallery</a></li><li><a class="tocitem" href="../../../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Graph chart layout</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Graph chart layout</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/examples/graphs/graph_chart_layout.jl" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Graph-chart-layout"><a class="docs-heading-anchor" href="#Graph-chart-layout">Graph chart layout</a><a id="Graph-chart-layout-1"></a><a class="docs-heading-anchor-permalink" href="#Graph-chart-layout" title="Permalink"></a></h1><p><a href="../graph_chart_layout.jl"><img src="https://img.shields.io/badge/download-julia-brightgreen.svg" alt="Source code"/></a> <img src="https://img.shields.io/badge/Author-bruno-blue" alt="Author"/></p><pre><code class="language-julia hljs">using Deneb, Graphs, NetworkLayout
+
+g = smallgraph(:petersen)
+
+chart = plotgraph(g, layout=Shell(nlist=[6:10, ]))</code></pre><style>
+  #vis-932a1183-3549-46a9-b0df-343434f56758.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-932a1183-3549-46a9-b0df-343434f56758.vega-embed details,
+  #vis-932a1183-3549-46a9-b0df-343434f56758.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-932a1183-3549-46a9-b0df-343434f56758"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-932a1183-3549-46a9-b0df-343434f56758") {
+      outputDiv = document.getElementById("vis-932a1183-3549-46a9-b0df-343434f56758");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25,"stroke":""},"mark":{"tooltip":true}},"datasets":{"nodes":[{"id":1,"y":0.0,"x":2.0},{"id":2,"y":1.902113032590307,"x":0.6180339887498949},{"id":3,"y":1.1755705045849465,"x":-1.6180339887498947},{"id":4,"y":-1.175570504584946,"x":-1.618033988749895},{"id":5,"y":-1.9021130325903073,"x":0.6180339887498945},{"id":6,"y":0.0,"x":1.0},{"id":7,"y":0.9510565162951535,"x":0.30901699437494745},{"id":8,"y":0.5877852522924732,"x":-0.8090169943749473},{"id":9,"y":-0.587785252292473,"x":-0.8090169943749475},{"id":10,"y":-0.9510565162951536,"x":0.30901699437494723}],"edges":[{"src":1,"dst":2,"y":0.0,"x2":0.6180339887498949,"label":"Edge 1 => 2","y2":1.902113032590307,"x":2.0},{"src":1,"dst":5,"y":0.0,"x2":0.6180339887498945,"label":"Edge 1 => 5","y2":-1.9021130325903073,"x":2.0},{"src":1,"dst":6,"y":0.0,"x2":1.0,"label":"Edge 1 => 6","y2":0.0,"x":2.0},{"src":2,"dst":3,"y":1.902113032590307,"x2":-1.6180339887498947,"label":"Edge 2 => 3","y2":1.1755705045849465,"x":0.6180339887498949},{"src":2,"dst":7,"y":1.902113032590307,"x2":0.30901699437494745,"label":"Edge 2 => 7","y2":0.9510565162951535,"x":0.6180339887498949},{"src":3,"dst":4,"y":1.1755705045849465,"x2":-1.618033988749895,"label":"Edge 3 => 4","y2":-1.175570504584946,"x":-1.6180339887498947},{"src":3,"dst":8,"y":1.1755705045849465,"x2":-0.8090169943749473,"label":"Edge 3 => 8","y2":0.5877852522924732,"x":-1.6180339887498947},{"src":4,"dst":5,"y":-1.175570504584946,"x2":0.6180339887498945,"label":"Edge 4 => 5","y2":-1.9021130325903073,"x":-1.618033988749895},{"src":4,"dst":9,"y":-1.175570504584946,"x2":-0.8090169943749475,"label":"Edge 4 => 9","y2":-0.587785252292473,"x":-1.618033988749895},{"src":5,"dst":10,"y":-1.9021130325903073,"x2":0.30901699437494723,"label":"Edge 5 => 10","y2":-0.9510565162951536,"x":0.6180339887498945},{"src":6,"dst":8,"y":0.0,"x2":-0.8090169943749473,"label":"Edge 6 => 8","y2":0.5877852522924732,"x":1.0},{"src":6,"dst":9,"y":0.0,"x2":-0.8090169943749475,"label":"Edge 6 => 9","y2":-0.587785252292473,"x":1.0},{"src":7,"dst":9,"y":0.9510565162951535,"x2":-0.8090169943749475,"label":"Edge 7 => 9","y2":-0.587785252292473,"x":0.30901699437494745},{"src":7,"dst":10,"y":0.9510565162951535,"x2":0.30901699437494723,"label":"Edge 7 => 10","y2":-0.9510565162951536,"x":0.30901699437494745},{"src":8,"dst":10,"y":0.5877852522924732,"x2":0.30901699437494723,"label":"Edge 8 => 10","y2":-0.9510565162951536,"x":-0.8090169943749473}]},"encoding":{"x":{"field":"x","type":"quantitative","axis":null},"y":{"field":"y","type":"quantitative","axis":null}},"layer":[{"params":[{"name":"interactive_scales","select":"interval","bind":"scales"}],"data":{"name":"edges"},"mark":{"type":"rule","size":3},"encoding":{"x2":{"field":"x2"},"y2":{"field":"y2"},"tooltip":{"field":"label"}}},{"data":{"name":"nodes"},"mark":{"type":"point","size":400,"fill":"lightblue","opacity":1},"encoding":{"tooltip":[{"field":"id"},false]}}]}, {"mode": "vega-lite"});
+</script>
+<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Saturday 7 December 2024 21:16">Saturday 7 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

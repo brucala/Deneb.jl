@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Data, Mark and Encoding · Deneb.jl</title><meta name="title" content="Data, Mark and Encoding · Deneb.jl"/><meta property="og:title" content="Data, Mark and Encoding · Deneb.jl"/><meta property="twitter:title" content="Data, Mark and Encoding · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../intro/">Introduction</a></li><li class="is-active"><a class="tocitem" href>Data, Mark and Encoding</a><ul class="internal"><li><a class="tocitem" href="#Data"><span>Data</span></a></li><li><a class="tocitem" href="#Mark"><span>Mark</span></a></li><li><a class="tocitem" href="#Encoding"><span>Encoding</span></a></li></ul></li><li><a class="tocitem" href="../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../multiview/">Multi-views</a></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../graphs/">Graphs</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">User Guide</a></li><li class="is-active"><a href>Data, Mark and Encoding</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Data, Mark and Encoding</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/data_mark_encoding.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Building-Blocks-of-a-Vega-Lite-Visualization"><a class="docs-heading-anchor" href="#Building-Blocks-of-a-Vega-Lite-Visualization">Building Blocks of a Vega-Lite Visualization</a><a id="Building-Blocks-of-a-Vega-Lite-Visualization-1"></a><a class="docs-heading-anchor-permalink" href="#Building-Blocks-of-a-Vega-Lite-Visualization" title="Permalink"></a></h1><p>The <code>data</code>, <code>mark</code> and <code>encoding</code> properties of a Vega-Lite specification are the basic building blocks of a Vega-Lite visualization. In Deneb.jl, sub-specifications for these properties can conveniently be defined using <a href="#Data"><code>Data</code></a>, <a href="#Mark"><code>Mark</code></a>, and <a href="#Encoding"><code>Encoding</code></a> and then composed using the <a href="../api/#Base.:*-Tuple{Deneb.Spec, Deneb.Spec}"><code>*</code></a> operator to build the final specification.</p><pre><code class="language-julia hljs">using Deneb
+cars = &quot;https://vega.github.io/vega-datasets/data/cars.json&quot;
+Data(url=cars) * Mark(:point) * Encoding(
+    &quot;Horsepower:q&quot;,
+    &quot;Miles_per_Gallon:q&quot;,
+    color=:Origin
+)</code></pre><style>
+  #vis-5f906456-b00d-4fdd-a0d6-f1544b39a2b3.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-5f906456-b00d-4fdd-a0d6-f1544b39a2b3.vega-embed details,
+  #vis-5f906456-b00d-4fdd-a0d6-f1544b39a2b3.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-5f906456-b00d-4fdd-a0d6-f1544b39a2b3"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-5f906456-b00d-4fdd-a0d6-f1544b39a2b3") {
+      outputDiv = document.getElementById("vis-5f906456-b00d-4fdd-a0d6-f1544b39a2b3");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"color":{"field":"Origin"},"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"}}}, {"mode": "vega-lite"});
+</script>
+<h2 id="Data"><a class="docs-heading-anchor" href="#Data">Data</a><a id="Data-1"></a><a class="docs-heading-anchor-permalink" href="#Data" title="Permalink"></a></h2><p>Similar to Vega-Lite, in Deneb.jl a dataset can be defined in several ways:</p><ul><li>as tabular data,</li><li>as a URL from which to load the data,</li><li>or as any of Vega-Lite&#39;s data generators.</li></ul><h3 id="Tabular-data"><a class="docs-heading-anchor" href="#Tabular-data">Tabular data</a><a id="Tabular-data-1"></a><a class="docs-heading-anchor-permalink" href="#Tabular-data" title="Permalink"></a></h3><p>Deneb.jl accepts any tabular data that supports the <a href="https://github.com/JuliaData/Tables.jl">Tables.jl</a> interface (e.g. <a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a> or any of <a href="https://github.com/JuliaData/Tables.jl/blob/main/INTEGRATIONS.md">these formats</a>) by simply passing the data to <a href="#Data"><code>Data</code></a>.</p><pre><code class="language-julia hljs">data = (a=[1, 2], b=[&quot;potato&quot;, &quot;tomato&quot;])
+Data(data)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.DataSpec: 
+{
+  &quot;values&quot;: [
+    {
+      &quot;a&quot;: 1,
+      &quot;b&quot;: &quot;potato&quot;
+    },
+    {
+      &quot;a&quot;: 2,
+      &quot;b&quot;: &quot;tomato&quot;
+    }
+  ]
+}
+</code></pre><p>In the example above the source data was simply a <code>NamedTuple</code>, but it could&#39;ve been for instance a <code>DataFrame</code>.</p><pre><code class="language-julia hljs">using DataFrames
+Data(DataFrame(data))</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.DataSpec: 
+{
+  &quot;values&quot;: [
+    {
+      &quot;a&quot;: 1,
+      &quot;b&quot;: &quot;potato&quot;
+    },
+    {
+      &quot;a&quot;: 2,
+      &quot;b&quot;: &quot;tomato&quot;
+    }
+  ]
+}
+</code></pre><p>As shown in the output, Deneb.jl internally transforms this data into an appropriate spec with a format that Vega-Lite can interpret.</p><h3 id="Data-from-a-URL"><a class="docs-heading-anchor" href="#Data-from-a-URL">Data from a URL</a><a id="Data-from-a-URL-1"></a><a class="docs-heading-anchor-permalink" href="#Data-from-a-URL" title="Permalink"></a></h3><p>Alternatively, data can be loaded from a URL using the <code>url</code> keyword argument.</p><pre><code class="language-julia hljs">Data(url=&quot;https://vega.github.io/vega-datasets/data/cars.json&quot;)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.DataSpec: 
+{
+  &quot;url&quot;: &quot;https://vega.github.io/vega-datasets/data/cars.json&quot;
+}
+</code></pre><p>Other properties can be specified to ensure that the loaded data is correctly parsed by Vega-Lite.</p><pre><code class="language-julia hljs">Data(
+   url=&quot;https://vega.github.io/vega-datasets/data/us-10m.json&quot;,
+    format=(type=:topojson, feature=:states),
+)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.DataSpec: 
+{
+  &quot;url&quot;: &quot;https://vega.github.io/vega-datasets/data/us-10m.json&quot;,
+  &quot;format&quot;: {
+    &quot;type&quot;: &quot;topojson&quot;,
+    &quot;feature&quot;: &quot;states&quot;
+  }
+}
+</code></pre><p>To learn more about the formats accepted by Vega-Lite and the properties describing a data source from URL, refer to <a href="https://vega.github.io/vega-lite/docs/data.html#url">Vega-Lite&#39;s documentation</a>.</p><h3 id="Data-generators"><a class="docs-heading-anchor" href="#Data-generators">Data generators</a><a id="Data-generators-1"></a><a class="docs-heading-anchor-permalink" href="#Data-generators" title="Permalink"></a></h3><p>Deneb.jl also provides a simple API to define data using any of the <a href="https://vega.github.io/vega-lite/docs/data.html#data-generators">data generators</a> available in Vega-Lite. The generator type (currently Vega-Lite provides a <code>sequence</code>, a <code>graticule</code> and a <code>sphere</code> generator) can be specified as a positional argument of type <code>String</code> or <code>Symbol</code>, while the properties defining the generator can be specified as keyword arguments.</p><pre><code class="language-julia hljs">Data(
+    :graticule, step=[15, 15]
+) * Mark(:geoshape) * projection(
+    :orthographic, rotate=[0, -45, 0]
+)</code></pre><style>
+  #vis-1b053838-f0a1-4125-a219-d9a5c58501f3.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-1b053838-f0a1-4125-a219-d9a5c58501f3.vega-embed details,
+  #vis-1b053838-f0a1-4125-a219-d9a5c58501f3.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-1b053838-f0a1-4125-a219-d9a5c58501f3"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-1b053838-f0a1-4125-a219-d9a5c58501f3") {
+      outputDiv = document.getElementById("vis-1b053838-f0a1-4125-a219-d9a5c58501f3");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"graticule":{"step":[15,15]}},"mark":{"type":"geoshape"},"projection":{"type":"orthographic","rotate":[0,-45,0]}}, {"mode": "vega-lite"});
+</script>
+<h2 id="Mark"><a class="docs-heading-anchor" href="#Mark">Mark</a><a id="Mark-1"></a><a class="docs-heading-anchor-permalink" href="#Mark" title="Permalink"></a></h2><p>The <code>mark</code> property of a Vega-Lite specification can be defined in Deneb.jl using <a href="#Mark"><code>Mark</code></a>, where the positional argument defines the <code>mark</code> type (<code>point</code>, <code>bar</code>, <code>line</code>,...) as a <code>String</code> or a <code>Symbol</code>.</p><pre><code class="language-julia hljs">Mark(:errorband)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.MarkSpec: 
+{
+  &quot;type&quot;: &quot;errorband&quot;
+}
+</code></pre><p>And the the keyword arguments define the other optional properties of the mark.</p><pre><code class="language-julia hljs">Mark(:errorband, extent=:ci, borders=(opacity=0.5, strokeDash=[6, 4]))</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.MarkSpec: 
+{
+  &quot;type&quot;: &quot;errorband&quot;,
+  &quot;extent&quot;: &quot;ci&quot;,
+  &quot;borders&quot;: {
+    &quot;opacity&quot;: 0.5,
+    &quot;strokeDash&quot;: [
+      6,
+      4
+    ]
+  }
+}
+</code></pre><p>Refer to <a href="https://vega.github.io/vega-lite/docs/mark.html">Vega-Lite&#39;s documentation</a> to learn more about the mark types and their properties.</p><h2 id="Encoding"><a class="docs-heading-anchor" href="#Encoding">Encoding</a><a id="Encoding-1"></a><a class="docs-heading-anchor-permalink" href="#Encoding" title="Permalink"></a></h2><p>The <code>encoding</code> property of a single view specification represents the mapping between encoding channels (such as <code>x</code>, <code>y</code>, or <code>color</code>) and data fields. In Deneb.jl the <code>encoding</code> is defined with <a href="#Encoding"><code>Encoding</code></a>, which can optionally take one or two positional arguments representing the the <code>x</code> and <code>y</code> channels, and any number of keyword arguments representing any arbitrary Vega-Lite channel (including explicit <code>x</code>/<code>y</code> channels). In the simplest scenario the arguments are of type <code>String</code> or <code>Symbol</code> representing the <code>field</code> property of the given encoding channel.</p><pre><code class="language-julia hljs">Encoding(:Horsepower, :Miles_per_Gallon, color=:Origin)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.EncodingSpec: 
+{
+  &quot;color&quot;: {
+    &quot;field&quot;: &quot;Origin&quot;
+  },
+  &quot;x&quot;: {
+    &quot;field&quot;: &quot;Horsepower&quot;
+  },
+  &quot;y&quot;: {
+    &quot;field&quot;: &quot;Miles_per_Gallon&quot;
+  }
+}
+</code></pre><h3 id="Shorthand-string-syntax"><a class="docs-heading-anchor" href="#Shorthand-string-syntax">Shorthand string syntax</a><a id="Shorthand-string-syntax-1"></a><a class="docs-heading-anchor-permalink" href="#Shorthand-string-syntax" title="Permalink"></a></h3><p>Similar to Altair, the encoding channels can be defined with a shorthand string syntax to conveniently define the <code>field</code>, the <code>type</code> and the <code>aggregate</code>/<code>timeUnit</code> properties of encoding channels. The <code>type</code> can be defined by separating the field with a <code>:</code> followed by a shorthand type code (<code>q</code>: <code>quantitative</code>, <code>o</code>: <code>ordinal</code>, <code>n</code>: <code>nominal</code>, <code>t</code>: <code>temporal</code>, <code>g</code>: <code>geojson</code>).</p><pre><code class="language-julia hljs">Encoding(&quot;Horsepower:q&quot;, &quot;Miles_per_Gallon:q&quot;, color=&quot;Origin:n&quot;)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.EncodingSpec: 
+{
+  &quot;color&quot;: {
+    &quot;field&quot;: &quot;Origin&quot;,
+    &quot;type&quot;: &quot;nominal&quot;
+  },
+  &quot;x&quot;: {
+    &quot;field&quot;: &quot;Horsepower&quot;,
+    &quot;type&quot;: &quot;quantitative&quot;
+  },
+  &quot;y&quot;: {
+    &quot;field&quot;: &quot;Miles_per_Gallon&quot;,
+    &quot;type&quot;: &quot;quantitative&quot;
+  }
+}
+</code></pre><p>An <code>aggregate</code>/<code>timeUnit</code> property of encoding channel can also be specified with the shorthand string syntax by wrapping the <code>field</code> property with parenthesis and the desired <code>aggregate</code>/<code>timeUnit</code> function:</p><pre><code class="language-julia hljs">Encoding(&quot;monthdate(date):t&quot;, &quot;mean(temperature):q&quot;, color=&quot;year(date):o&quot;)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.EncodingSpec: 
+{
+  &quot;color&quot;: {
+    &quot;timeUnit&quot;: &quot;year&quot;,
+    &quot;field&quot;: &quot;date&quot;,
+    &quot;type&quot;: &quot;ordinal&quot;
+  },
+  &quot;x&quot;: {
+    &quot;timeUnit&quot;: &quot;monthdate&quot;,
+    &quot;field&quot;: &quot;date&quot;,
+    &quot;type&quot;: &quot;temporal&quot;
+  },
+  &quot;y&quot;: {
+    &quot;aggregate&quot;: &quot;mean&quot;,
+    &quot;field&quot;: &quot;temperature&quot;,
+    &quot;type&quot;: &quot;quantitative&quot;
+  }
+}
+</code></pre><h3 id="Setting-other-channel-properties-and-the-field-function"><a class="docs-heading-anchor" href="#Setting-other-channel-properties-and-the-field-function">Setting other channel properties and the <code>field</code> function</a><a id="Setting-other-channel-properties-and-the-field-function-1"></a><a class="docs-heading-anchor-permalink" href="#Setting-other-channel-properties-and-the-field-function" title="Permalink"></a></h3><p>To set other channel properties, the <code>Encoding</code> channel arguments can be passed as <code>NamedTuple</code>s (or <code>Dict</code>s) representing the complete channel specification. Note that this works only for explicit keyword channels and not for the method with positional channels.</p><pre><code class="language-julia hljs">Encoding(
+    x = (
+        field=:people,
+        type=:quantitative,
+        aggregate=:sum,
+        title=&quot;Total population&quot;,
+        scale=(; type=:log)
+    )
+)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.EncodingSpec: 
+{
+  &quot;x&quot;: {
+    &quot;field&quot;: &quot;people&quot;,
+    &quot;type&quot;: &quot;quantitative&quot;,
+    &quot;aggregate&quot;: &quot;sum&quot;,
+    &quot;title&quot;: &quot;Total population&quot;,
+    &quot;scale&quot;: {
+      &quot;type&quot;: &quot;log&quot;
+    }
+  }
+}
+</code></pre><p>Alternatively, the convenient <a href="../api/#Deneb.field-Tuple{Any}"><code>field</code></a> function can be used where the first positional argument can use the shorthand string syntax for fields, and other properties can be set as keyword arguments.</p><pre><code class="language-julia hljs">Encoding(
+    x = field(
+        &quot;sum(people):q&quot;,
+        title=&quot;Total population&quot;,
+        scale=(; type=:log)
+    )
+)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.EncodingSpec: 
+{
+  &quot;x&quot;: {
+    &quot;aggregate&quot;: &quot;sum&quot;,
+    &quot;field&quot;: &quot;people&quot;,
+    &quot;type&quot;: &quot;quantitative&quot;,
+    &quot;title&quot;: &quot;Total population&quot;,
+    &quot;scale&quot;: {
+      &quot;type&quot;: &quot;log&quot;
+    }
+  }
+}
+</code></pre><h3 id="Constant-encodings"><a class="docs-heading-anchor" href="#Constant-encodings">Constant encodings</a><a id="Constant-encodings-1"></a><a class="docs-heading-anchor-permalink" href="#Constant-encodings" title="Permalink"></a></h3><p>Constant <a href="https://vega.github.io/vega-lite/docs/value.html">visual values</a> and constant <a href="https://vega.github.io/vega-lite/docs/datum.html">data values (datum)</a> can also be set in Deneb.jl using <code>Encoding</code> with <code>NamedTuple</code> arguments.</p><pre><code class="language-julia hljs">Encoding(
+    x=(; datum=10),
+    color=(; value=&quot;#ff9900&quot;)
+)</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">Deneb.EncodingSpec: 
+{
+  &quot;x&quot;: {
+    &quot;datum&quot;: 10
+  },
+  &quot;color&quot;: {
+    &quot;value&quot;: &quot;#ff9900&quot;
+  }
+}
+</code></pre></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../intro/">« Introduction</a><a class="docs-footer-nextpage" href="../composition_and_layering/">Composition and Layering »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Saturday 7 December 2024 21:16">Saturday 7 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
