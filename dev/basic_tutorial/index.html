@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Basic Tutorial · Deneb.jl</title><meta name="title" content="Basic Tutorial · Deneb.jl"/><meta property="og:title" content="Basic Tutorial · Deneb.jl"/><meta property="twitter:title" content="Basic Tutorial · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li class="is-active"><a class="tocitem" href>Basic Tutorial</a><ul class="internal"><li><a class="tocitem" href="#The-Data"><span>The Data</span></a></li><li><a class="tocitem" href="#Encoding-Data-with-Marks"><span>Encoding Data with Marks</span></a></li><li><a class="tocitem" href="#Data-Transformation:-Aggregation"><span>Data Transformation: Aggregation</span></a></li><li><a class="tocitem" href="#Customize-your-Visualization"><span>Customize your Visualization</span></a></li><li><a class="tocitem" href="#Publish-your-Visualization"><span>Publish your Visualization</span></a></li></ul></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../intro/">Introduction</a></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../multiview/">Multi-views</a></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Getting Started</a></li><li class="is-active"><a href>Basic Tutorial</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Basic Tutorial</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/basic_tutorial.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Introduction-to-Deneb.jl"><a class="docs-heading-anchor" href="#Introduction-to-Deneb.jl">Introduction to Deneb.jl</a><a id="Introduction-to-Deneb.jl-1"></a><a class="docs-heading-anchor-permalink" href="#Introduction-to-Deneb.jl" title="Permalink"></a></h1><p>This tutorial (as much of the documentation and example gallery) is adapted from <a href="https://vega.github.io/vega-lite/tutorials/getting_started.html">Vega-Lite&#39;s</a> and <a href="https://altair-viz.github.io/getting_started/starting.html">Altair&#39;s</a> documentation.</p><p>The tutorial will guide through the process of writing a visualization specification in Deneb.jl. We will walk you through all main components of Deneb by adding each of them to an example specification one-by-one. This tutorial assumes that you are working an environment that can render rich MIME types (like Jupyter, Pluto, VSCode, ...) so the plots are automatically displayed.</p><h2 id="The-Data"><a class="docs-heading-anchor" href="#The-Data">The Data</a><a id="The-Data-1"></a><a class="docs-heading-anchor-permalink" href="#The-Data" title="Permalink"></a></h2><p>Deneb.jl accepts any tabular data that supports the <a href="https://github.com/JuliaData/Tables.jl">Tables.jl</a> interface (e.g. <a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a>). For the purpose of this tutorial we will use data with a categorical variable in in the first column <code>a</code> and a numerical variable in a second column <code>b</code>. We&#39;ll represent this data as a <code>NamedTuple</code> (but we could choose any other representation that supports Tables.jl interface):</p><pre><code class="language-julia hljs">data = (
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Basic Tutorial · Deneb.jl</title><meta name="title" content="Basic Tutorial · Deneb.jl"/><meta property="og:title" content="Basic Tutorial · Deneb.jl"/><meta property="twitter:title" content="Basic Tutorial · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li class="is-active"><a class="tocitem" href>Basic Tutorial</a><ul class="internal"><li><a class="tocitem" href="#The-Data"><span>The Data</span></a></li><li><a class="tocitem" href="#Encoding-Data-with-Marks"><span>Encoding Data with Marks</span></a></li><li><a class="tocitem" href="#Data-Transformation:-Aggregation"><span>Data Transformation: Aggregation</span></a></li><li><a class="tocitem" href="#Customize-your-Visualization"><span>Customize your Visualization</span></a></li><li><a class="tocitem" href="#Publish-your-Visualization"><span>Publish your Visualization</span></a></li></ul></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../intro/">Introduction</a></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../multiview/">Multi-views</a></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../graphs/">Graphs</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">Getting Started</a></li><li class="is-active"><a href>Basic Tutorial</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Basic Tutorial</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/basic_tutorial.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Introduction-to-Deneb.jl"><a class="docs-heading-anchor" href="#Introduction-to-Deneb.jl">Introduction to Deneb.jl</a><a id="Introduction-to-Deneb.jl-1"></a><a class="docs-heading-anchor-permalink" href="#Introduction-to-Deneb.jl" title="Permalink"></a></h1><p>This tutorial (as much of the documentation and example gallery) is adapted from <a href="https://vega.github.io/vega-lite/tutorials/getting_started.html">Vega-Lite&#39;s</a> and <a href="https://altair-viz.github.io/getting_started/starting.html">Altair&#39;s</a> documentation.</p><p>The tutorial will guide through the process of writing a visualization specification in Deneb.jl. We will walk you through all main components of Deneb by adding each of them to an example specification one-by-one. This tutorial assumes that you are working an environment that can render rich MIME types (like Jupyter, Pluto, VSCode, ...) so the plots are automatically displayed.</p><h2 id="The-Data"><a class="docs-heading-anchor" href="#The-Data">The Data</a><a id="The-Data-1"></a><a class="docs-heading-anchor-permalink" href="#The-Data" title="Permalink"></a></h2><p>Deneb.jl accepts any tabular data that supports the <a href="https://github.com/JuliaData/Tables.jl">Tables.jl</a> interface (e.g. <a href="https://github.com/JuliaData/DataFrames.jl">DataFrames.jl</a>). For the purpose of this tutorial we will use data with a categorical variable in in the first column <code>a</code> and a numerical variable in a second column <code>b</code>. We&#39;ll represent this data as a <code>NamedTuple</code> (but we could choose any other representation that supports Tables.jl interface):</p><pre><code class="language-julia hljs">data = (
     a = collect(&quot;CCCDDDEEE&quot;),
     b = [2, 7, 4, 1, 2, 6, 8, 4, 7],
 )</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">(a = [&#39;C&#39;, &#39;C&#39;, &#39;C&#39;, &#39;D&#39;, &#39;D&#39;, &#39;D&#39;, &#39;E&#39;, &#39;E&#39;, &#39;E&#39;], b = [2, 7, 4, 1, 2, 6, 8, 4, 7])</code></pre><p>Deneb.jl can now consume this data with <a href="../data_mark_encoding/#Data"><code>Data</code></a>:</p><pre><code class="language-julia hljs">using Deneb
@@ -49,23 +49,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
   &quot;type&quot;: &quot;point&quot;
 }
 </code></pre><p>To show a Vega-Lite visualization of the data as a point, we can compose the <code>DataSpec</code> and the <a href="../api/#Deneb.MarkSpec"><code>Deneb.MarkSpec</code></a> with the <a href="../api/#Base.:*-Tuple{Deneb.Spec, Deneb.Spec}"><code>*</code></a> operator to build a showable <a href="../api/#Deneb.VegaLiteSpec"><code>Deneb.VegaLiteSpec</code></a>:</p><pre><code class="language-julia hljs">Data(data) * Mark(:point)</code></pre><style>
-  #vis-9eef09e3-9307-44ac-8857-86d7298bd1cf.vega-embed {
+  #vis-6c28ba25-3539-456c-89c8-6b7a296290a4.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-9eef09e3-9307-44ac-8857-86d7298bd1cf.vega-embed details,
-  #vis-9eef09e3-9307-44ac-8857-86d7298bd1cf.vega-embed details summary {
+  #vis-6c28ba25-3539-456c-89c8-6b7a296290a4.vega-embed details,
+  #vis-6c28ba25-3539-456c-89c8-6b7a296290a4.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-9eef09e3-9307-44ac-8857-86d7298bd1cf"></div>
+<div id="vis-6c28ba25-3539-456c-89c8-6b7a296290a4"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-9eef09e3-9307-44ac-8857-86d7298bd1cf") {
-      outputDiv = document.getElementById("vis-9eef09e3-9307-44ac-8857-86d7298bd1cf");
+    if (outputDiv.id !== "vis-6c28ba25-3539-456c-89c8-6b7a296290a4") {
+      outputDiv = document.getElementById("vis-6c28ba25-3539-456c-89c8-6b7a296290a4");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -128,23 +128,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
   }
 }
 </code></pre><p>We can now compose the data, mark and encoding specs to create the following visualization:</p><pre><code class="language-julia hljs">Data(data) * Mark(:point) * Encoding(x=&quot;a:N&quot;)</code></pre><style>
-  #vis-ffc6a780-6eb1-4906-bfbb-d2c05d22e453.vega-embed {
+  #vis-5c96c47b-5112-4eb7-ba38-753dcaec58dd.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-ffc6a780-6eb1-4906-bfbb-d2c05d22e453.vega-embed details,
-  #vis-ffc6a780-6eb1-4906-bfbb-d2c05d22e453.vega-embed details summary {
+  #vis-5c96c47b-5112-4eb7-ba38-753dcaec58dd.vega-embed details,
+  #vis-5c96c47b-5112-4eb7-ba38-753dcaec58dd.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-ffc6a780-6eb1-4906-bfbb-d2c05d22e453"></div>
+<div id="vis-5c96c47b-5112-4eb7-ba38-753dcaec58dd"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-ffc6a780-6eb1-4906-bfbb-d2c05d22e453") {
-      outputDiv = document.getElementById("vis-ffc6a780-6eb1-4906-bfbb-d2c05d22e453");
+    if (outputDiv.id !== "vis-5c96c47b-5112-4eb7-ba38-753dcaec58dd") {
+      outputDiv = document.getElementById("vis-5c96c47b-5112-4eb7-ba38-753dcaec58dd");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -203,23 +203,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
     x=&quot;a:N&quot;,
     y=&quot;b:Q&quot;
 )</code></pre><style>
-  #vis-d07cfcbb-7551-433c-b36a-fac09f0a5021.vega-embed {
+  #vis-260c270e-fb84-450f-afcf-4c2b0aeb4890.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-d07cfcbb-7551-433c-b36a-fac09f0a5021.vega-embed details,
-  #vis-d07cfcbb-7551-433c-b36a-fac09f0a5021.vega-embed details summary {
+  #vis-260c270e-fb84-450f-afcf-4c2b0aeb4890.vega-embed details,
+  #vis-260c270e-fb84-450f-afcf-4c2b0aeb4890.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-d07cfcbb-7551-433c-b36a-fac09f0a5021"></div>
+<div id="vis-260c270e-fb84-450f-afcf-4c2b0aeb4890"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-d07cfcbb-7551-433c-b36a-fac09f0a5021") {
-      outputDiv = document.getElementById("vis-d07cfcbb-7551-433c-b36a-fac09f0a5021");
+    if (outputDiv.id !== "vis-260c270e-fb84-450f-afcf-4c2b0aeb4890") {
+      outputDiv = document.getElementById("vis-260c270e-fb84-450f-afcf-4c2b0aeb4890");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -289,23 +289,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
     x=&quot;a:N&quot;,
     y=&quot;average(b):Q&quot;,
 )</code></pre><style>
-  #vis-df80bfdd-8b95-4349-9eb9-285cdbd9d19f.vega-embed {
+  #vis-6d27e48e-0f11-4b52-9661-9bdf74e5169d.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-df80bfdd-8b95-4349-9eb9-285cdbd9d19f.vega-embed details,
-  #vis-df80bfdd-8b95-4349-9eb9-285cdbd9d19f.vega-embed details summary {
+  #vis-6d27e48e-0f11-4b52-9661-9bdf74e5169d.vega-embed details,
+  #vis-6d27e48e-0f11-4b52-9661-9bdf74e5169d.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-df80bfdd-8b95-4349-9eb9-285cdbd9d19f"></div>
+<div id="vis-6d27e48e-0f11-4b52-9661-9bdf74e5169d"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-df80bfdd-8b95-4349-9eb9-285cdbd9d19f") {
-      outputDiv = document.getElementById("vis-df80bfdd-8b95-4349-9eb9-285cdbd9d19f");
+    if (outputDiv.id !== "vis-6d27e48e-0f11-4b52-9661-9bdf74e5169d") {
+      outputDiv = document.getElementById("vis-6d27e48e-0f11-4b52-9661-9bdf74e5169d");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -357,23 +357,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
     x=&quot;a:N&quot;,
     y=&quot;average(b):Q&quot;,
 )</code></pre><style>
-  #vis-b1e61678-2936-48e4-a58f-c4da08be47b2.vega-embed {
+  #vis-430dfc10-0d0b-49c4-b655-489d9b1f9604.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-b1e61678-2936-48e4-a58f-c4da08be47b2.vega-embed details,
-  #vis-b1e61678-2936-48e4-a58f-c4da08be47b2.vega-embed details summary {
+  #vis-430dfc10-0d0b-49c4-b655-489d9b1f9604.vega-embed details,
+  #vis-430dfc10-0d0b-49c4-b655-489d9b1f9604.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-b1e61678-2936-48e4-a58f-c4da08be47b2"></div>
+<div id="vis-430dfc10-0d0b-49c4-b655-489d9b1f9604"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-b1e61678-2936-48e4-a58f-c4da08be47b2") {
-      outputDiv = document.getElementById("vis-b1e61678-2936-48e4-a58f-c4da08be47b2");
+    if (outputDiv.id !== "vis-430dfc10-0d0b-49c4-b655-489d9b1f9604") {
+      outputDiv = document.getElementById("vis-430dfc10-0d0b-49c4-b655-489d9b1f9604");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -425,23 +425,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
     y=&quot;a:N&quot;,
     x=&quot;average(b):Q&quot;,
 )</code></pre><style>
-  #vis-3ada50a4-d0a3-4931-ba61-357da9f87bd4.vega-embed {
+  #vis-746b6ff7-fa56-4e12-b946-ca86c5ad78e0.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-3ada50a4-d0a3-4931-ba61-357da9f87bd4.vega-embed details,
-  #vis-3ada50a4-d0a3-4931-ba61-357da9f87bd4.vega-embed details summary {
+  #vis-746b6ff7-fa56-4e12-b946-ca86c5ad78e0.vega-embed details,
+  #vis-746b6ff7-fa56-4e12-b946-ca86c5ad78e0.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-3ada50a4-d0a3-4931-ba61-357da9f87bd4"></div>
+<div id="vis-746b6ff7-fa56-4e12-b946-ca86c5ad78e0"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-3ada50a4-d0a3-4931-ba61-357da9f87bd4") {
-      outputDiv = document.getElementById("vis-3ada50a4-d0a3-4931-ba61-357da9f87bd4");
+    if (outputDiv.id !== "vis-746b6ff7-fa56-4e12-b946-ca86c5ad78e0") {
+      outputDiv = document.getElementById("vis-746b6ff7-fa56-4e12-b946-ca86c5ad78e0");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -493,23 +493,23 @@ Data(data)</code></pre><pre class="documenter-example-output"><code class="nohig
     y=field(&quot;a:N&quot;, title=:category),
     x=field(&quot;average(b):Q&quot;, title=&quot;Mean of b&quot;),
 )</code></pre><style>
-  #vis-d2b07b5f-e65b-4451-9c26-ff9fa2a6ab85.vega-embed {
+  #vis-732a3f14-4ed0-4717-833d-2a36f3a5c382.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-d2b07b5f-e65b-4451-9c26-ff9fa2a6ab85.vega-embed details,
-  #vis-d2b07b5f-e65b-4451-9c26-ff9fa2a6ab85.vega-embed details summary {
+  #vis-732a3f14-4ed0-4717-833d-2a36f3a5c382.vega-embed details,
+  #vis-732a3f14-4ed0-4717-833d-2a36f3a5c382.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-d2b07b5f-e65b-4451-9c26-ff9fa2a6ab85"></div>
+<div id="vis-732a3f14-4ed0-4717-833d-2a36f3a5c382"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-d2b07b5f-e65b-4451-9c26-ff9fa2a6ab85") {
-      outputDiv = document.getElementById("vis-d2b07b5f-e65b-4451-9c26-ff9fa2a6ab85");
+    if (outputDiv.id !== "vis-732a3f14-4ed0-4717-833d-2a36f3a5c382") {
+      outputDiv = document.getElementById("vis-732a3f14-4ed0-4717-833d-2a36f3a5c382");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -637,7 +637,7 @@ print(chart)</code></pre><pre class="documenter-example-output"><code class="noh
     &lt;script src=&quot;https://cdn.jsdelivr.net/npm/vega-embed@6&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div id=&quot;vis-5f314370-831f-48cd-8a4e-3e8a1353d52d&quot;&gt;&lt;/div&gt;
+    &lt;div id=&quot;vis-72ff8a31-2f35-4164-b928-1f060ba32521&quot;&gt;&lt;/div&gt;
 
     &lt;script type=&quot;text/javascript&quot;&gt;
     var spec = {&quot;config&quot;:{&quot;view&quot;:{&quot;continuousWidth&quot;:300,&quot;continuousHeight&quot;:300,&quot;step&quot;:25},&quot;mark&quot;:{&quot;tooltip&quot;:true}},&quot;data&quot;:{&quot;values&quot;:[{&quot;a&quot;:&quot;C&quot;,&quot;b&quot;:2},{&quot;a&quot;:&quot;C&quot;,&quot;b&quot;:7},{&quot;a&quot;:&quot;C&quot;,&quot;b&quot;:4},{&quot;a&quot;:&quot;D&quot;,&quot;b&quot;:1},{&quot;a&quot;:&quot;D&quot;,&quot;b&quot;:2},{&quot;a&quot;:&quot;D&quot;,&quot;b&quot;:6},{&quot;a&quot;:&quot;E&quot;,&quot;b&quot;:8},{&quot;a&quot;:&quot;E&quot;,&quot;b&quot;:4},{&quot;a&quot;:&quot;E&quot;,&quot;b&quot;:7}]},&quot;mark&quot;:{&quot;type&quot;:&quot;bar&quot;,&quot;color&quot;:&quot;tomato&quot;},&quot;encoding&quot;:{&quot;y&quot;:{&quot;field&quot;:&quot;a&quot;,&quot;type&quot;:&quot;nominal&quot;,&quot;title&quot;:&quot;category&quot;},&quot;x&quot;:{&quot;aggregate&quot;:&quot;average&quot;,&quot;field&quot;:&quot;b&quot;,&quot;type&quot;:&quot;quantitative&quot;,&quot;title&quot;:&quot;Mean of b&quot;}}};
@@ -650,8 +650,8 @@ print(chart)</code></pre><pre class="documenter-example-output"><code class="noh
                         + &#39;&lt;/div&gt;&#39;);
         throw error;
     }
-    const el = document.getElementById(&#39;vis-5f314370-831f-48cd-8a4e-3e8a1353d52d&#39;);
-    vegaEmbed(&#39;#vis-5f314370-831f-48cd-8a4e-3e8a1353d52d&#39;, spec, embedOpt).catch(error =&gt; showError(el, error));
+    const el = document.getElementById(&#39;vis-72ff8a31-2f35-4164-b928-1f060ba32521&#39;);
+    vegaEmbed(&#39;#vis-72ff8a31-2f35-4164-b928-1f060ba32521&#39;, spec, embedOpt).catch(error =&gt; showError(el, error));
     &lt;/script&gt;
 &lt;/body&gt;
-&lt;/html&gt;</code></pre><p>You can also save the visualization to a file as an stand-alone HTM document using the <a href="../api/#Deneb.save-Tuple{AbstractString, AbstractString, Deneb.VegaLiteSpec}"><code>save</code></a> method:</p><pre><code class="nohighlight hljs">save(&quot;chart.html&quot;, chart)</code></pre><p>The visualization can also be saved as a JSON file or as an image by using any of the following extensions: <code>.json</code>, <code>.png</code>, <code>.svg</code>, <code>.pdf</code>.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../installation/">« Installation</a><a class="docs-footer-nextpage" href="../intro/">Introduction »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Wednesday 4 December 2024 18:20">Wednesday 4 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+&lt;/html&gt;</code></pre><p>You can also save the visualization to a file as an stand-alone HTM document using the <a href="../api/#Deneb.save-Tuple{AbstractString, AbstractString, Deneb.VegaLiteSpec}"><code>save</code></a> method:</p><pre><code class="nohighlight hljs">save(&quot;chart.html&quot;, chart)</code></pre><p>The visualization can also be saved as a JSON file or as an image by using any of the following extensions: <code>.json</code>, <code>.png</code>, <code>.svg</code>, <code>.pdf</code>.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../installation/">« Installation</a><a class="docs-footer-nextpage" href="../intro/">Introduction »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Saturday 7 December 2024 16:19">Saturday 7 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
