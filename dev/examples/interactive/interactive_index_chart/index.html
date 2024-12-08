@@ -35,23 +35,23 @@ label_rule = transform_filter(param(:index)) * (rule + label)
 chart = base * (points + lines + label_rule) * vlspec(
     width=650, height=300
 )</code></pre><style>
-  #vis-6e065772-6565-439b-ab5c-e940a8b4eddd.vega-embed {
+  #vis-f2ca413a-ce79-47c6-a749-c1bbeb37c98d.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-6e065772-6565-439b-ab5c-e940a8b4eddd.vega-embed details,
-  #vis-6e065772-6565-439b-ab5c-e940a8b4eddd.vega-embed details summary {
+  #vis-f2ca413a-ce79-47c6-a749-c1bbeb37c98d.vega-embed details,
+  #vis-f2ca413a-ce79-47c6-a749-c1bbeb37c98d.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-6e065772-6565-439b-ab5c-e940a8b4eddd"></div>
+<div id="vis-f2ca413a-ce79-47c6-a749-c1bbeb37c98d"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-6e065772-6565-439b-ab5c-e940a8b4eddd") {
-      outputDiv = document.getElementById("vis-6e065772-6565-439b-ab5c-e940a8b4eddd");
+    if (outputDiv.id !== "vis-f2ca413a-ce79-47c6-a749-c1bbeb37c98d") {
+      outputDiv = document.getElementById("vis-f2ca413a-ce79-47c6-a749-c1bbeb37c98d");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -99,4 +99,4 @@ chart = base * (points + lines + label_rule) * vlspec(
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25}},"data":{"url":"https://vega.github.io/vega-datasets/data/stocks.csv"},"encoding":{"x":{"field":"date","type":"temporal","axis":null}},"layer":[{"params":[{"name":"index","value":{"x":{"year":2005}},"select":{"type":"point","encodings":"x","on":"mouseover","nearest":true}}],"mark":{"type":"point","opacity":0},"width":650,"height":300},{"transform":[{"lookup":"symbol","from":{"param":"index","key":"symbol"}},{"as":"indexed_price","calculate":"datum.index && datum.index.price > 0 ? (datum.price - datum.index.price)/datum.index.price : 0"}],"mark":{"type":"line"},"encoding":{"y":{"field":"indexed_price","type":"quantitative","axis":{"format":"%"}},"color":{"field":"symbol","type":"nominal"}},"width":650,"height":300},{"transform":[{"filter":{"param":"index"}}],"layer":[{"mark":{"type":"rule","color":"firebrick","strokeWidth":0.5},"width":650,"height":300},{"mark":{"type":"text","color":"firebrick","align":"center","fontWeight":100,"y":310},"encoding":{"text":{"timeUnit":"yearmonth","field":"date"}},"width":650,"height":300}]}]}, {"mode": "vega-lite"});
 </script>
-<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Saturday 7 December 2024 20:59">Saturday 7 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Sunday 8 December 2024 10:09">Sunday 8 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
