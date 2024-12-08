@@ -1,6 +1,6 @@
-# Graphs extensions
+# Graphs extension
 
-!!! note "
+!!! note
     This is work in progress
 
 
@@ -8,12 +8,12 @@ If `Graphs` and `NetworLayout` are installed the `GraphsExt` extension is automa
 This extension allows to conveniently draw network charts from any `AbstractGraph` using a given
 layout from `NetworLayout` (Spring layout by default).
 
-```@example
+```@example graphs
 using Deneb, Graphs, NetworkLayout
 
 g = barabasi_albert(25, 1)
 
-chart = plotgraph(
+plotgraph(
     g,
     node_labels=true,  # graph id (could've been a vector or an attribute)
     node_colors=:state,  # assigns a node attribute named 'state' to be used as node color encoding
@@ -29,5 +29,7 @@ chart = plotgraph(
     edge_width=rand(1:50, ne(g)),  # the edges' width attribute
 ) * vlspec(height=500, width=500)
 ```
+
+See the [Graphs](@ref) section of the Gallery for more examples of graph charts with Deneb.jl.
 
 more to be said...
