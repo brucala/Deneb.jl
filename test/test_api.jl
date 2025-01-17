@@ -61,7 +61,8 @@ end
     @test rawspec(Data(3)) == 3
     @test Data(url="url") isa Deneb.DataSpec
     @test Data(url="url").data == (;url="url")
-    @test Data(:graticule, step=[15, 15]).data == (graticule = (step = [15, 15],),)
+    @test Data(:graticule, step=[15, 15]).data == (;graticule = (;step = [15, 15]))
+    @test Data(:sphere).data == (;sphere = true)
     @test Data(:name, :nodes).data == (;name=:nodes)
 end
 

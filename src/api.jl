@@ -77,8 +77,8 @@ Data(;
     format=nothing,
 ) = DataSpec(_remove_empty(;url, format, name))
 function Data(generator::SymbolOrString; kw...)
-    kw = isempty(kw) ? true : kw
-    Data(NamedTuple{(generator,)}((NamedTuple(kw), )))
+    kw = isempty(kw) ? true : NamedTuple(kw)
+    Data(NamedTuple{(generator,)}((kw, )))
 end
 Data(key::SymbolOrString, value::SymbolOrString) = Data(NamedTuple{(key,)}((value, )))
 
