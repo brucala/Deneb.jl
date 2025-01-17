@@ -51,23 +51,23 @@ points = flights * Mark(:circle) * select_point(
 
 
 chart = base * (background + connections + points)</code></pre><style>
-  #vis-34fc1cd6-20ca-40ee-9f4a-4d41d07fe888.vega-embed {
+  #vis-dde7b1eb-bbda-4aac-976f-0af484cf430e.vega-embed {
     width: 100%;
     display: flex;
   }
 
-  #vis-34fc1cd6-20ca-40ee-9f4a-4d41d07fe888.vega-embed details,
-  #vis-34fc1cd6-20ca-40ee-9f4a-4d41d07fe888.vega-embed details summary {
+  #vis-dde7b1eb-bbda-4aac-976f-0af484cf430e.vega-embed details,
+  #vis-dde7b1eb-bbda-4aac-976f-0af484cf430e.vega-embed details summary {
     position: relative;
   }
 </style>
-<div id="vis-34fc1cd6-20ca-40ee-9f4a-4d41d07fe888"></div>
+<div id="vis-dde7b1eb-bbda-4aac-976f-0af484cf430e"></div>
 <script type="text/javascript">
   var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
   (function(spec, embedOpt){
     let outputDiv = document.currentScript.previousElementSibling;
-    if (outputDiv.id !== "vis-34fc1cd6-20ca-40ee-9f4a-4d41d07fe888") {
-      outputDiv = document.getElementById("vis-34fc1cd6-20ca-40ee-9f4a-4d41d07fe888");
+    if (outputDiv.id !== "vis-dde7b1eb-bbda-4aac-976f-0af484cf430e") {
+      outputDiv = document.getElementById("vis-dde7b1eb-bbda-4aac-976f-0af484cf430e");
     }
     const paths = {
       "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
@@ -115,4 +115,4 @@ chart = base * (background + connections + points)</code></pre><style>
     }
   })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"layer":[{"data":{"url":"https://vega.github.io/vega-datasets/data/us-10m.json","format":{"type":"topojson","feature":"states"}},"mark":{"type":"geoshape","fill":"lightgray","stroke":"white"}},{"transform":[{"filter":{"param":"org","empty":false}},{"lookup":"origin","from":{"data":{"url":"https://vega.github.io/vega-datasets/data/airports.csv"},"key":"iata","fields":["state","latitude","longitude"]}},{"lookup":"destination","from":{"data":{"url":"https://vega.github.io/vega-datasets/data/airports.csv"},"key":"iata","fields":["state","latitude","longitude"]},"as":["state","lat2","lon2"]}],"data":{"url":"https://vega.github.io/vega-datasets/data/flights-airport.csv"},"mark":{"type":"rule","opacity":0.35},"encoding":{"longitude":{"field":"longitude"},"latitude":{"field":"latitude"},"longitude2":{"field":"lon2"},"latitude2":{"field":"lat2"}}},{"transform":[{"aggregate":[{"op":"count","as":"routes"}],"groupby":["origin"]},{"lookup":"origin","from":{"data":{"url":"https://vega.github.io/vega-datasets/data/airports.csv"},"key":"iata","fields":["state","latitude","longitude"]}},{"filter":"datum.state !== 'PR' && datum.state !== 'VI'"}],"params":[{"name":"org","select":{"type":"point","on":"mouseover","nearest":true,"fields":["origin"],"empty":false}}],"data":{"url":"https://vega.github.io/vega-datasets/data/flights-airport.csv"},"mark":{"type":"circle"},"encoding":{"longitude":{"field":"longitude"},"latitude":{"field":"latitude"},"size":{"field":"routes","type":"quantitative","scale":{"range":[0,1000]},"legend":null},"order":{"field":"routes","type":"quantitative","sort":"descending"},"tooltip":[{"field":"origin","type":"nominal"},{"field":"routes","type":"quantitative"}]}}],"width":750,"height":500,"projection":{"type":"albersUsa"}}, {"mode": "vega-lite"});
 </script>
-<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Sunday 8 December 2024 10:09">Sunday 8 December 2024</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Friday 17 January 2025 17:34">Friday 17 January 2025</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
