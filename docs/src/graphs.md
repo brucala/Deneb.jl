@@ -10,9 +10,7 @@ layout from `NetworLayout` (Spring layout by default).
 
 ```@example graphs
 using Deneb, Graphs, NetworkLayout
-
 g = barabasi_albert(25, 1)
-
 plotgraph(
     g,
     node_labels=true,  # graph id (could've been a vector or an attribute)

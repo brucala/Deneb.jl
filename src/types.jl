@@ -90,25 +90,12 @@ struct TopLevelProperties <: PropertiesSpec
 end
 TopLevelProperties(; spec...) = ConstrainedSpec(TopLevelProperties; spec...)
 
-#=
-"""
-Spec containing the `datasets` property of viewable specifications.
-https://vega.github.io/vega-lite/docs/data.html
-"""
-struct DatasetsSpec <: ConstrainedSpec
-    datasets::Spec
-end
-DatasetsSpec(; datasets=nothing, kw...) = DatasetsSpec(Spec(datasets))
-rawspec(s::DatasetsSpec) = rawspec(s.datasets)
-=#
-
 """
 Vega-Lite specification.
 https://vega.github.io/vega-lite/docs/spec.html
 """
 struct VegaLiteSpec{T<:ViewableSpec} <: ConstrainedSpec
     toplevel::TopLevelProperties
-    #datasets::DatasetsSpec
     viewspec::T
 end
 VegaLiteSpec(; spec...) = ConstrainedSpec(VegaLiteSpec; spec...)

@@ -54,6 +54,21 @@ Available constructors are:
 - using a `generator` with specific `properties` to a use any of the available [Vega-Lite data generator](https://vega.github.io/vega-lite/docs/data.html#data-generators)
 
 See more in [Vega-Lite's](https://vega.github.io/vega-lite/docs/data.html) and [Deneb's](https://brucala.github.io/Deneb.jl/dev/data_mark_encoding/#Data) documentation.
+
+# Examples
+
+    # table format
+    data = (a=[1, 2], b=["potato", "tomato"])
+    Data(data)
+
+    # data from url
+    Data(
+        url="https://vega.github.io/vega-datasets/data/us-10m.json",
+        format=(type=:topojson, feature=:states),
+    )
+
+    # Vega-Lite gererator
+    Data(:graticule, step=[15, 15])
 """
 Data(data) = DataSpec(data)
 Data(;
@@ -63,7 +78,7 @@ Data(;
 ) = DataSpec(_remove_empty(;url, format, name))
 function Data(generator::SymbolOrString; kw...)
     kw = isempty(kw) ? true : kw
-    Data(NamedTuple{(generator,)}((kw, )))
+    Data(NamedTuple{(generator,)}((NamedTuple(kw), )))
 end
 Data(key::SymbolOrString, value::SymbolOrString) = Data(NamedTuple{(key,)}((value, )))
 

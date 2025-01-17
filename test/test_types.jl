@@ -1,5 +1,3 @@
-using Deneb: Spec, VegaLiteSpec, rawspec
-
 @testset "Simple Spec" begin
     @test rawspec(Spec(3)) == 3
     @test rawspec(Spec("a")) == "a"

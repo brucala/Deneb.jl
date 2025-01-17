@@ -52,7 +52,7 @@ Method from GraphsExt, requires Graphs and NetworkLayout
 function plotgraph end
 
 """
-    grapdata
+    graph_data
 
 Method from GraphsExt, requires Graphs and NetworkLayout
 """

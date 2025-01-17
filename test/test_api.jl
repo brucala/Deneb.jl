@@ -61,6 +61,17 @@ end
     @test rawspec(Data(3)) == 3
     @test Data(url="url") isa Deneb.DataSpec
     @test Data(url="url").data == (;url="url")
+    @test Data(:graticule, step=[15, 15]).data == (graticule = (step = [15, 15],),)
+    @test Data(:name, :nodes).data == (;name=:nodes)
+end
+
+@testset "test Datasets" begin
+    ds = Datasets(d1=(a=1:2, b='a':'b'), d2=2)
+    @test ds isa Deneb.VegaLiteSpec
+    @test hasproperty(ds, :datasets)
+    @test propertynames(ds.datasets) == (:d1, :d2)
+    @test rawspec(ds.datasets.d1) == [(a = 1, b = 'a'), (a = 2, b = 'b')]
+    @test rawspec(ds.datasets.d2) == 2
 end
 
 # TODO: add tests for Facet, Repeat, Transform, Params...
