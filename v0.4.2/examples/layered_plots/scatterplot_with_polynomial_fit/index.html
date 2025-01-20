@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Scatterplot with polynomial fit · Deneb.jl</title><meta name="title" content="Scatterplot with polynomial fit · Deneb.jl"/><meta property="og:title" content="Scatterplot with polynomial fit · Deneb.jl"/><meta property="twitter:title" content="Scatterplot with polynomial fit · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../../../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="../../.."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../../../assets/documenter.js"></script><script src="../../../search_index.js"></script><script src="../../../siteinfo.js"></script><script src="../../../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../../../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../../../assets/themeswap.js"></script><link href="../../../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../../../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../../../"><img src="../../../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../../../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../../../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../../../installation/">Installation</a></li><li><a class="tocitem" href="../../../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../../../intro/">Introduction</a></li><li><a class="tocitem" href="../../../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../../../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../../../multiview/">Multi-views</a></li><li><a class="tocitem" href="../../../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../../../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../../../graphs/">Graphs</a></li><li><a class="tocitem" href="../../../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../../">Gallery</a></li><li><a class="tocitem" href="../../../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href>Scatterplot with polynomial fit</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Scatterplot with polynomial fit</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/examples/layered_plots/scatterplot_with_polynomial_fit.jl" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Scatterplot-with-polynomial-fit"><a class="docs-heading-anchor" href="#Scatterplot-with-polynomial-fit">Scatterplot with polynomial fit</a><a id="Scatterplot-with-polynomial-fit-1"></a><a class="docs-heading-anchor-permalink" href="#Scatterplot-with-polynomial-fit" title="Permalink"></a></h1><p><a href="../scatterplot_with_polynomial_fit.jl"><img src="https://img.shields.io/badge/download-julia-brightgreen.svg" alt="Source code"/></a> <img src="https://img.shields.io/badge/Author-bruno-blue" alt="Author"/></p><pre><code class="language-julia hljs">using Deneb
+
+x = rand(50) .^ 2
+y = 10 .- 1.0 ./ (x .+ 0.1) .+ randn(50)
+data = (; x, y)
+
+points = Data(data) * Mark(:circle, color=:black) * Encoding(&quot;x:Q&quot;, &quot;y:Q&quot;)
+
+lines = points * Mark(:line) * Encoding(color=&quot;degree:N&quot;) * layer(
+    transform_regression(
+        :x, :y;
+        method=:poly,
+        order=order,
+        as=(:x, string(order))
+    ) * transform_fold(
+        [string(order)], as=(:degree, :y)
+    )
+    for order in (1, 3, 5)
+)
+
+chart = (points + lines) * vlspec(width=400)</code></pre><style>
+  #vis-ea4d6f42-1f0f-4cca-a833-cbc958669438.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-ea4d6f42-1f0f-4cca-a833-cbc958669438.vega-embed details,
+  #vis-ea4d6f42-1f0f-4cca-a833-cbc958669438.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-ea4d6f42-1f0f-4cca-a833-cbc958669438"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-ea4d6f42-1f0f-4cca-a833-cbc958669438") {
+      outputDiv = document.getElementById("vis-ea4d6f42-1f0f-4cca-a833-cbc958669438");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"values":[{"x":0.036812017817609614,"y":3.0832829482333413},{"x":0.5786399478171599,"y":8.4816845499174},{"x":0.6572216402606481,"y":10.13137154251693},{"x":0.6104556005593449,"y":9.718461248760898},{"x":0.14760162821832373,"y":5.184376862873072},{"x":0.17951493055307746,"y":8.062152216754178},{"x":0.8838016063734073,"y":9.360133406040665},{"x":0.8761942115607747,"y":9.865188582879252},{"x":0.9238776473965091,"y":8.846557031137264},{"x":0.21731070313035758,"y":5.718582604026201},{"x":0.1339890569884161,"y":5.359229524353436},{"x":0.6762791908372601,"y":8.859563086759147},{"x":0.4361366012776585,"y":8.29968586313523},{"x":0.01477115320952681,"y":-0.17204213028561854},{"x":0.37416644919401115,"y":9.163040091594192},{"x":0.0002667238613177365,"y":-2.9506433700563255},{"x":0.3339286368246023,"y":6.561081029581542},{"x":0.06265249929208982,"y":3.8083167723310916},{"x":0.26682756611040337,"y":5.697129852903521},{"x":0.8211104379049459,"y":9.2272700530714},{"x":0.4715710495898775,"y":8.906364929549708},{"x":0.004747128742003917,"y":-0.21106133976200547},{"x":0.7469761330055372,"y":6.677830074521585},{"x":0.5734962577340866,"y":8.90219220561906},{"x":0.20952006156802996,"y":8.296407750777714},{"x":0.8771494715304452,"y":7.399078828208694},{"x":0.3263788251648921,"y":7.179605154209439},{"x":0.03260073073352656,"y":2.0734183909877375},{"x":0.019647451506248095,"y":1.1930713456531747},{"x":0.00631125789397592,"y":1.529555151419736},{"x":0.6336451101404854,"y":6.404425294761295},{"x":0.192374754971818,"y":6.924914822205218},{"x":0.0043521058689194505,"y":0.3714621400032076},{"x":0.30446357060413975,"y":7.468887515809321},{"x":0.06709549381847031,"y":4.486701606199168},{"x":0.03714762086772031,"y":3.551557706221124},{"x":0.695641544765218,"y":8.76836167369956},{"x":0.900826665801163,"y":6.9675567100803395},{"x":0.00019564111152868617,"y":0.8205137632222091},{"x":0.6465831552170722,"y":6.873557051618149},{"x":0.2132215146107731,"y":7.022719568068985},{"x":0.10556619523496551,"y":4.936834666867432},{"x":0.3571632181675478,"y":7.597375789758179},{"x":0.8873809327925183,"y":10.57225328254153},{"x":0.07761871472358822,"y":4.188273195856579},{"x":0.26100992497970277,"y":6.826579463928175},{"x":0.014892338429303214,"y":-1.6576153396997682},{"x":0.16178062276195562,"y":6.890665921814002},{"x":0.39417826854008037,"y":7.875174227854236},{"x":0.005440710196644735,"y":1.1649231027576736}]},"layer":[{"mark":{"type":"circle","color":"black"},"encoding":{"x":{"field":"x","type":"quantitative"},"y":{"field":"y","type":"quantitative"}},"width":400},{"encoding":{"x":{"field":"x","type":"quantitative"},"y":{"field":"y","type":"quantitative"},"color":{"field":"degree","type":"nominal"}},"layer":[{"transform":[{"regression":"y","on":"x","method":"poly","order":1,"as":["x","1"]},{"fold":["1"],"as":["degree","y"]}],"mark":{"type":"line","color":"black"},"width":400},{"transform":[{"regression":"y","on":"x","method":"poly","order":3,"as":["x","3"]},{"fold":["3"],"as":["degree","y"]}],"mark":{"type":"line","color":"black"},"width":400},{"transform":[{"regression":"y","on":"x","method":"poly","order":5,"as":["x","5"]},{"fold":["5"],"as":["degree","y"]}],"mark":{"type":"line","color":"black"},"width":400}]}]}, {"mode": "vega-lite"});
+</script>
+<hr/><p><em>This page was generated using <a href="https://github.com/JuliaDocs/DemoCards.jl">DemoCards.jl</a> and <a href="https://github.com/fredrikekre/Literate.jl">Literate.jl</a>.</em></p></article><nav class="docs-footer"><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.8.0 on <span class="colophon-date" title="Monday 20 January 2025 15:19">Monday 20 January 2025</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
