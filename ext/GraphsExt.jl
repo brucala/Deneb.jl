@@ -46,11 +46,10 @@ and edges attributes can be added with keyword arguments `node_*` and `edge_*` r
 The attributes are expected to be a vector of the same length and order as the `vertices(graph)`
 and `edges(graph)` iterators.
 
-## Example:
+## Example
 
-using Graphs, NetworkLayout
-
-graph_data(wheel_graph(6), Spring(); node_label="abcdef", edge_width=1:10)
+    using Graphs, NetworkLayout
+    graph_data(wheel_graph(6), Spring(); node_label="abcdef", edge_width=1:10)
 """
 function Deneb.graph_data(
     g::AbstractGraph,
@@ -71,6 +70,21 @@ function _filter_attributes(pairs, prefix)
     )
 end
 
+"""
+    Datasets(gragh; layout, attributes...)
+
+Creates a top-level `datasets` property with tables named `nodes` and `edges` containing the
+nodes and edges of the graph. The network layout is used to populate the position of the nodes
+(`:x`, `:y`) and the edges (`(:x, :y)` for the source node and `(:x2, :y2)` for the destination
+node). Several node and edges attributes can be added with keyword arguments `node_*` and
+`edge_*` respectively. The attributes are expected to be a vector of the same length and order
+as the `vertices(graph)` and `edges(graph)` iterators.
+
+## Example
+
+    using Graphs, NetworkLayout
+    Datasets(wheel_graph(6); layout=Spring(), node_label="abcdef", edge_width=1:10)
+"""
 function Deneb.Datasets(
     g::AbstractGraph,
     layout::NetworkLayout.AbstractLayout=Spring();
@@ -112,25 +126,25 @@ the nodes and labels; they can be given as a vector similar to attributes, or as
 indicating the attribute to be used. `node_tooltip` and `edge_tooltip` indicate a list of
 attributes to be shown in the tooltips (all by default).
 
-## Example:
+## Example
 
-using Graphs, NetworkLayout
-g = barabasi_albert(25, 1)
-plotgraph(
-    g,
-    node_labels=true,  # graph id (could've been a vector or an attribute)
-    node_colors=:state,  # assigns a node attribute named 'state' to be used as node color encoding
-    node_state=rand("abcde", nv(g)),  # defines the nodes attribute named 'state'
-    node_sizes=rand(nv(g)),  # directly uses a vector as the size encoding
-    node_shapes=:active,  # assigns attribute active to shape encoding
-    node_active=rand(Bool, nv(g)), # defines 'active' attribute of a node
-    edge_colors=rand(["blue", "orange", "red"], ne(g)),  # vector to be used as edge color encoding
-    edge_widths=:width,  # an edge attribute as edge strokeWidth encoding
-    edge_width_type=:q,  # Deneb's shorthand for quantitative
-    edge_dashes=:state,  # another edge attribute
-    edge_state=rand((:on, :off), ne(g)),  # the edges' state attribute
-    edge_width=rand(1:50, ne(g)),  # the edges' width attribute
-) * vlspec(height=500, width=500)
+    using Graphs, NetworkLayout
+    g = barabasi_albert(25, 1)
+    plotgraph(
+        g,
+        node_labels=true,  # graph id (could've been a vector or an attribute)
+        node_colors=:state,  # assigns a node attribute named 'state' to be used as node color encoding
+        node_state=rand("abcde", nv(g)),  # defines the nodes attribute named 'state'
+        node_sizes=rand(nv(g)),  # directly uses a vector as the size encoding
+        node_shapes=:active,  # assigns attribute active to shape encoding
+        node_active=rand(Bool, nv(g)), # defines 'active' attribute of a node
+        edge_colors=rand(["blue", "orange", "red"], ne(g)),  # vector to be used as edge color encoding
+        edge_widths=:width,  # an edge attribute as edge strokeWidth encoding
+        edge_width_type=:q,  # Deneb's shorthand for quantitative
+        edge_dashes=:state,  # another edge attribute
+        edge_state=rand((:on, :off), ne(g)),  # the edges' state attribute
+        edge_width=rand(1:50, ne(g)),  # the edges' width attribute
+    ) * vlspec(height=500, width=500)
 """
 function Deneb.plotgraph(
     g::AbstractGraph;
