@@ -1,7 +1,7 @@
 name = "Deneb"
 uuid = "b5a61f88-a05b-4725-9526-4eca17cec623"
 authors = ["brucala <brucala@gmail.com>"]
-version = "0.4.2"
+version = "0.4.3"
 
 [deps]
 DefaultApplication = "3f0dd361-4fe0-5fc6-8523-80b14ec94d85"
@@ -23,7 +23,7 @@ GraphsExt = ["Graphs", "NetworkLayout"]
 DefaultApplication = "1.1"
 Graphs = "1.12.0"
 JSON = "0.21"
-MultilineStrings = "0.1.1"
+MultilineStrings = "1"
 NetworkLayout = "0.4.7"
 Tables = "1"
 julia = "1.9"
