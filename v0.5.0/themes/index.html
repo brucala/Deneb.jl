@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Themes · Deneb.jl</title><meta name="title" content="Themes · Deneb.jl"/><meta property="og:title" content="Themes · Deneb.jl"/><meta property="twitter:title" content="Themes · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../intro/">Introduction</a></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li><a class="tocitem" href="../composition_and_layering/">Composition and Layering</a></li><li><a class="tocitem" href="../multiview/">Multi-views</a></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../graphs/">Graphs</a></li><li class="is-active"><a class="tocitem" href>Themes</a><ul class="internal"><li><a class="tocitem" href="#Default-Theme"><span>Default Theme</span></a></li><li><a class="tocitem" href="#Changing-the-theme"><span>Changing the theme</span></a></li><li><a class="tocitem" href="#Vega-themes"><span>Vega themes</span></a></li><li><a class="tocitem" href="#User-defined-themes"><span>User defined themes</span></a></li></ul></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">User Guide</a></li><li class="is-active"><a href>Themes</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Themes</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/themes.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Themes"><a class="docs-heading-anchor" href="#Themes">Themes</a><a id="Themes-1"></a><a class="docs-heading-anchor-permalink" href="#Themes" title="Permalink"></a></h1><h2 id="Default-Theme"><a class="docs-heading-anchor" href="#Default-Theme">Default Theme</a><a id="Default-Theme-1"></a><a class="docs-heading-anchor-permalink" href="#Default-Theme" title="Permalink"></a></h2><p>Deneb&#39;s default theme (<code>:default</code>) consists of a toplevel <code>config</code> property that sets the default size and enables tooltips by default:</p><pre><code class="language-julia hljs">print_theme()</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">{
+  &quot;config&quot;: {
+    &quot;view&quot;: {
+      &quot;continuousWidth&quot;: 300,
+      &quot;continuousHeight&quot;: 300,
+      &quot;step&quot;: 25
+    },
+    &quot;mark&quot;: {
+      &quot;tooltip&quot;: true
+    }
+  }
+}</code></pre><p>The rendered chart reflects this configuration:</p><pre><code class="language-julia hljs">chart = Data(
+    url=&quot;https://vega.github.io/vega-datasets/data/stocks.csv&quot;
+) * Mark(
+    :line, point=true
+) * Encoding(
+    &quot;year(date):T&quot;,
+    &quot;mean(price):Q&quot;,
+    color=:symbol,
+)
+chart</code></pre><style>
+  #vis-83cfd9e1-ba88-4779-a727-885fa14499aa.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-83cfd9e1-ba88-4779-a727-885fa14499aa.vega-embed details,
+  #vis-83cfd9e1-ba88-4779-a727-885fa14499aa.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-83cfd9e1-ba88-4779-a727-885fa14499aa"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-83cfd9e1-ba88-4779-a727-885fa14499aa") {
+      outputDiv = document.getElementById("vis-83cfd9e1-ba88-4779-a727-885fa14499aa");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/stocks.csv"},"mark":{"type":"line","point":true},"encoding":{"color":{"field":"symbol"},"x":{"timeUnit":"year","field":"date","type":"temporal"},"y":{"aggregate":"mean","field":"price","type":"quantitative"}}}, {"mode": "vega-lite"});
+</script>
+<p>The choice to increase VegaLite&#39;s default size and to enable tooltips by default is an opinionated one. The next section explains how to disable Deneb&#39;s default theme and use VegaLite&#39;s instead.</p><h2 id="Changing-the-theme"><a class="docs-heading-anchor" href="#Changing-the-theme">Changing the theme</a><a id="Changing-the-theme-1"></a><a class="docs-heading-anchor-permalink" href="#Changing-the-theme" title="Permalink"></a></h2><p>The method <code>set_theme!</code> changes the theme during the length of your Julia session. For instance, the theme <code>:empty</code> disables the toplevel <code>config</code> so Vega-Lite&#39;s defaults are used:</p><pre><code class="language-julia hljs">set_theme!(:empty)
+print_theme()</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">{}</code></pre><p>The chart renders as:</p><pre><code class="language-julia hljs">chart</code></pre><style>
+  #vis-0237915c-11ae-4722-9497-50f35488e8dc.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-0237915c-11ae-4722-9497-50f35488e8dc.vega-embed details,
+  #vis-0237915c-11ae-4722-9497-50f35488e8dc.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-0237915c-11ae-4722-9497-50f35488e8dc"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-0237915c-11ae-4722-9497-50f35488e8dc") {
+      outputDiv = document.getElementById("vis-0237915c-11ae-4722-9497-50f35488e8dc");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"data":{"url":"https://vega.github.io/vega-datasets/data/stocks.csv"},"mark":{"type":"line","point":true},"encoding":{"color":{"field":"symbol"},"x":{"timeUnit":"year","field":"date","type":"temporal"},"y":{"aggregate":"mean","field":"price","type":"quantitative"}}}, {"mode": "vega-lite"});
+</script>
+<p>Note the smaller figure size and that tooltips aren&#39;t enabled.</p><p>A default theme with the default figure size but no tooltips, <code>:default_no_tooltip:</code>, is also available:</p><pre><code class="language-julia hljs">set_theme!(:default_no_tooltip)
+print_theme()</code></pre><pre class="documenter-example-output"><code class="nohighlight hljs ansi">{
+  &quot;config&quot;: {
+    &quot;view&quot;: {
+      &quot;continuousWidth&quot;: 300,
+      &quot;continuousHeight&quot;: 300,
+      &quot;step&quot;: 25
+    }
+  }
+}</code></pre><pre><code class="language-julia hljs">chart</code></pre><style>
+  #vis-b226bbbf-eb83-4987-bc97-a520b7b7494e.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-b226bbbf-eb83-4987-bc97-a520b7b7494e.vega-embed details,
+  #vis-b226bbbf-eb83-4987-bc97-a520b7b7494e.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-b226bbbf-eb83-4987-bc97-a520b7b7494e"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-b226bbbf-eb83-4987-bc97-a520b7b7494e") {
+      outputDiv = document.getElementById("vis-b226bbbf-eb83-4987-bc97-a520b7b7494e");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25}},"data":{"url":"https://vega.github.io/vega-datasets/data/stocks.csv"},"mark":{"type":"line","point":true},"encoding":{"color":{"field":"symbol"},"x":{"timeUnit":"year","field":"date","type":"temporal"},"y":{"aggregate":"mean","field":"price","type":"quantitative"}}}, {"mode": "vega-lite"});
+</script>
+<h2 id="Vega-themes"><a class="docs-heading-anchor" href="#Vega-themes">Vega themes</a><a id="Vega-themes-1"></a><a class="docs-heading-anchor-permalink" href="#Vega-themes" title="Permalink"></a></h2><p>Other available themes are <a href="https://vega.github.io/vega-themes">Vega Themes</a>. For example, the <code>:quartz</code> theme:</p><pre><code class="language-julia hljs">set_theme!(:quartz)
+chart</code></pre><style>
+  #vis-7452f905-706a-4a70-872c-ae0e6aae9ad7.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-7452f905-706a-4a70-872c-ae0e6aae9ad7.vega-embed details,
+  #vis-7452f905-706a-4a70-872c-ae0e6aae9ad7.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-7452f905-706a-4a70-872c-ae0e6aae9ad7"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-7452f905-706a-4a70-872c-ae0e6aae9ad7") {
+      outputDiv = document.getElementById("vis-7452f905-706a-4a70-872c-ae0e6aae9ad7");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"usermeta":{"embedOptions":{"theme":"quartz"}},"data":{"url":"https://vega.github.io/vega-datasets/data/stocks.csv"},"mark":{"type":"line","point":true},"encoding":{"color":{"field":"symbol"},"x":{"timeUnit":"year","field":"date","type":"temporal"},"y":{"aggregate":"mean","field":"price","type":"quantitative"}}}, {"mode": "vega-lite"});
+</script>
+<p>And the <code>:fivethirtyeight</code> theme:</p><pre><code class="language-julia hljs">set_theme!(:fivethirtyeight)
+chart</code></pre><style>
+  #vis-889209e0-f0c8-476b-b7c8-6dc283427ad8.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-889209e0-f0c8-476b-b7c8-6dc283427ad8.vega-embed details,
+  #vis-889209e0-f0c8-476b-b7c8-6dc283427ad8.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-889209e0-f0c8-476b-b7c8-6dc283427ad8"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-889209e0-f0c8-476b-b7c8-6dc283427ad8") {
+      outputDiv = document.getElementById("vis-889209e0-f0c8-476b-b7c8-6dc283427ad8");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"usermeta":{"embedOptions":{"theme":"fivethirtyeight"}},"data":{"url":"https://vega.github.io/vega-datasets/data/stocks.csv"},"mark":{"type":"line","point":true},"encoding":{"color":{"field":"symbol"},"x":{"timeUnit":"year","field":"date","type":"temporal"},"y":{"aggregate":"mean","field":"price","type":"quantitative"}}}, {"mode": "vega-lite"});
+</script>
+<h2 id="User-defined-themes"><a class="docs-heading-anchor" href="#User-defined-themes">User defined themes</a><a id="User-defined-themes-1"></a><a class="docs-heading-anchor-permalink" href="#User-defined-themes" title="Permalink"></a></h2><p>A custom theme can be specified by defining a top level <code>config</code> using a <code>NamedTuple</code>. For example, the following user defined theme is equivalent to the Vega <code>:dark</code> theme:</p><pre><code class="language-julia hljs">config = (
+  background=&quot;#333&quot;,
+  title=(color=&quot;#fff&quot;, subtitleColor=&quot;#fff&quot;),
+  style=(;Symbol(&quot;guide-label&quot;)=&gt;(;fill=&quot;#fff&quot;), Symbol(&quot;guide-title&quot;)=&gt;(;fill=&quot;#fff&quot;)),
+  axis=(domainColor=&quot;#fff&quot;, gridColor=&quot;#888&quot;, tickColor=&quot;#fff&quot;)
+)
+set_theme!(config)
+chart</code></pre><style>
+  #vis-74a45f90-a7c0-4904-9ed3-044852ce85d8.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-74a45f90-a7c0-4904-9ed3-044852ce85d8.vega-embed details,
+  #vis-74a45f90-a7c0-4904-9ed3-044852ce85d8.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-74a45f90-a7c0-4904-9ed3-044852ce85d8"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-74a45f90-a7c0-4904-9ed3-044852ce85d8") {
+      outputDiv = document.getElementById("vis-74a45f90-a7c0-4904-9ed3-044852ce85d8");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"background":"#333","title":{"color":"#fff","subtitleColor":"#fff"},"style":{"guide-label":{"fill":"#fff"},"guide-title":{"fill":"#fff"}},"axis":{"domainColor":"#fff","gridColor":"#888","tickColor":"#fff"}},"data":{"url":"https://vega.github.io/vega-datasets/data/stocks.csv"},"mark":{"type":"line","point":true},"encoding":{"color":{"field":"symbol"},"x":{"timeUnit":"year","field":"date","type":"temporal"},"y":{"aggregate":"mean","field":"price","type":"quantitative"}}}, {"mode": "vega-lite"});
+</script>
+</article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../graphs/">« Graphs</a><a class="docs-footer-nextpage" href="../examples/">Gallery »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.13.0 on <span class="colophon-date" title="Thursday 26 June 2025 09:08">Thursday 26 June 2025</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>

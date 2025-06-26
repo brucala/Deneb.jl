@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Composition and Layering · Deneb.jl</title><meta name="title" content="Composition and Layering · Deneb.jl"/><meta property="og:title" content="Composition and Layering · Deneb.jl"/><meta property="twitter:title" content="Composition and Layering · Deneb.jl"/><meta name="description" content="Documentation for Deneb.jl."/><meta property="og:description" content="Documentation for Deneb.jl."/><meta property="twitter:description" content="Documentation for Deneb.jl."/><script data-outdated-warner src="../assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL=".."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="../assets/documenter.js"></script><script src="../search_index.js"></script><script src="../siteinfo.js"></script><script src="../../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="../assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="../assets/themeswap.js"></script><link href="../assets/favicon.ico" rel="icon" type="image/x-icon"/><link href="../democards/transitiongridtheme.css" rel="stylesheet" type="text/css"/></head><body><div id="documenter"><nav class="docs-sidebar"><a class="docs-logo" href="../"><img src="../assets/logo.svg" alt="Deneb.jl logo"/></a><div class="docs-package-name"><span class="docs-autofit"><a href="../">Deneb.jl</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="../">Home</a></li><li><span class="tocitem">Getting Started</span><ul><li><a class="tocitem" href="../installation/">Installation</a></li><li><a class="tocitem" href="../basic_tutorial/">Basic Tutorial</a></li></ul></li><li><span class="tocitem">User Guide</span><ul><li><a class="tocitem" href="../intro/">Introduction</a></li><li><a class="tocitem" href="../data_mark_encoding/">Data, Mark and Encoding</a></li><li class="is-active"><a class="tocitem" href>Composition and Layering</a><ul class="internal"><li><a class="tocitem" href="#Composition-with-*"><span>Composition with <code>*</code></span></a></li><li><a class="tocitem" href="#Layering-with"><span>Layering with <code>+</code></span></a></li></ul></li><li><a class="tocitem" href="../multiview/">Multi-views</a></li><li><a class="tocitem" href="../interactive/">Interactive Charts</a></li><li><a class="tocitem" href="../transformations/">Data Transformations</a></li><li><a class="tocitem" href="../graphs/">Graphs</a></li><li><a class="tocitem" href="../themes/">Themes</a></li></ul></li><li><a class="tocitem" href="../examples/">Gallery</a></li><li><a class="tocitem" href="../api/">API</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li><a class="is-disabled">User Guide</a></li><li class="is-active"><a href>Composition and Layering</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href>Composition and Layering</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-navbar-link" href="https://github.com/brucala/Deneb.jl/blob/main/docs/src/composition_and_layering.md" title="Edit source on GitHub"><span class="docs-icon fa-solid"></span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Composition-and-Layering"><a class="docs-heading-anchor" href="#Composition-and-Layering">Composition and Layering</a><a id="Composition-and-Layering-1"></a><a class="docs-heading-anchor-permalink" href="#Composition-and-Layering" title="Permalink"></a></h1><h2 id="Composition-with-*"><a class="docs-heading-anchor" href="#Composition-with-*">Composition with <code>*</code></a><a id="Composition-with-*-1"></a><a class="docs-heading-anchor-permalink" href="#Composition-with-*" title="Permalink"></a></h2><p>In Deneb.jl, different components or sub-specifications of a Vega-Lite visualization can be defined separately and conveniently be composed using the <a href="../api/#Base.:*-Tuple{Deneb.Spec, Deneb.Spec}"><code>*</code></a> operator to build the final specification.</p><pre><code class="language-julia hljs">using Deneb
+cars = Data(url=&quot;https://vega.github.io/vega-datasets/data/cars.json&quot;)
+mark = Mark(:point)
+encoding = Encoding(&quot;Horsepower:q&quot;, &quot;Miles_per_Gallon:q&quot;, color=:Origin)
+
+chart = cars * mark * encoding</code></pre><style>
+  #vis-6b5cc1be-275f-4965-a2ed-8569d55d889e.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-6b5cc1be-275f-4965-a2ed-8569d55d889e.vega-embed details,
+  #vis-6b5cc1be-275f-4965-a2ed-8569d55d889e.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-6b5cc1be-275f-4965-a2ed-8569d55d889e"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-6b5cc1be-275f-4965-a2ed-8569d55d889e") {
+      outputDiv = document.getElementById("vis-6b5cc1be-275f-4965-a2ed-8569d55d889e");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point"},"encoding":{"color":{"field":"Origin"},"x":{"field":"Horsepower","type":"quantitative"},"y":{"field":"Miles_per_Gallon","type":"quantitative"}}}, {"mode": "vega-lite"});
+</script>
+<p>New arbitrary properties of an existing spec can be added using the <code>*</code> operator. For instance, this examples adds a toplevel <code>title</code> property, <code>title</code> properties for the <code>x</code> and <code>y</code> encoding channels, and sets the shape of the marker to a triangle.</p><pre><code class="language-julia hljs">chart = chart * title(&quot;Consumption vs power&quot;) * Mark(shape=:triangle) * Encoding(
+    x=(; title=&quot;Power [hp]&quot;),
+    y=(; title=&quot;Consumption [mi / gal]&quot;)
+)</code></pre><style>
+  #vis-e71c156d-201f-493d-807a-0f9099f1c123.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-e71c156d-201f-493d-807a-0f9099f1c123.vega-embed details,
+  #vis-e71c156d-201f-493d-807a-0f9099f1c123.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-e71c156d-201f-493d-807a-0f9099f1c123"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-e71c156d-201f-493d-807a-0f9099f1c123") {
+      outputDiv = document.getElementById("vis-e71c156d-201f-493d-807a-0f9099f1c123");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"title":"Consumption vs power","data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point","shape":"triangle"},"encoding":{"color":{"field":"Origin"},"x":{"field":"Horsepower","type":"quantitative","title":"Power [hp]"},"y":{"field":"Miles_per_Gallon","type":"quantitative","title":"Consumption [mi / gal]"}}}, {"mode": "vega-lite"});
+</script>
+<h3 id="Order"><a class="docs-heading-anchor" href="#Order">Order</a><a id="Order-1"></a><a class="docs-heading-anchor-permalink" href="#Order" title="Permalink"></a></h3><p>Properties defined in the right-side spec have precedence over the left-side spec, meaning that if a given property is specified in both, then the result specification will use the property from the right-side spec.</p><pre><code class="language-julia hljs">chart * title(&quot;Power vs Displacement&quot;) * Encoding(
+    x=field(:Displacement, title=&quot;Displacement [in³]&quot;)
+)</code></pre><style>
+  #vis-cc1c3856-dec5-4eba-bd95-c6db4fe5c42e.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-cc1c3856-dec5-4eba-bd95-c6db4fe5c42e.vega-embed details,
+  #vis-cc1c3856-dec5-4eba-bd95-c6db4fe5c42e.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-cc1c3856-dec5-4eba-bd95-c6db4fe5c42e"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-cc1c3856-dec5-4eba-bd95-c6db4fe5c42e") {
+      outputDiv = document.getElementById("vis-cc1c3856-dec5-4eba-bd95-c6db4fe5c42e");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"title":"Power vs Displacement","data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"mark":{"type":"point","shape":"triangle"},"encoding":{"color":{"field":"Origin"},"x":{"field":"Displacement","type":"quantitative","title":"Displacement [in³]"},"y":{"field":"Miles_per_Gallon","type":"quantitative","title":"Consumption [mi / gal]"}}}, {"mode": "vega-lite"});
+</script>
+<h2 id="Layering-with"><a class="docs-heading-anchor" href="#Layering-with">Layering with <code>+</code></a><a id="Layering-with-1"></a><a class="docs-heading-anchor-permalink" href="#Layering-with" title="Permalink"></a></h2><p><a href="https://vega.github.io/vega-lite/docs/layer.html">Layered views</a>, or charts that are superimposed one on top of another, can be conveniently created in Deneb.jl using the <a href="../api/#Base.:+-Tuple{Deneb.VegaLiteSpec, Deneb.VegaLiteSpec}"><code>+</code></a> operator.</p><pre><code class="language-julia hljs">stocks = Data(url=&quot;https://vega.github.io/vega-datasets/data/stocks.csv&quot;)
+base = stocks * Encoding(
+    &quot;yearquarter(date):T&quot;,
+    &quot;mean(price):Q&quot;,
+)
+
+base * (Mark(:line) + Mark(:point) + Mark(:rule))</code></pre><style>
+  #vis-4f523af3-6fad-4c35-8ab2-27b5d89c26b2.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-4f523af3-6fad-4c35-8ab2-27b5d89c26b2.vega-embed details,
+  #vis-4f523af3-6fad-4c35-8ab2-27b5d89c26b2.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-4f523af3-6fad-4c35-8ab2-27b5d89c26b2"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-4f523af3-6fad-4c35-8ab2-27b5d89c26b2") {
+      outputDiv = document.getElementById("vis-4f523af3-6fad-4c35-8ab2-27b5d89c26b2");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/stocks.csv"},"encoding":{"x":{"timeUnit":"yearquarter","field":"date","type":"temporal"},"y":{"aggregate":"mean","field":"price","type":"quantitative"}},"layer":[{"mark":{"type":"line"}},{"mark":{"type":"point"}},{"mark":{"type":"rule"}}]}, {"mode": "vega-lite"});
+</script>
+<p>Alternatively, the <a href="../api/#Deneb.layer-Tuple{Vararg{Deneb.ConstrainedSpec}}"><code>layer</code></a> method can also be used, with any number of specs as arguments.</p><pre><code class="language-julia hljs">base * layer(Mark(:line), Mark(:point), Mark(:rule))</code></pre><style>
+  #vis-1a65cb53-830c-4089-ae5f-0c6c041434dd.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-1a65cb53-830c-4089-ae5f-0c6c041434dd.vega-embed details,
+  #vis-1a65cb53-830c-4089-ae5f-0c6c041434dd.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-1a65cb53-830c-4089-ae5f-0c6c041434dd"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-1a65cb53-830c-4089-ae5f-0c6c041434dd") {
+      outputDiv = document.getElementById("vis-1a65cb53-830c-4089-ae5f-0c6c041434dd");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/stocks.csv"},"encoding":{"x":{"timeUnit":"yearquarter","field":"date","type":"temporal"},"y":{"aggregate":"mean","field":"price","type":"quantitative"}},"layer":[{"mark":{"type":"line"}},{"mark":{"type":"point"}},{"mark":{"type":"rule"}}]}, {"mode": "vega-lite"});
+</script>
+<h3 id="Order-2"><a class="docs-heading-anchor" href="#Order-2">Order</a><a class="docs-heading-anchor-permalink" href="#Order-2" title="Permalink"></a></h3><p>The order matters as it determines which spec is drawn first. For example, in <code>spec1 + spec2</code>, <code>spec1</code> will appear below <code>spec2</code>.</p><pre><code class="language-julia hljs">movies = Data(url=&quot;https://vega.github.io/vega-datasets/data/movies.json&quot;)
+heatmap = movies * Mark(:rect) * Encoding(
+    x=field(&quot;IMDB Rating:Q&quot;, bin=true),
+    y=field(&quot;Rotten Tomatoes Rating:Q&quot;, bin=true),
+    color=field(&quot;count()&quot;, scale=(;scheme=:greenblue)),
+)
+
+points = movies * Mark(
+    :circle, color=:black, size=5
+) * Encoding(
+    x=&quot;IMDB Rating:Q&quot;,
+    y=&quot;Rotten Tomatoes Rating:Q&quot;,
+)
+
+heatmap + points</code></pre><style>
+  #vis-76ccdb77-fb15-49f9-8288-933a2762ecbe.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-76ccdb77-fb15-49f9-8288-933a2762ecbe.vega-embed details,
+  #vis-76ccdb77-fb15-49f9-8288-933a2762ecbe.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-76ccdb77-fb15-49f9-8288-933a2762ecbe"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-76ccdb77-fb15-49f9-8288-933a2762ecbe") {
+      outputDiv = document.getElementById("vis-76ccdb77-fb15-49f9-8288-933a2762ecbe");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/movies.json"},"layer":[{"mark":{"type":"rect"},"encoding":{"x":{"field":"IMDB Rating","type":"quantitative","bin":true},"y":{"field":"Rotten Tomatoes Rating","type":"quantitative","bin":true},"color":{"aggregate":"count","scale":{"scheme":"greenblue"}}}},{"mark":{"type":"circle","color":"black","size":5},"encoding":{"x":{"field":"IMDB Rating","type":"quantitative"},"y":{"field":"Rotten Tomatoes Rating","type":"quantitative"}}}]}, {"mode": "vega-lite"});
+</script>
+<p>If we put the two layers in the opposite order, the points will be drawn first and will be obscured by the heatmap marks:</p><pre><code class="language-julia hljs">points + heatmap</code></pre><style>
+  #vis-e8e9dfac-4f04-4a29-afb5-e3489ef7a12b.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-e8e9dfac-4f04-4a29-afb5-e3489ef7a12b.vega-embed details,
+  #vis-e8e9dfac-4f04-4a29-afb5-e3489ef7a12b.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-e8e9dfac-4f04-4a29-afb5-e3489ef7a12b"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-e8e9dfac-4f04-4a29-afb5-e3489ef7a12b") {
+      outputDiv = document.getElementById("vis-e8e9dfac-4f04-4a29-afb5-e3489ef7a12b");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/movies.json"},"layer":[{"mark":{"type":"circle","color":"black","size":5},"encoding":{"x":{"field":"IMDB Rating","type":"quantitative"},"y":{"field":"Rotten Tomatoes Rating","type":"quantitative"}}},{"mark":{"type":"rect"},"encoding":{"x":{"field":"IMDB Rating","type":"quantitative","bin":true},"y":{"field":"Rotten Tomatoes Rating","type":"quantitative","bin":true},"color":{"aggregate":"count","scale":{"scheme":"greenblue"}}}}]}, {"mode": "vega-lite"});
+</script>
+<h3 id="Resolution"><a class="docs-heading-anchor" href="#Resolution">Resolution</a><a id="Resolution-1"></a><a class="docs-heading-anchor-permalink" href="#Resolution" title="Permalink"></a></h3><p>When you have different scales in different layers, the scale domains are unioned so that all layers can use the same scale. In the examples above, Vega-Lite automatically used common x- and y-axis. We can disable this by setting the <code>resolve</code> property.</p><p>The default <a href="https://vega.github.io/vega-lite/docs/resolve.html">resolutions</a> for layer are shared scales, axes, and legends.</p><p>In Deneb.jl, the methods <a href="../api/#Deneb.resolve_scale-Tuple{}"><code>resolve_scale</code></a>, <a href="../api/#Deneb.resolve_axis-Tuple{}"><code>resolve_axis</code></a>, and <a href="../api/#Deneb.resolve_legend-Tuple{}"><code>resolve_legend</code></a> are available to conveniently defined the desired resolution (<code>shared</code> or <code>independent</code>) of the respective channels. In the chart below, we set the y-scales of the different layers to be independent with <code>resolve_scale(y=:independent)</code>.</p><pre><code class="language-julia hljs">base = cars * Encoding(&quot;year(Year):T&quot;) * Mark(:line)
+
+line1 = Mark(color=&quot;#5276A7&quot;) * Encoding(
+    y=field(&quot;average(Horsepower):Q&quot;, axis=(;titleColor=&quot;#5276A7&quot;))
+)
+
+line2 = Mark(color=&quot;#F18727&quot;) * Encoding(
+    y=field(&quot;average(Miles_per_Gallon):Q&quot;, axis=(;titleColor=&quot;#F18727&quot;))
+)
+
+chart = base * (line1 + line2) * resolve_scale(y=:independent)</code></pre><style>
+  #vis-2af3ae2c-6cbd-4eea-a025-62bdc037e12d.vega-embed {
+    width: 100%;
+    display: flex;
+  }
+
+  #vis-2af3ae2c-6cbd-4eea-a025-62bdc037e12d.vega-embed details,
+  #vis-2af3ae2c-6cbd-4eea-a025-62bdc037e12d.vega-embed details summary {
+    position: relative;
+  }
+</style>
+<div id="vis-2af3ae2c-6cbd-4eea-a025-62bdc037e12d"></div>
+<script type="text/javascript">
+  var VEGA_DEBUG = (typeof VEGA_DEBUG == "undefined") ? {} : VEGA_DEBUG;
+  (function(spec, embedOpt){
+    let outputDiv = document.currentScript.previousElementSibling;
+    if (outputDiv.id !== "vis-2af3ae2c-6cbd-4eea-a025-62bdc037e12d") {
+      outputDiv = document.getElementById("vis-2af3ae2c-6cbd-4eea-a025-62bdc037e12d");
+    }
+    const paths = {
+      "vega": "https://cdn.jsdelivr.net/npm/vega@5?noext",
+      "vega-lib": "https://cdn.jsdelivr.net/npm/vega-lib?noext",
+      "vega-lite": "https://cdn.jsdelivr.net/npm/vega-lite@5?noext",
+      "vega-embed": "https://cdn.jsdelivr.net/npm/vega-embed@6?noext",
+    };
+
+    function maybeLoadScript(lib, version) {
+      var key = `${lib.replace("-", "")}_version`;
+      return (VEGA_DEBUG[key] == version) ?
+        Promise.resolve(paths[lib]) :
+        new Promise(function(resolve, reject) {
+          var s = document.createElement('script');
+          document.getElementsByTagName("head")[0].appendChild(s);
+          s.async = true;
+          s.onload = () => {
+            VEGA_DEBUG[key] = version;
+            return resolve(paths[lib]);
+          };
+          s.onerror = () => reject(`Error loading script: ${paths[lib]}`);
+          s.src = paths[lib];
+        });
+    }
+
+    function showError(err) {
+      outputDiv.innerHTML = `<div class="error" style="color:red;">${err}</div>`;
+      throw err;
+    }
+
+    function displayChart(vegaEmbed) {
+      vegaEmbed(outputDiv, spec, embedOpt)
+        .catch(err => showError(`Javascript Error: ${err.message}<br>This usually means there's a typo in your chart specification. See the javascript console for the full traceback.`));
+    }
+
+    if(typeof define === "function" && define.amd) {
+      requirejs.config({paths});
+      require(["vega-embed"], displayChart, err => showError(`Error loading script: ${err.message}`));
+    } else {
+      maybeLoadScript("vega", "5")
+        .then(() => maybeLoadScript("vega-lite", "5"))
+        .then(() => maybeLoadScript("vega-embed", "6"))
+        .catch(showError)
+        .then(() => displayChart(vegaEmbed));
+    }
+  })({"config":{"view":{"continuousWidth":300,"continuousHeight":300,"step":25},"mark":{"tooltip":true}},"data":{"url":"https://vega.github.io/vega-datasets/data/cars.json"},"encoding":{"x":{"timeUnit":"year","field":"Year","type":"temporal"}},"layer":[{"mark":{"type":"line","color":"#5276A7"},"encoding":{"y":{"aggregate":"average","field":"Horsepower","type":"quantitative","axis":{"titleColor":"#5276A7"}}}},{"mark":{"type":"line","color":"#F18727"},"encoding":{"y":{"aggregate":"average","field":"Miles_per_Gallon","type":"quantitative","axis":{"titleColor":"#F18727"}}}}],"resolve":{"scale":{"y":"independent"}}}, {"mode": "vega-lite"});
+</script>
+<h3 id="Layering-multi-views"><a class="docs-heading-anchor" href="#Layering-multi-views">Layering multi-views</a><a id="Layering-multi-views-1"></a><a class="docs-heading-anchor-permalink" href="#Layering-multi-views" title="Permalink"></a></h3><p><a href="../multiview/#multiview">Multi-view</a> layout specs (facet, repeat, concat) cannot be layered, but layered specs can be faceted/repeated/concatenated.</p><h3 id="Examples"><a class="docs-heading-anchor" href="#Examples">Examples</a><a id="Examples-1"></a><a class="docs-heading-anchor-permalink" href="#Examples" title="Permalink"></a></h3><p>More example of layered visualizations can be found in the <a href="../examples/#Layered-plots">Layered-plots</a> section of the Gallery.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="../data_mark_encoding/">« Data, Mark and Encoding</a><a class="docs-footer-nextpage" href="../multiview/">Multi-views »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.13.0 on <span class="colophon-date" title="Thursday 26 June 2025 09:08">Thursday 26 June 2025</span>. Using Julia version 1.9.4.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
