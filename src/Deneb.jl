@@ -1,7 +1,7 @@
 module Deneb
 
 using UUIDs
-using NodeJS_18_jll
+using VLConvert_jll
 using JSON, Tables
 using MultilineStrings: indent
 using DefaultApplication

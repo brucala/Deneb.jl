@@ -56,18 +56,22 @@ end
 ### Convert to image
 ###
 
-convert(s::AbstractSpec, fmt::Symbol) = read(
-    pipeline(vl2command(fmt), stdin=IOBuffer(json(s))),
-    String
-)
-function vl2command(fmt::Symbol)
-    fmt == :vega && (fmt = :vg)
-    valid_formats = (:vg, :png, :svg, :pdf)
-    Symbol(fmt) ∉ valid_formats && return @warn("Format must be any of $valid_formats")
-    deps = ["--yes", "-p", "vega", "-p", "vega-lite"]
-    fmt == :vg || append!(deps, ["-p", "canvas"])
-    Cmd(`$(node()) $npx $deps vl2$fmt`)
+function convert(spec::AbstractSpec, fmt::Symbol)
+    out_file = tempname()
+    run_vlconvert(spec, fmt, fname)
+    return read(out_file, String)
 end
+
+function run_vlconvert(spec::AbstractSpec, fmt::Symbol, fname::String)
+    valid_formats = (:vg, :vega, :png, :svg, :pdf, :jpeg, :jpg)
+    Symbol(fmt) ∉ valid_formats && return @warn("Format must be any of $valid_formats")
+    fmt == :vega && (fmt = :vg)
+    fmt == :jpg && (fmt = :jpeg)
+    spec_file = tempname()
+    write(spec_file, json(spec))
+    run(`$(vlconvert()) vl2$fmt -i $spec_file -o $fname`)
+end
+
 
 ###
 ### HTML templates
@@ -210,7 +214,7 @@ html(spec;
 
 """
     save(filename, spec)
-Saves the spec as filename. Allowed formats are `.json`, `.html`, `.png`, `.svg`, `.pdf`.
+Saves the spec as filename. Allowed formats are `.json`, `.html`, `.png`, `.svg`, `.pdf`, `.jpeg/jpg`, `.vg/vega`.
 """
 function save(filename::AbstractString, mime::AbstractString, s::VegaLiteSpec)
     showable(s, mime) || return
@@ -220,20 +224,8 @@ function save(filename::AbstractString, mime::AbstractString, s::VegaLiteSpec)
 end
 function save(filename::AbstractString, s::VegaLiteSpec)
     file_ext = lowercase(splitext(filename)[2])
-    if file_ext == ".svg"
-        mime = "image/svg+xml"
-    elseif file_ext == ".pdf"
-        mime = "application/pdf"
-    elseif file_ext == ".png"
-        mime = "image/png"
-    elseif file_ext == ".json"
-        mime = "application/json"
-    elseif file_ext == ".html"
-        return write(filename, html(s))
-    else
-        throw(ArgumentError("Unknown file type."))
-    end
-    save(filename, mime, s)
+    file_ext == ".html" && return write(filename, html(s))
+    run_vlconvert(s, Symbol(file_ext[2:end]), filename)
 end
 
 ###
