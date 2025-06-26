@@ -57,7 +57,7 @@ end
 ###
 
 function convert(spec::AbstractSpec, fmt::Symbol)
-    out_file = tempname()
+    fname = tempname()
     run_vlconvert(spec, fmt, fname)
     return read(out_file, String)
 end
